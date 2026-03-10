@@ -1,0 +1,46 @@
+.main-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #F8F5F1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 60px;
+  border-bottom: 1px solid #eee;
+  z-index: 1000;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 20px;
+  color: #7A4A3A;
+}
+
+.main-header nav {
+  display: flex;
+  gap: 30px;
+}
+
+.main-header nav a {
+  text-decoration: none;
+  color: #5A534C;
+  font-weight: 500;
+}
+
+.main-header nav a:hover {
+  color: #B4533A;
+}
+
+.header-icons {
+  display: flex;
+  gap: 20px;
+  font-size: 18px;
+}
+
+.main-content {
+  padding-top: 90px;
+}
+.main-header {
+  backdrop-filter: blur(8px);
+}

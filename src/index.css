@@ -1,0 +1,24 @@
+:root {
+  --marrom-firmeza: #7A4A3A;
+  --terracota-acolhimento: #B4533A;
+  --rose-gold-preciosidade: #D9AA8F;
+  --off-white-fundo: #F8F5F1;
+  --marrom-cinza-texto: #5A534C;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Georgia", serif;
+  background-color: var(--off-white-fundo);
+  color: var(--marrom-cinza-texto);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

@@ -1,0 +1,108 @@
+import { useEffect, useState } from "react";
+import { API_URL } from "../services/api";
+import { useNavigate } from "react-router-dom";
+
+export default function MyCourses() {
+
+  const [courses, setCourses] = useState<any[]>([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+
+    const userId = localStorage.getItem("userId");
+
+    if (!userId) return;
+
+    async function loadCourses() {
+
+      const response = await fetch(
+        `${API_URL}/my-courses/${userId}`
+      );
+
+      const data = await response.json();
+
+      setCourses(data);
+
+    }
+
+    loadCourses();
+
+  }, []);
+
+  const baixarCertificado = (courseId: string) => {
+
+    const userId = localStorage.getItem("userId");
+
+    if (!userId) return;
+
+    window.open(
+      `${API_URL}/certificate/${userId}/${courseId}`,
+      "_blank"
+    );
+
+  };
+
+  return (
+    <div style={{ padding: "60px" }}>
+
+      <h1>Meus Cursos</h1>
+
+      {courses.length === 0 && (
+        <p>Você ainda não comprou cursos.</p>
+      )}
+
+      {courses.map((course) => (
+
+        <div
+          key={course._id}
+          style={{
+            marginTop: "20px",
+            padding: "20px",
+            background: "#fff",
+            borderRadius: "10px"
+          }}
+        >
+
+          <h3>{course.title}</h3>
+
+          <p>{course.description}</p>
+
+          <div style={{ marginTop: "15px", display: "flex", gap: "10px" }}>
+
+            <button
+              onClick={() => navigate(`/course-player/${course._id}`)}
+              style={{
+                padding: "8px 16px",
+                background: "#8B4533",
+                color: "white",
+                border: "none",
+                borderRadius: "6px",
+                cursor: "pointer"
+              }}
+            >
+              Acessar Curso
+            </button>
+
+            <button
+              onClick={() => baixarCertificado(course._id)}
+              style={{
+                padding: "8px 16px",
+                background: "#2E8B57",
+                color: "white",
+                border: "none",
+                borderRadius: "6px",
+                cursor: "pointer"
+              }}
+            >
+              Baixar Certificado
+            </button>
+
+          </div>
+
+        </div>
+
+      ))}
+
+    </div>
+  );
+}
