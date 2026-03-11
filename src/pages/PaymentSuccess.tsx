@@ -13,8 +13,12 @@ export default function PaymentSuccess() {
 
     async function verifyPayment() {
 
+   console.log("params completos:", Object.fromEntries(params.entries()));   
+
       const paymentId =
-        params.get("payment_id") || params.get("collection_id");
+  params.get("payment_id") ||
+  params.get("collection_id") ||
+  params.get("id");
 
       console.log("paymentId recebido:", paymentId);
 
