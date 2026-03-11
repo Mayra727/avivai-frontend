@@ -6,8 +6,6 @@ import MyCourses from "./pages/MyCourses";
 import Dashboard from "./pages/Dashboard";
 import PaymentSuccess from "./pages/PaymentSuccess";
 
-<Route path="/payment-success" element={<PaymentSuccess />} />
-
 export default function App() {
 
   const email = localStorage.getItem("email");
@@ -56,6 +54,10 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/meus-cursos" element={<MyCourses />} />
+
+        {/* ROTA DO PAGAMENTO */}
+        <Route path="/payment-success" element={<PaymentSuccess />} />
+
       </Routes>
 
     </div>
