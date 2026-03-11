@@ -11,7 +11,7 @@ export default function PaymentSuccess() {
 
     async function verifyPayment() {
 
-      const paymentId = params.get("collection_id");
+      const paymentId = params.get("payment_id") || params.get("collection_id");
 
       if (!paymentId) {
         console.log("Payment ID não encontrado");
