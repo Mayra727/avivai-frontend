@@ -11,26 +11,34 @@ export default function PaymentSuccess() {
 
     async function verifyPayment() {
 
-      const paymentId = params.get("payment_id") || params.get("collection_id");
+      // MercadoPago pode mandar payment_id ou collection_id
+      const paymentId =
+        params.get("payment_id") || params.get("collection_id");
 
       if (!paymentId) {
         console.log("Payment ID não encontrado");
-        navigate("/my-courses");
+        navigate("/dashboard");
         return;
       }
 
       try {
 
-        await fetch(`${API_URL}/verify-payment/${paymentId}`);
+        const response = await fetch(
+          `${API_URL}/verify-payment/${paymentId}`
+        );
+
+        const data = await response.json();
+
+        console.log("verify payment:", data);
 
         setTimeout(() => {
-          navigate("/my-courses");
+          navigate("/dashboard");
         }, 2000);
 
       } catch (error) {
 
         console.log(error);
-        navigate("/my-courses");
+        navigate("/dashboard");
 
       }
 
