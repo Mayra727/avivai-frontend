@@ -17,7 +17,7 @@ export default function Dashboard() {
 
     if (!userId) return;
 
-    fetch(`${API_URL}/,{userId}`)
+    fetch(`${API_URL}/my-courses/${userId}`)
       .then(res => res.json())
       .then(data => {
         console.log("Cursos recebidos:", data);

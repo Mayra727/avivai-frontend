@@ -11,6 +11,8 @@ export default function MyCourses() {
 
     const userId = localStorage.getItem("userId");
 
+    console.log("Chamando API:", `${API_URL}/my-courses/${userId}`);
+
     if (!userId) return;
 
     async function loadCourses() {

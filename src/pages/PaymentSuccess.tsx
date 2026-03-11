@@ -32,11 +32,16 @@ export default function PaymentSuccess() {
 
         console.log("Chamando backend:", `${API_URL}/verify-payment/${paymentId}`);
 
-        const response = await fetch(
-          `${API_URL}/verify-payment/${paymentId}`
-        );
+        const response = await fetch(`${API_URL}/verify-payment/${paymentId}`);
 
-        const data = await response.json();
+if (!response.ok) {
+  console.log("Erro no backend:", response.status);
+  navigate("/dashboard");
+  return;
+}
+
+const data = await response.json();
+console.log("Resposta do backend:", data);
 
         console.log("Resposta do backend:", data);
 
