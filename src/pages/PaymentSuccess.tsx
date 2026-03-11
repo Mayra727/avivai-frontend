@@ -9,11 +9,14 @@ export default function PaymentSuccess() {
 
   useEffect(() => {
 
+    console.log("PaymentSuccess carregou");
+
     async function verifyPayment() {
 
-      // MercadoPago pode mandar payment_id ou collection_id
       const paymentId =
         params.get("payment_id") || params.get("collection_id");
+
+      console.log("paymentId recebido:", paymentId);
 
       if (!paymentId) {
         console.log("Payment ID não encontrado");
@@ -23,13 +26,15 @@ export default function PaymentSuccess() {
 
       try {
 
+        console.log("Chamando backend:", `${API_URL}/verify-payment/${paymentId}`);
+
         const response = await fetch(
           `${API_URL}/verify-payment/${paymentId}`
         );
 
         const data = await response.json();
 
-        console.log("verify payment:", data);
+        console.log("Resposta do backend:", data);
 
         setTimeout(() => {
           navigate("/dashboard");
@@ -37,7 +42,7 @@ export default function PaymentSuccess() {
 
       } catch (error) {
 
-        console.log(error);
+        console.log("Erro ao verificar pagamento:", error);
         navigate("/dashboard");
 
       }
