@@ -11,7 +11,7 @@ export default function ProducerProfile() {
   return (
     <div
       style={{
-        padding: "60px",
+        padding: "60px 20px",
         textAlign: "center",
         maxWidth: "700px",
         margin: "0 auto"
@@ -20,17 +20,16 @@ export default function ProducerProfile() {
 
       {/* FOTO */}
       <img
-        src="/vanessa.jpg"
-        alt="Vanessa Nonato"
-        style={{
-          width: "220px",
-          height: "220px",
-          objectFit: "cover",
-          borderRadius: "20px",
-          marginBottom: "20px",
-          boxShadow: "0 10px 30px rgba(0,0,0,0.15)"
-        }}
-      />
+  src="/vanessa.jpg"
+  alt="Vanessa Nonato"
+  style={{
+    width: "260px",
+    height: "auto",
+    borderRadius: "20px",
+    marginBottom: "25px",
+    boxShadow: "0 10px 30px rgba(0,0,0,0.15)"
+  }}
+/>
 
       {/* NOME */}
       <h1 style={{ marginBottom: "5px" }}>
