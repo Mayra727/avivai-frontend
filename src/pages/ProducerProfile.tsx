@@ -4,10 +4,7 @@ export default function ProducerProfile() {
 
   const navigate = useNavigate();
 
-  function verEbook() {
-    navigate("/ebook");
-  }
-
+ 
   return (
     <div
       style={{
@@ -105,20 +102,20 @@ export default function ProducerProfile() {
         </p>
 
         <button
-          onClick={verEbook}
-          style={{
-            marginTop: "15px",
-            padding: "12px 28px",
-            background: "#8B4533",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontSize: "16px"
-          }}
-        >
-          Ver Ebook
-        </button>
+  onClick={() => navigate("/ebook")}
+  style={{
+    marginTop: "15px",
+    padding: "12px 28px",
+    background: "#8B4533",
+    color: "white",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer",
+    fontSize: "16px"
+  }}
+>
+  Ver Ebook
+</button>
 
       </div>
 

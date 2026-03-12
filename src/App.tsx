@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import ProducerDashboard from "./pages/ProducerDashboard";
 import ProducerProfile from "./pages/ProducerProfile";
+import EbookPage from "./pages/EbookPage";
 
 import { useAuth } from "./context/AuthContext";
 
@@ -81,7 +82,9 @@ export default function App() {
           path="/producer-dashboard"
           element={<ProducerDashboard />}
         />
-        
+
+        <Route path="/ebook" element={<EbookPage />} />
+
 <Route path="/produtora" element={<ProducerProfile />} />
 
 
