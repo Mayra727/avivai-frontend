@@ -4,83 +4,105 @@ export default function ProducerProfile() {
 
   const navigate = useNavigate();
 
-  return (
+  function verEbook() {
+    navigate("/ebook");
+  }
 
+  return (
     <div
       style={{
-        maxWidth: "900px",
-        margin: "auto",
         padding: "60px",
-        textAlign: "center"
+        textAlign: "center",
+        maxWidth: "700px",
+        margin: "0 auto"
       }}
     >
 
+      {/* FOTO */}
       <img
         src="/vanessa.jpg"
         alt="Vanessa Nonato"
         style={{
-          width: "200px",
-          borderRadius: "50%",
-          marginBottom: "20px"
+          width: "220px",
+          height: "220px",
+          objectFit: "cover",
+          borderRadius: "20px",
+          marginBottom: "20px",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.15)"
         }}
       />
 
-      <h1>Vanessa Nonato</h1>
+      {/* NOME */}
+      <h1 style={{ marginBottom: "5px" }}>
+        Vanessa Nonato
+      </h1>
 
-      <h3 style={{ color: "#8B4533" }}>
+      {/* AUTORIDADE */}
+      <p
+        style={{
+          color: "#8B4533",
+          fontWeight: "600",
+          marginBottom: "20px"
+        }}
+      >
         Pastora • Escritora • Mentora Cristã
-      </h3>
+      </p>
 
-      <div style={{ maxWidth: "700px", margin: "auto" }}>
+      {/* BIO */}
+      <p>
+        Filha amada do Pai, esposa do Jeferson e mãe do Gabriel e do Noah.
+      </p>
 
-        <p style={{ marginTop: "20px", fontSize: "18px", lineHeight: "1.6" }}>
-          Filha amada do Pai, esposa do Jeferson e mãe do Gabriel e do Noah.
-        </p>
+      <p>
+        Eu conduzo cristãos que se sentem travados em sua vida emocional
+        e espiritual no resgate da intimidade com Deus e da saúde da alma.
+      </p>
 
-        <p style={{ fontSize: "18px", lineHeight: "1.6" }}>
-          Eu conduzo cristãos que se sentem travados em sua vida emocional
-          e espiritual no resgate da intimidade com Deus e da saúde da alma.
-        </p>
+      <p>
+        Através de uma metodologia que une
+        <b> Neurociência e Fundamentos Bíblicos</b>,
+        eu estruturo o caminho da cura real,
+        ensinando-os a viver uma fé prática e apaixonada pelo Espírito Santo.
+      </p>
 
-        <p style={{ fontSize: "18px", lineHeight: "1.6" }}>
-          Através de uma metodologia que une <strong>Neurociência</strong> e
-          <strong> Fundamentos Bíblicos</strong>, eu estruturo o caminho da
-          cura real, ensinando-os a viver uma fé prática e apaixonada
-          pelo Espírito Santo.
-        </p>
+      <p
+        style={{
+          fontStyle: "italic",
+          marginTop: "10px"
+        }}
+      >
+        O Espírito Santo é o meu bem mais precioso.
+      </p>
 
-        <p style={{ fontStyle: "italic", marginTop: "20px" }}>
-          O Espírito Santo é o meu bem mais precioso.
-        </p>
-
-      </div>
-
+      {/* CARD DO EBOOK */}
       <div
         style={{
           marginTop: "50px",
           padding: "30px",
-          background: "#fff",
-          borderRadius: "10px",
-          boxShadow: "0 10px 20px rgba(0,0,0,0.1)"
+          background: "#ffffff",
+          borderRadius: "12px",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
         }}
       >
 
-        <h2>📖 Ebook disponível</h2>
+        <h2>
+          📘 Ebook disponível
+        </h2>
 
-        <h3 style={{ marginTop: "15px" }}>
+        <h3 style={{ marginTop: "10px" }}>
           O Caminho da Intimidade
         </h3>
 
-        <p style={{ marginTop: "10px" }}>
+        <p>
           Um guia espiritual profundo para desenvolver
           intimidade verdadeira com Deus.
         </p>
 
         <button
-          onClick={() => navigate("/ebook")}
+          onClick={verEbook}
           style={{
-            marginTop: "20px",
-            padding: "12px 30px",
+            marginTop: "15px",
+            padding: "12px 25px",
             background: "#8B4533",
             color: "white",
             border: "none",
@@ -95,7 +117,5 @@ export default function ProducerProfile() {
       </div>
 
     </div>
-
   );
-
 }
