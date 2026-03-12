@@ -76,12 +76,6 @@ export default function EbookPage() {
 
       </div>
 
-      <div style={{ marginTop: "30px" }}>
-        <a href="/ebook-intimidade.pdf" target="_blank">
-          Ler amostra
-        </a>
-      </div>
-
     </div>
   );
 }
