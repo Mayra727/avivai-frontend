@@ -81,6 +81,7 @@ export default function App() {
           path="/producer-dashboard"
           element={<ProducerDashboard />}
         />
+        
 <Route path="/produtora" element={<ProducerProfile />} />
 
 
