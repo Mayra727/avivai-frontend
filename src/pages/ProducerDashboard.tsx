@@ -1,123 +1,160 @@
-import { useState } from "react";
-import { useCourses } from "../context/CourseContext";
+import { useState, useEffect } from "react";
+import { API_URL } from "../services/api";
+import { useAuth } from "../context/AuthContext";
 
 export default function ProducerDashboard() {
-  const { cursos, adicionarCurso, publicarCurso } = useCourses();
 
-  const [titulo, setTitulo] = useState("");
-  const [descricao, setDescricao] = useState("");
-  const [preco, setPreco] = useState("");
-  const [categoria, setCategoria] = useState("");
+  const { user } = useAuth();
 
-  function criarCurso() {
-    if (!titulo || !descricao || !preco) return;
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
 
-    adicionarCurso({
-      id: Date.now(),
-      titulo,
-      descricao,
-      preco: Number(preco),
-      categoria,
-      publicado: false,
-    });
+  const [courses, setCourses] = useState<any[]>([]);
 
-    setTitulo("");
-    setDescricao("");
-    setPreco("");
-    setCategoria("");
+  async function loadCourses() {
+
+    try {
+
+      const response = await fetch(`${API_URL}/courses`);
+      const data = await response.json();
+
+      const myCourses = data.filter(
+        (course: any) => course.creatorId === user?.id
+      );
+
+      setCourses(myCourses);
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+
+  }
+
+  useEffect(() => {
+
+    if (user) {
+      loadCourses();
+    }
+
+  }, [user]);
+
+  async function createCourse() {
+
+    try {
+
+      const response = await fetch(`${API_URL}/courses`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          title,
+          description,
+          price: Number(price),
+          creatorId: user?.id
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+
+        alert("Curso criado com sucesso!");
+
+        setTitle("");
+        setDescription("");
+        setPrice("");
+
+        loadCourses(); // atualiza lista
+
+      } else {
+
+        alert(data.error);
+
+      }
+
+    } catch (error) {
+
+      console.log(error);
+      alert("Erro ao criar curso");
+
+    }
+
   }
 
   return (
     <div style={{ padding: "60px" }}>
+
       <h1>Painel do Produtor</h1>
 
-      <div style={box}>
-        <h2>Criar Novo Curso</h2>
+      {/* CRIAR CURSO */}
 
-        <input
-          placeholder="Título"
-          value={titulo}
-          onChange={(e) => setTitulo(e.target.value)}
-          style={input}
-        />
+      <h2>Criar Novo Curso</h2>
 
-        <textarea
-          placeholder="Descrição"
-          value={descricao}
-          onChange={(e) => setDescricao(e.target.value)}
-          style={input}
-        />
+      <input
+        placeholder="Título do curso"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
 
-        <input
-          type="number"
-          placeholder="Preço"
-          value={preco}
-          onChange={(e) => setPreco(e.target.value)}
-          style={input}
-        />
+      <br /><br />
 
-        <input
-          placeholder="Categoria"
-          value={categoria}
-          onChange={(e) => setCategoria(e.target.value)}
-          style={input}
-        />
+      <textarea
+        placeholder="Descrição"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
 
-        <button onClick={criarCurso} style={button}>
-          Criar Curso
-        </button>
-      </div>
+      <br /><br />
 
-      <div style={{ marginTop: "50px" }}>
-        <h2>Meus Cursos</h2>
+      <input
+        placeholder="Preço"
+        type="number"
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
+      />
 
-        {cursos.map((curso) => (
-          <div key={curso.id} style={cursoBox}>
-            <h3>{curso.titulo}</h3>
-            <p>{curso.descricao}</p>
-            <p>R$ {curso.preco.toFixed(2)}</p>
-            <p>Status: {curso.publicado ? "Publicado" : "Rascunho"}</p>
+      <br /><br />
 
-            {!curso.publicado && (
-              <button
-                onClick={() => publicarCurso(curso.id)}
-                style={{ ...button, background: "#2e7d32" }}
-              >
-                Publicar
-              </button>
-            )}
-          </div>
-        ))}
-      </div>
+      <button onClick={createCourse}>
+        Criar Curso
+      </button>
+
+      {/* LISTA DE CURSOS */}
+
+      <hr style={{ margin: "40px 0" }} />
+
+      <h2>Meus Cursos</h2>
+
+      {courses.length === 0 && (
+        <p>Você ainda não criou cursos.</p>
+      )}
+
+      {courses.map((course) => (
+
+        <div
+          key={course._id}
+          style={{
+            padding: "20px",
+            background: "#fff",
+            marginTop: "20px",
+            borderRadius: "10px"
+          }}
+        >
+
+          <h3>{course.title}</h3>
+
+          <p>{course.description}</p>
+
+          <p><strong>R$ {course.price}</strong></p>
+
+        </div>
+
+      ))}
+
     </div>
   );
 }
-
-const box: React.CSSProperties = {
-  background: "#fff",
-  padding: "30px",
-  borderRadius: "12px",
-};
-
-const input: React.CSSProperties = {
-  display: "block",
-  width: "100%",
-  marginTop: "15px",
-  padding: "10px",
-};
-
-const button: React.CSSProperties = {
-  marginTop: "20px",
-  padding: "10px 20px",
-  background: "#5A3A2E",
-  color: "#fff",
-  border: "none",
-  cursor: "pointer",
-};
-
-const cursoBox: React.CSSProperties = {
-  marginTop: "20px",
-  padding: "20px",
-  background: "#f9f9f9",
-  borderRadius: "10px",
-};

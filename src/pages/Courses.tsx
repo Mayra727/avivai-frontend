@@ -1,20 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import { createPayment } from "../services/payment";
 
 export default function Courses() {
 
   const navigate = useNavigate();
-  const [userId, setUserId] = useState<string | null>(null);
-
-  useEffect(() => {
-    const storedUserId = localStorage.getItem("userId");
-    setUserId(storedUserId);
-  }, []);
+  const { user } = useAuth();
 
   const comprarCurso = async () => {
 
-    if (!userId) {
+    if (!user) {
       alert("Você precisa estar logado para comprar.");
       navigate("/login");
       return;
@@ -44,8 +39,10 @@ export default function Courses() {
     <div style={{ padding: "60px" }}>
       <h1>Cursos Disponíveis</h1>
 
-      {userId ? (
-        <p style={{ color: "green" }}>Você está logado ✅</p>
+      {user ? (
+        <p style={{ color: "green" }}>
+          Você está logado como <strong>{user.name}</strong> ✅
+        </p>
       ) : (
         <p style={{ color: "red" }}>Você não está logado</p>
       )}

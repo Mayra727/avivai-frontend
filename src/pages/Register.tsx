@@ -2,18 +2,19 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../services/api";
 
-
 export default function Register() {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("aluno");
 
   const navigate = useNavigate();
 
   const handleRegister = async () => {
     try {
-      const response = await fetch (`${API_URL}/register`,{
+
+      const response = await fetch(`${API_URL}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -21,7 +22,8 @@ export default function Register() {
         body: JSON.stringify({
           name,
           email,
-          password
+          password,
+          role
         })
       });
 
@@ -66,6 +68,19 @@ export default function Register() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
+      <br /><br />
+
+      <label>Tipo de conta:</label>
+      <br />
+
+      <select
+        value={role}
+        onChange={(e) => setRole(e.target.value)}
+      >
+        <option value="aluno">Aluno</option>
+        <option value="produtor">Produtor</option>
+      </select>
+
       <br /><br />
 
       <button onClick={handleRegister}>

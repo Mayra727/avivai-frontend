@@ -19,26 +19,24 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
 
-  const [user, setUser] = useState<User | null>(null);
+const [user, setUser] = useState<User | null>(() => {
 
-  useEffect(() => {
+  const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
+  const name = localStorage.getItem("name");
+  const role = localStorage.getItem("role");
 
-    const token = localStorage.getItem("token");
-    const userId = localStorage.getItem("userId");
-    const name = localStorage.getItem("name");
-    const role = localStorage.getItem("role");
+  if (token && userId && name && role) {
+    return {
+      id: userId,
+      name,
+      role: role as Role
+    };
+  }
 
-    if (token && userId && name && role) {
+  return null;
 
-      setUser({
-        id: userId,
-        name,
-        role: role as Role
-      });
-
-    }
-
-  }, []);
+});
 
   function login(user: User, token: string) {
 
