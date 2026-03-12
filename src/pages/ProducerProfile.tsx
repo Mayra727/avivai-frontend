@@ -19,8 +19,8 @@ export default function ProducerProfile() {
         src="/vanessa.jpg"
         alt="Vanessa Nonato"
         style={{
-          width: "180px",
-          borderRadius: "100%",
+          width: "200px",
+          borderRadius: "50%",
           marginBottom: "20px"
         }}
       />
