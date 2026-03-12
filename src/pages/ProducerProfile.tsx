@@ -13,7 +13,7 @@ export default function ProducerProfile() {
       style={{
         padding: "60px 20px",
         textAlign: "center",
-        maxWidth: "700px",
+        maxWidth: "1000px",
         margin: "0 auto"
       }}
     >
@@ -23,7 +23,7 @@ export default function ProducerProfile() {
   src="/vanessa.jpg"
   alt="Vanessa Nonato"
   style={{
-    width: "260px",
+    width: "320px",
     height: "auto",
     borderRadius: "20px",
     marginBottom: "25px",
