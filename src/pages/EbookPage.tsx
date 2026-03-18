@@ -17,46 +17,68 @@ export default function EbookPage() {
     <div style={{ fontFamily: "sans-serif" }}>
 
       {/* HERO */}
-      <section style={{ padding: "60px 20px", textAlign: "center" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+<section
+  style={{
+    padding: "80px 20px",
+    background: "#f9f6f4"
+  }}
+>
+  <div
+    style={{
+      maxWidth: "1200px",
+      margin: "0 auto",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: "40px",
+      flexWrap: "wrap"
+    }}
+  >
 
-          <h1 style={{ fontSize: "42px", maxWidth: "750px", margin: "0 auto", lineHeight: "1.3" }}>
-            Você sente que sua vida espiritual está travada?
-          </h1>
+    {/* TEXTO */}
+    <div style={{ flex: 1, minWidth: "300px" }}>
+      <h1 style={{ fontSize: "44px", lineHeight: "1.2" }}>
+        Você sente que sua vida espiritual está travada?
+      </h1>
 
-          <p style={{ fontSize: "20px", marginTop: "20px" }}>
-            Descubra como desenvolver uma intimidade REAL com Deus
-            mesmo se você se sente distante hoje
-          </p>
+      <p style={{ fontSize: "20px", marginTop: "20px" }}>
+        Descubra como desenvolver uma intimidade REAL com Deus
+        mesmo se você se sente distante hoje
+      </p>
 
-          <img
-            src="/vanessa.jpg"
-            alt="Vanessa"
-            style={{
-              width: "260px",
-              borderRadius: "20px",
-              marginTop: "30px"
-            }}
-          />
+      <button
+        onClick={comprarEbook}
+        style={{
+          marginTop: "30px",
+          padding: "18px 40px",
+          background: "#8B4533",
+          color: "white",
+          border: "none",
+          borderRadius: "10px",
+          fontSize: "18px",
+          cursor: "pointer"
+        }}
+      >
+        Quero destravar minha vida espiritual
+      </button>
+    </div>
 
-          <button
-            onClick={comprarEbook}
-            style={{
-              marginTop: "30px",
-              padding: "18px 50px",
-              background: "#8B4533",
-              color: "white",
-              border: "none",
-              borderRadius: "10px",
-              fontSize: "20px",
-              cursor: "pointer"
-            }}
-          >
-            Quero destravar minha vida espiritual
-          </button>
+    {/* IMAGEM */}
+    <div style={{ flex: 1, textAlign: "center" }}>
+      <img
+        src="/vanessa.jpg"
+        alt="Vanessa"
+        style={{
+          width: "100%",
+          maxWidth: "350px",
+          borderRadius: "20px",
+          boxShadow: "0 20px 40px rgba(0,0,0,0.2)"
+        }}
+      />
+    </div>
 
-        </div>
-      </section>
+  </div>
+</section>
 
       {/* DOR */}
       <section style={{ padding: "60px 20px", textAlign: "center", background: "#f9f6f4" }}>
