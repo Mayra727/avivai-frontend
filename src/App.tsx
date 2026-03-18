@@ -13,79 +13,75 @@ import DownloadPage from "./pages/DownloadPage";
 import { useAuth } from "./context/AuthContext";
 
 export default function App() {
-
   const { user, logout } = useAuth();
 
   return (
-<div style={{ background: "#fff" }}>
+    <div style={{ background: "#fafafa", minHeight: "100vh" }}>
 
-<nav
-  style={{
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    maxWidth: "1100px",
-    margin: "0 auto 30px auto",
-  }}
->
+      {/* NAVBAR */}
+      <nav
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "20px 40px",
+          background: "#fff",
+          boxShadow: "0 2px 10px rgba(0,0,0,0.05)"
+        }}
+      >
+        {/* ESQUERDA */}
+        <div style={{ display: "flex", gap: "20px" }}>
+          <Link to="/cursos">Cursos</Link>
+        </div>
 
-  {/* ESQUERDA */}
-  <div style={{ display: "flex", gap: "20px" }}>
-    <Link to="/cursos">Cursos</Link>
-  </div>
+        {/* DIREITA */}
+        <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
+          {!user && (
+            <>
+              <Link to="/login">Login</Link>
+              <Link to="/register">Registrar</Link>
+            </>
+          )}
 
-  {/* DIREITA */}
-  <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
+          {user && (
+            <>
+              <Link to="/dashboard">Dashboard</Link>
+              <Link to="/meus-cursos">Meus Cursos</Link>
 
-    {!user && (
-      <>
-        <Link to="/login">Login</Link>
-        <Link to="/register">Registrar</Link>
-      </>
-    )}
+              {user.role === "produtor" && (
+                <Link to="/producer-dashboard">Painel</Link>
+              )}
 
-    {user && (
-      <>
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/meus-cursos">Meus Cursos</Link>
+              <span>👤 {user.name}</span>
 
-        {user.role === "produtor" && (
-          <Link to="/producer-dashboard">Painel</Link>
-        )}
+              <button onClick={logout}>Sair</button>
+            </>
+          )}
+        </div>
+      </nav>
 
-        <span>👤 {user.name}</span>
+      {/* ROTAS */}
+      <Routes>
+        <Route path="/" element={<EbookPage />} />
 
-        <button onClick={logout}>Sair</button>
-      </>
-    )}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
-  </div>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/meus-cursos" element={<MyCourses />} />
 
-</nav>
+        <Route path="/cursos" element={<Courses />} />
 
- <Routes>
+        <Route path="/payment-success" element={<PaymentSuccess />} />
 
-  <Route path="/" element={<EbookPage />} />
+        <Route path="/producer-dashboard" element={<ProducerDashboard />} />
 
-  <Route path="/login" element={<Login />} />
-  <Route path="/register" element={<Register />} />
+        <Route path="/ebook" element={<EbookPage />} />
 
-  <Route path="/dashboard" element={<Dashboard />} />
-  <Route path="/meus-cursos" element={<MyCourses />} />
+        <Route path="/produtora" element={<ProducerProfile />} />
+        <Route path="/download" element={<DownloadPage />} />
+      </Routes>
 
-  <Route path="/cursos" element={<Courses />} />
-
-  <Route path="/payment-success" element={<PaymentSuccess />} />
-
-  <Route path="/producer-dashboard" element={<ProducerDashboard />} />
-
-  <Route path="/ebook" element={<EbookPage />} />
-
-  <Route path="/produtora" element={<ProducerProfile />} />
-  <Route path="/download" element={<DownloadPage />} />
-
-</Routes>
-
-</div>
-);
+    </div>
+  );
 }
