@@ -16,7 +16,7 @@ export default function App() {
   const { user, logout } = useAuth();
 
   return (
-    <div style={{ background: "#fafafa", minHeight: "100vh" }}>
+    <div style={{ background: "#F8F5F1", minHeight: "100vh" }}>
 
       {/* NAVBAR */}
       <nav
@@ -25,8 +25,8 @@ export default function App() {
           justifyContent: "space-between",
           alignItems: "center",
           padding: "20px 40px",
-          background: "#fff",
-          boxShadow: "0 2px 10px rgba(0,0,0,0.05)"
+          background: "#F8F5F1",
+          borderBottom: "1px solid #E5E0DA"
         }}
       >
         {/* ESQUERDA */}
