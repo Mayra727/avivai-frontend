@@ -17,7 +17,7 @@ export default function App() {
   const { user, logout } = useAuth();
 
   return (
-    <div style={{ padding: "20px" }}>
+<div style={{ background: "#fff" }}>
 
 <nav
   style={{
