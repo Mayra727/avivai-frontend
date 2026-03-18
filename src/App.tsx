@@ -2,12 +2,14 @@ import { Routes, Route, Link } from "react-router-dom";
 import Courses from "./pages/Courses";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Home from "./pages/Home";
 import MyCourses from "./pages/MyCourses";
 import Dashboard from "./pages/Dashboard";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import ProducerDashboard from "./pages/ProducerDashboard";
 import ProducerProfile from "./pages/ProducerProfile";
 import EbookPage from "./pages/EbookPage";
+import DownloadPage from "./pages/DownloadPage";
 
 import { useAuth } from "./context/AuthContext";
 
@@ -70,6 +72,8 @@ export default function App() {
 
         <Route path="/login" element={<Login />} />
 
+<Route path="/" element={<Home />} />
+
         <Route path="/register" element={<Register />} />
 
         <Route path="/dashboard" element={<Dashboard />} />
@@ -87,7 +91,7 @@ export default function App() {
 
 <Route path="/produtora" element={<ProducerProfile />} />
 
-
+<Route path="/download" element={<DownloadPage />} />
       </Routes>
 
     </div>
