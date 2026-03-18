@@ -98,6 +98,17 @@ export default function EbookPage() {
       <section style={{ padding: "80px 20px", textAlign: "center", background: "#f3ece8" }}>
         <h2>📘 Primeiros Conceitos: O Caminho da Intimidade</h2>
 
+<img
+    src="/ebook.png"
+    alt="Ebook"
+    style={{
+      width: "220px",
+      marginTop: "20px",
+      borderRadius: "10px",
+      boxShadow: "0 10px 25px rgba(0,0,0,0.2)"
+    }}
+  />
+
         <p style={{ marginTop: "10px", fontSize: "16px", color: "#666" }}>
           Volume 1 da Trilogia da Intimidade
         </p>
