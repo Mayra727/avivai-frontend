@@ -19,51 +19,49 @@ export default function App() {
   return (
     <div style={{ padding: "20px" }}>
 
-      <nav style={{ marginBottom: "20px" }}>
+<nav
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    maxWidth: "1100px",
+    margin: "0 auto 30px auto",
+  }}
+>
 
-        <Link to="/cursos">
-  Cursos
-</Link>
+  {/* ESQUERDA */}
+  <div style={{ display: "flex", gap: "20px" }}>
+    <Link to="/cursos">Cursos</Link>
+  </div>
 
-        {!user && (
-          <>
-            <Link to="/login" style={{ marginRight: "15px" }}>
-              Login
-            </Link>
+  {/* DIREITA */}
+  <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
 
-            <Link to="/register">
-              Registrar
-            </Link>
-          </>
+    {!user && (
+      <>
+        <Link to="/login">Login</Link>
+        <Link to="/register">Registrar</Link>
+      </>
+    )}
+
+    {user && (
+      <>
+        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/meus-cursos">Meus Cursos</Link>
+
+        {user.role === "produtor" && (
+          <Link to="/producer-dashboard">Painel</Link>
         )}
 
-        {user && (
-          <>
-            <Link to="/dashboard" style={{ marginRight: "15px" }}>
-              Dashboard
-            </Link>
+        <span>👤 {user.name}</span>
 
-            <Link to="/meus-cursos" style={{ marginRight: "15px" }}>
-              Meus Cursos
-            </Link>
+        <button onClick={logout}>Sair</button>
+      </>
+    )}
 
-            {user.role === "produtor" && (
-              <Link to="/producer-dashboard" style={{ marginRight: "15px" }}>
-                Painel do Produtor
-              </Link>
-            )}
+  </div>
 
-            <span style={{ marginRight: "10px" }}>
-              👤 {user.name}
-            </span>
-
-            <button onClick={logout}>
-              Sair
-            </button>
-          </>
-        )}
-
-      </nav>
+</nav>
 
  <Routes>
 

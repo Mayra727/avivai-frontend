@@ -15,10 +15,17 @@ export default function EbookPage() {
   }
 
   return (
-    <div style={{ fontFamily: "sans-serif" }}>
+    <div
+  style={{
+    fontFamily: "sans-serif",
+    maxWidth: "1100px",
+    margin: "0 auto",
+    padding: "0 20px"
+  }}
+>
 
       {/* HERO */}
-      <section style={{ padding: "80px 20px", textAlign: "center" }}>
+      <section style={{ padding: "60px 0px", textAlign: "center" }}>
         <h1 style={{ fontSize: "40px", maxWidth: "700px", margin: "0 auto" }}>
           Você sente que sua vida espiritual está travada?
         </h1>
@@ -56,7 +63,7 @@ export default function EbookPage() {
       </section>
 
       {/* DOR */}
-      <section style={{ padding: "60px 20px", textAlign: "center", background: "#f9f6f4" }}>
+      <section style={{ padding: "60px 0px", textAlign: "center", background: "#f9f6f4" }}>
         <h2>Se você sente isso, esse livro é pra você:</h2>
 
         <ul style={{ marginTop: "20px", lineHeight: "32px", listStyle: "none" }}>
@@ -83,7 +90,7 @@ export default function EbookPage() {
       </section>
 
       {/* TRANSFORMAÇÃO */}
-      <section style={{ padding: "60px 20px", textAlign: "center" }}>
+      <section style={{ padding: "60px 0px", textAlign: "center" }}>
         <h2>O que você vai viver:</h2>
 
         <ul style={{ marginTop: "20px", lineHeight: "32px", listStyle: "none" }}>
@@ -95,7 +102,7 @@ export default function EbookPage() {
       </section>
 
       {/* PRODUTO */}
-      <section style={{ padding: "80px 20px", textAlign: "center", background: "#f3ece8" }}>
+      <section style={{ padding: "60px 0px", textAlign: "center", background: "#f3ece8" }}>
         <h2>📘 Primeiros Conceitos: O Caminho da Intimidade</h2>
 
 <img
@@ -113,7 +120,7 @@ export default function EbookPage() {
           Volume 1 da Trilogia da Intimidade
         </p>
 
-        <p style={{ maxWidth: "600px", margin: "20px auto" }}>
+        <p style={{ maxWidth: "650px", margin: "20px auto" }}>
           Um guia prático para destravar sua vida espiritual
           e iniciar sua jornada de intimidade real com Deus.
         </p>
@@ -138,7 +145,7 @@ export default function EbookPage() {
       </section>
 
       {/* CTA FINAL */}
-      <section style={{ padding: "80px 20px", textAlign: "center" }}>
+      <section style={{ padding: "60px 0px", textAlign: "center" }}>
         <h2>⚠️ Oferta por tempo limitado</h2>
 
         <button
