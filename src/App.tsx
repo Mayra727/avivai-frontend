@@ -2,7 +2,6 @@ import { Routes, Route, Link } from "react-router-dom";
 import Courses from "./pages/Courses";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Home from "./pages/Home";
 import MyCourses from "./pages/MyCourses";
 import Dashboard from "./pages/Dashboard";
 import PaymentSuccess from "./pages/PaymentSuccess";
@@ -22,9 +21,9 @@ export default function App() {
 
       <nav style={{ marginBottom: "20px" }}>
 
-        <Link to="/" style={{ marginRight: "15px" }}>
-          Cursos
-        </Link>
+        <Link to="/cursos">
+  Cursos
+</Link>
 
         {!user && (
           <>
@@ -66,34 +65,29 @@ export default function App() {
 
       </nav>
 
-      <Routes>
+ <Routes>
 
-        <Route path="/" element={<Courses />} />
+  <Route path="/" element={<EbookPage />} />
 
-        <Route path="/login" element={<Login />} />
+  <Route path="/login" element={<Login />} />
+  <Route path="/register" element={<Register />} />
 
-<Route path="/" element={<Home />} />
+  <Route path="/dashboard" element={<Dashboard />} />
+  <Route path="/meus-cursos" element={<MyCourses />} />
 
-        <Route path="/register" element={<Register />} />
+  <Route path="/cursos" element={<Courses />} />
 
-        <Route path="/dashboard" element={<Dashboard />} />
+  <Route path="/payment-success" element={<PaymentSuccess />} />
 
-        <Route path="/meus-cursos" element={<MyCourses />} />
+  <Route path="/producer-dashboard" element={<ProducerDashboard />} />
 
-        <Route path="/payment-success" element={<PaymentSuccess />} />
+  <Route path="/ebook" element={<EbookPage />} />
 
-        <Route
-          path="/producer-dashboard"
-          element={<ProducerDashboard />}
-        />
+  <Route path="/produtora" element={<ProducerProfile />} />
+  <Route path="/download" element={<DownloadPage />} />
 
-        <Route path="/ebook" element={<EbookPage />} />
+</Routes>
 
-<Route path="/produtora" element={<ProducerProfile />} />
-
-<Route path="/download" element={<DownloadPage />} />
-      </Routes>
-
-    </div>
-  );
+</div>
+);
 }
