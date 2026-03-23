@@ -91,21 +91,21 @@ const styles = {
   logoContainer: {
     display: "flex",
     alignItems: "center",
-    gap: "10px"
+    gap: "15px"
   },
 
  logoImg: {
-  width: "50px",
-  height: "50px",
+  width: "65px",
+  height: "65px",
   objectFit: "contain" as const,
-  filter: "drop-shadow(0 0 8px rgba(255, 170, 0, 0.6))"
+  filter: "drop-shadow(0 0 12px rgba(255, 180, 0, 0.9))"
 },
 
   logo: {
     color: "#F8F5F1",
     fontWeight: 700,
-    letterSpacing: "4px",
-    fontSize: "22px",
+    letterSpacing: "5px",
+    fontSize: "26px",
   },
 
   nav: {
