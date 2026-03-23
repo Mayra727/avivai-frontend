@@ -13,6 +13,37 @@ export default function Home() {
       }}
     >
 
+{/* HEADER */}
+<div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    marginBottom: "30px"
+  }}
+>
+
+  <img
+    src="/logo.png"
+    alt="Avivai Logo"
+    style={{
+      width: "40px",
+      height: "40px",
+      objectFit: "contain"
+    }}
+  />
+
+  <h1
+    style={{
+      fontSize: "22px",
+      margin: 0
+    }}
+  >
+    AVIVAI
+  </h1>
+
+</div>
+
       {/* HERO */}
       <section
         style={{
