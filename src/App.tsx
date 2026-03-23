@@ -15,7 +15,7 @@ import DownloadPage from "./pages/DownloadPage";
 import { useAuth } from "./context/AuthContext";
 
 export default function App() {
-  const { user } = useAuth();
+  useAuth();
 
   return (
     <div style={{ background: "#F8F5F1", minHeight: "100vh" }}>
