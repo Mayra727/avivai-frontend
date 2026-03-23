@@ -72,11 +72,12 @@ export default function Header() {
 
 const styles = {
 
-  header: {
-    backgroundColor: "#7A4A3A",
-    padding: "18px 0",
-    marginBottom: "50px",
-  },
+ header: {
+  backgroundColor: "#7A4A3A",
+  padding: "16px 0",
+  marginBottom: "50px",
+  boxShadow: "0 4px 20px rgba(0,0,0,0.2)"
+},
 
   container: {
     maxWidth: "1200px",
@@ -94,16 +95,17 @@ const styles = {
   },
 
  logoImg: {
-  width: "35px",
-  height: "35px",
-  objectFit: "contain" as const
+  width: "50px",
+  height: "50px",
+  objectFit: "contain" as const,
+  filter: "drop-shadow(0 0 8px rgba(255, 170, 0, 0.6))"
 },
 
   logo: {
     color: "#F8F5F1",
-    fontWeight: 600,
-    letterSpacing: "3px",
-    fontSize: "20px",
+    fontWeight: 700,
+    letterSpacing: "4px",
+    fontSize: "22px",
   },
 
   nav: {
