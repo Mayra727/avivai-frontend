@@ -1,4 +1,6 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+
 import Courses from "./pages/Courses";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -13,52 +15,13 @@ import DownloadPage from "./pages/DownloadPage";
 import { useAuth } from "./context/AuthContext";
 
 export default function App() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   return (
     <div style={{ background: "#F8F5F1", minHeight: "100vh" }}>
 
-      {/* NAVBAR */}
-      <nav
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "20px 40px",
-          background: "#F8F5F1",
-          borderBottom: "1px solid #E5E0DA"
-        }}
-      >
-        {/* ESQUERDA */}
-        <div style={{ display: "flex", gap: "20px" }}>
-          <Link to="/cursos">Cursos</Link>
-        </div>
-
-        {/* DIREITA */}
-        <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
-          {!user && (
-            <>
-              <Link to="/login">Login</Link>
-              <Link to="/register">Registrar</Link>
-            </>
-          )}
-
-          {user && (
-            <>
-              <Link to="/dashboard">Dashboard</Link>
-              <Link to="/meus-cursos">Meus Cursos</Link>
-
-              {user.role === "produtor" && (
-                <Link to="/producer-dashboard">Painel</Link>
-              )}
-
-              <span>👤 {user.name}</span>
-
-              <button onClick={logout}>Sair</button>
-            </>
-          )}
-        </div>
-      </nav>
+      {/* HEADER CORRETO */}
+      <Header />
 
       {/* ROTAS */}
       <Routes>
