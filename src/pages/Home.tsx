@@ -15,60 +15,79 @@ export default function Home() {
 
       {/* HERO */}
       <section
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "40px",
-          flexWrap: "wrap",
-          marginBottom: "60px"
-        }}
-      >
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: "40px",
+    flexWrap: "wrap",
+    marginBottom: "60px",
+    justifyContent: "center"
+  }}
+>
 
-        <img
-          src="/vanessa.jpg"
-          alt="Vanessa Nonato"
-          style={{
-            width: "320px",
-            borderRadius: "20px",
-            boxShadow: "0 15px 35px rgba(0,0,0,0.2)"
-          }}
-        />
+  {/* IMAGEM */}
+  <div
+    style={{
+      flex: "1 1 300px",
+      display: "flex",
+      justifyContent: "center"
+    }}
+  >
+    <img
+      src="/vanessa.jpg"
+      alt="Vanessa Nonato"
+      style={{
+        width: "100%",
+        maxWidth: "320px",
+        borderRadius: "20px",
+        objectFit: "cover",
+        boxShadow: "0 15px 35px rgba(0,0,0,0.2)"
+      }}
+    />
+  </div>
 
-        <div style={{ maxWidth: "500px" }}>
+  {/* TEXTO */}
+  <div
+    style={{
+      flex: "1 1 300px",
+      maxWidth: "500px",
+      textAlign: "center"
+    }}
+  >
 
-          <h1 style={{ fontSize: "36px" }}>
-            AVIVAI
-          </h1>
+    <h1 style={{ fontSize: "32px" }}>
+      AVIVAI
+    </h1>
 
-          <h2 style={{ marginTop: "10px", color: "#8B4533" }}>
-            Caminhos de intimidade com Deus
-          </h2>
+    <h2 style={{ marginTop: "10px", color: "#8B4533" }}>
+      Caminhos de intimidade com Deus
+    </h2>
 
-          <p style={{ marginTop: "20px", fontSize: "18px" }}>
-            Conteúdos espirituais profundos para transformar
-            sua vida emocional e espiritual através da intimidade
-            com o Espírito Santo.
-          </p>
+    <p style={{ marginTop: "20px", fontSize: "16px" }}>
+      Conteúdos espirituais profundos para transformar
+      sua vida emocional e espiritual através da intimidade
+      com o Espírito Santo.
+    </p>
 
-          <button
-            onClick={() => navigate("/ebook")}
-            style={{
-              marginTop: "25px",
-              padding: "14px 30px",
-              background: "#8B4533",
-              color: "white",
-              border: "none",
-              borderRadius: "8px",
-              fontSize: "16px",
-              cursor: "pointer"
-            }}
-          >
-            Conhecer o Ebook
-          </button>
+    <button
+      onClick={() => navigate("/ebook")}
+      style={{
+        marginTop: "25px",
+        padding: "14px 30px",
+        background: "#8B4533",
+        color: "white",
+        border: "none",
+        borderRadius: "8px",
+        fontSize: "16px",
+        cursor: "pointer"
+      }}
+    >
+      Conhecer o Ebook
+    </button>
 
-        </div>
+  </div>
 
-      </section>
+</section>
 
 
       {/* SOBRE VANESSA */}
