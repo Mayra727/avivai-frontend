@@ -119,10 +119,11 @@ const styles: { [key: string]: CSSProperties } = {
    imageContainer: {
     width: "100%",
  },
- 
+
  heroImage: {
   width: "100%",
-  height: "auto",
+  height: "220px",
+  objectFit: "cover",
   borderRadius: "20px",
   display: "block"
 },
