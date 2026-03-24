@@ -120,9 +120,9 @@ const styles: { [key: string]: CSSProperties } = {
     width: "100%",
  },
 
- heroImage: {
+heroImage: {
   width: "100%",
-  height: "280px",
+  aspectRatio: "4 / 5",
   objectFit: "cover",
   borderRadius: "20px",
   display: "block"
