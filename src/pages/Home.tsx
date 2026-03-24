@@ -115,12 +115,13 @@ const styles: { [key: string]: CSSProperties } = {
     marginBottom: "50px"
   },
 
-  heroImage: {
-    width: "100%",
-    borderRadius: "20px",
-    maxHeight: "400px",
-    objectFit: "cover"
-  },
+ heroImage: {
+  width: "100%",
+  height: "auto",
+  borderRadius: "20px",
+  objectFit: "cover",
+  display: "block"
+},
 
   heroText: {
     textAlign: "center",
