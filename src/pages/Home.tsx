@@ -14,12 +14,13 @@ export default function Home() {
     src="/vanessa.jpg"
     alt="Vanessa"
     style={{
-      width: "100%",
-      height: "250px",
-      objectFit: "cover",
-      borderRadius: "20px",
-      marginBottom: "20px"
-    }}
+  width: "100%",
+  minHeight: "250px",
+  objectFit: "cover",
+  borderRadius: "20px",
+  marginBottom: "20px",
+   display: "block"
+}}
   />
 
   {/* TEXTO */}
