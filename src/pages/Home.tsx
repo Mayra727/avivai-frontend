@@ -5,7 +5,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "20px" }}>
+    <div style={{ width: "100%", padding: "20px" }}>
 
       {/* HERO */}
       <section style={styles.hero}>
@@ -122,16 +122,17 @@ const styles: { [key: string]: CSSProperties } = {
 
  heroImage: {
   width: "100%",
-  height: "220px",
+  height: "280px",
   objectFit: "cover",
   borderRadius: "20px",
   display: "block"
 },
 
-  heroText: {
-    textAlign: "center",
-    maxWidth: "600px"
-  },
+heroText: {
+  textAlign: "center",
+  maxWidth: "500px",
+  margin: "0 auto"
+},
 
   title: {
     fontSize: "clamp(22px, 5vw, 34px)",
