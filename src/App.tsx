@@ -11,6 +11,7 @@ import ProducerDashboard from "./pages/ProducerDashboard";
 import ProducerProfile from "./pages/ProducerProfile";
 import EbookPage from "./pages/EbookPage";
 import DownloadPage from "./pages/DownloadPage";
+import Home from "./pages/Home";
 
 import { useAuth } from "./context/AuthContext";
 
@@ -25,7 +26,7 @@ export default function App() {
 
       {/* ROTAS */}
       <Routes>
-        <Route path="/" element={<EbookPage />} />
+        <Route path="/" element={<Home />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
