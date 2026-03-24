@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-
   const navigate = useNavigate();
 
   return (
@@ -19,20 +18,16 @@ export default function Home() {
           display: "flex",
           alignItems: "center",
           gap: "40px",
-          flexWrap: "wrap",
-              flexDirection: "column-reverse",
           marginBottom: "60px",
-          justifyContent: "space-between",
-          padding: "20px"
+          padding: "20px",
+          flexDirection: "column"
         }}
       >
 
         {/* IMAGEM */}
         <div
           style={{
-            flex: "1 1 300px",
-            display: "flex",
-            justifyContent: "center"
+            width: "100%",
           }}
         >
           <img
@@ -40,7 +35,6 @@ export default function Home() {
             alt="Vanessa Nonato"
             style={{
               width: "100%",
-              maxWidth: "100%",
               borderRadius: "20px",
               objectFit: "cover",
               boxShadow: "0 15px 35px rgba(0,0,0,0.2)"
@@ -51,55 +45,43 @@ export default function Home() {
         {/* TEXTO */}
         <div
           style={{
-            flex: "1 1 300px",
-            maxWidth: "500px",
-            textAlign: "center",
-            width: "100%"
+            width: "100%",
+            maxWidth: "600px",
+            textAlign: "center"
           }}
         >
 
-          <h1 style={{ fontSize: "clamp(24px, 6vw, 36px)" }}>
-            AVIVAI
+          <h1 style={{ fontSize: "clamp(26px, 6vw, 42px)" }}>
+            Você sente que sua vida espiritual está travada?
           </h1>
-
-          <h2
-            style={{
-              marginTop: "10px",
-              color: "#8B4533",
-              fontSize: "clamp(16px, 4vw, 22px)"
-            }}
-          >
-            Caminhos de intimidade com Deus
-          </h2>
 
           <p
             style={{
               marginTop: "20px",
-              fontSize: "clamp(14px, 3.5vw, 16px)",
+              fontSize: "clamp(14px, 3.5vw, 18px)",
               lineHeight: "1.6"
             }}
           >
-            Conteúdos espirituais profundos para transformar
-            sua vida emocional e espiritual através da intimidade
-            com o Espírito Santo.
+            Descubra como desenvolver uma intimidade REAL com Deus
+            mesmo se você se sente distante hoje.
           </p>
 
           <button
             onClick={() => navigate("/ebook")}
             style={{
               marginTop: "25px",
-              padding: "14px 30px",
+              padding: "16px 30px",
               background: "#8B4533",
               color: "white",
               border: "none",
-              borderRadius: "8px",
+              borderRadius: "10px",
               fontSize: "16px",
               cursor: "pointer",
-              transition: "0.3s",
+              width: "100%",
+              maxWidth: "320px"
             }}
-          
           >
-            Conhecer o Ebook
+            Quero destravar minha vida espiritual
           </button>
 
         </div>
@@ -107,7 +89,7 @@ export default function Home() {
       </section>
 
 
-      {/* SOBRE VANESSA */}
+      {/* SOBRE */}
       <section
         style={{
           textAlign: "center",
@@ -116,26 +98,30 @@ export default function Home() {
         }}
       >
 
-        <h2 style={{ fontSize: "clamp(20px, 5vw, 28px)" }}>
+        <h2 style={{ fontSize: "clamp(22px, 5vw, 30px)" }}>
           Quem é Vanessa Nonato
         </h2>
 
-        <p style={{
-          maxWidth: "700px",
-          margin: "20px auto",
-          fontSize: "clamp(14px, 3.5vw, 16px)",
-          lineHeight: "1.6"
-        }}>
+        <p
+          style={{
+            maxWidth: "700px",
+            margin: "20px auto",
+            fontSize: "clamp(14px, 3.5vw, 16px)",
+            lineHeight: "1.6"
+          }}
+        >
           Filha amada do Pai, esposa do Jefferson e mãe do Gabriel e do Noah.
           Pastora, escritora, palestrante e mentora cristã.
         </p>
 
-        <p style={{
-          maxWidth: "700px",
-          margin: "0 auto",
-          fontSize: "clamp(14px, 3.5vw, 16px)",
-          lineHeight: "1.6"
-        }}>
+        <p
+          style={{
+            maxWidth: "700px",
+            margin: "0 auto",
+            fontSize: "clamp(14px, 3.5vw, 16px)",
+            lineHeight: "1.6"
+          }}
+        >
           Vanessa conduz cristãos que se sentem travados em sua vida emocional
           e espiritual no resgate da intimidade com Deus e da saúde da alma,
           unindo princípios da neurociência com fundamentos bíblicos.
@@ -155,21 +141,25 @@ export default function Home() {
         }}
       >
 
-        <h2 style={{ fontSize: "clamp(20px, 5vw, 26px)" }}>
+        <h2 style={{ fontSize: "clamp(22px, 5vw, 28px)" }}>
           📘 Ebook disponível
         </h2>
 
-        <h3 style={{
-          marginTop: "10px",
-          fontSize: "clamp(16px, 4vw, 20px)"
-        }}>
+        <h3
+          style={{
+            marginTop: "10px",
+            fontSize: "clamp(16px, 4vw, 20px)"
+          }}
+        >
           Primeiros Conceitos – O Caminho da Intimidade
         </h3>
 
-        <p style={{
-          marginTop: "15px",
-          fontSize: "clamp(14px, 3.5vw, 16px)"
-        }}>
+        <p
+          style={{
+            marginTop: "15px",
+            fontSize: "clamp(14px, 3.5vw, 16px)"
+          }}
+        >
           Um guia profundo para iniciar uma jornada real
           de intimidade com Deus.
         </p>
@@ -182,14 +172,15 @@ export default function Home() {
           onClick={() => navigate("/ebook")}
           style={{
             marginTop: "20px",
-            padding: "14px 30px",
+            padding: "16px 30px",
             background: "#8B4533",
             color: "white",
             border: "none",
-            borderRadius: "8px",
+            borderRadius: "10px",
             fontSize: "16px",
             cursor: "pointer",
-            transition: "0.3s",
+            width: "100%",
+            maxWidth: "320px"
           }}
         >
           Comprar Ebook
