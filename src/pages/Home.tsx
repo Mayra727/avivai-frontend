@@ -7,36 +7,49 @@ export default function Home() {
   return (
     <div style={{ width: "100%", padding: "20px" }}>
 
-      {/* HERO */}
-      <section style={styles.hero}>
+ <section>
 
-      <div style={styles.imageContainer}>
+  {/* IMAGEM */}
   <img
     src="/vanessa.jpg"
     alt="Vanessa"
-    style={styles.heroImage}
+    style={{
+      width: "100%",
+      height: "250px",
+      objectFit: "cover",
+      borderRadius: "20px",
+      marginBottom: "20px"
+    }}
   />
-</div>
 
-        <div style={styles.heroText}>
-          <h1 style={styles.title}>
-            Você sente que sua vida espiritual está travada?
-          </h1>
+  {/* TEXTO */}
+  <div style={{ textAlign: "center" }}>
+    <h1 style={{ fontSize: "28px" }}>
+      Você sente que sua vida espiritual está travada?
+    </h1>
 
-          <p style={styles.subtitle}>
-            Descubra como desenvolver uma intimidade REAL com Deus
-            mesmo se você se sente distante hoje.
-          </p>
+    <p style={{ marginTop: "10px" }}>
+      Descubra como desenvolver uma intimidade REAL com Deus
+      mesmo se você se sente distante hoje.
+    </p>
 
-          <button
-            onClick={() => navigate("/ebook")}
-            style={styles.button}
-          >
-            Quero destravar minha vida espiritual
-          </button>
-        </div>
+    <button
+      onClick={() => navigate("/ebook")}
+      style={{
+        marginTop: "20px",
+        padding: "14px",
+        width: "100%",
+        background: "#8B4533",
+        color: "white",
+        border: "none",
+        borderRadius: "10px"
+      }}
+    >
+      Quero destravar minha vida espiritual
+    </button>
+  </div>
 
-      </section>
+</section>
 
 
       {/* SOBRE */}
