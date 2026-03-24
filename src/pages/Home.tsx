@@ -10,17 +10,16 @@ export default function Home() {
  <section>
 
   {/* IMAGEM */}
-  <img
-    src="/vanessa.jpg"
-    alt="Vanessa"
-    style={{
-  width: "100%",
-  minHeight: "250px",
-  objectFit: "cover",
-  borderRadius: "20px",
-  marginBottom: "20px",
-   display: "block"
-}}
+  <div
+  style={{
+    width: "100%",
+    height: "250px",
+    borderRadius: "20px",
+    marginBottom: "20px",
+    backgroundImage: "url('/vanessa.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center"
+  }}
   />
 
   {/* TEXTO */}
