@@ -20,6 +20,7 @@ export default function Home() {
           alignItems: "center",
           gap: "40px",
           flexWrap: "wrap",
+              flexDirection: "column-reverse",
           marginBottom: "60px",
           justifyContent: "space-between",
           padding: "20px"
@@ -39,7 +40,7 @@ export default function Home() {
             alt="Vanessa Nonato"
             style={{
               width: "100%",
-              maxWidth: "320px",
+              maxWidth: "100%",
               borderRadius: "20px",
               objectFit: "cover",
               boxShadow: "0 15px 35px rgba(0,0,0,0.2)"
