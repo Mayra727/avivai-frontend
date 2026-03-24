@@ -5,46 +5,70 @@ export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <div style={{ width: "100%", padding: "20px" }}>
+  <div
+    style={{
+      width: "100%",
+      maxWidth: "500px",
+      margin: "0 auto",
+      padding: "20px"
+    }}
+  >
 
  <section>
 
   {/* IMAGEM */}
-  <div
+<img
+  src="/vanessa.jpg"
+  alt="Vanessa"
   style={{
     width: "100%",
-    height: "250px",
+    height: "260px",
+    objectFit: "cover",
     borderRadius: "20px",
     marginBottom: "20px",
-    backgroundImage: "url('/vanessa.jpg')",
-    backgroundSize: "cover",
-    backgroundPosition: "center"
+    display: "block",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.15)"
   }}
-  />
+/>
 
   {/* TEXTO */}
-  <div style={{ textAlign: "center" }}>
-    <h1 style={{ fontSize: "28px" }}>
+  <div style={{ textAlign: "center", padding: "0 10px" }}>
+    <h1
+  style={{
+    fontSize: "26px",
+    lineHeight: "1.3",
+    fontWeight: "700"
+  }}
+>
       Você sente que sua vida espiritual está travada?
     </h1>
 
-    <p style={{ marginTop: "10px" }}>
+    <p
+  style={{
+    marginTop: "12px",
+    fontSize: "15px",
+    lineHeight: "1.6",
+    color: "#555"
+  }}
+>
       Descubra como desenvolver uma intimidade REAL com Deus
       mesmo se você se sente distante hoje.
     </p>
 
     <button
-      onClick={() => navigate("/ebook")}
-      style={{
-        marginTop: "20px",
-        padding: "14px",
-        width: "100%",
-        background: "#8B4533",
-        color: "white",
-        border: "none",
-        borderRadius: "10px"
-      }}
-    >
+  onClick={() => navigate("/ebook")}
+  style={{
+    marginTop: "20px",
+    padding: "16px",
+    width: "100%",
+    background: "#8B4533",
+    color: "white",
+    border: "none",
+    borderRadius: "12px",
+    fontSize: "15px",
+    fontWeight: "600"
+  }}
+>
       Quero destravar minha vida espiritual
     </button>
   </div>
