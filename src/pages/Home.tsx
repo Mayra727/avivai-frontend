@@ -10,11 +10,13 @@ export default function Home() {
       {/* HERO */}
       <section style={styles.hero}>
 
-        <img
-          src="/vanessa.jpg"
-          alt="Vanessa"
-          style={styles.heroImage}
-        />
+      <div style={styles.imageContainer}>
+  <img
+    src="/vanessa.jpg"
+    alt="Vanessa"
+    style={styles.heroImage}
+  />
+</div>
 
         <div style={styles.heroText}>
           <h1 style={styles.title}>
@@ -111,15 +113,17 @@ const styles: { [key: string]: CSSProperties } = {
     display: "flex",
     flexDirection: "column",
     gap: "20px",
-    alignItems: "center",
     marginBottom: "50px"
   },
 
+   imageContainer: {
+    width: "100%",
+ },
+ 
  heroImage: {
   width: "100%",
   height: "auto",
   borderRadius: "20px",
-  objectFit: "cover",
   display: "block"
 },
 
