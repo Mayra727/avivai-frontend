@@ -74,19 +74,18 @@ const styles = {
 
  header: {
   backgroundColor: "#7A4A3A",
-  padding: "16px 0",
-  marginBottom: "50px",
-  boxShadow: "0 4px 20px rgba(0,0,0,0.2)"
+  padding: "14px 0", // 👈 diminui um pouco
+  marginBottom: "20px", // 👈 menos espaço
 },
 
   container: {
-    maxWidth: "1200px",
-    margin: "0 auto",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "0 20px",
-  },
+  maxWidth: "500px", // 🔥 IGUAL AO HOME
+  margin: "0 auto",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  padding: "0 20px",
+},
 
   logoContainer: {
     display: "flex",
