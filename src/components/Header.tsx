@@ -78,13 +78,14 @@ const styles = {
   marginBottom: "20px", // 👈 menos espaço
 },
 
-  container: {
-  maxWidth: "500px", // 🔥 IGUAL AO HOME
+ container: {
+  width: "100%",
+  maxWidth: "500px",
   margin: "0 auto",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  padding: "0 20px",
+  padding: "0 16px", // 🔥 igual ao mobile padrão
 },
 
   logoContainer: {

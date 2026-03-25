@@ -15,12 +15,12 @@ export default function Home() {
   alt="Vanessa"
   style={{
     width: "100%",
-    height: "260px",
+    height: "220px",
     objectFit: "cover",
     borderRadius: "20px",
     marginBottom: "20px",
     display: "block",
-    boxShadow: "0 10px 25px rgba(0,0,0,0.15)"
+    boxShadow: "0 8px 25px rgba(0,0,0,0.15)"
   }}
 />
 
@@ -99,6 +99,17 @@ export default function Home() {
 
 
       {/* EBOOK */}
+      <img
+  src="/ebook.png"
+  alt="Ebook"
+  style={{
+    width: "100%",
+    maxWidth: "200px",
+    margin: "0 auto 15px",
+    display: "block",
+    borderRadius: "10px"
+  }}
+/>
       <section style={styles.ebook}>
         <h2 style={styles.sectionTitle}>📘 Ebook disponível</h2>
 
