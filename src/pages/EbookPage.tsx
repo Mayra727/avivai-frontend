@@ -18,226 +18,180 @@ export default function EbookPage() {
 
       {/* HERO */}
       <section style={{ padding: "80px 20px", background: "#F8F5F1" }}>
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: "40px",
-            flexWrap: "wrap"
-          }}
-        >
-          <div style={{ flex: 1, minWidth: "300px", color: "#5A534C" }}>
-            <h1 style={{ fontSize: "44px", lineHeight: "1.2" }}>
-              Você sente que sua vida espiritual está travada?
-            </h1>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", textAlign: "center" }}>
 
-            <p style={{ fontSize: "20px", marginTop: "20px" }}>
-              Descubra como desenvolver uma intimidade REAL com Deus
-              mesmo se você se sente distante hoje
-            </p>
+          <h1 style={{ fontSize: "36px", lineHeight: "1.3" }}>
+            Primeiros Conceitos: O Caminho da Intimidade
+          </h1>
 
-            <button
-              onClick={comprarEbook}
-              style={{
-                marginTop: "30px",
-                padding: "18px 40px",
-                background: "#B4533A",
-                color: "white",
-                border: "none",
-                borderRadius: "10px",
-                fontSize: "18px",
-                cursor: "pointer"
-              }}
-            >
-              Quero destravar minha vida espiritual
-            </button>
-          </div>
+          <p style={{ marginTop: "10px", fontSize: "18px" }}>
+            Princípios para uma jornada de descobertas rumo à vida plena
+          </p>
 
-          <div style={{ flex: 1, textAlign: "center" }}>
-            <img
-              src="/vanessa.jpg"
-              alt="Vanessa"
-              style={{
-                width: "100%",
-                maxWidth: "350px",
-                borderRadius: "20px",
-                boxShadow: "0 20px 40px rgba(0,0,0,0.2)"
-              }}
-            />
-          </div>
+          <p style={{ marginTop: "15px", color: "#555" }}>
+            Para quem ama Jesus, mas sente que sua vida com Deus ficou apressada demais e íntima de menos.
+          </p>
+
         </div>
       </section>
 
-      {/* DOR */}
-      <section style={{ padding: "80px 20px", background: "#FFFFFF" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto", color: "#5A534C" }}>
+      {/* DOR COMPLETA */}
+      <section style={{ padding: "60px 20px" }}>
+        <div style={{ maxWidth: "700px", margin: "0 auto" }}>
 
-          <h2 style={{ textAlign: "center", fontSize: "32px" }}>
-            Se você sente isso, esse livro é pra você:
-          </h2>
+          <h2 style={{ textAlign: "center" }}>A dor silenciosa</h2>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-              gap: "20px",
-              marginTop: "40px"
-            }}
-          >
-            <div style={{ background: "#F8F5F1", padding: "20px", borderRadius: "12px" }}>
-              ❌ Falta de conexão com Deus
-            </div>
+          <p style={{ marginTop: "20px" }}>
+            Você ora. Você lê. Você tenta fazer o certo.
+          </p>
 
-            <div style={{ background: "#F8F5F1", padding: "20px", borderRadius: "12px" }}>
-              ❌ Vida espiritual inconsistente
-            </div>
+          <p>
+            E ainda assim, lá por dentro, carrega um cansaço silencioso que você não consegue bem explicar.
+          </p>
 
-            <div style={{ background: "#F8F5F1", padding: "20px", borderRadius: "12px" }}>
-              ❌ Dificuldade de ouvir Deus
-            </div>
+          <p>
+            Não é falta de fé. Não é falta de esforço.
+          </p>
 
-            <div style={{ background: "#F8F5F1", padding: "20px", borderRadius: "12px" }}>
-              ❌ Bloqueios emocionais
-            </div>
-          </div>
+          <p>
+            É que ninguém te ensinou a viver com Deus, só a saber sobre Ele.
+          </p>
 
-          <div style={{ textAlign: "center" }}>
-            <button
-              onClick={comprarEbook}
-              style={{
-                marginTop: "30px",
-                padding: "16px 40px",
-                background: "#B4533A",
-                color: "white",
-                borderRadius: "8px",
-                border: "none"
-              }}
-            >
-              Quero mudar isso agora
-            </button>
+          <p>
+            Existe um abismo entre esses dois mundos.
+          </p>
+
+        </div>
+      </section>
+
+      {/* O QUE É O LIVRO */}
+      <section style={{ padding: "60px 20px", background: "#F8F5F1" }}>
+        <div style={{ maxWidth: "700px", margin: "0 auto" }}>
+
+          <h2 style={{ textAlign: "center" }}>O que é este livro vivencial</h2>
+
+          <p style={{ marginTop: "20px" }}>
+            Este não é um devocional para você folhear e guardar.
+          </p>
+
+          <p>
+            É um livro vivencial, criado para tirar a sua espiritualidade do campo das ideias
+            e plantá-la no solo da sua vida real.
+          </p>
+
+          <p>
+            Não é sobre saber. É sobre viver.
+          </p>
+
+        </div>
+      </section>
+
+      {/* O QUE VOCÊ VAI VIVENCIAR */}
+      <section style={{ padding: "60px 20px" }}>
+        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+
+          <h2 style={{ textAlign: "center" }}>O que você vai vivenciar</h2>
+
+          <div style={{ marginTop: "30px", display: "grid", gap: "15px" }}>
+
+            <div>✔ Tempo interno x tempo externo</div>
+            <div>✔ A confusão que nos rouba</div>
+            <div>✔ Legado x herança</div>
+            <div>✔ Espelho: Deus e pessoas</div>
+            <div>✔ Relacionamento com o Espírito Santo</div>
+
           </div>
 
         </div>
       </section>
 
-      {/* TRANSFORMAÇÃO */}
-      <section style={{ padding: "80px 20px", background: "#F8F5F1" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto", color: "#5A534C" }}>
+      {/* COMO FOI CONSTRUÍDO */}
+      <section style={{ padding: "60px 20px", background: "#F8F5F1" }}>
+        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
 
-          <h2 style={{ textAlign: "center", fontSize: "32px" }}>
-            O que você vai viver:
-          </h2>
+          <h2 style={{ textAlign: "center" }}>Como o material foi construído</h2>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-              gap: "20px",
-              marginTop: "40px"
-            }}
-          >
-            <div style={{ background: "#fff", padding: "20px", borderRadius: "12px" }}>
-              ✔ Clareza espiritual
-            </div>
-
-            <div style={{ background: "#fff", padding: "20px", borderRadius: "12px" }}>
-              ✔ Intimidade verdadeira com Deus
-            </div>
-
-            <div style={{ background: "#fff", padding: "20px", borderRadius: "12px" }}>
-              ✔ Liberação emocional
-            </div>
-
-            <div style={{ background: "#fff", padding: "20px", borderRadius: "12px" }}>
-              ✔ Direção espiritual prática
-            </div>
-          </div>
+          <ul style={{ marginTop: "20px", lineHeight: "1.8" }}>
+            <li>Textos narrativos profundos</li>
+            <li>Frases de pausa e reflexão</li>
+            <li>Exercícios práticos aplicáveis</li>
+            <li>Orações guiadas</li>
+            <li>Plano de 7 dias para iniciar</li>
+          </ul>
 
         </div>
       </section>
 
       {/* PRODUTO */}
-      <section style={{ padding: "80px 20px", background: "#7A4A3A", color: "#F8F5F1" }}>
-        <div
-          style={{
-            maxWidth: "1100px",
-            margin: "0 auto",
-            display: "flex",
-            alignItems: "center",
-            gap: "40px",
-            flexWrap: "wrap"
-          }}
-        >
+      <section style={{ padding: "80px 20px", background: "#7A4A3A", color: "#fff" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", textAlign: "center" }}>
 
-          <div style={{ flex: 1, textAlign: "center" }}>
-            <img
-              src="/ebook.png"
-              alt="Ebook"
-              style={{
-                width: "100%",
-                maxWidth: "300px",
-                borderRadius: "10px"
-              }}
-            />
-          </div>
+          <img
+            src="/ebook.png"
+            alt="Ebook"
+            style={{ maxWidth: "250px", marginBottom: "20px" }}
+          />
 
-          <div style={{ flex: 1 }}>
-            <h2>📘 Primeiros Conceitos: O Caminho da Intimidade</h2>
+          <h2>📘 Primeiros Conceitos</h2>
 
-            <p style={{ marginTop: "10px" }}>
-              Volume 1 da Trilogia da Intimidade
-            </p>
+          <p style={{ marginTop: "10px" }}>
+            Um guia para transformar conhecimento em experiência real com Deus.
+          </p>
 
-            <p style={{ marginTop: "20px" }}>
-              Um guia prático para destravar sua vida espiritual
-              e iniciar sua jornada de intimidade real com Deus.
-            </p>
-
-            <h3 style={{ textDecoration: "line-through" }}>R$97</h3>
-            <h2 style={{ fontSize: "36px" }}>R$49</h2>
-
-            <button
-              onClick={comprarEbook}
-              style={{
-                marginTop: "20px",
-                padding: "18px 40px",
-                background: "#B4533A",
-                color: "white",
-                borderRadius: "10px",
-                border: "none"
-              }}
-            >
-              Comprar Agora
-            </button>
-          </div>
-
-        </div>
-      </section>
-
-      {/* CTA FINAL */}
-      <section style={{ padding: "80px 20px", background: "#F8F5F1", textAlign: "center" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto", color: "#5A534C" }}>
-
-          <h2>⚠️ Oferta por tempo limitado</h2>
+          <h3 style={{ textDecoration: "line-through" }}>R$97</h3>
+          <h2 style={{ fontSize: "32px" }}>R$49</h2>
 
           <button
             onClick={comprarEbook}
             style={{
               marginTop: "20px",
-              padding: "20px 60px",
+              padding: "16px 40px",
               background: "#B4533A",
               color: "white",
-              borderRadius: "12px",
+              borderRadius: "10px",
               border: "none"
             }}
           >
-            Quero meu Ebook agora
+            Quero acessar gratuitamente
           </button>
 
         </div>
+      </section>
+
+      {/* PARA QUEM É */}
+      <section style={{ padding: "60px 20px", textAlign: "center" }}>
+        <h2>Para quem é este material</h2>
+
+        <p style={{ marginTop: "15px" }}>
+          Para quem ama Jesus, mas sente que a espiritualidade ficou funcional demais.
+        </p>
+
+        <p>
+          Para quem está cansado de viver uma fé de manutenção.
+        </p>
+
+        <p>
+          Para quem quer viver uma fé de intimidade real.
+        </p>
+      </section>
+
+      {/* CTA FINAL */}
+      <section style={{ padding: "80px 20px", textAlign: "center" }}>
+        <h2>Você não precisa ser perfeito para começar</h2>
+
+        <button
+          onClick={comprarEbook}
+          style={{
+            marginTop: "20px",
+            padding: "18px 50px",
+            background: "#B4533A",
+            color: "white",
+            borderRadius: "12px",
+            border: "none"
+          }}
+        >
+          Quero começar minha jornada
+        </button>
       </section>
 
     </div>

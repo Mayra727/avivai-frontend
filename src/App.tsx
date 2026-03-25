@@ -12,8 +12,9 @@ import ProducerProfile from "./pages/ProducerProfile";
 import EbookPage from "./pages/EbookPage";
 import DownloadPage from "./pages/DownloadPage";
 import Home from "./pages/Home";
-
+import Livro2Page from "./pages/Livro2Page";
 import { useAuth } from "./context/AuthContext";
+
 
 export default function App() {
   useAuth();
@@ -63,6 +64,7 @@ export default function App() {
         <Route path="/download" element={<DownloadPage />} />
       </Routes>
 
+<Route path="/livro2" element={<Livro2Page />} />
     </div>
   );
 }
