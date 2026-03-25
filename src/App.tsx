@@ -13,7 +13,7 @@ import EbookPage from "./pages/EbookPage";
 import DownloadPage from "./pages/DownloadPage";
 import Home from "./pages/Home";
 import Livro2Page from "./pages/Livro2Page";
-
+import MentoriaPage from "./pages/MentoriaPage";
 import { useAuth } from "./context/AuthContext";
 
 export default function App() {
@@ -61,6 +61,7 @@ export default function App() {
 
           <Route path="/produtora" element={<ProducerProfile />} />
           <Route path="/download" element={<DownloadPage />} />
+            <Route path="/mentoria" element={<MentoriaPage />} />
 
           {/* ✅ AGORA ESTÁ NO LUGAR CERTO */}
           <Route path="/livro2" element={<Livro2Page />} />

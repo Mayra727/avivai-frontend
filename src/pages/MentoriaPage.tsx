@@ -1,16 +1,33 @@
 import { createPayment } from "../services/payment";
+import { useState } from "react";
 
 export default function MentoriaPage() {
+  const [loading, setLoading] = useState(false);
 
 async function comprarMentoria() {
-  const payment = await createPayment(
-    "ID_DA_MENTORIA_AQUI",
-    "Mentoria AVIVAI",
-    197 // ou o valor que você quiser
-  );
+  setLoading(true);
 
-  window.location.href =
-    `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${payment.id}`;
+  try {
+    const payment = await createPayment(
+      "MENTORIA_AVIVAI",
+      "Mentoria AVIVAI",
+      197
+    );
+
+    if (!payment?.id) {
+      alert("Erro ao gerar pagamento");
+      return;
+    }
+
+    window.location.href =
+      `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${payment.id}`;
+
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao iniciar pagamento");
+  } finally {
+    setLoading(false);
+  }
 }
 
   return (
@@ -155,19 +172,22 @@ async function comprarMentoria() {
           </p>
 
           <button
-           onClick={comprarMentoria}
-            style={{
-              marginTop: "25px",
-              padding: "18px 50px",
-              background: "#B4533A",
-              color: "white",
-              borderRadius: "12px",
-              border: "none",
-              fontSize: "16px"
-            }}
-          >
-            Quero viver essa jornada
-          </button>
+  onClick={comprarMentoria}
+  style={{
+    marginTop: "25px",
+    padding: "18px 50px",
+    background: "#B4533A",
+    color: "white",
+    borderRadius: "12px",
+    border: "none",
+    fontSize: "16px",
+    cursor: "pointer",
+    opacity: loading ? 0.7 : 1 // 🔥 efeito visual
+  }}
+  disabled={loading} // 🔥 bloqueia clique
+>
+  {loading ? "Carregando..." : "Quero viver essa jornada"}
+</button>
 
         </div>
       </section>

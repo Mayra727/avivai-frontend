@@ -196,7 +196,10 @@ export default function Home() {
           aquilo que aprendeu.
         </p>
 
-        <button style={styles.button}>
+        <button
+  onClick={() => navigate("/mentoria")}
+  style={styles.button}
+>
           Quero viver essa jornada
         </button>
 
