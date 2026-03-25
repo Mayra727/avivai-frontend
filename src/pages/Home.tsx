@@ -91,6 +91,25 @@ export default function Home() {
 
 </section>
 
+{/* DESCRIÇÃO COMPLETA */}
+<section style={{ marginBottom: "50px" }}>
+
+  <p style={{ color: "#555", lineHeight: "1.6" }}>
+    A AVIVAI é um ecossistema de conteúdo e experiência que reúne livros vivenciais,
+    cursos e mentorias.
+  </p>
+
+  <p style={{ marginTop: "10px", color: "#555", lineHeight: "1.6" }}>
+    Não oferecemos apenas informação. Oferecemos ordenamento.
+  </p>
+
+  <p style={{ marginTop: "10px", color: "#555", lineHeight: "1.6" }}>
+    Nosso propósito é ajudar você a reorganizar sua jornada espiritual,
+    removendo excessos e permitindo que a fé encontre a sua vida real.
+  </p>
+
+</section>
+
 {/* DOR */}
 <section style={{ marginBottom: "50px" }}>
 
@@ -120,6 +139,35 @@ export default function Home() {
     A AVIVAI foi criada para transformar conhecimento
     em relacionamento real com Deus.
   </p>
+
+{/* MÉTODO COMPLETO */}
+<section style={{ marginBottom: "50px" }}>
+
+  <h2 style={{ textAlign: "center" }}>
+    Como essa transformação acontece
+  </h2>
+
+  <div style={{ marginTop: "20px" }}>
+
+    <div style={{ marginBottom: "20px" }}>
+      <strong>📖 Teologia sólida</strong>
+      <p style={{ color: "#555" }}>
+        A jornada está fundamentada nas Escrituras, fortalecendo presença,
+        escuta, obediência e permanência com Deus.
+      </p>
+    </div>
+
+    <div>
+      <strong>🧠 Neurociência aplicada</strong>
+      <p style={{ color: "#555" }}>
+        Práticas que ajudam você a organizar pensamentos, emoções e construir
+        constância na sua vida espiritual.
+      </p>
+    </div>
+
+  </div>
+
+</section>
 
 </section>
 
@@ -224,6 +272,61 @@ export default function Home() {
   </div>
 </section>
 
+{/* CAMINHO DA INTIMIDADE */}
+<section style={{ marginBottom: "50px" }}>
+
+  <h2 style={{ textAlign: "center" }}>
+    O Caminho da Intimidade
+  </h2>
+
+  <p style={{ textAlign: "center", color: "#555" }}>
+    Uma jornada construída em etapas para levar você da teoria à experiência real.
+  </p>
+
+  <div style={{ marginTop: "20px", display: "grid", gap: "15px" }}>
+
+    <div style={styles.card}>
+      🔥 Espírito Santo  
+      <p style={{ fontSize: "13px", color: "#555" }}>
+        Despertar e sensibilidade para ouvir a voz de Deus.
+      </p>
+    </div>
+
+    <div style={styles.card}>
+      ✝️ Jesus  
+      <p style={{ fontSize: "13px", color: "#555" }}>
+        Caminhar com Cristo de forma prática no dia a dia.
+      </p>
+    </div>
+
+    <div style={styles.card}>
+      👑 Pai  
+      <p style={{ fontSize: "13px", color: "#555" }}>
+        Descobrir identidade, pertencimento e propósito.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+{/* POR QUE FUNCIONA */}
+<section style={{ marginBottom: "50px" }}>
+
+  <h2 style={{ textAlign: "center" }}>
+    Por que esse caminho funciona?
+  </h2>
+
+  <p style={{ marginTop: "15px", color: "#555", lineHeight: "1.6" }}>
+    Porque aqui a fé não é tratada como teoria, mas como prática.
+  </p>
+
+  <p style={{ marginTop: "10px", color: "#555", lineHeight: "1.6" }}>
+    Cada conteúdo foi desenhado como uma experiência que leva você
+    da compreensão à transformação real.
+  </p>
+
+</section>
 
      {/* EBOOK */}
 
@@ -255,6 +358,25 @@ export default function Home() {
 
 </section>
 
+{/* MENTORIA */}
+<section style={styles.ebook}>
+
+  <h2>🎓 Mentoria AVIVAI</h2>
+
+  <p style={styles.text}>
+    A leitura abre o caminho. A prática constrói a morada.
+  </p>
+
+  <p style={styles.text}>
+    Uma jornada guiada para transformar conhecimento em prática
+    com acompanhamento e direção.
+  </p>
+
+  <button style={styles.button}>
+    Quero viver essa jornada
+  </button>
+
+</section>
 
       {/* CTA FINAL */}
       <section
