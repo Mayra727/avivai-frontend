@@ -1,29 +1,25 @@
 import { useNavigate } from "react-router-dom";
+import type { CSSProperties } from "react";
 
 export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={styles.container}>
 
       {/* HERO */}
-      <section style={{ textAlign: "center" }}>
+      <section style={styles.hero}>
         <img
           src="/vanessa.jpg"
           alt="Vanessa"
-          style={{
-            width: "100%",
-            height: "260px",
-            objectFit: "cover",
-            borderRadius: "20px"
-          }}
+          style={styles.heroImage}
         />
 
-        <h1 style={{ marginTop: "20px", fontSize: "28px" }}>
+        <h1 style={styles.title}>
           Você sente que sua vida espiritual está travada?
         </h1>
 
-        <p style={{ marginTop: "10px", lineHeight: "1.6" }}>
+        <p style={styles.subtitle}>
           Descubra como desenvolver uma intimidade real com Deus
           e destravar sua vida emocional e espiritual.
         </p>
@@ -121,24 +117,58 @@ export default function Home() {
   );
 }
 
-const styles = {
+const styles: { [key: string]: CSSProperties } = {
+
+  container: {
+    width: "100%",
+    maxWidth: "1100px",
+    margin: "0 auto",
+    padding: "20px"
+  },
+
+  hero: {
+    textAlign: "center",
+    marginBottom: "40px"
+  },
+
+ heroImage: {
+  width: "100%",
+  height: "auto",
+  maxHeight: "400px",
+  objectFit: "cover",
+  borderRadius: "20px"
+},
+
+  title: {
+    marginTop: "20px",
+    fontSize: "26px",
+    fontWeight: 700
+  },
+
+  subtitle: {
+    marginTop: "10px",
+    lineHeight: "1.6"
+  },
+
   section: {
     marginTop: "50px",
     textAlign: "center"
   },
 
   text: {
-    marginTop: "10px",
-    lineHeight: "1.6",
-    maxWidth: "600px",
-    marginInline: "auto"
-  },
+  marginTop: "10px",
+  lineHeight: "1.6",
+  maxWidth: "600px",
+  marginInline: "auto"
+},
+  
 
   grid: {
-    display: "grid",
-    gap: "15px",
-    marginTop: "20px"
-  },
+  display: "grid",
+  gap: "15px",
+  marginTop: "20px",
+  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))"
+},
 
   card: {
     background: "#fff",
@@ -152,23 +182,32 @@ const styles = {
     textAlign: "center"
   },
 
-  primaryButton: {
-    marginTop: "15px",
-    padding: "14px",
-    background: "#8B4533",
-    color: "#fff",
-    border: "none",
-    borderRadius: "10px",
-    width: "100%"
-  },
+ primaryButton: {
+  marginTop: "15px",
+  padding: "14px",
+  background: "#8B4533",
+  color: "#fff",
+  border: "none",
+  borderRadius: "10px",
+  maxWidth: "400px",
+  width: "100%",
+  marginInline: "auto",
+  display: "block",
+  cursor: "pointer"
+},
 
   secondaryButton: {
-    marginTop: "10px",
-    padding: "14px",
-    background: "transparent",
-    color: "#8B4533",
-    border: "1px solid #8B4533",
-    borderRadius: "10px",
-    width: "100%"
-  }
+  marginTop: "10px",
+  padding: "14px",
+  background: "transparent",
+  color: "#8B4533",
+  border: "1px solid #8B4533",
+  borderRadius: "10px",
+  maxWidth: "400px",
+  width: "100%",
+  marginInline: "auto",
+  display: "block",
+  cursor: "pointer"
+},
+
 };
