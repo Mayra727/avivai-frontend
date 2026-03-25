@@ -5,17 +5,19 @@ export default function Home() {
   const navigate = useNavigate();
 
   return (
-  <div style={{ padding: "20px" }}>
+  <div style={{ padding: "20px", maxWidth: "500px", margin: "0 auto" }}>
 
  <section>
 
   {/* IMAGEM */}
+
 <img
   src="/vanessa.jpg"
   alt="Vanessa"
   style={{
     width: "100%",
-    height: "220px",
+    height: "auto",
+    maxHeight: "300px",
     objectFit: "cover",
     borderRadius: "20px",
     marginBottom: "20px",
@@ -98,20 +100,22 @@ export default function Home() {
       </section>
 
 
-      {/* EBOOK */}
-      <img
-  src="/ebook.png"
-  alt="Ebook"
-  style={{
-    width: "100%",
-    maxWidth: "200px",
-    margin: "0 auto 15px",
-    display: "block",
-    borderRadius: "10px"
-  }}
-/>
-      <section style={styles.ebook}>
-        <h2 style={styles.sectionTitle}>📘 Ebook disponível</h2>
+     {/* EBOOK */}
+<section style={styles.ebook}>
+
+  <img
+    src="/ebook.png"
+    alt="Ebook"
+    style={{
+      width: "100%",
+      maxWidth: "200px",
+      margin: "0 auto 15px",
+      display: "block",
+      borderRadius: "10px"
+    }}
+  />
+
+  <h2 style={styles.sectionTitle}>📘 Ebook disponível</h2>
 
         <h3>Primeiros Conceitos – O Caminho da Intimidade</h3>
 

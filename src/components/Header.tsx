@@ -16,14 +16,15 @@ export default function Header() {
       <div style={styles.container}>
 
         {/* LOGO */}
+        
         <div style={styles.logoContainer}>
-          <img
-            src="/logo.png"
-            alt="Avivai"
-            style={styles.logoImg}
-          />
-          <h2 style={styles.logo}>AVIVAI</h2>
-        </div>
+  <img
+    src="/logo.png"
+    alt="Avivai"
+    style={styles.logoImg}
+  />
+  <span style={styles.logo}>AVIVAI</span>
+</div>
 
         {/* MENU */}
         <nav style={styles.nav}>
@@ -78,14 +79,14 @@ const styles = {
   marginBottom: "20px", // 👈 menos espaço
 },
 
- container: {
+container: {
   width: "100%",
-  maxWidth: "500px",
+  maxWidth: "1200px", // ✅ deixa responsivo de verdade
   margin: "0 auto",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  padding: "0 16px", // 🔥 igual ao mobile padrão
+  padding: "0 16px",
 },
 
   logoContainer: {
@@ -95,8 +96,8 @@ const styles = {
   },
 
  logoImg: {
-  width: "65px",
-  height: "65px",
+  width: "40px",
+  height: "40px",
   objectFit: "contain" as const,
   filter: "drop-shadow(0 0 12px rgba(255, 180, 0, 0.9))"
 },
@@ -104,15 +105,15 @@ const styles = {
   logo: {
     color: "#F8F5F1",
     fontWeight: 700,
-    letterSpacing: "5px",
-    fontSize: "26px",
+    letterSpacing: "2px",
+    fontSize: "18px",
   },
 
   nav: {
-    display: "flex",
-    gap: "30px",
-    alignItems: "center",
-  },
+  display: "flex",
+  gap: "12px", // ✅ mobile certo
+  alignItems: "center",
+},
 
   link: {
     color: "#F8F5F1",
