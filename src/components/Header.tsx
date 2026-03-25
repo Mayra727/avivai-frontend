@@ -28,10 +28,17 @@ export default function Header() {
 
         {/* MENU */}
         <nav style={styles.nav}>
+<Link style={styles.link} to="/">
+    Início
+  </Link>
 
-          <Link style={styles.link} to="/">
-            Início
-          </Link>
+  <Link style={styles.link} to="/ebook">
+    Ebook
+  </Link>
+
+  <Link style={styles.link} to="/mentoria">
+    Mentoria
+  </Link>
 
           {!user && (
             <>
