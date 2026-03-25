@@ -76,6 +76,52 @@ export default function Home() {
 
 </section>
 
+{/* SOBRE AVIVAI */}
+<section style={{ textAlign: "center", marginBottom: "50px" }}>
+
+  <h2 style={{ fontSize: "22px", marginBottom: "10px" }}>
+    Dê vida ao conhecimento que você carrega
+  </h2>
+
+  <p style={{ color: "#555", lineHeight: "1.6" }}>
+    A AVIVAI é um ecossistema de conteúdos que une fé,
+    teologia e neurociência para transformar aquilo que
+    você acredita em uma experiência real com Deus.
+  </p>
+
+</section>
+
+{/* DOR */}
+<section style={{ marginBottom: "50px" }}>
+
+  <h2 style={{ fontSize: "20px", textAlign: "center" }}>
+    Você já sentiu isso?
+  </h2>
+
+  <p style={{ marginTop: "15px", color: "#555", lineHeight: "1.6" }}>
+    Você ora. Você lê. Você tenta fazer o certo…
+    mas ainda sente um cansaço espiritual difícil de explicar.
+  </p>
+
+</section>
+
+{/* SOLUÇÃO */}
+<section style={{ marginBottom: "50px", textAlign: "center" }}>
+
+  <h2 style={{ fontSize: "20px" }}>
+    Existe um caminho
+  </h2>
+
+  <p style={{ marginTop: "10px", color: "#555" }}>
+    Não é falta de fé. É falta de direção.
+  </p>
+
+  <p style={{ marginTop: "10px", color: "#555" }}>
+    A AVIVAI foi criada para transformar conhecimento
+    em relacionamento real com Deus.
+  </p>
+
+</section>
 
       {/* SOBRE */}
       <section style={styles.section}>
@@ -180,36 +226,34 @@ export default function Home() {
 
 
      {/* EBOOK */}
+
+{/* EBOOK */}
 <section style={styles.ebook}>
 
-  
   <img
-  src="/ebook.png"
-  alt="Ebook"
-  style={{
-    width: "140px",
-    margin: "0 auto 15px",
-    display: "block"
-  }}
-/>
+    src="/ebook.png"
+    alt="Ebook"
+    style={{
+      width: "140px",
+      margin: "0 auto 15px",
+      display: "block"
+    }}
+  />
 
-  <h2 style={styles.sectionTitle}>📘 Ebook disponível</h2>
+  <h2>📘 Primeiros Conceitos</h2>
 
-        <h3>Primeiros Conceitos – O Caminho da Intimidade</h3>
+  <p style={styles.text}>
+    Um guia prático para viver intimidade real com Deus.
+  </p>
 
-        <p style={styles.text}>
-          Um guia profundo para iniciar uma jornada real com Deus.
-        </p>
+  <button
+    onClick={() => navigate("/ebook")}
+    style={styles.button}
+  >
+    Acessar gratuitamente
+  </button>
 
-        <h2 style={{ marginTop: "10px" }}>R$ 49</h2>
-
-        <button
-          onClick={() => navigate("/ebook")}
-          style={styles.button}
-        >
-          Comprar Ebook
-        </button>
-      </section>
+</section>
 
 
       {/* CTA FINAL */}
