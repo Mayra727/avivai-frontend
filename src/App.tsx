@@ -19,10 +19,27 @@ export default function App() {
   useAuth();
 
   return (
-    <div style={{ background: "#F8F5F1", minHeight: "100vh" }}>
+   <div
+  style={{
+    background: "#F8F5F1",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center" // 🔥 CENTRALIZA TUDO
+  }}
+>
 
       {/* HEADER CORRETO */}
       <Header />
+
+<div
+  style={{
+    width: "100%",
+    maxWidth: "500px",
+    margin: "0 auto",
+    padding: "0 20px"
+  }}
+></div>
 
       {/* ROTAS */}
       <Routes>

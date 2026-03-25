@@ -5,14 +5,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   return (
-  <div
-    style={{
-      width: "100%",
-      maxWidth: "500px",
-      margin: "0 auto",
-      padding: "20px"
-    }}
-  >
+  <div style={{ padding: "20px" }}>
 
  <section>
 
