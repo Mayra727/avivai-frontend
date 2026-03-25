@@ -7,65 +7,71 @@ export default function Home() {
   return (
   <div style={{ padding: "20px", maxWidth: "500px", margin: "0 auto" }}>
 
- <section>
-
-  {/* IMAGEM */}
-
-<img
-  src="/vanessa.jpg"
-  alt="Vanessa"
+ <section
   style={{
-    width: "100%",
-    height: "auto",
-    maxHeight: "300px",
-    objectFit: "cover",
-    borderRadius: "20px",
-    marginBottom: "20px",
-    display: "block",
-    boxShadow: "0 8px 25px rgba(0,0,0,0.15)"
-  }}
-/>
-
-  {/* TEXTO */}
-  <div style={{ textAlign: "center", padding: "0 10px" }}>
-    <h1
-  style={{
-    fontSize: "26px",
-    lineHeight: "1.3",
-    fontWeight: "700"
+    display: "flex",
+    flexDirection: "column",
+    gap: "25px",
+    marginBottom: "50px"
   }}
 >
+
+  {/* IMAGEM */}
+  <img
+    src="/vanessa.jpg"
+    alt="Vanessa"
+    style={{
+      width: "100%",
+      borderRadius: "20px",
+      objectFit: "cover",
+      maxHeight: "320px",
+      boxShadow: "0 10px 30px rgba(0,0,0,0.2)"
+    }}
+  />
+
+  {/* TEXTO */}
+  <div style={{ textAlign: "center" }}>
+
+    <h1
+      style={{
+        fontSize: "28px",
+        fontWeight: "700",
+        lineHeight: "1.3"
+      }}
+    >
       Você sente que sua vida espiritual está travada?
     </h1>
 
     <p
-  style={{
-    marginTop: "12px",
-    fontSize: "15px",
-    lineHeight: "1.6",
-    color: "#555"
-  }}
->
-      Descubra como desenvolver uma intimidade REAL com Deus
-      mesmo se você se sente distante hoje.
+      style={{
+        marginTop: "12px",
+        fontSize: "16px",
+        color: "#555",
+        lineHeight: "1.6"
+      }}
+    >
+      Descubra como desenvolver uma intimidade real com Deus
+      e destravar sua vida emocional e espiritual.
     </p>
 
     <button
-  onClick={() => navigate("/ebook")}
-  style={{
-    marginTop: "20px",
-    padding: "16px",
-    width: "100%",
-    background: "#8B4533",
-    color: "white",
-    border: "none",
-    borderRadius: "12px",
-    fontSize: "15px",
-    fontWeight: "600"
-  }}
->
+      onClick={() => navigate("/ebook")}
+      style={{
+        marginTop: "20px",
+        padding: "16px",
+        width: "100%",
+        background: "#8B4533",
+        color: "white",
+        border: "none",
+        borderRadius: "12px",
+        fontSize: "16px",
+        fontWeight: "600",
+        boxShadow: "0 5px 15px rgba(0,0,0,0.2)"
+      }}
+    >
       Quero destravar minha vida espiritual
     </button>
+
   </div>
 
 </section>
@@ -88,32 +94,104 @@ export default function Home() {
 
 
       {/* BENEFÍCIOS */}
-      <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>O que você vai aprender</h2>
+<section
+  style={{
+    textAlign: "center",
+    marginBottom: "50px"
+  }}
+>
+  <h2
+    style={{
+      fontSize: "clamp(22px, 5vw, 28px)",
+      marginBottom: "10px"
+    }}
+  >
+    O que você vai aprender
+  </h2>
 
-        <div style={styles.benefits}>
-          <div style={styles.card}>✔ Como ouvir Deus com clareza</div>
-          <div style={styles.card}>✔ Restaurar sua vida emocional</div>
-          <div style={styles.card}>✔ Vencer bloqueios espirituais</div>
-          <div style={styles.card}>✔ Desenvolver intimidade real</div>
-        </div>
-      </section>
+  <p
+    style={{
+      fontSize: "14px",
+      color: "#666",
+      marginBottom: "20px"
+    }}
+  >
+    Um caminho prático para destravar sua vida espiritual
+  </p>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: "12px"
+    }}
+  >
+
+    <div
+      style={{
+        background: "#fff",
+        padding: "15px",
+        borderRadius: "12px",
+        fontSize: "14px",
+        boxShadow: "0 5px 15px rgba(0,0,0,0.08)"
+      }}
+    >
+      🙏 Como ouvir Deus com clareza
+    </div>
+
+    <div
+      style={{
+        background: "#fff",
+        padding: "15px",
+        borderRadius: "12px",
+        fontSize: "14px",
+        boxShadow: "0 5px 15px rgba(0,0,0,0.08)"
+      }}
+    >
+      💛 Restaurar sua vida emocional
+    </div>
+
+    <div
+      style={{
+        background: "#fff",
+        padding: "15px",
+        borderRadius: "12px",
+        fontSize: "14px",
+        boxShadow: "0 5px 15px rgba(0,0,0,0.08)"
+      }}
+    >
+      🔥 Vencer bloqueios espirituais
+    </div>
+
+    <div
+      style={{
+        background: "#fff",
+        padding: "15px",
+        borderRadius: "12px",
+        fontSize: "14px",
+        boxShadow: "0 5px 15px rgba(0,0,0,0.08)"
+      }}
+    >
+      ✨ Desenvolver intimidade real com Deus
+    </div>
+
+  </div>
+</section>
 
 
      {/* EBOOK */}
 <section style={styles.ebook}>
 
+  
   <img
-    src="/ebook.png"
-    alt="Ebook"
-    style={{
-      width: "100%",
-      maxWidth: "200px",
-      margin: "0 auto 15px",
-      display: "block",
-      borderRadius: "10px"
-    }}
-  />
+  src="/ebook.png"
+  alt="Ebook"
+  style={{
+    width: "140px",
+    margin: "0 auto 15px",
+    display: "block"
+  }}
+/>
 
   <h2 style={styles.sectionTitle}>📘 Ebook disponível</h2>
 
@@ -135,7 +213,16 @@ export default function Home() {
 
 
       {/* CTA FINAL */}
-      <section style={styles.cta}>
+      <section
+  style={{
+    textAlign: "center",
+    padding: "30px",
+    background: "#8B4533",
+    color: "white",
+    borderRadius: "16px",
+    marginTop: "40px"
+  }}
+>
         <h2 style={styles.ctaTitle}>
           Sua transformação começa agora
         </h2>
