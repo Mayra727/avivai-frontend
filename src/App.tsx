@@ -13,58 +13,61 @@ import EbookPage from "./pages/EbookPage";
 import DownloadPage from "./pages/DownloadPage";
 import Home from "./pages/Home";
 import Livro2Page from "./pages/Livro2Page";
-import { useAuth } from "./context/AuthContext";
 
+import { useAuth } from "./context/AuthContext";
 
 export default function App() {
   useAuth();
 
   return (
-   <div
-  style={{
-    background: "#F8F5F1",
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center" // 🔥 CENTRALIZA TUDO
-  }}
->
+    <div
+      style={{
+        background: "#F8F5F1",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
+      }}
+    >
 
-      {/* HEADER CORRETO */}
       <Header />
 
-<div
-  style={{
-    width: "100%",
-    maxWidth: "500px",
-    margin: "0 auto",
-    padding: "0 16px"
-  }}
-></div>
+      {/* CONTAINER CORRETO */}
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "500px",
+          margin: "0 auto",
+          padding: "0 16px"
+        }}
+      >
 
-      {/* ROTAS */}
-      <Routes>
-        <Route path="/" element={<Home />} />
+        <Routes>
+          <Route path="/" element={<Home />} />
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/meus-cursos" element={<MyCourses />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/meus-cursos" element={<MyCourses />} />
 
-        <Route path="/cursos" element={<Courses />} />
+          <Route path="/cursos" element={<Courses />} />
 
-        <Route path="/payment-success" element={<PaymentSuccess />} />
+          <Route path="/payment-success" element={<PaymentSuccess />} />
 
-        <Route path="/producer-dashboard" element={<ProducerDashboard />} />
+          <Route path="/producer-dashboard" element={<ProducerDashboard />} />
 
-        <Route path="/ebook" element={<EbookPage />} />
+          <Route path="/ebook" element={<EbookPage />} />
 
-        <Route path="/produtora" element={<ProducerProfile />} />
-        <Route path="/download" element={<DownloadPage />} />
-      </Routes>
+          <Route path="/produtora" element={<ProducerProfile />} />
+          <Route path="/download" element={<DownloadPage />} />
 
-<Route path="/livro2" element={<Livro2Page />} />
+          {/* ✅ AGORA ESTÁ NO LUGAR CERTO */}
+          <Route path="/livro2" element={<Livro2Page />} />
+        </Routes>
+
+      </div>
+
     </div>
   );
 }
