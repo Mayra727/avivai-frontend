@@ -127,10 +127,9 @@ const styles: { [key: string]: CSSProperties } = {
     width: "100%"
   },
 
-  heroImage: {
+heroImage: {
   width: "100%",
-  height: "auto",
-  maxHeight: "500px",
+  height: "clamp(250px, 40vw, 450px)",
   objectFit: "cover",
   borderRadius: "20px"
 },
