@@ -6,24 +6,27 @@
 /* HERO */
 .hero {
   display: flex;
-  flex-direction: column; /* 👈 MOBILE */
+  flex-direction: column; /* MOBILE */
   align-items: center;
   gap: 30px;
   padding: 80px 20px;
 }
 
-/* TEXTO DO HERO */
+/* TEXTO */
 .hero-text {
   max-width: 600px;
   text-align: center;
+  order: 2; /* 👈 TEXTO FICA EMBAIXO NO MOBILE */
 }
 
+/* TITULO */
 .hero h1 {
   font-size: clamp(26px, 5vw, 42px);
   color: #7A4A3A;
   margin-bottom: 20px;
 }
 
+/* SUBTEXTO */
 .hero p {
   font-size: 18px;
   color: #5A534C;
@@ -37,7 +40,7 @@
   max-width: 500px;
   height: auto;
   border-radius: 20px;
-  order: -1; /* 👈 imagem sobe no mobile */
+  order: 1; /* 👈 IMAGEM FICA EM CIMA NO MOBILE */
 }
 
 /* BOTÃO */
@@ -89,7 +92,7 @@
   box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
-/* CTA FINAL */
+/* CTA */
 .cta {
   text-align: center;
   padding: 80px 20px;
@@ -119,11 +122,11 @@
   cursor: pointer;
 }
 
-/* 🔥 DESKTOP (RESPONSIVO PROFISSIONAL) */
+/* 💻 DESKTOP */
 @media (min-width: 768px) {
 
   .hero {
-    flex-direction: row;
+    flex-direction: row; /* 👈 lado a lado */
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
@@ -132,11 +135,11 @@
 
   .hero-text {
     text-align: left;
+    order: 1; /* 👈 texto esquerda */
   }
 
-/* 👇 ADICIONA ISSO AQUI */
   .hero-image {
-    order: 0; /* 👈 volta ao normal no desktop */
+    order: 2; /* 👈 imagem direita */
   }
-}
 
+}
