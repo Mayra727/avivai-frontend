@@ -26,21 +26,18 @@ export default function App() {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center"
       }}
     >
 
       <Header />
 
       {/* CONTAINER CORRETO */}
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "500px",
-          margin: "0 auto",
-          padding: "0 16px"
-        }}
-      >
+     <div
+  style={{
+    width: "100%",
+    padding: "0 16px"
+  }}
+>
 
         <Routes>
           <Route path="/" element={<Home />} />
