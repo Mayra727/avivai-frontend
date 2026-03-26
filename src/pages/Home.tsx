@@ -110,37 +110,37 @@ export default function Home() {
 
 const styles: { [key: string]: CSSProperties } = {
 
-  container: {
-    width: "100%",
-    maxWidth: "1100px",
-    margin: "0 auto",
-    padding: "20px"
-  },
+ container: {
+  width: "100%",
+  padding: "20px"
+},
 
   /* HERO RESPONSIVO */
-  hero: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "20px",
-    marginBottom: "50px"
-  },
+ hero: {
+  display: "flex",
+  flexDirection: "column",
+  gap: "30px",
+  width: "100%"
+},
 
   heroImageContainer: {
     width: "100%"
   },
 
   heroImage: {
-    width: "100%",
-    aspectRatio: "4 / 5",
-    objectFit: "cover",
-    borderRadius: "20px"
-  },
+  width: "100%",
+  height: "auto",
+  maxHeight: "500px",
+  objectFit: "cover",
+  borderRadius: "20px"
+},
 
-  heroText: {
-    textAlign: "center",
-    maxWidth: "500px",
-    margin: "0 auto"
-  },
+ heroText: {
+  maxWidth: "600px",
+  width: "100%",
+  margin: "0 auto",
+  textAlign: "center"
+},
 
   title: {
     fontSize: "clamp(22px, 4vw, 36px)",
