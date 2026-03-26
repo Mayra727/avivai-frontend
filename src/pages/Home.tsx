@@ -10,15 +10,6 @@ export default function Home() {
       {/* HERO */}
       <section style={styles.hero}>
 
-        {/* IMAGEM */}
-        <div style={styles.heroImageContainer}>
-          <img
-            src="/vanessa.jpg"
-            alt="Vanessa"
-            style={styles.heroImage}
-          />
-        </div>
-
         {/* TEXTO */}
         <div style={styles.heroText}>
           <h1 style={styles.title}>
@@ -38,9 +29,18 @@ export default function Home() {
           </button>
         </div>
 
+        {/* IMAGEM */}
+        <div style={styles.heroImageContainer}>
+          <img
+            src="/vanessa.jpg"
+            alt="Vanessa"
+            style={styles.heroImage}
+          />
+        </div>
+
       </section>
 
-      {/* RESTANTE NORMAL */}
+      {/* SEÇÕES */}
       <section style={styles.section}>
         <h2>Dê vida ao conhecimento que você carrega</h2>
         <p style={styles.text}>
@@ -85,7 +85,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA FINAL */}
       <section style={styles.cta}>
         <h2>Sua transformação começa agora</h2>
 
@@ -110,36 +110,40 @@ export default function Home() {
 
 const styles: { [key: string]: CSSProperties } = {
 
- container: {
-  width: "100%",
-  padding: "20px"
-},
+  container: {
+    width: "100%",
+    padding: "20px"
+  },
 
   /* HERO RESPONSIVO */
- hero: {
-  display: "flex",
-  flexDirection: "column",
-  gap: "30px",
-  width: "100%"
-},
+  hero: {
+    display: "flex",
+    flexDirection: window.innerWidth > 768 ? "row" : "column",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: "40px",
+    maxWidth: "1200px",
+    margin: "40px auto"
+  },
+
+  heroText: {
+    flex: 1,
+    maxWidth: "600px",
+    textAlign: window.innerWidth > 768 ? "left" : "center"
+  },
 
   heroImageContainer: {
+    flex: 1,
     width: "100%"
   },
 
-heroImage: {
-  width: "100%",
-  height: "auto",
-  display: "block",
-  borderRadius: "20px"
-},
-
- heroText: {
-  maxWidth: "600px",
-  width: "100%",
-  margin: "0 auto",
-  textAlign: "center"
-},
+  heroImage: {
+    width: "100%",
+    maxWidth: "500px",
+    height: "auto",
+    display: "block",
+    borderRadius: "20px"
+  },
 
   title: {
     fontSize: "clamp(22px, 4vw, 36px)",
@@ -152,7 +156,7 @@ heroImage: {
   },
 
   section: {
-    marginTop: "50px",
+    marginTop: "60px",
     textAlign: "center"
   },
 
@@ -178,13 +182,13 @@ heroImage: {
   },
 
   cta: {
-    marginTop: "60px",
+    marginTop: "80px",
     textAlign: "center"
   },
 
   primaryButton: {
     marginTop: "15px",
-    padding: "14px",
+    padding: "16px",
     background: "#8B4533",
     color: "#fff",
     border: "none",
@@ -192,12 +196,13 @@ heroImage: {
     maxWidth: "400px",
     width: "100%",
     marginInline: "auto",
-    display: "block"
+    display: "block",
+    cursor: "pointer"
   },
 
   secondaryButton: {
     marginTop: "10px",
-    padding: "14px",
+    padding: "16px",
     background: "transparent",
     color: "#8B4533",
     border: "1px solid #8B4533",
@@ -205,6 +210,8 @@ heroImage: {
     maxWidth: "400px",
     width: "100%",
     marginInline: "auto",
-    display: "block"
+    display: "block",
+    cursor: "pointer"
   }
+
 };
