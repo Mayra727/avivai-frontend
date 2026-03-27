@@ -82,6 +82,7 @@ export default function Home() {
 
       {/* SOBRE */}
       <section className="section about">
+          <div className="section-inner">
   <h2>Quem é Vanessa Nonato</h2>
 
   <p className="about-intro">
@@ -100,8 +101,9 @@ export default function Home() {
   <p className="text">
     Através de uma metodologia que une Neurociência e Fundamentos Bíblicos,
     eu estruturo o caminho da cura real, ensinando-os a viverem uma fé prática
-    e apaixonada pelo Espírito Santo — que é o meu bem mais precioso.
+    e apaixonada pelo Espírito Santo que é o meu bem mais precioso.
   </p>
+  </div>
 </section>
 
       {/* BENEFÍCIOS PREMIUM */}
