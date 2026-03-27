@@ -45,40 +45,50 @@ export default function Home() {
 
       </section>
 
-      {/* BLOCO DE POSICIONAMENTO */}
-      <section className="section premium-section">
-        <h2>Dê vida ao conhecimento que você carrega</h2>
+    <section className="section premium-section">
+  <div className="section-inner">
 
-        <p className="text">
-          A AVIVAI é um ecossistema de conteúdos que une fé, teologia e neurociência
-          para transformar aquilo que você acredita em uma experiência viva com Deus.
-        </p>
-      </section>
+    <h2>Dê vida ao conhecimento que você carrega</h2>
 
-      {/* DOR DO PÚBLICO */}
+    <p className="text">
+      A AVIVAI é um ecossistema de conteúdos que une fé, teologia e neurociência
+      para transformar aquilo que você acredita em uma experiência viva com Deus.
+    </p>
+
+  </div>
+</section>
+
       <section className="section">
-        <h2>Você já sentiu isso?</h2>
+  <div className="section-inner">
 
-        <div className="pain-list">
-          <p>Você ora… mas não sente Deus.</p>
-          <p>Você lê… mas não vive.</p>
-          <p>Você tenta… mas continua travado.</p>
-        </div>
+    <h2>Você já sentiu isso?</h2>
 
-        <p className="text highlight">
-          Não é falta de fé. É que ninguém te ensinou a viver com Deus.
-        </p>
-      </section>
+    <div className="pain-list">
+      <p>Você ora… mas não sente Deus.</p>
+      <p>Você lê… mas não vive.</p>
+      <p>Você tenta… mas continua travado.</p>
+    </div>
+
+    <p className="text highlight">
+      Não é falta de fé. É que ninguém te ensinou a viver com Deus.
+    </p>
+
+  </div>
+</section>
 
       {/* SOLUÇÃO */}
       <section className="section premium-box">
-        <h2>Existe um caminho</h2>
+  <div className="section-inner">
 
-        <p className="text">
-          A AVIVAI foi criada para tirar sua espiritualidade do campo das ideias
-          e plantar no solo da sua vida real.
-        </p>
-      </section>
+    <h2>Existe um caminho</h2>
+
+    <p className="text">
+      A AVIVAI foi criada para tirar sua espiritualidade do campo das ideias
+      e plantar no solo da sua vida real.
+    </p>
+
+  </div>
+</section>
 
       {/* SOBRE */}
       <section className="section about">
@@ -108,44 +118,43 @@ export default function Home() {
 
       {/* BENEFÍCIOS PREMIUM */}
       <section className="section">
-        <h2>O que você vai vivenciar</h2>
+  <div className="section-inner">
 
-        <div className="grid">
-          <div className="card">🙏 Ouvir Deus com clareza</div>
-          <div className="card">💛 Restaurar sua vida emocional</div>
-          <div className="card">🔥 Vencer bloqueios espirituais</div>
-          <div className="card">✨ Desenvolver intimidade real com Deus</div>
-        </div>
-      </section>
+    <h2>O que você vai vivenciar</h2>
+
+    <div className="grid">
+      <div className="card">🙏 Ouvir Deus com clareza</div>
+      <div className="card">💛 Restaurar sua vida emocional</div>
+      <div className="card">🔥 Vencer bloqueios espirituais</div>
+      <div className="card">✨ Desenvolver intimidade real com Deus</div>
+    </div>
+
+  </div>
+</section>
 
       {/* CTA FINAL */}
       <section className="cta premium-cta">
+  <div className="section-inner">
 
-        <h2>Sua transformação começa agora</h2>
+    <h2>Sua transformação começa agora</h2>
 
-        <p>
-          Não é sobre saber mais.
-          É sobre viver de forma real aquilo que você já acredita.
-        </p>
+    <p>
+      Não é sobre saber mais.
+      É sobre viver de forma real aquilo que você já acredita.
+    </p>
 
-        <div className="cta-buttons">
-          <button
-            onClick={() => navigate("/ebook")}
-            className="button-primary"
-          >
-            📘 Começar gratuitamente
-          </button>
+    <div className="cta-buttons">
+      <button onClick={() => navigate("/ebook")} className="button-primary">
+        📘 Começar gratuitamente
+      </button>
 
-          <button
-            onClick={() => navigate("/mentoria")}
-            className="button-secondary"
-          >
-            🎓 Conhecer a mentoria
-          </button>
-        </div>
+      <button onClick={() => navigate("/mentoria")} className="button-secondary">
+        🎓 Conhecer a mentoria
+      </button>
+    </div>
 
-      </section>
-
+  </div>
+</section>
     </div>
   );
 }
