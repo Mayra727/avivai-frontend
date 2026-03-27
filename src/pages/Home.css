@@ -67,7 +67,8 @@
 
 /* SEÇÕES */
 .section {
-  padding: 70px 20px;
+  width: 100%;
+  padding: 80px 20px;
   text-align: center;
 }
 
@@ -191,8 +192,7 @@
 
 /* SOBRE VANESSA */
 .about {
-  max-width: 800px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .about-intro {
@@ -205,11 +205,6 @@
   font-style: italic;
   color: #8B6B61;
   margin-bottom: 20px;
-}
-
-.section {
-  width: 100%;
-  padding: 80px 20px;
 }
 
 /* CONTEÚDO INTERNO CONTROLADO */

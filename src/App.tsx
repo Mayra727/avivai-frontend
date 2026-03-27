@@ -32,12 +32,7 @@ export default function App() {
       <Header />
 
       {/* CONTAINER CORRETO */}
-     <div
-  style={{
-    width: "100%",
-    padding: "0 16px"
-  }}
->
+    <div style={{ width: "100%" }}>
 
         <Routes>
           <Route path="/" element={<Home />} />
