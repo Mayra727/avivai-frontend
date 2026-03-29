@@ -7,8 +7,9 @@
 
 /* CONTAINER */
 .header-container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
+  padding: 0 20px;
 
   display: flex;
   align-items: center;
@@ -57,6 +58,11 @@
 /* 🔥 MOBILE */
 @media (max-width: 768px) {
 
+    .logo-img {
+    width: 42px;
+    height: 42px;
+  }
+
   .header-container {
     flex-direction: column;
     gap: 10px;
@@ -69,4 +75,27 @@
     gap: 12px;
   }
 
+}
+
+/* LOGO CONTAINER */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* IMAGEM DA LOGO */
+.logo-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(255, 200, 0, 0.6));
+}
+
+/* TEXTO AVIVAI */
+.logo-text {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 2px;
 }
