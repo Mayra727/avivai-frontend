@@ -2,7 +2,7 @@
 .header {
   width: 100%;
   background: #7A4A3A;
-  padding: 12px 20px;
+  padding: 16px 0;
 }
 
 /* CONTAINER */
@@ -59,9 +59,11 @@
 @media (max-width: 768px) {
 
     .logo-img {
-    width: 50px;
-    height: 50px;
-  }
+    width: 64px;
+    height: 64px;
+   object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(255, 200, 0, 0.7));
+}
 
   .header-container {
     flex-direction: column;
@@ -86,16 +88,16 @@
 
 /* IMAGEM DA LOGO */
 .logo-img {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
-  filter: drop-shadow(0 0 8px rgba(255, 200, 0, 0.6));
+  filter: drop-shadow(0 0 10px rgba(255, 200, 0, 0.7));
 }
 
 /* TEXTO AVIVAI */
 .logo-text {
   color: white;
   font-weight: bold;
-  font-size: 18px;
-  letter-spacing: 2px;
+  font-size: 20px;
+  letter-spacing: 3px;
 }
