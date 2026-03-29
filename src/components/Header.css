@@ -1,0 +1,72 @@
+/* HEADER BASE */
+.header {
+  width: 100%;
+  background: #7A4A3A;
+  padding: 12px 20px;
+}
+
+/* CONTAINER */
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* MENU */
+.nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* LINKS */
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.nav a:hover {
+  opacity: 0.8;
+}
+
+/* BOTÃO LOGOUT */
+.logout-btn {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* 🔥 MOBILE */
+@media (max-width: 768px) {
+
+  .header-container {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .nav {
+    flex-wrap: wrap; /* 👈 ESSENCIAL */
+    justify-content: center;
+    gap: 12px;
+  }
+
+}
