@@ -1,22 +1,46 @@
 import { useState } from "react";
 import "./CoursePlayer.css";
 
-const lessonsMock = [
-  {
-    id: 1,
-    title: "Introdução",
-    video: "/videos/aula1.mp4"
-  },
-  {
-    id: 2,
-    title: "Intimidade com Deus",
-    video: "/videos/aula2.mp4"
-  }
-];
+const courseMock = {
+  title: "Vida Espiritual Destravada",
+  modules: [
+    {
+      title: "Módulo 1",
+      lessons: [
+        {
+          id: 1,
+          title: "Aula em vídeo",
+          type: "video",
+          content: "/videos/aula1.mp4"
+        },
+        {
+          id: 2,
+          title: "Material PDF",
+          type: "pdf",
+          content: "/pdfs/material.pdf"
+        },
+        {
+          id: 3,
+          title: "Imagem",
+          type: "image",
+          content: "/images/exemplo.jpg"
+        },
+        {
+          id: 4,
+          title: "Devocional",
+          type: "text",
+          content: "Deus quer ter relacionamento com você todos os dias..."
+        }
+      ]
+    }
+  ]
+};
 
 export default function CoursePlayer() {
 
-  const [currentLesson, setCurrentLesson] = useState(lessonsMock[0]);
+  const allLessons = courseMock.modules.flatMap(m => m.lessons);
+
+  const [currentLesson, setCurrentLesson] = useState(allLessons[0]);
   const [completed, setCompleted] = useState<number[]>([]);
 
   function toggleComplete(id: number) {
@@ -27,45 +51,80 @@ export default function CoursePlayer() {
     }
   }
 
-  const progress = Math.round((completed.length / lessonsMock.length) * 100);
+  const progress = Math.round((completed.length / allLessons.length) * 100);
 
   return (
     <div className="player">
 
-      {/* 🎥 VIDEO REAL */}
-      <div className="video">
-        <video
-          key={currentLesson.video}
-          controls
-          controlsList="nodownload"
-        >
-          <source src={currentLesson.video} type="video/mp4" />
-        </video>
+      {/* CONTEÚDO */}
+      <div className="content">
+
+        <h2>{currentLesson.title}</h2>
+
+        {/* 🎯 RENDER DINÂMICO */}
+        {currentLesson.type === "video" && (
+          <video controls className="video-player">
+            <source src={currentLesson.content} />
+          </video>
+        )}
+
+        {currentLesson.type === "pdf" && (
+          <iframe
+            src={currentLesson.content}
+            className="pdf-viewer"
+          />
+        )}
+
+        {currentLesson.type === "image" && (
+          <img
+            src={currentLesson.content}
+            className="image-viewer"
+          />
+        )}
+
+        {currentLesson.type === "text" && (
+          <div className="text-viewer">
+            {currentLesson.content}
+          </div>
+        )}
+
       </div>
 
       {/* SIDEBAR */}
       <div className="sidebar">
 
-        <h3>Conteúdo do curso</h3>
+        <h3>Conteúdo</h3>
 
         <div className="progress">
           Progresso: {progress}%
         </div>
 
-        {lessonsMock.map((lesson) => (
-          <div
-            key={lesson.id}
-            className={`lesson ${lesson.id === currentLesson.id ? "active" : ""}`}
-          >
-            <span onClick={() => setCurrentLesson(lesson)}>
-              {lesson.title}
-            </span>
+        {courseMock.modules.map((module, mIndex) => (
+          <div key={mIndex}>
 
-            <input
-              type="checkbox"
-              checked={completed.includes(lesson.id)}
-              onChange={() => toggleComplete(lesson.id)}
-            />
+            <h4>{module.title}</h4>
+
+            {module.lessons.map((lesson) => (
+              <div
+                key={lesson.id}
+                className={`lesson ${
+                  lesson.id === currentLesson.id ? "active" : ""
+                }`}
+              >
+
+                <span onClick={() => setCurrentLesson(lesson)}>
+                  {lesson.title}
+                </span>
+
+                <input
+                  type="checkbox"
+                  checked={completed.includes(lesson.id)}
+                  onChange={() => toggleComplete(lesson.id)}
+                />
+
+              </div>
+            ))}
+
           </div>
         ))}
 
