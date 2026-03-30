@@ -53,7 +53,7 @@ export default function CreateCourse() {
       modules
     };
 
-    console.log("CURSO CRIADO:", course);
+   console.log(JSON.stringify(course, null, 2));
     alert("Curso criado com sucesso (simulação)");
   }
 
