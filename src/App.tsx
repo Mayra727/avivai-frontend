@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-
 import Courses from "./pages/Courses";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -38,7 +37,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
 
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/cadastro" element={<Register />} />
 
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/meus-cursos" element={<MyCourses />} />
