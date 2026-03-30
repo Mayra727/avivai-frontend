@@ -1,91 +1,86 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_URL } from "../services/api";
+import "./Register.css";
 
 export default function Register() {
-
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("aluno");
-
   const navigate = useNavigate();
 
-  const handleRegister = async () => {
-    try {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
-      const response = await fetch(`${API_URL}/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-          role
-        })
-      });
+  function handleChange(e: any) {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  }
 
-      const data = await response.json();
+  function handleSubmit(e: any) {
+    e.preventDefault();
 
-      if (response.ok) {
-        alert("Conta criada com sucesso!");
-        navigate("/login");
-      } else {
-        alert(data.error);
-      }
+    console.log("Cadastro:", form);
 
-    } catch (error) {
-      console.log(error);
-      alert("Erro ao registrar");
-    }
-  };
+    // 🔥 aqui depois conecta com backend
+    navigate("/dashboard");
+  }
 
   return (
-    <div style={{ padding: "60px" }}>
-      <h1>Criar Conta</h1>
+    <div className="register-page">
 
-      <input
-        type="text"
-        placeholder="Seu nome"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <br /><br />
+      <div className="register-container">
 
-      <input
-        type="email"
-        placeholder="Seu email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <br /><br />
+        <h1>Crie sua conta</h1>
+        <p className="subtitle">
+          Comece sua transformação espiritual agora
+        </p>
 
-      <input
-        type="password"
-        placeholder="Crie uma senha"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <br /><br />
+        <form onSubmit={handleSubmit}>
 
-      <label>Tipo de conta:</label>
-      <br />
+          <input
+            type="text"
+            name="name"
+            placeholder="Seu nome completo"
+            value={form.name}
+            onChange={handleChange}
+            required
+          />
 
-      <select
-        value={role}
-        onChange={(e) => setRole(e.target.value)}
-      >
-        <option value="aluno">Aluno</option>
-        <option value="produtor">Produtor</option>
-      </select>
+          <input
+            type="email"
+            name="email"
+            placeholder="Seu e-mail"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
 
-      <br /><br />
+          <input
+            type="password"
+            name="password"
+            placeholder="Crie uma senha"
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
 
-      <button onClick={handleRegister}>
-        Cadastrar
-      </button>
+          <button type="submit">
+            Criar conta
+          </button>
+
+        </form>
+
+        <span className="login-link">
+          Já tem conta?{" "}
+          <a onClick={() => navigate("/login")}>
+            Entrar
+          </a>
+        </span>
+
+      </div>
+
     </div>
   );
 }
