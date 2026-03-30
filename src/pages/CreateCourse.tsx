@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./CreateCourse.css";
+import { uploadFile } from "../services/cloudinary";
 
 export default function CreateCourse() {
-
   const [courseName, setCourseName] = useState("");
   const [modules, setModules] = useState<any[]>([]);
 
@@ -21,14 +21,14 @@ export default function CreateCourse() {
     setModules(newModules);
   }
 
-  // ➕ ADICIONAR AULA (ATUALIZADO AQUI 🔥)
+  // ➕ ADICIONAR AULA
   function addLesson(moduleIndex: number) {
     const newModules = [...modules];
 
     newModules[moduleIndex].lessons.push({
       title: "",
-      type: "video",   // 👈 padrão
-      content: ""      // 👈 conteúdo (url, texto, etc)
+      type: "video",
+      content: ""
     });
 
     setModules(newModules);
@@ -109,17 +109,35 @@ export default function CreateCourse() {
               </select>
 
               {/* CONTEÚDO */}
-              <input
-                placeholder={
-                  lesson.type === "text"
-                    ? "Digite o conteúdo da aula"
-                    : "URL ou arquivo (vamos melhorar depois)"
-                }
-                value={lesson.content}
-                onChange={(e) =>
-                  updateLesson(mIndex, lIndex, "content", e.target.value)
-                }
-              />
+              {lesson.type === "text" ? (
+
+                <input
+                  placeholder="Digite o conteúdo da aula"
+                  value={lesson.content}
+                  onChange={(e) =>
+                    updateLesson(mIndex, lIndex, "content", e.target.value)
+                  }
+                />
+
+              ) : (
+
+                <input
+                  type="file"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+
+                    alert("Enviando arquivo...");
+
+                    const url = await uploadFile(file);
+
+                    alert("Upload concluído!");
+
+                    updateLesson(mIndex, lIndex, "content", url);
+                  }}
+                />
+
+              )}
 
             </div>
           ))}
