@@ -1,0 +1,57 @@
+.player {
+  display: flex;
+  height: calc(100vh - 80px);
+}
+
+/* VIDEO */
+.video video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: black;
+}
+
+.video iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* SIDEBAR */
+.sidebar {
+  flex: 1;
+  background: #F8F5F1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.sidebar h3 {
+  color: #5A3E36;
+}
+
+.progress {
+  margin: 15px 0;
+  font-weight: bold;
+  color: #7A4A3A;
+}
+
+/* AULAS */
+.lesson {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.lesson:hover {
+  background: #EFEAE6;
+}
+
+.lesson.active {
+  background: #7A4A3A;
+  color: white;
+}

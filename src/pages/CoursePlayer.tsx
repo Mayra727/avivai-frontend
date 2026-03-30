@@ -1,62 +1,73 @@
 import { useState } from "react";
+import "./CoursePlayer.css";
+
+const lessonsMock = [
+  {
+    id: 1,
+    title: "Introdução",
+    video: "/videos/aula1.mp4"
+  },
+  {
+    id: 2,
+    title: "Intimidade com Deus",
+    video: "/videos/aula2.mp4"
+  }
+];
 
 export default function CoursePlayer() {
 
-  const aulas = [
-    {
-      title: "Aula 1 - Introdução",
-      video: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-    },
-    {
-      title: "Aula 2 - Intimidade com Deus",
-      video: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-    },
-    {
-      title: "Aula 3 - Vida Espiritual",
-      video: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-    }
-  ];
+  const [currentLesson, setCurrentLesson] = useState(lessonsMock[0]);
+  const [completed, setCompleted] = useState<number[]>([]);
 
-  const [aulaAtual, setAulaAtual] = useState(aulas[0]);
+  function toggleComplete(id: number) {
+    if (completed.includes(id)) {
+      setCompleted(completed.filter(l => l !== id));
+    } else {
+      setCompleted([...completed, id]);
+    }
+  }
+
+  const progress = Math.round((completed.length / lessonsMock.length) * 100);
 
   return (
-    <div style={{ display: "flex", padding: "40px" }}>
+    <div className="player">
 
-      {/* Lista de aulas */}
-      <div style={{ width: "300px", marginRight: "30px" }}>
-        <h2>Aulas</h2>
-
-        {aulas.map((aula, index) => (
-          <div
-            key={index}
-            onClick={() => setAulaAtual(aula)}
-            style={{
-              padding: "10px",
-              marginBottom: "10px",
-              cursor: "pointer",
-              background: "#eee",
-              borderRadius: "5px"
-            }}
-          >
-            {aula.title}
-          </div>
-        ))}
-
+      {/* 🎥 VIDEO REAL */}
+      <div className="video">
+        <video
+          key={currentLesson.video}
+          controls
+          controlsList="nodownload"
+        >
+          <source src={currentLesson.video} type="video/mp4" />
+        </video>
       </div>
 
-      {/* Player */}
-      <div style={{ flex: 1 }}>
+      {/* SIDEBAR */}
+      <div className="sidebar">
 
-        <h2>{aulaAtual.title}</h2>
+        <h3>Conteúdo do curso</h3>
 
-        <iframe
-          width="100%"
-          height="500"
-          src={aulaAtual.video}
-          title="Video aula"
-          frameBorder="0"
-          allowFullScreen
-        />
+        <div className="progress">
+          Progresso: {progress}%
+        </div>
+
+        {lessonsMock.map((lesson) => (
+          <div
+            key={lesson.id}
+            className={`lesson ${lesson.id === currentLesson.id ? "active" : ""}`}
+          >
+            <span onClick={() => setCurrentLesson(lesson)}>
+              {lesson.title}
+            </span>
+
+            <input
+              type="checkbox"
+              checked={completed.includes(lesson.id)}
+              onChange={() => toggleComplete(lesson.id)}
+            />
+          </div>
+        ))}
 
       </div>
 

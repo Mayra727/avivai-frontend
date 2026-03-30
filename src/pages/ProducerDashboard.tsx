@@ -1,159 +1,40 @@
-import { useState, useEffect } from "react";
-import { API_URL } from "../services/api";
-import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import "./Producer.css";
 
 export default function ProducerDashboard() {
-
-  const { user } = useAuth();
-
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-
-  const [courses, setCourses] = useState<any[]>([]);
-
-  async function loadCourses() {
-
-    try {
-
-      const response = await fetch(`${API_URL}/courses`);
-      const data = await response.json();
-
-      const myCourses = data.filter(
-        (course: any) => course.creatorId === user?.id
-      );
-
-      setCourses(myCourses);
-
-    } catch (error) {
-
-      console.log(error);
-
-    }
-
-  }
-
-  useEffect(() => {
-
-    if (user) {
-      loadCourses();
-    }
-
-  }, [user]);
-
-  async function createCourse() {
-
-    try {
-
-      const response = await fetch(`${API_URL}/courses`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          title,
-          description,
-          price: Number(price),
-          creatorId: user?.id
-        })
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-
-        alert("Curso criado com sucesso!");
-
-        setTitle("");
-        setDescription("");
-        setPrice("");
-
-        loadCourses(); // atualiza lista
-
-      } else {
-
-        alert(data.error);
-
-      }
-
-    } catch (error) {
-
-      console.log(error);
-      alert("Erro ao criar curso");
-
-    }
-
-  }
+  const navigate = useNavigate();
 
   return (
-    <div style={{ padding: "60px" }}>
+    <div className="producer">
 
       <h1>Painel do Produtor</h1>
+      <p className="subtitle">
+        Gerencie seus conteúdos e alunos
+      </p>
 
-      {/* CRIAR CURSO */}
+      <div className="producer-grid">
 
-      <h2>Criar Novo Curso</h2>
-
-      <input
-        placeholder="Título do curso"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-
-      <br /><br />
-
-      <textarea
-        placeholder="Descrição"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-
-      <br /><br />
-
-      <input
-        placeholder="Preço"
-        type="number"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
-      />
-
-      <br /><br />
-
-      <button onClick={createCourse}>
-        Criar Curso
-      </button>
-
-      {/* LISTA DE CURSOS */}
-
-      <hr style={{ margin: "40px 0" }} />
-
-      <h2>Meus Cursos</h2>
-
-      {courses.length === 0 && (
-        <p>Você ainda não criou cursos.</p>
-      )}
-
-      {courses.map((course) => (
-
-        <div
-          key={course._id}
-          style={{
-            padding: "20px",
-            background: "#fff",
-            marginTop: "20px",
-            borderRadius: "10px"
-          }}
-        >
-
-          <h3>{course.title}</h3>
-
-          <p>{course.description}</p>
-
-          <p><strong>R$ {course.price}</strong></p>
-
+        <div className="producer-card" onClick={() => navigate("/criar-curso")}>
+          <h3>📚 Criar Curso</h3>
+          <p>Adicione módulos e aulas</p>
         </div>
 
-      ))}
+        <div className="producer-card" onClick={() => navigate("/criar-ebook")}>
+          <h3>📘 Criar Ebook</h3>
+          <p>Venda seu material digital</p>
+        </div>
+
+        <div className="producer-card" onClick={() => navigate("/criar-mentoria")}>
+          <h3>🎓 Mentoria</h3>
+          <p>Gerencie alunos e encontros</p>
+        </div>
+
+        <div className="producer-card" onClick={() => navigate("/alunos")}>
+          <h3>👥 Alunos</h3>
+          <p>Veja quem comprou</p>
+        </div>
+
+      </div>
 
     </div>
   );
