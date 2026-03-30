@@ -59,8 +59,8 @@
 @media (max-width: 768px) {
 
     .logo-img {
-    width: 64px;
-    height: 64px;
+    width: 72px;
+    height: 72px;
    object-fit: contain;
   filter: drop-shadow(0 0 10px rgba(255, 200, 0, 0.7));
 }
@@ -88,8 +88,8 @@
 
 /* IMAGEM DA LOGO */
 .logo-img {
-  width: 72px;
-  height: 72px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
   filter: drop-shadow(0 0 10px rgba(255, 200, 0, 0.7));
 }
