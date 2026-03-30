@@ -1,8 +1,10 @@
 import { useState } from "react";
 import "./CreateCourse.css";
 import { uploadFile } from "../services/cloudinary";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateCourse() {
+  const navigate = useNavigate();
   const [courseName, setCourseName] = useState("");
   const [modules, setModules] = useState<any[]>([]);
 
@@ -47,16 +49,23 @@ export default function CreateCourse() {
   }
 
   // 💾 SALVAR
-  function handleSave() {
-    const course = {
-      title: courseName,
-      modules
-    };
+ // 💾 SALVAR
+function handleSave() {
+  const course = {
+    title: courseName,
+    modules
+  };
 
-   console.log(JSON.stringify(course, null, 2));
-    alert("Curso criado com sucesso (simulação)");
-  }
+  console.log(JSON.stringify(course, null, 2));
 
+  // 👉 salva temporário
+  localStorage.setItem("curso", JSON.stringify(course));
+
+  alert("Curso criado com sucesso!");
+
+  // 👉 redireciona
+  navigate("/dashboard");
+}
   return (
     <div className="create-course">
 
