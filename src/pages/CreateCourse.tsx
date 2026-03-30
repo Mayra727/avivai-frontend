@@ -6,7 +6,7 @@ export default function CreateCourse() {
   const [courseName, setCourseName] = useState("");
   const [modules, setModules] = useState<any[]>([]);
 
-  // adicionar módulo
+  // ➕ ADICIONAR MÓDULO
   function addModule() {
     setModules([
       ...modules,
@@ -14,30 +14,39 @@ export default function CreateCourse() {
     ]);
   }
 
-  // atualizar título do módulo
+  // ✏️ ATUALIZAR NOME DO MÓDULO
   function updateModuleTitle(index: number, value: string) {
     const newModules = [...modules];
     newModules[index].title = value;
     setModules(newModules);
   }
 
-  // adicionar aula
+  // ➕ ADICIONAR AULA (ATUALIZADO AQUI 🔥)
   function addLesson(moduleIndex: number) {
     const newModules = [...modules];
+
     newModules[moduleIndex].lessons.push({
       title: "",
-      video: ""
+      type: "video",   // 👈 padrão
+      content: ""      // 👈 conteúdo (url, texto, etc)
     });
+
     setModules(newModules);
   }
 
-  // atualizar aula
-  function updateLesson(moduleIndex: number, lessonIndex: number, field: string, value: string) {
+  // ✏️ ATUALIZAR AULA
+  function updateLesson(
+    moduleIndex: number,
+    lessonIndex: number,
+    field: string,
+    value: string
+  ) {
     const newModules = [...modules];
     newModules[moduleIndex].lessons[lessonIndex][field] = value;
     setModules(newModules);
   }
 
+  // 💾 SALVAR
   function handleSave() {
     const course = {
       title: courseName,
@@ -45,7 +54,7 @@ export default function CreateCourse() {
     };
 
     console.log("CURSO CRIADO:", course);
-    alert("Curso criado (simulação)");
+    alert("Curso criado com sucesso (simulação)");
   }
 
   return (
@@ -53,6 +62,7 @@ export default function CreateCourse() {
 
       <h1>Criar Curso</h1>
 
+      {/* NOME DO CURSO */}
       <input
         placeholder="Nome do curso"
         value={courseName}
@@ -63,6 +73,7 @@ export default function CreateCourse() {
       {modules.map((module, mIndex) => (
         <div key={mIndex} className="module">
 
+          {/* NOME DO MÓDULO */}
           <input
             placeholder="Nome do módulo"
             value={module.title}
@@ -75,6 +86,7 @@ export default function CreateCourse() {
           {module.lessons.map((lesson: any, lIndex: number) => (
             <div key={lIndex} className="lesson">
 
+              {/* NOME DA AULA */}
               <input
                 placeholder="Nome da aula"
                 value={lesson.title}
@@ -83,17 +95,36 @@ export default function CreateCourse() {
                 }
               />
 
-              <input
-                placeholder="URL do vídeo (vamos mudar depois)"
-                value={lesson.video}
+              {/* TIPO */}
+              <select
+                value={lesson.type}
                 onChange={(e) =>
-                  updateLesson(mIndex, lIndex, "video", e.target.value)
+                  updateLesson(mIndex, lIndex, "type", e.target.value)
+                }
+              >
+                <option value="video">🎥 Vídeo</option>
+                <option value="pdf">📄 PDF</option>
+                <option value="image">🖼️ Imagem</option>
+                <option value="text">📝 Texto</option>
+              </select>
+
+              {/* CONTEÚDO */}
+              <input
+                placeholder={
+                  lesson.type === "text"
+                    ? "Digite o conteúdo da aula"
+                    : "URL ou arquivo (vamos melhorar depois)"
+                }
+                value={lesson.content}
+                onChange={(e) =>
+                  updateLesson(mIndex, lIndex, "content", e.target.value)
                 }
               />
 
             </div>
           ))}
 
+          {/* BOTÃO AULA */}
           <button onClick={() => addLesson(mIndex)}>
             + Adicionar aula
           </button>
@@ -101,10 +132,12 @@ export default function CreateCourse() {
         </div>
       ))}
 
+      {/* BOTÃO MÓDULO */}
       <button onClick={addModule}>
         + Adicionar módulo
       </button>
 
+      {/* SALVAR */}
       <button className="save-btn" onClick={handleSave}>
         Salvar curso
       </button>
