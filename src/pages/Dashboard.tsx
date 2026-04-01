@@ -1,29 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { API_URL } from "../services/api";
-
-type Curso = {
-  _id: string;
-  title: string;
-};
 
 export default function Dashboard() {
 
-  const [cursos, setCursos] = useState<Curso[]>([]);
+  const [curso, setCurso] = useState<any>(null);
 
   useEffect(() => {
 
-    const userId = localStorage.getItem("userId");
+    const cursoSalvo = localStorage.getItem("curso");
 
-    if (!userId) return;
-
-    fetch(`${API_URL}/my-courses/${userId}`)
-      .then(res => res.json())
-      .then(data => {
-        console.log("Cursos recebidos:", data);
-        setCursos(data);
-      })
-      .catch(err => console.error(err));
+    if (cursoSalvo) {
+      setCurso(JSON.parse(cursoSalvo));
+    }
 
   }, []);
 
@@ -32,13 +20,12 @@ export default function Dashboard() {
 
       <h1>Meus Cursos</h1>
 
-      {cursos.length === 0 && (
-        <p>Você ainda não adquiriu nenhum curso.</p>
+      {!curso && (
+        <p>Você ainda não criou nenhum curso.</p>
       )}
 
-      {cursos.map((curso) => (
+      {curso && (
         <div
-          key={curso._id}
           style={{
             padding: "20px",
             background: "#fff",
@@ -48,7 +35,7 @@ export default function Dashboard() {
         >
           <h3>{curso.title}</h3>
 
-          <Link to={`/curso/${curso._id}`}>
+          <Link to="/curso-teste">
             <button
               style={{
                 marginTop: "10px",
@@ -65,7 +52,7 @@ export default function Dashboard() {
           </Link>
 
         </div>
-      ))}
+      )}
 
     </div>
   );
