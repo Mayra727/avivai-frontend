@@ -71,6 +71,8 @@ export default function CursoTeste() {
 
         {!aulaAtual && <p>Selecione uma aula</p>}
 
+<p>{aulaAtual?.content}</p>
+
         {aulaAtual && aulaAtual.type === "video" && (
           <video
             src={aulaAtual.content}
