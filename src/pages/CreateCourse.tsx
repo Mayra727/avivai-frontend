@@ -5,67 +5,105 @@ import { useNavigate } from "react-router-dom";
 
 export default function CreateCourse() {
   const navigate = useNavigate();
+
   const [courseName, setCourseName] = useState("");
   const [modules, setModules] = useState<any[]>([]);
 
   // ➕ ADICIONAR MÓDULO
   function addModule() {
-    setModules([
-      ...modules,
+    setModules((prev) => [
+      ...prev,
       { title: "", lessons: [] }
     ]);
   }
 
   // ✏️ ATUALIZAR NOME DO MÓDULO
   function updateModuleTitle(index: number, value: string) {
-    const newModules = [...modules];
-    newModules[index].title = value;
-    setModules(newModules);
+    setModules((prev) => {
+      const newModules = [...prev];
+      newModules[index] = {
+        ...newModules[index],
+        title: value
+      };
+      return newModules;
+    });
   }
 
   // ➕ ADICIONAR AULA
   function addLesson(moduleIndex: number) {
-    const newModules = [...modules];
+    setModules((prev) => {
+      const newModules = [...prev];
 
-    newModules[moduleIndex].lessons.push({
-      title: "",
-      type: "video",
-      content: ""
+      newModules[moduleIndex].lessons.push({
+        title: "",
+        type: "video",
+        content: ""
+      });
+
+      return newModules;
     });
-
-    setModules(newModules);
   }
 
-  // ✏️ ATUALIZAR AULA
+  // ✏️ ATUALIZAR AULA (CORRIGIDO 🔥)
   function updateLesson(
     moduleIndex: number,
     lessonIndex: number,
     field: string,
     value: string
   ) {
-    const newModules = [...modules];
-    newModules[moduleIndex].lessons[lessonIndex][field] = value;
-    setModules(newModules);
+    setModules((prev) => {
+      const newModules = [...prev];
+
+      newModules[moduleIndex].lessons[lessonIndex] = {
+        ...newModules[moduleIndex].lessons[lessonIndex],
+        [field]: value
+      };
+
+      return newModules;
+    });
   }
 
-  // 💾 SALVAR
- // 💾 SALVAR
-function handleSave() {
-  const course = {
-    title: courseName,
-    modules
-  };
+  // 💾 SALVAR (COM VALIDAÇÃO 🔥)
+  function handleSave() {
 
-  console.log(JSON.stringify(course, null, 2));
+    if (!courseName) {
+      alert("Digite o nome do curso");
+      return;
+    }
 
-  // 👉 salva temporário
-  localStorage.setItem("curso", JSON.stringify(course));
+    for (const mod of modules) {
+      if (!mod.title) {
+        alert("Todos os módulos precisam de nome");
+        return;
+      }
 
-  alert("Curso criado com sucesso!");
+      for (const lesson of mod.lessons) {
+        if (!lesson.title) {
+          alert("Todas as aulas precisam de nome");
+          return;
+        }
 
-  // 👉 redireciona
-  navigate("/dashboard");
-}
+        if (!lesson.content) {
+          alert(`A aula "${lesson.title}" não tem conteúdo`);
+          return;
+        }
+      }
+    }
+
+    const course = {
+      title: courseName,
+      modules
+    };
+
+    console.log("SALVANDO CURSO:", course);
+
+    localStorage.setItem("curso", JSON.stringify(course));
+
+    alert("Curso criado com sucesso!");
+
+    navigate("/dashboard");
+  }
+
   return (
     <div className="create-course">
 
@@ -139,6 +177,13 @@ function handleSave() {
                     alert("Enviando arquivo...");
 
                     const url = await uploadFile(file);
+
+                    console.log("URL GERADA:", url); // 🔥 DEBUG
+
+                    if (!url) {
+                      alert("Erro no upload");
+                      return;
+                    }
 
                     alert("Upload concluído!");
 
