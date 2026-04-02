@@ -96,7 +96,9 @@ export default function CursoTeste() {
             aspectRatio: "16/9",
             background: "#000",
             borderRadius: "12px",
-            overflow: "hidden"
+            display: "flex",
+  alignItems: "center",
+  justifyContent: "center"
           }}>
             <video
               src={aulaAtual.content}
@@ -104,7 +106,7 @@ export default function CursoTeste() {
               style={{
                 width: "100%",
                 height: "100%",
-                objectFit: "cover"
+                objectFit: "contain"
               }}
             />
           </div>
@@ -113,7 +115,7 @@ export default function CursoTeste() {
         {/* 📄 PDF (corrigido) */}
         {aulaAtual?.type === "pdf" && aulaAtual?.content && (
           <iframe
-            src={`https://docs.google.com/gview?url=${aulaAtual.content}&embedded=true`}
+            src={`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(aulaAtual.content)}`}
             style={{
               width: "100%",
               height: "600px",
