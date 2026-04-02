@@ -10,12 +10,13 @@ export default function CursoTeste() {
 
     if (cursoSalvo) {
       const data = JSON.parse(cursoSalvo);
+      console.log("CURSO CARREGADO:", data);
+
       setCurso(data);
 
-      // pega primeira aula automaticamente
-      if (data.modules?.length > 0) {
-        const primeiraAula = data.modules[0].lessons[0];
-        setAulaAtual(primeiraAula);
+      // primeira aula automática
+      if (data.modules?.length > 0 && data.modules[0].lessons?.length > 0) {
+        setAulaAtual(data.modules[0].lessons[0]);
       }
     }
   }, []);
@@ -25,9 +26,9 @@ export default function CursoTeste() {
   }
 
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
+    <div style={{ display: "flex", minHeight: "100vh" }}>
 
-      {/* LADO ESQUERDO - AULAS */}
+      {/* 🔹 MENU LATERAL */}
       <div style={{
         width: "300px",
         background: "#f5f5f5",
@@ -47,9 +48,10 @@ export default function CursoTeste() {
                 key={lIndex}
                 onClick={() => setAulaAtual(lesson)}
                 style={{
-                  padding: "8px",
+                  padding: "10px",
                   cursor: "pointer",
-                  marginTop: "5px",
+                  marginTop: "6px",
+                  borderRadius: "6px",
                   background:
                     aulaAtual === lesson ? "#ddd" : "transparent"
                 }}
@@ -63,40 +65,82 @@ export default function CursoTeste() {
 
       </div>
 
-      {/* LADO DIREITO - PLAYER */}
+      {/* 🔹 PLAYER */}
       <div style={{
         flex: 1,
-        padding: "20px"
+        padding: "30px"
       }}>
 
         {!aulaAtual && <p>Selecione uma aula</p>}
 
-<p>{aulaAtual?.content}</p>
-
-        {aulaAtual && aulaAtual.type === "video" && (
-          <video
-            src={aulaAtual.content}
-            controls
-            style={{ width: "100%", borderRadius: "10px" }}
-          />
+        {/* DEBUG */}
+        {aulaAtual && (
+          <div style={{ marginBottom: "10px", color: "#999" }}>
+            <small>Tipo: {aulaAtual.type}</small><br />
+            <small>URL: {aulaAtual.content || "❌ sem conteúdo"}</small>
+          </div>
         )}
 
-        {aulaAtual && aulaAtual.type === "pdf" && (
+        {/* SEM CONTEÚDO */}
+        {aulaAtual && !aulaAtual.content && (
+          <p style={{ color: "red" }}>
+            ⚠️ Essa aula não possui conteúdo (upload não foi salvo)
+          </p>
+        )}
+
+        {/* 🎥 VÍDEO */}
+        {aulaAtual?.type === "video" && aulaAtual?.content && (
+          <div style={{
+            width: "100%",
+            maxWidth: "900px",
+            aspectRatio: "16/9",
+            background: "#000",
+            borderRadius: "12px",
+            overflow: "hidden"
+          }}>
+            <video
+              src={aulaAtual.content}
+              controls
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover"
+              }}
+            />
+          </div>
+        )}
+
+        {/* 📄 PDF (corrigido) */}
+        {aulaAtual?.type === "pdf" && aulaAtual?.content && (
           <iframe
-            src={aulaAtual.content}
-            style={{ width: "100%", height: "600px" }}
+            src={`https://docs.google.com/gview?url=${aulaAtual.content}&embedded=true`}
+            style={{
+              width: "100%",
+              height: "600px",
+              border: "none"
+            }}
           />
         )}
 
-        {aulaAtual && aulaAtual.type === "image" && (
+        {/* 🖼️ IMAGEM */}
+        {aulaAtual?.type === "image" && aulaAtual?.content && (
           <img
             src={aulaAtual.content}
-            style={{ maxWidth: "100%" }}
+            style={{
+              maxWidth: "100%",
+              borderRadius: "10px"
+            }}
           />
         )}
 
-        {aulaAtual && aulaAtual.type === "text" && (
-          <p>{aulaAtual.content}</p>
+        {/* 📝 TEXTO */}
+        {aulaAtual?.type === "text" && (
+          <p style={{
+            fontSize: "18px",
+            lineHeight: 1.6
+          }}>
+            {aulaAtual.content}
+          </p>
         )}
 
       </div>
