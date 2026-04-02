@@ -1,23 +1,40 @@
 export async function uploadFile(file: File) {
-  const formData = new FormData();
+const formData = new FormData();
 
   formData.append("file", file);
   formData.append("upload_preset", "avivai_upload");
 
-  const isPdf = file.type === "application/pdf";
+  let uploadUrl = "";
 
-  const uploadUrl = isPdf
-    ? "https://api.cloudinary.com/v1_1/djawb7xgu/raw/upload"
-    : "https://api.cloudinary.com/v1_1/djawb7xgu/video/upload";
+  // 🔥 DETECTA TIPO
+  if (file.type.includes("video")) {
+    uploadUrl = "https://api.cloudinary.com/v1_1/djawb7xgu/video/upload";
+  } 
+  else if (file.type.includes("pdf")) {
+    uploadUrl = "https://api.cloudinary.com/v1_1/djawb7xgu/raw/upload";
+  } 
+  else {
+    uploadUrl = "https://api.cloudinary.com/v1_1/djawb7xgu/image/upload";
+  }
 
-  const res = await fetch(uploadUrl, {
-    method: "POST",
-    body: formData,
-  });
+  try {
+    const res = await fetch(uploadUrl, {
+      method: "POST",
+      body: formData,
+    });
 
-  const data = await res.json();
+    const data = await res.json();
 
-  console.log("UPLOAD CLOUDINARY:", data);
+    console.log("UPLOAD RESULT:", data);
 
-  return data.secure_url;
+    if (!data.secure_url) {
+      throw new Error("Upload falhou");
+    }
+
+    return data.secure_url;
+
+  } catch (error) {
+    console.error("Erro upload:", error);
+    return null;
+  }
 }
