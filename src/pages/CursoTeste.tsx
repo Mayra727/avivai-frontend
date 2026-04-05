@@ -115,11 +115,12 @@ export default function CursoTeste() {
         {/* 📄 PDF (corrigido) */}
         {aulaAtual?.type === "pdf" && aulaAtual?.content && (
           <iframe
-            src={`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(aulaAtual.content)}`}
+            src={aulaAtual.content}
             style={{
               width: "100%",
               height: "600px",
-              border: "none"
+              border: "none",
+              borderRadius: "10px",
             }}
           />
         )}
