@@ -1,12 +1,14 @@
 export async function uploadFile(file: File) {
-const formData = new FormData();
+  const formData = new FormData();
 
   formData.append("file", file);
   formData.append("upload_preset", "avivai_upload");
 
+  // 👇 ISSO LIBERA O ARQUIVO
+  formData.append("access_mode", "public");
+
   let uploadUrl = "";
 
-  // 🔥 DETECTA TIPO
   if (file.type.includes("video")) {
     uploadUrl = "https://api.cloudinary.com/v1_1/djawb7xgu/video/upload";
   } 
@@ -17,24 +19,14 @@ const formData = new FormData();
     uploadUrl = "https://api.cloudinary.com/v1_1/djawb7xgu/image/upload";
   }
 
-  try {
-    const res = await fetch(uploadUrl, {
-      method: "POST",
-      body: formData,
-    });
+  const res = await fetch(uploadUrl, {
+    method: "POST",
+    body: formData,
+  });
 
-    const data = await res.json();
+  const data = await res.json();
 
-    console.log("UPLOAD RESULT:", data);
+  console.log("UPLOAD RESULT:", data);
 
-    if (!data.secure_url) {
-      throw new Error("Upload falhou");
-    }
-
-    return data.secure_url;
-
-  } catch (error) {
-    console.error("Erro upload:", error);
-    return null;
-  }
+  return data.secure_url;
 }
