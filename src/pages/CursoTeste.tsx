@@ -114,28 +114,37 @@ export default function CursoTeste() {
 
         {/* 📄 PDF (corrigido) */}
        {aulaAtual?.type === "pdf" && aulaAtual?.content && (
-  <>
-    <iframe
-      src={aulaAtual.content}
-      style={{
-        width: "100%",
-        height: "600px",
-        border: "none"
-      }}
-    />
+  <div style={{
+    background: "#fff",
+    padding: "30px",
+    borderRadius: "12px",
+    maxWidth: "800px"
+  }}>
+    
+    <h2>📄 Material da Aula</h2>
+
+    <p style={{ marginTop: "10px", color: "#666" }}>
+      Clique abaixo para abrir o PDF
+    </p>
 
     <a
       href={aulaAtual.content}
       target="_blank"
       style={{
-        display: "block",
-        marginTop: "10px",
-        color: "#7A4A3A"
+        display: "inline-block",
+        marginTop: "20px",
+        padding: "14px 28px",
+        background: "#7A4A3A",
+        color: "white",
+        borderRadius: "10px",
+        textDecoration: "none",
+        fontWeight: "600"
       }}
     >
-      👉 Abrir PDF em nova aba
+      📥 Abrir PDF
     </a>
-  </>
+
+  </div>
 )}
 
         {/* 🖼️ IMAGEM */}
