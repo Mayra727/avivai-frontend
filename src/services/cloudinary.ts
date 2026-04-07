@@ -4,23 +4,14 @@ export async function uploadFile(file: File) {
   formData.append("file", file);
   formData.append("upload_preset", "avivai_upload");
 
-  let uploadUrl = "";
-
-  if (file.type.includes("video")) {
-    uploadUrl = "https://api.cloudinary.com/v1_1/djawb7xgu/video/upload";
-  } 
-  else if (file.type.includes("pdf")) {
-    uploadUrl = "https://api.cloudinary.com/v1_1/djawb7xgu/image/upload";
-  } 
-  else {
-    uploadUrl = "https://api.cloudinary.com/v1_1/djawb7xgu/image/upload";
-  }
-
   try {
-    const res = await fetch(uploadUrl, {
-      method: "POST",
-      body: formData,
-    });
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/djawb7xgu/auto/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
 
     const data = await res.json();
 
