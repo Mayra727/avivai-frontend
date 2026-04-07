@@ -114,16 +114,16 @@ export default function CursoTeste() {
 
         {/* 📄 PDF (corrigido) */}
         {aulaAtual?.type === "pdf" && aulaAtual?.content && (
-          <iframe
-            src={aulaAtual.content}
-            style={{
-              width: "100%",
-              height: "600px",
-              border: "none",
-              borderRadius: "10px",
-            }}
-          />
-        )}
+  <iframe
+    src={aulaAtual.content.replace("/upload/", "/upload/fl_attachment/")}
+    style={{
+      width: "100%",
+      height: "600px",
+      border: "none",
+      borderRadius: "10px"
+    }}
+  />
+)}
 
         {/* 🖼️ IMAGEM */}
         {aulaAtual?.type === "image" && aulaAtual?.content && (
