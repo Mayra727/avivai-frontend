@@ -113,24 +113,29 @@ export default function CursoTeste() {
         )}
 
         {/* 📄 PDF (corrigido) */}
-        {aulaAtual?.type === "pdf" && aulaAtual?.content && (
-  <div>
-    <p>📄 Visualização indisponível</p>
+       {aulaAtual?.type === "pdf" && aulaAtual?.content && (
+  <>
+    <iframe
+      src={aulaAtual.content}
+      style={{
+        width: "100%",
+        height: "600px",
+        border: "none"
+      }}
+    />
 
     <a
       href={aulaAtual.content}
       target="_blank"
       style={{
-        padding: "10px 20px",
-        background: "#7A4A3A",
-        color: "white",
-        borderRadius: "8px",
-        textDecoration: "none"
+        display: "block",
+        marginTop: "10px",
+        color: "#7A4A3A"
       }}
     >
-      👉 Abrir PDF
+      👉 Abrir PDF em nova aba
     </a>
-  </div>
+  </>
 )}
 
         {/* 🖼️ IMAGEM */}
