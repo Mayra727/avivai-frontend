@@ -33,10 +33,11 @@ export default function CursoTeste() {
         width: "300px",
         background: "#f5f5f5",
         padding: "20px",
-        overflowY: "auto"
+        overflowY: "auto",
+        borderRight: "1px solid #eee"
       }}>
 
-        <h3>{curso.title}</h3>
+        <h3 style={{ marginBottom: "10px" }}>{curso.title}</h3>
 
         {curso.modules.map((mod: any, mIndex: number) => (
           <div key={mIndex} style={{ marginTop: "20px" }}>
@@ -97,8 +98,8 @@ export default function CursoTeste() {
             background: "#000",
             borderRadius: "12px",
             display: "flex",
-  alignItems: "center",
-  justifyContent: "center"
+            alignItems: "center",
+            justifyContent: "center"
           }}>
             <video
               src={aulaAtual.content}
@@ -112,60 +113,83 @@ export default function CursoTeste() {
           </div>
         )}
 
-        {/* 📄 PDF (corrigido) */}
-       {aulaAtual?.type === "pdf" && aulaAtual?.content && (
-  <div style={{
-    background: "#fff",
-    padding: "30px",
-    borderRadius: "12px",
-    maxWidth: "800px"
-  }}>
-    
-    <h2>📄 Material da Aula</h2>
+        {/* 📄 PDF (COM PREVIEW + DOWNLOAD) */}
+        {aulaAtual?.type === "pdf" && aulaAtual?.content && (
+          <div style={{
+            maxWidth: "900px",
+            background: "#fff",
+            borderRadius: "16px",
+            padding: "20px",
+            boxShadow: "0 5px 20px rgba(0,0,0,0.08)"
+          }}>
 
-    <p style={{ marginTop: "10px", color: "#666" }}>
-      Clique abaixo para abrir o PDF
-    </p>
+            <h2 style={{ marginBottom: "10px" }}>
+              📄 Material da Aula
+            </h2>
 
-    <a
-      href={aulaAtual.content}
-      target="_blank"
-      style={{
-        display: "inline-block",
-        marginTop: "20px",
-        padding: "14px 28px",
-        background: "#7A4A3A",
-        color: "white",
-        borderRadius: "10px",
-        textDecoration: "none",
-        fontWeight: "600"
-      }}
-    >
-      📥 Abrir PDF
-    </a>
+            {/* PREVIEW */}
+            <div style={{
+              width: "100%",
+              height: "500px",
+              borderRadius: "10px",
+              overflow: "hidden",
+              marginBottom: "20px",
+              border: "1px solid #eee"
+            }}>
+              <iframe
+                src={`https://docs.google.com/gview?url=${aulaAtual.content}&embedded=true`}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  border: "none"
+                }}
+              />
+            </div>
 
-  </div>
-)}
+            {/* DOWNLOAD */}
+            <a
+              href={aulaAtual.content}
+              download
+              target="_blank"
+              style={{
+                display: "inline-block",
+                padding: "12px 24px",
+                background: "#7A4A3A",
+                color: "#fff",
+                borderRadius: "10px",
+                textDecoration: "none",
+                fontWeight: "600"
+              }}
+            >
+              ⬇️ Baixar PDF
+            </a>
+
+          </div>
+        )}
 
         {/* 🖼️ IMAGEM */}
         {aulaAtual?.type === "image" && aulaAtual?.content && (
           <img
             src={aulaAtual.content}
             style={{
-              maxWidth: "100%",
-              borderRadius: "10px"
+              maxWidth: "900px",
+              width: "100%",
+              borderRadius: "12px"
             }}
           />
         )}
 
         {/* 📝 TEXTO */}
         {aulaAtual?.type === "text" && (
-          <p style={{
-            fontSize: "18px",
+          <div style={{
+            maxWidth: "800px",
+            background: "#fff",
+            padding: "20px",
+            borderRadius: "12px",
             lineHeight: 1.6
           }}>
             {aulaAtual.content}
-          </p>
+          </div>
         )}
 
       </div>
