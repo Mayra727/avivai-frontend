@@ -1,21 +1,23 @@
 import { supabase } from "./supabase";
 
 export async function uploadPdf(file: File) {
+
   const fileName = `${Date.now()}-${file.name}`;
 
-  const { data, error } = await supabase.storage
+  const { error } = await supabase.storage
     .from("PDF")
     .upload(fileName, file);
 
   if (error) {
     console.error("ERRO REAL PDF:", error);
-    alert("Erro real: " + error.message); // 👈 MOSTRA O ERRO
+    alert("Erro no upload do PDF");
     return null;
   }
 
-  const { data: publicUrl } = supabase.storage
+  // 🔥 URL pública
+  const { data } = supabase.storage
     .from("PDF")
     .getPublicUrl(fileName);
 
-  return publicUrl.publicUrl;
+  return data.publicUrl;
 }

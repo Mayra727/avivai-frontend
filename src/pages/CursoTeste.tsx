@@ -113,60 +113,68 @@ export default function CursoTeste() {
           </div>
         )}
 
-        {/* 📄 PDF (COM PREVIEW + DOWNLOAD) */}
-        {aulaAtual?.type === "pdf" && aulaAtual?.content && (
-          <div style={{
-            maxWidth: "900px",
-            background: "#fff",
-            borderRadius: "16px",
-            padding: "20px",
-            boxShadow: "0 5px 20px rgba(0,0,0,0.08)"
-          }}>
+        {/* 📄 PDF (COM PREVIEW + DOWNLOAD) 
+{aulaAtual?.type === "pdf" && aulaAtual?.content && (
+  <div style={{
+    maxWidth: "900px",
+    background: "#fff",
+    borderRadius: "16px",
+    padding: "30px",
+    boxShadow: "0 5px 20px rgba(0,0,0,0.08)"
+  }}>
 
-            <h2 style={{ marginBottom: "10px" }}>
-              📄 Material da Aula
-            </h2>
+    <h2>📄 Material da Aula</h2>
 
-            {/* PREVIEW */}
-            <div style={{
-              width: "100%",
-              height: "500px",
-              borderRadius: "10px",
-              overflow: "hidden",
-              marginBottom: "20px",
-              border: "1px solid #eee"
-            }}>
-              <iframe
-                src={`https://docs.google.com/gview?url=${aulaAtual.content}&embedded=true`}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  border: "none"
-                }}
-              />
-            </div>
+    <p style={{ color: "#666" }}>
+      Visualize ou baixe o material completo
+    </p>
 
-            {/* DOWNLOAD */}
-            <a
-              href={aulaAtual.content}
-              download
-              target="_blank"
-              style={{
-                display: "inline-block",
-                padding: "12px 24px",
-                background: "#7A4A3A",
-                color: "#fff",
-                borderRadius: "10px",
-                textDecoration: "none",
-                fontWeight: "600"
-              }}
-            >
-              ⬇️ Baixar PDF
-            </a>
+    <div style={{
+      marginTop: "20px",
+      marginBottom: "20px",
+      padding: "40px",
+      borderRadius: "12px",
+      background: "linear-gradient(135deg, #8B5E3C, #C89B7B)",
+      color: "white",
+      textAlign: "center"
+    }}>
+      📘 Documento PDF disponível
+    </div>
 
-          </div>
-        )}
+    <div style={{ display: "flex", gap: "15px" }}>
 
+      <a
+        href={aulaAtual.content}
+        target="_blank"
+        style={{
+          padding: "12px 24px",
+          background: "#444",
+          color: "#fff",
+          borderRadius: "10px",
+          textDecoration: "none"
+        }}
+      >
+        👀 Visualizar
+      </a>
+
+      <a
+        href={aulaAtual.content}
+        download
+        style={{
+          padding: "12px 24px",
+          background: "#7A4A3A",
+          color: "#fff",
+          borderRadius: "10px",
+          textDecoration: "none"
+        }}
+      >
+        ⬇️ Baixar PDF
+      </a>
+
+    </div>
+
+  </div>
+)}
         {/* 🖼️ IMAGEM */}
         {aulaAtual?.type === "image" && aulaAtual?.content && (
           <img
