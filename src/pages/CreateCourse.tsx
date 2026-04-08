@@ -1,15 +1,17 @@
 import { useState } from "react";
 import "./CreateCourse.css";
 import { uploadFile } from "../services/cloudinary";
+import { uploadPdf } from "../services/uploadPdf";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateCourse() {
   const navigate = useNavigate();
 
   const [courseName, setCourseName] = useState("");
+  const [price, setPrice] = useState("");
   const [modules, setModules] = useState<any[]>([]);
 
-  // ➕ ADICIONAR MÓDULO
+  // ➕ MÓDULO
   function addModule() {
     setModules((prev) => [
       ...prev,
@@ -17,19 +19,21 @@ export default function CreateCourse() {
     ]);
   }
 
-  // ✏️ ATUALIZAR NOME DO MÓDULO
+  // ❌ REMOVER MÓDULO
+  function removeModule(index: number) {
+    setModules((prev) => prev.filter((_, i) => i !== index));
+  }
+
+  // ✏️ EDITAR MÓDULO
   function updateModuleTitle(index: number, value: string) {
     setModules((prev) => {
       const newModules = [...prev];
-      newModules[index] = {
-        ...newModules[index],
-        title: value
-      };
+      newModules[index].title = value;
       return newModules;
     });
   }
 
-  // ➕ ADICIONAR AULA
+  // ➕ AULA
   function addLesson(moduleIndex: number) {
     setModules((prev) => {
       const newModules = [...prev];
@@ -44,7 +48,20 @@ export default function CreateCourse() {
     });
   }
 
-  // ✏️ ATUALIZAR AULA (CORRIGIDO 🔥)
+  // ❌ REMOVER AULA
+  function removeLesson(moduleIndex: number, lessonIndex: number) {
+    setModules((prev) => {
+      const newModules = [...prev];
+
+      newModules[moduleIndex].lessons = newModules[moduleIndex].lessons.filter(
+        (_: any, i: number) => i !== lessonIndex
+      );
+
+      return newModules;
+    });
+  }
+
+  // ✏️ EDITAR AULA
   function updateLesson(
     moduleIndex: number,
     lessonIndex: number,
@@ -63,11 +80,16 @@ export default function CreateCourse() {
     });
   }
 
-  // 💾 SALVAR (COM VALIDAÇÃO 🔥)
+  // 💾 SALVAR
   function handleSave() {
 
     if (!courseName) {
       alert("Digite o nome do curso");
+      return;
+    }
+
+    if (!price) {
+      alert("Digite o preço");
       return;
     }
 
@@ -92,10 +114,11 @@ export default function CreateCourse() {
 
     const course = {
       title: courseName,
+      price,
       modules
     };
 
-    console.log("SALVANDO CURSO:", course);
+    console.log("CURSO FINAL:", course);
 
     localStorage.setItem("curso", JSON.stringify(course));
 
@@ -109,18 +132,24 @@ export default function CreateCourse() {
 
       <h1>Criar Curso</h1>
 
-      {/* NOME DO CURSO */}
+      {/* NOME */}
       <input
         placeholder="Nome do curso"
         value={courseName}
         onChange={(e) => setCourseName(e.target.value)}
       />
 
+      {/* PREÇO */}
+      <input
+        placeholder="Preço (ex: 97.00)"
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
+      />
+
       {/* MÓDULOS */}
       {modules.map((module, mIndex) => (
         <div key={mIndex} className="module">
 
-          {/* NOME DO MÓDULO */}
           <input
             placeholder="Nome do módulo"
             value={module.title}
@@ -129,11 +158,14 @@ export default function CreateCourse() {
             }
           />
 
+          <button onClick={() => removeModule(mIndex)}>
+            ❌ Excluir módulo
+          </button>
+
           {/* AULAS */}
           {module.lessons.map((lesson: any, lIndex: number) => (
             <div key={lIndex} className="lesson">
 
-              {/* NOME DA AULA */}
               <input
                 placeholder="Nome da aula"
                 value={lesson.title}
@@ -142,7 +174,6 @@ export default function CreateCourse() {
                 }
               />
 
-              {/* TIPO */}
               <select
                 value={lesson.type}
                 onChange={(e) =>
@@ -155,19 +186,16 @@ export default function CreateCourse() {
                 <option value="text">📝 Texto</option>
               </select>
 
-              {/* CONTEÚDO */}
+              {/* TEXTO */}
               {lesson.type === "text" ? (
-
                 <input
-                  placeholder="Digite o conteúdo da aula"
+                  placeholder="Digite o conteúdo"
                   value={lesson.content}
                   onChange={(e) =>
                     updateLesson(mIndex, lIndex, "content", e.target.value)
                   }
                 />
-
               ) : (
-
                 <input
                   type="file"
                   onChange={async (e) => {
@@ -176,9 +204,13 @@ export default function CreateCourse() {
 
                     alert("Enviando arquivo...");
 
-                    const url = await uploadFile(file);
+                    let url: string | null = null;
 
-                    console.log("URL GERADA:", url); // 🔥 DEBUG
+                    if (lesson.type === "pdf") {
+                      url = await uploadPdf(file); // ✅ SUPABASE
+                    } else {
+                      url = await uploadFile(file); // ✅ CLOUDINARY
+                    }
 
                     if (!url) {
                       alert("Erro no upload");
@@ -190,13 +222,15 @@ export default function CreateCourse() {
                     updateLesson(mIndex, lIndex, "content", url);
                   }}
                 />
-
               )}
+
+              <button onClick={() => removeLesson(mIndex, lIndex)}>
+                ❌ Excluir aula
+              </button>
 
             </div>
           ))}
 
-          {/* BOTÃO AULA */}
           <button onClick={() => addLesson(mIndex)}>
             + Adicionar aula
           </button>
@@ -204,12 +238,10 @@ export default function CreateCourse() {
         </div>
       ))}
 
-      {/* BOTÃO MÓDULO */}
       <button onClick={addModule}>
         + Adicionar módulo
       </button>
 
-      {/* SALVAR */}
       <button className="save-btn" onClick={handleSave}>
         Salvar curso
       </button>
