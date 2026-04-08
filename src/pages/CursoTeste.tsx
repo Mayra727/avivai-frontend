@@ -114,6 +114,7 @@ export default function CursoTeste() {
         )}
 
         {/* 📄 PDF (COM PREVIEW + DOWNLOAD) 
+{/* 📄 PDF */}
 {aulaAtual?.type === "pdf" && aulaAtual?.content && (
   <div style={{
     maxWidth: "900px",
