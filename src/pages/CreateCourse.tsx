@@ -11,10 +11,7 @@ export default function CreateCourse() {
   const [price, setPrice] = useState("");
   const [modules, setModules] = useState<any[]>([]);
 
-  // =========================
-  // 📦 MÓDULOS
-  // =========================
-
+  // ➕ MÓDULO
   function addModule() {
     setModules((prev) => [
       ...prev,
@@ -22,20 +19,21 @@ export default function CreateCourse() {
     ]);
   }
 
+  // ❌ REMOVER MÓDULO
   function removeModule(index: number) {
-    setModules((prev) => prev.filter((_, i) => i !== index));
+    const newModules = [...modules];
+    newModules.splice(index, 1);
+    setModules(newModules);
   }
 
+  // ✏️ EDITAR NOME MÓDULO
   function updateModuleTitle(index: number, value: string) {
     const newModules = [...modules];
     newModules[index].title = value;
     setModules(newModules);
   }
 
-  // =========================
-  // 📚 AULAS
-  // =========================
-
+  // ➕ AULA
   function addLesson(moduleIndex: number) {
     const newModules = [...modules];
 
@@ -49,59 +47,41 @@ export default function CreateCourse() {
     setModules(newModules);
   }
 
-  function updateLesson(
-    moduleIndex: number,
-    lessonIndex: number,
-    field: string,
-    value: any
-  ) {
-    const newModules = [...modules];
-    newModules[moduleIndex].lessons[lessonIndex][field] = value;
-    setModules(newModules);
-  }
-
+  // ❌ REMOVER AULA
   function removeLesson(moduleIndex: number, lessonIndex: number) {
     const newModules = [...modules];
     newModules[moduleIndex].lessons.splice(lessonIndex, 1);
     setModules(newModules);
   }
 
-  // =========================
+  // ✏️ ATUALIZAR AULA
+  function updateLesson(
+    moduleIndex: number,
+    lessonIndex: number,
+    field: string,
+    value: string
+  ) {
+    const newModules = [...modules];
+    newModules[moduleIndex].lessons[lessonIndex][field] = value;
+    setModules(newModules);
+  }
+
   // 💾 SALVAR CURSO
-  // =========================
-
   function handleSave() {
-
-    if (!courseName) return alert("Digite o nome do curso");
-    if (!price) return alert("Digite o preço");
-
-    for (const mod of modules) {
-      if (!mod.title) return alert("Todos os módulos precisam de nome");
-
-      for (const lesson of mod.lessons) {
-        if (!lesson.title) return alert("Todas as aulas precisam de nome");
-        if (!lesson.content)
-          return alert(`A aula "${lesson.title}" não tem conteúdo`);
-      }
-    }
-
     const course = {
       title: courseName,
       price,
       modules
     };
 
-    console.log("CURSO FINAL:", course);
+    console.log(course);
 
     localStorage.setItem("curso", JSON.stringify(course));
 
-    alert("Curso criado com sucesso!");
-    navigate("/dashboard");
-  }
+    alert("Curso salvo com sucesso!");
 
-  // =========================
-  // 🎨 UI
-  // =========================
+    navigate("/curso-teste");
+  }
 
   return (
     <div className="create-course">
@@ -126,6 +106,8 @@ export default function CreateCourse() {
       {modules.map((module, mIndex) => (
         <div key={mIndex} className="module">
 
+          <h2>Módulo {mIndex + 1}</h2>
+
           <input
             placeholder="Nome do módulo"
             value={module.title}
@@ -142,7 +124,6 @@ export default function CreateCourse() {
           {module.lessons.map((lesson: any, lIndex: number) => (
             <div key={lIndex} className="lesson">
 
-              {/* TÍTULO */}
               <input
                 placeholder="Nome da aula"
                 value={lesson.title}
@@ -151,7 +132,6 @@ export default function CreateCourse() {
                 }
               />
 
-              {/* TIPO */}
               <select
                 value={lesson.type}
                 onChange={(e) =>
@@ -167,7 +147,7 @@ export default function CreateCourse() {
               {/* TEXTO */}
               {lesson.type === "text" && (
                 <textarea
-                  placeholder="Digite o conteúdo"
+                  placeholder="Conteúdo da aula"
                   value={lesson.content}
                   onChange={(e) =>
                     updateLesson(mIndex, lIndex, "content", e.target.value)
@@ -188,9 +168,9 @@ export default function CreateCourse() {
                     let url: string | null = null;
 
                     if (lesson.type === "pdf") {
-                      url = await uploadPdf(file); // 🔥 SUPABASE
+                      url = await uploadPdf(file);
                     } else {
-                      url = await uploadFile(file); // 🔥 CLOUDINARY
+                      url = await uploadFile(file);
                     }
 
                     if (!url) {
@@ -198,17 +178,16 @@ export default function CreateCourse() {
                       return;
                     }
 
-                    alert("Upload concluído!");
                     updateLesson(mIndex, lIndex, "content", url);
                   }}
                 />
               )}
 
-              {/* CAPA DO PDF */}
+              {/* CAPA PDF */}
               {lesson.type === "pdf" && (
-                <div style={{ marginTop: "10px" }}>
+                <div>
 
-                  <p style={{ fontSize: "12px", color: "#777" }}>
+                  <p style={{ fontSize: "12px" }}>
                     Capa do PDF (opcional)
                   </p>
 
@@ -218,6 +197,8 @@ export default function CreateCourse() {
                     onChange={async (e) => {
                       const file = e.target.files?.[0];
                       if (!file) return;
+
+                      alert("Enviando capa...");
 
                       const url = await uploadFile(file);
 
@@ -240,10 +221,10 @@ export default function CreateCourse() {
                       }}
                     />
                   )}
+
                 </div>
               )}
 
-              {/* EXCLUIR AULA */}
               <button onClick={() => removeLesson(mIndex, lIndex)}>
                 ❌ Excluir aula
               </button>
@@ -263,7 +244,7 @@ export default function CreateCourse() {
       </button>
 
       <button className="save-btn" onClick={handleSave}>
-        Salvar curso
+        💾 Salvar curso
       </button>
 
     </div>
