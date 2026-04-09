@@ -11,7 +11,10 @@ export default function CreateCourse() {
   const [price, setPrice] = useState("");
   const [modules, setModules] = useState<any[]>([]);
 
-  // ➕ MÓDULO
+  // =========================
+  // 📦 MÓDULOS
+  // =========================
+
   function addModule() {
     setModules((prev) => [
       ...prev,
@@ -19,96 +22,66 @@ export default function CreateCourse() {
     ]);
   }
 
-  // ❌ REMOVER MÓDULO
   function removeModule(index: number) {
     setModules((prev) => prev.filter((_, i) => i !== index));
   }
 
-  // ✏️ EDITAR MÓDULO
   function updateModuleTitle(index: number, value: string) {
-    setModules((prev) => {
-      const newModules = [...prev];
-      newModules[index].title = value;
-      return newModules;
-    });
+    const newModules = [...modules];
+    newModules[index].title = value;
+    setModules(newModules);
   }
 
-  // ➕ AULA
+  // =========================
+  // 📚 AULAS
+  // =========================
+
   function addLesson(moduleIndex: number) {
-    setModules((prev) => {
-      const newModules = [...prev];
+    const newModules = [...modules];
 
-      newModules[moduleIndex].lessons.push({
-        title: "",
-        type: "video",
-        content: ""
-      });
-
-      return newModules;
+    newModules[moduleIndex].lessons.push({
+      title: "",
+      type: "video",
+      content: "",
+      cover: ""
     });
+
+    setModules(newModules);
   }
 
-  // ❌ REMOVER AULA
-  function removeLesson(moduleIndex: number, lessonIndex: number) {
-    setModules((prev) => {
-      const newModules = [...prev];
-
-      newModules[moduleIndex].lessons = newModules[moduleIndex].lessons.filter(
-        (_: any, i: number) => i !== lessonIndex
-      );
-
-      return newModules;
-    });
-  }
-
-  // ✏️ EDITAR AULA
   function updateLesson(
     moduleIndex: number,
     lessonIndex: number,
     field: string,
-    value: string
+    value: any
   ) {
-    setModules((prev) => {
-      const newModules = [...prev];
-
-      newModules[moduleIndex].lessons[lessonIndex] = {
-        ...newModules[moduleIndex].lessons[lessonIndex],
-        [field]: value
-      };
-
-      return newModules;
-    });
+    const newModules = [...modules];
+    newModules[moduleIndex].lessons[lessonIndex][field] = value;
+    setModules(newModules);
   }
 
-  // 💾 SALVAR
+  function removeLesson(moduleIndex: number, lessonIndex: number) {
+    const newModules = [...modules];
+    newModules[moduleIndex].lessons.splice(lessonIndex, 1);
+    setModules(newModules);
+  }
+
+  // =========================
+  // 💾 SALVAR CURSO
+  // =========================
+
   function handleSave() {
 
-    if (!courseName) {
-      alert("Digite o nome do curso");
-      return;
-    }
-
-    if (!price) {
-      alert("Digite o preço");
-      return;
-    }
+    if (!courseName) return alert("Digite o nome do curso");
+    if (!price) return alert("Digite o preço");
 
     for (const mod of modules) {
-      if (!mod.title) {
-        alert("Todos os módulos precisam de nome");
-        return;
-      }
+      if (!mod.title) return alert("Todos os módulos precisam de nome");
 
       for (const lesson of mod.lessons) {
-        if (!lesson.title) {
-          alert("Todas as aulas precisam de nome");
-          return;
-        }
-
-        if (!lesson.content) {
-          alert(`A aula "${lesson.title}" não tem conteúdo`);
-          return;
-        }
+        if (!lesson.title) return alert("Todas as aulas precisam de nome");
+        if (!lesson.content)
+          return alert(`A aula "${lesson.title}" não tem conteúdo`);
       }
     }
 
@@ -123,9 +96,12 @@ export default function CreateCourse() {
     localStorage.setItem("curso", JSON.stringify(course));
 
     alert("Curso criado com sucesso!");
-
     navigate("/dashboard");
   }
+
+  // =========================
+  // 🎨 UI
+  // =========================
 
   return (
     <div className="create-course">
@@ -166,6 +142,7 @@ export default function CreateCourse() {
           {module.lessons.map((lesson: any, lIndex: number) => (
             <div key={lIndex} className="lesson">
 
+              {/* TÍTULO */}
               <input
                 placeholder="Nome da aula"
                 value={lesson.title}
@@ -174,6 +151,7 @@ export default function CreateCourse() {
                 }
               />
 
+              {/* TIPO */}
               <select
                 value={lesson.type}
                 onChange={(e) =>
@@ -187,15 +165,18 @@ export default function CreateCourse() {
               </select>
 
               {/* TEXTO */}
-              {lesson.type === "text" ? (
-                <input
+              {lesson.type === "text" && (
+                <textarea
                   placeholder="Digite o conteúdo"
                   value={lesson.content}
                   onChange={(e) =>
                     updateLesson(mIndex, lIndex, "content", e.target.value)
                   }
                 />
-              ) : (
+              )}
+
+              {/* UPLOAD */}
+              {lesson.type !== "text" && (
                 <input
                   type="file"
                   onChange={async (e) => {
@@ -207,9 +188,9 @@ export default function CreateCourse() {
                     let url: string | null = null;
 
                     if (lesson.type === "pdf") {
-                      url = await uploadPdf(file); // ✅ SUPABASE
+                      url = await uploadPdf(file); // 🔥 SUPABASE
                     } else {
-                      url = await uploadFile(file); // ✅ CLOUDINARY
+                      url = await uploadFile(file); // 🔥 CLOUDINARY
                     }
 
                     if (!url) {
@@ -218,12 +199,51 @@ export default function CreateCourse() {
                     }
 
                     alert("Upload concluído!");
-
                     updateLesson(mIndex, lIndex, "content", url);
                   }}
                 />
               )}
 
+              {/* CAPA DO PDF */}
+              {lesson.type === "pdf" && (
+                <div style={{ marginTop: "10px" }}>
+
+                  <p style={{ fontSize: "12px", color: "#777" }}>
+                    Capa do PDF (opcional)
+                  </p>
+
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={async (e) => {
+                      const file = e.target.files?.[0];
+                      if (!file) return;
+
+                      const url = await uploadFile(file);
+
+                      if (!url) {
+                        alert("Erro no upload da capa");
+                        return;
+                      }
+
+                      updateLesson(mIndex, lIndex, "cover", url);
+                    }}
+                  />
+
+                  {lesson.cover && (
+                    <img
+                      src={lesson.cover}
+                      style={{
+                        width: "120px",
+                        marginTop: "10px",
+                        borderRadius: "8px"
+                      }}
+                    />
+                  )}
+                </div>
+              )}
+
+              {/* EXCLUIR AULA */}
               <button onClick={() => removeLesson(mIndex, lIndex)}>
                 ❌ Excluir aula
               </button>
