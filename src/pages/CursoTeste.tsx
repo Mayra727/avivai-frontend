@@ -162,19 +162,18 @@ export default function CursoTeste() {
 
     <div style={{ display: "flex", gap: "15px" }}>
 
-      <a
-        href={aulaAtual.content}
-        target="_blank"
-        style={{
-          padding: "12px 24px",
-          background: "#444",
-          color: "#fff",
-          borderRadius: "10px",
-          textDecoration: "none"
-        }}
-      >
-        👀 Visualizar
-      </a>
+<a
+  href={`/pdf-viewer?url=${encodeURIComponent(aulaAtual.content)}`}
+  style={{
+    padding: "12px 24px",
+    background: "#444",
+    color: "#fff",
+    borderRadius: "10px",
+    textDecoration: "none"
+  }}
+>
+  👀 Visualizar
+</a>
 
       <a
         href={aulaAtual.content}

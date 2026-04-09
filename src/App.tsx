@@ -17,6 +17,7 @@ import { useAuth } from "./context/AuthContext";
 import CoursePlayer from "./pages/CoursePlayer";
 import CreateCourse from "./pages/CreateCourse";
 import CursoTeste from "./pages/CursoTeste";
+import PdfViewer from "./pages/PdfViewer";
 
 export default function App() {
   useAuth();
@@ -60,6 +61,7 @@ export default function App() {
 <Route path="/curso/:id" element={<CoursePlayer />} />
 <Route path="/criar-curso" element={<CreateCourse />} />
 <Route path="/curso-teste" element={<CursoTeste />} />
+<Route path="/pdf-viewer" element={<PdfViewer />} />
 
           {/* ✅ AGORA ESTÁ NO LUGAR CERTO */}
           <Route path="/livro2" element={<Livro2Page />} />
