@@ -131,16 +131,34 @@ export default function CursoTeste() {
     </p>
 
     <div style={{
-      marginTop: "20px",
-      marginBottom: "20px",
+  marginTop: "20px",
+  marginBottom: "20px",
+  borderRadius: "12px",
+  overflow: "hidden",
+  textAlign: "center"
+}}>
+
+  {aulaAtual.cover ? (
+    <img
+      src={aulaAtual.cover}
+      style={{
+        width: "100%",
+        maxHeight: "400px",
+        objectFit: "cover",
+        borderRadius: "12px"
+      }}
+    />
+  ) : (
+    <div style={{
       padding: "40px",
-      borderRadius: "12px",
       background: "linear-gradient(135deg, #8B5E3C, #C89B7B)",
-      color: "white",
-      textAlign: "center"
+      color: "white"
     }}>
       📘 Documento PDF disponível
     </div>
+  )}
+
+</div>
 
     <div style={{ display: "flex", gap: "15px" }}>
 

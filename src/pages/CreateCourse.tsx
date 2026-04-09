@@ -76,7 +76,12 @@ export default function CreateCourse() {
 
     console.log(course);
 
-    localStorage.setItem("curso", JSON.stringify(course));
+try {
+  const safeCourse = JSON.stringify(course);
+  localStorage.setItem("curso", safeCourse);
+} catch (err) {
+  console.error("ERRO AO SALVAR:", err);
+}
 
     alert("Curso salvo com sucesso!");
 
