@@ -74,13 +74,6 @@ export default function CursoTeste() {
 
         {!aulaAtual && <p>Selecione uma aula</p>}
 
-        {/* DEBUG */}
-        {aulaAtual && (
-          <div style={{ marginBottom: "10px", color: "#999" }}>
-            <small>Tipo: {aulaAtual.type}</small><br />
-            <small>URL: {aulaAtual.content || "❌ sem conteúdo"}</small>
-          </div>
-        )}
 
         {/* SEM CONTEÚDO */}
         {aulaAtual && !aulaAtual.content && (
@@ -140,14 +133,15 @@ export default function CursoTeste() {
 
   {aulaAtual.cover ? (
     <img
-      src={aulaAtual.cover}
-      style={{
-        width: "100%",
-        maxHeight: "400px",
-        objectFit: "cover",
-        borderRadius: "12px"
-      }}
-    />
+  src={aulaAtual.cover}
+  style={{
+    width: "100%",
+    height: "400px",
+    objectFit: "contain", // 🔥 ESSA LINHA RESOLVE
+    background: "#f5f5f5",
+    borderRadius: "12px"
+  }}
+/>
   ) : (
     <div style={{
       padding: "40px",
