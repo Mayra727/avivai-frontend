@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
 
 type Role = "superadmin" | "produtor" | "aluno";
@@ -19,31 +19,35 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
 
-const [user, setUser] = useState<User | null>(() => {
+  const [user, setUser] = useState<User | null>(null);
 
-  const token = localStorage.getItem("token");
-  const userId = localStorage.getItem("userId");
-  const name = localStorage.getItem("name");
-  const role = localStorage.getItem("role");
+  // 🔥 RECUPERAR USUÁRIO DO BACKEND
+  useEffect(() => {
+    const token = localStorage.getItem("token");
 
-  if (token && userId && name && role) {
-    return {
-      id: userId,
-      name,
-      role: role as Role
-    };
-  }
+    if (!token) return;
 
-  return null;
+    fetch("https://avivai-backend-production.up.railway.app/me", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then(res => res.json())
+      .then((data) => {
+        if (data?.id) {
+          setUser(data);
+        }
+      })
+      .catch(() => {
+        logout();
+      });
 
-});
+  }, []);
 
   function login(user: User, token: string) {
 
+    // 🔐 salva apenas token
     localStorage.setItem("token", token);
-    localStorage.setItem("userId", user.id);
-    localStorage.setItem("name", user.name);
-    localStorage.setItem("role", user.role);
 
     setUser(user);
 
@@ -52,9 +56,6 @@ const [user, setUser] = useState<User | null>(() => {
   function logout() {
 
     localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("name");
-    localStorage.removeItem("role");
 
     setUser(null);
 

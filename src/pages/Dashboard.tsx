@@ -3,56 +3,76 @@ import { Link } from "react-router-dom";
 
 export default function Dashboard() {
 
-  const [curso, setCurso] = useState<any>(null);
+  const [cursos, setCursos] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-
-    const cursoSalvo = localStorage.getItem("curso");
-
-    if (cursoSalvo) {
-      setCurso(JSON.parse(cursoSalvo));
-    }
-
+    fetch("https://avivai-backend-production.up.railway.app/courses")
+      .then(res => res.json())
+      .then((data) => {
+        setCursos(data);
+      })
+      .catch(err => console.error(err))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
-    <div style={{ padding: "60px" }}>
+    <div style={{ padding: "60px", maxWidth: "1000px", margin: "0 auto" }}>
 
-      <h1>Meus Cursos</h1>
+      <h1>🎓 Meus Cursos</h1>
 
-      {!curso && (
+      {/* LOADING */}
+      {loading && <p>Carregando cursos...</p>}
+
+      {/* SEM CURSOS */}
+      {!loading && cursos.length === 0 && (
         <p>Você ainda não criou nenhum curso.</p>
       )}
 
-      {curso && (
-        <div
-          style={{
-            padding: "20px",
-            background: "#fff",
-            marginTop: "20px",
-            borderRadius: "10px"
-          }}
-        >
-          <h3>{curso.title}</h3>
+      {/* LISTA */}
+      <div style={{
+        display: "grid",
+        gap: "20px",
+        marginTop: "30px"
+      }}>
 
-          <Link to="/curso-teste">
-            <button
-              style={{
-                marginTop: "10px",
-                padding: "10px 20px",
-                background: "#8B4533",
-                color: "white",
-                border: "none",
-                borderRadius: "8px",
-                cursor: "pointer"
-              }}
-            >
-              Abrir Curso
-            </button>
-          </Link>
+        {cursos.map((curso, index) => (
+          <div
+            key={index}
+            style={{
+              padding: "20px",
+              background: "#fff",
+              borderRadius: "12px",
+              boxShadow: "0 5px 15px rgba(0,0,0,0.08)"
+            }}
+          >
 
-        </div>
-      )}
+            <h3>{curso.title}</h3>
+
+            <p style={{ color: "#666" }}>
+              💰 R$ {curso.price}
+            </p>
+
+            <Link to="/curso-teste">
+              <button
+                style={{
+                  marginTop: "10px",
+                  padding: "10px 20px",
+                  background: "#8B4533",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "8px",
+                  cursor: "pointer"
+                }}
+              >
+                Abrir Curso
+              </button>
+            </Link>
+
+          </div>
+        ))}
+
+      </div>
 
     </div>
   );

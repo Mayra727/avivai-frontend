@@ -10,23 +10,19 @@ export default function CreateCourse() {
   const [courseName, setCourseName] = useState("");
   const [price, setPrice] = useState("");
   const [modules, setModules] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
 
   // ➕ MÓDULO
   function addModule() {
-    setModules((prev) => [
-      ...prev,
-      { title: "", lessons: [] }
-    ]);
+    setModules((prev) => [...prev, { title: "", lessons: [] }]);
   }
 
   // ❌ REMOVER MÓDULO
   function removeModule(index: number) {
-    const newModules = [...modules];
-    newModules.splice(index, 1);
-    setModules(newModules);
+    setModules((prev) => prev.filter((_, i) => i !== index));
   }
 
-  // ✏️ EDITAR NOME MÓDULO
+  // ✏️ EDITAR MÓDULO
   function updateModuleTitle(index: number, value: string) {
     const newModules = [...modules];
     newModules[index].title = value;
@@ -59,33 +55,46 @@ export default function CreateCourse() {
     moduleIndex: number,
     lessonIndex: number,
     field: string,
-    value: string
+    value: any
   ) {
     const newModules = [...modules];
     newModules[moduleIndex].lessons[lessonIndex][field] = value;
     setModules(newModules);
   }
 
-  // 💾 SALVAR CURSO
-  function handleSave() {
-    const course = {
-      title: courseName,
-      price,
-      modules
-    };
+  // 💾 SALVAR CURSO (BACKEND)
+  async function handleSave() {
+    if (!courseName || !price || modules.length === 0) {
+      alert("Preencha todos os campos");
+      return;
+    }
 
-    console.log(course);
+    try {
+      setLoading(true);
 
-try {
-  const safeCourse = JSON.stringify(course);
-  localStorage.setItem("curso", safeCourse);
-} catch (err) {
-  console.error("ERRO AO SALVAR:", err);
-}
+      const course = {
+        title: courseName,
+        price,
+        modules
+      };
 
-    alert("Curso salvo com sucesso!");
+      await fetch("https://avivai-backend-production.up.railway.app/courses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(course)
+      });
 
-    navigate("/curso-teste");
+      alert("Curso criado com sucesso!");
+      navigate("/curso-teste");
+
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao salvar curso");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -203,8 +212,6 @@ try {
                       const file = e.target.files?.[0];
                       if (!file) return;
 
-                      alert("Enviando capa...");
-
                       const url = await uploadFile(file);
 
                       if (!url) {
@@ -248,8 +255,8 @@ try {
         + Adicionar módulo
       </button>
 
-      <button className="save-btn" onClick={handleSave}>
-        💾 Salvar curso
+      <button className="save-btn" onClick={handleSave} disabled={loading}>
+        {loading ? "Salvando..." : "💾 Salvar curso"}
       </button>
 
     </div>

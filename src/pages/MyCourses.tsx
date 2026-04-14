@@ -1,75 +1,91 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function MyCourses() {
 
   const [courses, setCourses] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   useEffect(() => {
 
-    const userId = localStorage.getItem("userId");
+    if (!user) {
+      setLoading(false);
+      return;
+    }
 
-    console.log("Chamando API:", `${API_URL}/my-courses/${userId}`);
-
-    if (!userId) return;
+    const userId = user.id;
 
     async function loadCourses() {
+      try {
+        const response = await fetch(
+          `${API_URL}/my-courses/${userId}`
+        );
 
-      const response = await fetch(
-        `${API_URL}/my-courses/${userId}`
-      );
+        const data = await response.json();
 
-      const data = await response.json();
+        setCourses(data);
 
-      setCourses(data);
-
+      } catch (error) {
+        console.error("Erro ao carregar cursos:", error);
+      } finally {
+        setLoading(false);
+      }
     }
 
     loadCourses();
 
-  }, []);
+  }, [user]);
 
-  const baixarCertificado = (courseId: string) => {
+  function baixarCertificado(courseId: string) {
 
-    const userId = localStorage.getItem("userId");
-
-    if (!userId) return;
+    if (!user) return;
 
     window.open(
-      `${API_URL}/certificate/${userId}/${courseId}`,
+      `${API_URL}/certificate/${user.id}/${courseId}`,
       "_blank"
     );
 
-  };
+  }
 
   return (
-    <div style={{ padding: "60px" }}>
+    <div style={{ padding: "60px", maxWidth: "1000px", margin: "0 auto" }}>
 
-      <h1>Meus Cursos</h1>
+      <h1>🎓 Meus Cursos</h1>
 
-      {courses.length === 0 && (
+      {loading && <p>Carregando...</p>}
+
+      {!loading && courses.length === 0 && (
         <p>Você ainda não comprou cursos.</p>
       )}
 
       {courses.map((course) => (
-
         <div
           key={course._id}
           style={{
             marginTop: "20px",
             padding: "20px",
             background: "#fff",
-            borderRadius: "10px"
+            borderRadius: "10px",
+            boxShadow: "0 5px 15px rgba(0,0,0,0.08)"
           }}
         >
 
           <h3>{course.title}</h3>
 
-          <p>{course.description}</p>
+          {course.description && (
+            <p style={{ color: "#666" }}>{course.description}</p>
+          )}
 
-          <div style={{ marginTop: "15px", display: "flex", gap: "10px" }}>
+          <div style={{
+            marginTop: "15px",
+            display: "flex",
+            gap: "10px"
+          }}>
 
             <button
               onClick={() => navigate(`/course-player/${course._id}`)}
@@ -102,7 +118,6 @@ export default function MyCourses() {
           </div>
 
         </div>
-
       ))}
 
     </div>

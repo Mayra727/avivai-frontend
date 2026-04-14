@@ -19,6 +19,7 @@ import CreateCourse from "./pages/CreateCourse";
 import CursoTeste from "./pages/CursoTeste";
 import PdfViewer from "./pages/PdfViewer";
 import Biblioteca from "./pages/Biblioteca";
+import CreateBook from "./pages/CreateBook";
 
 export default function App() {
   useAuth();
@@ -64,6 +65,7 @@ export default function App() {
 <Route path="/curso-teste" element={<CursoTeste />} />
 <Route path="/pdf-viewer" element={<PdfViewer />} />
 <Route path="/biblioteca" element={<Biblioteca />} />
+<Route path="/criar-livro" element={<CreateBook />} />
 
           {/* ✅ AGORA ESTÁ NO LUGAR CERTO */}
           <Route path="/livro2" element={<Livro2Page />} />
