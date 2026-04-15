@@ -1,57 +1,106 @@
-import { useState } from "react";
 import "./CoursePlayer.css";
-
-const courseMock = {
-  title: "Vida Espiritual Destravada",
-  modules: [
-    {
-      title: "Módulo 1",
-      lessons: [
-        {
-          id: 1,
-          title: "Aula em vídeo",
-          type: "video",
-          content: "/videos/aula1.mp4"
-        },
-        {
-          id: 2,
-          title: "Material PDF",
-          type: "pdf",
-          content: "/pdfs/material.pdf"
-        },
-        {
-          id: 3,
-          title: "Imagem",
-          type: "image",
-          content: "/images/exemplo.jpg"
-        },
-        {
-          id: 4,
-          title: "Devocional",
-          type: "text",
-          content: "Deus quer ter relacionamento com você todos os dias..."
-        }
-      ]
-    }
-  ]
-};
+import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useParams, useNavigate } from "react-router-dom";
+import { API_URL } from "../services/api";
 
 export default function CoursePlayer() {
+
+  const { id } = useParams();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(true);
+  const [allowed, setAllowed] = useState(false);
+
+  // 🔥 MOCK (depois vamos trocar por backend)
+  const courseMock = {
+    title: "Vida Espiritual Destravada",
+    modules: [
+      {
+        title: "Módulo 1",
+        lessons: [
+          {
+            id: 1,
+            title: "Aula em vídeo",
+            type: "video",
+            content: "/videos/aula1.mp4"
+          },
+          {
+            id: 2,
+            title: "Material PDF",
+            type: "pdf",
+            content: "/pdfs/material.pdf"
+          },
+          {
+            id: 3,
+            title: "Imagem",
+            type: "image",
+            content: "/images/exemplo.jpg"
+          },
+          {
+            id: 4,
+            title: "Devocional",
+            type: "text",
+            content: "Deus quer ter relacionamento com você todos os dias..."
+          }
+        ]
+      }
+    ]
+  };
 
   const allLessons = courseMock.modules.flatMap(m => m.lessons);
 
   const [currentLesson, setCurrentLesson] = useState(allLessons[0]);
   const [completed, setCompleted] = useState<number[]>([]);
 
-  function toggleComplete(id: number) {
-    if (completed.includes(id)) {
-      setCompleted(completed.filter(l => l !== id));
+  // 🔐 CHECK DE ACESSO
+  useEffect(() => {
+
+    if (!user) return;
+
+    const userId = user.id;
+
+    async function checkAccess() {
+      try {
+        const res = await fetch(
+          `${API_URL}/check-access/${userId}/${id}`
+        );
+
+        const data = await res.json();
+
+        if (data.allowed) {
+          setAllowed(true);
+        } else {
+          alert("Você não tem acesso a esse curso");
+          navigate("/meus-cursos");
+        }
+
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    checkAccess();
+
+  }, [user, id]);
+
+  function toggleComplete(lessonId: number) {
+    if (completed.includes(lessonId)) {
+      setCompleted(completed.filter(l => l !== lessonId));
     } else {
-      setCompleted([...completed, id]);
+      setCompleted([...completed, lessonId]);
     }
   }
 
-  const progress = Math.round((completed.length / allLessons.length) * 100);
+  const progress = Math.round(
+    (completed.length / allLessons.length) * 100
+  );
+
+  if (loading) return <p>Carregando...</p>;
+  if (!allowed) return null;
 
   return (
     <div className="player">
@@ -61,7 +110,6 @@ export default function CoursePlayer() {
 
         <h2>{currentLesson.title}</h2>
 
-        {/* 🎯 RENDER DINÂMICO */}
         {currentLesson.type === "video" && (
           <video controls className="video-player">
             <source src={currentLesson.content} />
