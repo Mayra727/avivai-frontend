@@ -12,46 +12,8 @@ export default function CoursePlayer() {
 
   const [loading, setLoading] = useState(true);
   const [allowed, setAllowed] = useState(false);
-
-  // 🔥 MOCK (depois vamos trocar por backend)
-  const courseMock = {
-    title: "Vida Espiritual Destravada",
-    modules: [
-      {
-        title: "Módulo 1",
-        lessons: [
-          {
-            id: 1,
-            title: "Aula em vídeo",
-            type: "video",
-            content: "/videos/aula1.mp4"
-          },
-          {
-            id: 2,
-            title: "Material PDF",
-            type: "pdf",
-            content: "/pdfs/material.pdf"
-          },
-          {
-            id: 3,
-            title: "Imagem",
-            type: "image",
-            content: "/images/exemplo.jpg"
-          },
-          {
-            id: 4,
-            title: "Devocional",
-            type: "text",
-            content: "Deus quer ter relacionamento com você todos os dias..."
-          }
-        ]
-      }
-    ]
-  };
-
-  const allLessons = courseMock.modules.flatMap(m => m.lessons);
-
-  const [currentLesson, setCurrentLesson] = useState(allLessons[0]);
+  const [course, setCourse] = useState<any>(null);
+  const [currentLesson, setCurrentLesson] = useState<any>(null);
   const [completed, setCompleted] = useState<number[]>([]);
 
   // 🔐 CHECK DE ACESSO
@@ -87,6 +49,38 @@ export default function CoursePlayer() {
 
   }, [user, id]);
 
+  // 📚 BUSCAR CURSO REAL
+  useEffect(() => {
+
+    if (!id) return;
+
+    async function loadCourse() {
+      try {
+        const res = await fetch(`${API_URL}/courses/${id}`);
+        const data = await res.json();
+
+        console.log("CURSO:", data);
+
+        setCourse(data);
+
+      } catch (err) {
+        console.error("Erro ao carregar curso:", err);
+      }
+    }
+
+    loadCourse();
+
+  }, [id]);
+
+  // 🎯 DEFINIR PRIMEIRA AULA
+  useEffect(() => {
+    if (course) {
+      const firstLesson = course.modules?.[0]?.lessons?.[0];
+      setCurrentLesson(firstLesson);
+    }
+  }, [course]);
+
+  // ✅ MARCAR COMO CONCLUÍDO
   function toggleComplete(lessonId: number) {
     if (completed.includes(lessonId)) {
       setCompleted(completed.filter(l => l !== lessonId));
@@ -95,32 +89,46 @@ export default function CoursePlayer() {
     }
   }
 
+  // 🚨 PROTEÇÃO
+  if (loading) return <p>Carregando...</p>;
+  if (!allowed) return null;
+  if (!course) return <p>Carregando curso...</p>;
+  if (!currentLesson) return <p>Selecione uma aula</p>;
+
+  const allLessons = course.modules.flatMap((m: any) => m.lessons);
+
   const progress = Math.round(
     (completed.length / allLessons.length) * 100
   );
 
-  if (loading) return <p>Carregando...</p>;
-  if (!allowed) return null;
-
   return (
     <div className="player">
 
-      {/* CONTEÚDO */}
+      {/* 🎥 CONTEÚDO */}
       <div className="content">
 
         <h2>{currentLesson.title}</h2>
 
         {currentLesson.type === "video" && (
-          <video controls className="video-player">
+          <video
+            controls
+            className="video-player"
+            onEnded={() => toggleComplete(currentLesson.id)}
+          >
             <source src={currentLesson.content} />
           </video>
         )}
 
         {currentLesson.type === "pdf" && (
-          <iframe
-            src={currentLesson.content}
-            className="pdf-viewer"
-          />
+          <div>
+            <iframe
+              src={currentLesson.content}
+              className="pdf-viewer"
+            />
+            <button onClick={() => toggleComplete(currentLesson.id)}>
+              Marcar como concluído
+            </button>
+          </div>
         )}
 
         {currentLesson.type === "image" && (
@@ -133,12 +141,15 @@ export default function CoursePlayer() {
         {currentLesson.type === "text" && (
           <div className="text-viewer">
             {currentLesson.content}
+            <button onClick={() => toggleComplete(currentLesson.id)}>
+              Marcar como concluído
+            </button>
           </div>
         )}
 
       </div>
 
-      {/* SIDEBAR */}
+      {/* 📚 SIDEBAR */}
       <div className="sidebar">
 
         <h3>Conteúdo</h3>
@@ -147,12 +158,12 @@ export default function CoursePlayer() {
           Progresso: {progress}%
         </div>
 
-        {courseMock.modules.map((module, mIndex) => (
+        {course.modules.map((module: any, mIndex: number) => (
           <div key={mIndex}>
 
             <h4>{module.title}</h4>
 
-            {module.lessons.map((lesson) => (
+            {module.lessons.map((lesson: any) => (
               <div
                 key={lesson.id}
                 className={`lesson ${
@@ -164,11 +175,9 @@ export default function CoursePlayer() {
                   {lesson.title}
                 </span>
 
-                <input
-                  type="checkbox"
-                  checked={completed.includes(lesson.id)}
-                  onChange={() => toggleComplete(lesson.id)}
-                />
+                <span>
+                  {completed.includes(lesson.id) ? "✅" : "⬜"}
+                </span>
 
               </div>
             ))}
