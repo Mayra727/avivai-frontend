@@ -34,6 +34,7 @@ export default function CreateCourse() {
     const newModules = [...modules];
 
     newModules[moduleIndex].lessons.push({
+      id: Date.now(), // 🔥 IMPORTANTE pro player
       title: "",
       type: "video",
       content: "",
@@ -62,7 +63,7 @@ export default function CreateCourse() {
     setModules(newModules);
   }
 
-  // 💾 SALVAR CURSO (BACKEND)
+  // 💾 SALVAR CURSO
   async function handleSave() {
     if (!courseName || !price || modules.length === 0) {
       alert("Preencha todos os campos");
@@ -74,20 +75,28 @@ export default function CreateCourse() {
 
       const course = {
         title: courseName,
-        price,
+        price: Number(price), // 🔥 corrigido
         modules
       };
 
-      await fetch("https://avivai-backend-production.up.railway.app/courses", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(course)
-      });
+      const response = await fetch(
+        "https://avivai-backend-production.up.railway.app/courses",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(course)
+        }
+      );
+
+      const data = await response.json();
+      console.log("CURSO CRIADO:", data);
 
       alert("Curso criado com sucesso!");
-      navigate("/curso-teste");
+
+      // 🔥 REDIRECIONAMENTO CORRETO
+      navigate("/dashboard");
 
     } catch (error) {
       console.error(error);
