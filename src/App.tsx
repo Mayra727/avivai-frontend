@@ -62,7 +62,6 @@ export default function App() {
             <Route path="/produtor" element={<ProducerDashboard />} />
 <Route path="/curso/:id" element={<CoursePlayer />} />
 <Route path="/criar-curso" element={<CreateCourse />} />
-<Route path="/curso-teste" element={<CursoTeste />} />
 <Route path="/pdf-viewer" element={<PdfViewer />} />
 <Route path="/biblioteca" element={<Biblioteca />} />
 <Route path="/criar-livro" element={<CreateBook />} />

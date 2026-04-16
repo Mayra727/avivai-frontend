@@ -53,7 +53,7 @@ export default function Dashboard() {
               💰 R$ {curso.price}
             </p>
 
-            <Link to="/curso-teste">
+            <Link to={`/curso/${curso._id}`}>
               <button
                 style={{
                   marginTop: "10px",
