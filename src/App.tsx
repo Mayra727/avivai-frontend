@@ -16,7 +16,6 @@ import MentoriaPage from "./pages/MentoriaPage";
 import { useAuth } from "./context/AuthContext";
 import CoursePlayer from "./pages/CoursePlayer";
 import CreateCourse from "./pages/CreateCourse";
-import CursoTeste from "./pages/CursoTeste";
 import PdfViewer from "./pages/PdfViewer";
 import Biblioteca from "./pages/Biblioteca";
 import CreateBook from "./pages/CreateBook";
