@@ -7,7 +7,9 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://avivai-backend-production.up.railway.app/courses")
+    const userId = localStorage.getItem("userId");
+
+    fetch(`https://avivai-backend-production.up.railway.app/courses?creatorId=${userId}`)
       .then(res => res.json())
       .then((data) => {
         setCursos(data);
@@ -15,6 +17,27 @@ export default function Dashboard() {
       .catch(err => console.error(err))
       .finally(() => setLoading(false));
   }, []);
+
+  // 🔥 EXCLUIR CURSO
+  async function excluirCurso(id: string) {
+
+    const confirmDelete = window.confirm("Tem certeza que deseja excluir este curso?");
+
+    if (!confirmDelete) return;
+
+    try {
+
+      await fetch(`https://avivai-backend-production.up.railway.app/courses/${id}`, {
+        method: "DELETE"
+      });
+
+      // remove da tela
+      setCursos(prev => prev.filter(curso => curso._id !== id));
+
+    } catch (error) {
+      console.error("Erro ao excluir curso:", error);
+    }
+  }
 
   return (
     <div style={{ padding: "60px", maxWidth: "1000px", margin: "0 auto" }}>
@@ -36,9 +59,9 @@ export default function Dashboard() {
         marginTop: "30px"
       }}>
 
-        {cursos.map((curso, index) => (
+        {cursos.map((curso) => (
           <div
-            key={index}
+            key={curso._id}
             style={{
               padding: "20px",
               background: "#fff",
@@ -53,21 +76,43 @@ export default function Dashboard() {
               💰 R$ {curso.price}
             </p>
 
-            <Link to={`/curso/${curso._id}`}>
+            {/* BOTÕES */}
+            <div style={{
+              display: "flex",
+              gap: "10px",
+              marginTop: "10px"
+            }}>
+
+              <Link to={`/curso/${curso._id}`}>
+                <button
+                  style={{
+                    padding: "10px 20px",
+                    background: "#8B4533",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "8px",
+                    cursor: "pointer"
+                  }}
+                >
+                  Abrir Curso
+                </button>
+              </Link>
+
               <button
+                onClick={() => excluirCurso(curso._id)}
                 style={{
-                  marginTop: "10px",
                   padding: "10px 20px",
-                  background: "#8B4533",
+                  background: "#b00020",
                   color: "white",
                   border: "none",
                   borderRadius: "8px",
                   cursor: "pointer"
                 }}
               >
-                Abrir Curso
+                🗑️ Excluir
               </button>
-            </Link>
+
+            </div>
 
           </div>
         ))}
