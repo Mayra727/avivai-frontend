@@ -3,9 +3,12 @@ import "./CreateCourse.css";
 import { uploadFile } from "../services/cloudinary";
 import { uploadPdf } from "../services/uploadPdf";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function CreateCourse() {
+
   const navigate = useNavigate();
+  const { user } = useAuth(); // 🔥 CORRETO
 
   const [courseName, setCourseName] = useState("");
   const [price, setPrice] = useState("");
@@ -34,7 +37,7 @@ export default function CreateCourse() {
     const newModules = [...modules];
 
     newModules[moduleIndex].lessons.push({
-      id: Date.now(), // 🔥 IMPORTANTE pro player
+      id: Date.now(),
       title: "",
       type: "video",
       content: "",
@@ -65,28 +68,29 @@ export default function CreateCourse() {
 
   // 💾 SALVAR CURSO
   async function handleSave() {
+
     if (!courseName || !price || modules.length === 0) {
       alert("Preencha todos os campos");
+      return;
+    }
+
+    // 🔐 VALIDAÇÃO DE LOGIN
+    if (!user) {
+      alert("Usuário não logado");
       return;
     }
 
     try {
       setLoading(true);
 
-      const userId = localStorage.getItem("userId");
-      if (!userId) {
-  alert("Usuário não logado");
-  return;
-}
-      
       const course = {
-  title: courseName,
-  price: Number(price),
-  modules,
-  creatorId: userId // 🔥 ESSENCIAL
-};
+        title: courseName,
+        price: Number(price),
+        modules,
+        creatorId: user.id // 🔥 CORRETO
+      };
 
-console.log("ENVIANDO:", modules); // 🔥 AQUI
+      console.log("ENVIANDO:", course);
 
       const response = await fetch(
         "https://avivai-backend-production.up.railway.app/courses",
@@ -100,15 +104,19 @@ console.log("ENVIANDO:", modules); // 🔥 AQUI
       );
 
       const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Erro ao criar curso");
+      }
+
       console.log("CURSO CRIADO:", data);
 
       alert("Curso criado com sucesso!");
 
-      // 🔥 REDIRECIONAMENTO CORRETO
       navigate("/dashboard");
 
     } catch (error) {
-      console.error(error);
+      console.error("ERRO:", error);
       alert("Erro ao salvar curso");
     } finally {
       setLoading(false);
