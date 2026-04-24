@@ -5,189 +5,195 @@ import { uploadPdf } from "../services/uploadPdf";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+/* =========================
+   TYPES (SEM ANY)
+========================= */
+
+type Lesson = {
+  title: string;
+  type: "video" | "pdf" | "image" | "text";
+  content: string;
+  cover: string;
+};
+
+type Module = {
+  title: string;
+  lessons: Lesson[];
+};
+
+/* =========================
+   COMPONENT
+========================= */
+
 export default function CreateCourse() {
 
   const navigate = useNavigate();
-  const { user } = useAuth(); // 🔥 CORRETO
+  const { user } = useAuth();
 
   const [courseName, setCourseName] = useState("");
   const [price, setPrice] = useState("");
-  const [modules, setModules] = useState<any[]>([]);
+  const [modules, setModules] = useState<Module[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // ➕ MÓDULO
+  /* =========================
+     MODULES
+  ========================= */
+
   function addModule() {
-    setModules((prev) => [...prev, { title: "", lessons: [] }]);
+    setModules(prev => [...prev, { title: "", lessons: [] }]);
   }
 
-  // ❌ REMOVER MÓDULO
   function removeModule(index: number) {
-    setModules((prev) => prev.filter((_, i) => i !== index));
+    setModules(prev => prev.filter((_, i) => i !== index));
   }
 
-  // ✏️ EDITAR MÓDULO
   function updateModuleTitle(index: number, value: string) {
-    const newModules = [...modules];
-    newModules[index].title = value;
-    setModules(newModules);
-  }
-
-  // ➕ AULA
-  function addLesson(moduleIndex: number) {
-    const newModules = [...modules];
-
-    newModules[moduleIndex].lessons.push({
-      id: Date.now(),
-      title: "",
-      type: "video",
-      content: "",
-      cover: ""
+    setModules(prev => {
+      const copy = [...prev];
+      copy[index].title = value;
+      return copy;
     });
-
-    setModules(newModules);
   }
 
-  // ❌ REMOVER AULA
+  /* =========================
+     LESSONS
+  ========================= */
+
+  function addLesson(moduleIndex: number) {
+    setModules(prev => {
+      const copy = [...prev];
+
+      copy[moduleIndex].lessons.push({
+        title: "",
+        type: "video",
+        content: "",
+        cover: ""
+      });
+
+      return copy;
+    });
+  }
+
   function removeLesson(moduleIndex: number, lessonIndex: number) {
-    const newModules = [...modules];
-    newModules[moduleIndex].lessons.splice(lessonIndex, 1);
-    setModules(newModules);
+    setModules(prev => {
+      const copy = [...prev];
+      copy[moduleIndex].lessons.splice(lessonIndex, 1);
+      return copy;
+    });
   }
 
-  // ✏️ ATUALIZAR AULA
   function updateLesson(
     moduleIndex: number,
     lessonIndex: number,
-    field: string,
-    value: any
+    field: keyof Lesson,
+    value: string
   ) {
-    const newModules = [...modules];
-    newModules[moduleIndex].lessons[lessonIndex][field] = value;
-    setModules(newModules);
-  }
+    setModules(prev => {
+      const copy = [...prev];
 
-// 💾 SALVAR CURSO
-async function handleSave() {
-
-  console.log("MODULES ANTES DE SALVAR:", modules);
-
-  if (!courseName || !price || modules.length === 0) {
-    alert("Preencha todos os campos");
-    return;
-  }
-
-  if (!user) {
-    alert("Usuário não logado");
-    return;
-  }
-
-  try {
-    setLoading(true);
-
-    const fixedModules = modules.map((m) => {
-
-      let lessons = m.lessons;
-
-      // 🔥 GARANTE ARRAY
-      if (!Array.isArray(lessons)) {
-        lessons = [];
-      }
-
-      // 🔥 LIMPA E CORRIGE CADA LESSON
-      lessons = lessons.map((lesson: any) => {
-
-        // 👉 se vier string quebrada
-        if (typeof lesson === "string") {
-          try {
-            lesson = JSON.parse(lesson);
-          } catch {
-            console.log("❌ LESSON STRING INVÁLIDA:", lesson);
-            return null;
-          }
-        }
-
-        // 👉 valida objeto
-        if (!lesson || typeof lesson !== "object") {
-          return null;
-        }
-
-        return {
-          title: lesson.title || "",
-          type: lesson.type || "video",
-          content: lesson.content || "",
-          cover: lesson.cover || ""
-        };
-
-      }).filter(Boolean);
-
-      return {
-        title: m.title || "",
-        lessons
+      // 🔥 nunca deixa virar objeto estranho
+      copy[moduleIndex].lessons[lessonIndex] = {
+        ...copy[moduleIndex].lessons[lessonIndex],
+        [field]: value.trim()
       };
+
+      return copy;
     });
+  }
 
-    const course = {
-      title: courseName,
-      price: Number(price),
-      modules: fixedModules,
-      creatorId: user.id
-    };
+  /* =========================
+     SAVE
+  ========================= */
 
-    // 🔥 DEBUG FINAL (ESSENCIAL)
-    console.log("🔥 ENVIANDO PRO BACKEND:");
-    console.log(JSON.stringify(course, null, 2));
+  async function handleSave() {
 
-    const response = await fetch(
-      "https://avivai-backend-production.up.railway.app/courses",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(course)
-      }
-    );
+    console.log("STATE:", modules);
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      console.log("❌ ERRO BACKEND:", data);
-      throw new Error(JSON.stringify(data));
+    if (!courseName || !price || modules.length === 0) {
+      alert("Preencha todos os campos");
+      return;
     }
 
-    console.log("✅ CURSO CRIADO:", data);
+    if (!user) {
+      alert("Usuário não logado");
+      return;
+    }
 
-    alert("Curso criado com sucesso!");
-    navigate("/dashboard");
+    try {
+      setLoading(true);
 
-  } catch (error) {
-    console.error("❌ ERRO:", error);
-    alert("Erro ao salvar curso");
-  } finally {
-    setLoading(false);
+      // 🔥 SANITIZAÇÃO TOTAL (IMPOSSÍVEL DAR BUG)
+      const safeModules: Module[] = modules.map((m) => ({
+        title: m.title || "",
+        lessons: m.lessons.map((l) => ({
+          title: l.title || "",
+          type: l.type || "video",
+          content: l.content || "",
+          cover: l.cover || ""
+        }))
+      }));
+
+      const course = {
+        title: courseName,
+        price: Number(price) || 0,
+        modules: safeModules,
+        creatorId: user.id
+      };
+
+      console.log("🚀 ENVIANDO:", JSON.stringify(course, null, 2));
+
+      const response = await fetch(
+        "https://avivai-backend-production.up.railway.app/courses",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(course)
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.log("❌ BACKEND:", data);
+        throw new Error("Erro ao criar curso");
+      }
+
+      console.log("✅ SUCESSO:", data);
+
+      alert("Curso criado com sucesso!");
+      navigate("/dashboard");
+
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao salvar curso");
+    } finally {
+      setLoading(false);
+    }
   }
-}
+
+  /* =========================
+     UI
+  ========================= */
 
   return (
     <div className="create-course">
 
       <h1>Criar Curso</h1>
 
-      {/* NOME */}
       <input
         placeholder="Nome do curso"
         value={courseName}
         onChange={(e) => setCourseName(e.target.value)}
       />
 
-      {/* PREÇO */}
       <input
         placeholder="Preço (ex: 97.00)"
         value={price}
         onChange={(e) => setPrice(e.target.value)}
       />
 
-      {/* MÓDULOS */}
       {modules.map((module, mIndex) => (
         <div key={mIndex} className="module">
 
@@ -196,17 +202,14 @@ async function handleSave() {
           <input
             placeholder="Nome do módulo"
             value={module.title}
-            onChange={(e) =>
-              updateModuleTitle(mIndex, e.target.value)
-            }
+            onChange={(e) => updateModuleTitle(mIndex, e.target.value)}
           />
 
           <button onClick={() => removeModule(mIndex)}>
             ❌ Excluir módulo
           </button>
 
-          {/* AULAS */}
-          {module.lessons.map((lesson: any, lIndex: number) => (
+          {module.lessons.map((lesson, lIndex) => (
             <div key={lIndex} className="lesson">
 
               <input
@@ -229,10 +232,9 @@ async function handleSave() {
                 <option value="text">📝 Texto</option>
               </select>
 
-              {/* TEXTO */}
               {lesson.type === "text" && (
                 <textarea
-                  placeholder="Conteúdo da aula"
+                  placeholder="Conteúdo"
                   value={lesson.content}
                   onChange={(e) =>
                     updateLesson(mIndex, lIndex, "content", e.target.value)
@@ -240,7 +242,6 @@ async function handleSave() {
                 />
               )}
 
-              {/* UPLOAD */}
               {lesson.type !== "text" && (
                 <input
                   type="file"
@@ -248,9 +249,7 @@ async function handleSave() {
                     const file = e.target.files?.[0];
                     if (!file) return;
 
-                    alert("Enviando arquivo...");
-
-                    let url: string | null = null;
+                    let url = null;
 
                     if (lesson.type === "pdf") {
                       url = await uploadPdf(file);
@@ -266,46 +265,6 @@ async function handleSave() {
                     updateLesson(mIndex, lIndex, "content", url);
                   }}
                 />
-              )}
-
-              {/* CAPA PDF */}
-              {lesson.type === "pdf" && (
-                <div>
-
-                  <p style={{ fontSize: "12px" }}>
-                    Capa do PDF (opcional)
-                  </p>
-
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={async (e) => {
-                      const file = e.target.files?.[0];
-                      if (!file) return;
-
-                      const url = await uploadFile(file);
-
-                      if (!url) {
-                        alert("Erro no upload da capa");
-                        return;
-                      }
-
-                      updateLesson(mIndex, lIndex, "cover", url);
-                    }}
-                  />
-
-                  {lesson.cover && (
-                    <img
-                      src={lesson.cover}
-                      style={{
-                        width: "120px",
-                        marginTop: "10px",
-                        borderRadius: "8px"
-                      }}
-                    />
-                  )}
-
-                </div>
               )}
 
               <button onClick={() => removeLesson(mIndex, lIndex)}>
@@ -326,7 +285,7 @@ async function handleSave() {
         + Adicionar módulo
       </button>
 
-      <button className="save-btn" onClick={handleSave} disabled={loading}>
+      <button onClick={handleSave} disabled={loading}>
         {loading ? "Salvando..." : "💾 Salvar curso"}
       </button>
 
