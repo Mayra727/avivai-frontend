@@ -73,11 +73,14 @@ export default function CreateCourse() {
     try {
       setLoading(true);
 
+      const userId = localStorage.getItem("userId");
+      
       const course = {
-        title: courseName,
-        price: Number(price), // 🔥 corrigido
-        modules
-      };
+  title: courseName,
+  price: Number(price),
+  modules,
+  creatorId: userId // 🔥 ESSENCIAL
+};
 
       const response = await fetch(
         "https://avivai-backend-production.up.railway.app/courses",
