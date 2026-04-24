@@ -66,79 +66,107 @@ export default function CreateCourse() {
     setModules(newModules);
   }
 
-  // 💾 SALVAR CURSO
-  async function handleSave() {
+// 💾 SALVAR CURSO
+async function handleSave() {
 
-    if (!courseName || !price || modules.length === 0) {
-      alert("Preencha todos os campos");
-      return;
-    }
+  console.log("MODULES ANTES DE SALVAR:", modules);
 
-    // 🔥 DEBUG (IMPORTANTE)
-  console.log("TIPO lessons:", typeof modules[0].lessons);
-  console.log("VALOR lessons:", modules[0].lessons);
+  if (!courseName || !price || modules.length === 0) {
+    alert("Preencha todos os campos");
+    return;
+  }
 
+  if (!user) {
+    alert("Usuário não logado");
+    return;
+  }
 
-    // 🔐 VALIDAÇÃO DE LOGIN
-    if (!user) {
-      alert("Usuário não logado");
-      return;
-    }
+  try {
+    setLoading(true);
 
-    try {
-      setLoading(true);
+    const fixedModules = modules.map((m) => {
 
-      const fixedModules = modules.map((m) => ({
-  ...m,
-  lessons: Array.isArray(m.lessons)
-    ? m.lessons
-    : []
-}));
+      let lessons = m.lessons;
 
-
-const course = {
-  title: courseName,
-  price: Number(price),
-  modules: fixedModules, // 🔥 CORRIGIDO
-  creatorId: user.id
-};
-
-      console.log("ENVIANDO:", JSON.stringify(course, null, 2));
-
-      console.log("MODULES ORIGINAL:", modules);
-console.log("MODULES FINAL:", fixedModules);
-
-      const response = await fetch(
-        "https://avivai-backend-production.up.railway.app/courses",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(course)
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        console.log("RESPOSTA BACKEND:", data);
-throw new Error(JSON.stringify(data));
+      // 🔥 GARANTE ARRAY
+      if (!Array.isArray(lessons)) {
+        lessons = [];
       }
 
-      console.log("CURSO CRIADO:", data);
+      // 🔥 LIMPA E CORRIGE CADA LESSON
+      lessons = lessons.map((lesson: any) => {
 
-      alert("Curso criado com sucesso!");
+        // 👉 se vier string quebrada
+        if (typeof lesson === "string") {
+          try {
+            lesson = JSON.parse(lesson);
+          } catch {
+            console.log("❌ LESSON STRING INVÁLIDA:", lesson);
+            return null;
+          }
+        }
 
-      navigate("/dashboard");
+        // 👉 valida objeto
+        if (!lesson || typeof lesson !== "object") {
+          return null;
+        }
 
-    } catch (error) {
-      console.error("ERRO:", error);
-      alert("Erro ao salvar curso");
-    } finally {
-      setLoading(false);
+        return {
+          title: lesson.title || "",
+          type: lesson.type || "video",
+          content: lesson.content || "",
+          cover: lesson.cover || ""
+        };
+
+      }).filter(Boolean);
+
+      return {
+        title: m.title || "",
+        lessons
+      };
+    });
+
+    const course = {
+      title: courseName,
+      price: Number(price),
+      modules: fixedModules,
+      creatorId: user.id
+    };
+
+    // 🔥 DEBUG FINAL (ESSENCIAL)
+    console.log("🔥 ENVIANDO PRO BACKEND:");
+    console.log(JSON.stringify(course, null, 2));
+
+    const response = await fetch(
+      "https://avivai-backend-production.up.railway.app/courses",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(course)
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.log("❌ ERRO BACKEND:", data);
+      throw new Error(JSON.stringify(data));
     }
+
+    console.log("✅ CURSO CRIADO:", data);
+
+    alert("Curso criado com sucesso!");
+    navigate("/dashboard");
+
+  } catch (error) {
+    console.error("❌ ERRO:", error);
+    alert("Erro ao salvar curso");
+  } finally {
+    setLoading(false);
   }
+}
 
   return (
     <div className="create-course">
