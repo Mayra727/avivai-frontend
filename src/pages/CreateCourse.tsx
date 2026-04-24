@@ -74,6 +74,11 @@ export default function CreateCourse() {
       return;
     }
 
+    // 🔥 DEBUG (IMPORTANTE)
+  console.log("TIPO lessons:", typeof modules[0].lessons);
+  console.log("VALOR lessons:", modules[0].lessons);
+
+
     // 🔐 VALIDAÇÃO DE LOGIN
     if (!user) {
       alert("Usuário não logado");
@@ -83,14 +88,21 @@ export default function CreateCourse() {
     try {
       setLoading(true);
 
-      const course = {
-        title: courseName,
-        price: Number(price),
-        modules,
-        creatorId: user.id // 🔥 CORRETO
-      };
+      const fixedModules = modules.map((m) => ({
+  ...m,
+  lessons: Array.isArray(m.lessons)
+    ? m.lessons
+    : []
+}));
 
-      console.log("ENVIANDO:", course);
+const course = {
+  title: courseName,
+  price: Number(price),
+  modules: fixedModules, // 🔥 CORRIGIDO
+  creatorId: user.id
+};
+
+      console.log("ENVIANDO:", JSON.stringify(course, null, 2));
 
       const response = await fetch(
         "https://avivai-backend-production.up.railway.app/courses",
