@@ -95,6 +95,7 @@ export default function CreateCourse() {
     : []
 }));
 
+
 const course = {
   title: courseName,
   price: Number(price),
@@ -103,6 +104,9 @@ const course = {
 };
 
       console.log("ENVIANDO:", JSON.stringify(course, null, 2));
+
+      console.log("MODULES ORIGINAL:", modules);
+console.log("MODULES FINAL:", fixedModules);
 
       const response = await fetch(
         "https://avivai-backend-production.up.railway.app/courses",
