@@ -34,13 +34,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     })
       .then(res => res.json())
       .then((data) => {
-        if (data?.id) {
-          setUser(data);
-        }
-      })
-      .catch(() => {
-        logout();
-      });
+  console.log("USUÁRIO DO /ME:", data); // 🔥 ESSENCIAL
+
+  if (data?.id) {
+    setUser(data);
+  } else {
+    console.log("ERRO NO /ME:", data);
+  }
+})
 
   }, []);
 
