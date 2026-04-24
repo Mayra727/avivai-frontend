@@ -44,14 +44,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   }, []);
 
-  function login(user: User, token: string) {
+function login(user: User, token: string) {
+  localStorage.setItem("token", token);
+  localStorage.setItem("userId", user.id); // 🔥 ESSENCIAL
 
-    // 🔐 salva apenas token
-    localStorage.setItem("token", token);
-
-    setUser(user);
-
-  }
+  setUser(user);
+}
 
   function logout() {
 

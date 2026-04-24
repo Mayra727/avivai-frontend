@@ -74,6 +74,10 @@ export default function CreateCourse() {
       setLoading(true);
 
       const userId = localStorage.getItem("userId");
+      if (!userId) {
+  alert("Usuário não logado");
+  return;
+}
       
       const course = {
   title: courseName,
@@ -81,6 +85,8 @@ export default function CreateCourse() {
   modules,
   creatorId: userId // 🔥 ESSENCIAL
 };
+
+console.log("ENVIANDO:", modules); // 🔥 AQUI
 
       const response = await fetch(
         "https://avivai-backend-production.up.railway.app/courses",
