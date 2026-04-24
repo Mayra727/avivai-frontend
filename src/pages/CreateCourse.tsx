@@ -106,7 +106,8 @@ export default function CreateCourse() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Erro ao criar curso");
+        console.log("RESPOSTA BACKEND:", data);
+throw new Error(JSON.stringify(data));
       }
 
       console.log("CURSO CRIADO:", data);
