@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 /* =========================
-   TYPES (SEM ANY)
+   TYPES
 ========================= */
 
 type Lesson = {
@@ -48,38 +48,49 @@ export default function CreateCourse() {
   }
 
   function updateModuleTitle(index: number, value: string) {
-    setModules(prev => {
-      const copy = [...prev];
-      copy[index].title = value;
-      return copy;
-    });
+    setModules(prev =>
+      prev.map((m, i) =>
+        i === index ? { ...m, title: value } : m
+      )
+    );
   }
 
   /* =========================
-     LESSONS
+     LESSONS (100% IMUTÁVEL)
   ========================= */
 
   function addLesson(moduleIndex: number) {
-    setModules(prev => {
-      const copy = [...prev];
-
-      copy[moduleIndex].lessons.push({
-        title: "",
-        type: "video",
-        content: "",
-        cover: ""
-      });
-
-      return copy;
-    });
+    setModules(prev =>
+      prev.map((module, i) =>
+        i === moduleIndex
+          ? {
+              ...module,
+              lessons: [
+                ...module.lessons,
+                {
+                  title: "",
+                  type: "video",
+                  content: "",
+                  cover: ""
+                }
+              ]
+            }
+          : module
+      )
+    );
   }
 
   function removeLesson(moduleIndex: number, lessonIndex: number) {
-    setModules(prev => {
-      const copy = [...prev];
-      copy[moduleIndex].lessons.splice(lessonIndex, 1);
-      return copy;
-    });
+    setModules(prev =>
+      prev.map((module, i) =>
+        i === moduleIndex
+          ? {
+              ...module,
+              lessons: module.lessons.filter((_, l) => l !== lessonIndex)
+            }
+          : module
+      )
+    );
   }
 
   function updateLesson(
@@ -88,17 +99,23 @@ export default function CreateCourse() {
     field: keyof Lesson,
     value: string
   ) {
-    setModules(prev => {
-      const copy = [...prev];
-
-      // 🔥 nunca deixa virar objeto estranho
-      copy[moduleIndex].lessons[lessonIndex] = {
-        ...copy[moduleIndex].lessons[lessonIndex],
-        [field]: value.trim()
-      };
-
-      return copy;
-    });
+    setModules(prev =>
+      prev.map((module, i) =>
+        i === moduleIndex
+          ? {
+              ...module,
+              lessons: module.lessons.map((lesson, l) =>
+                l === lessonIndex
+                  ? {
+                      ...lesson,
+                      [field]: value.trim()
+                    }
+                  : lesson
+              )
+            }
+          : module
+      )
+    );
   }
 
   /* =========================
@@ -122,7 +139,7 @@ export default function CreateCourse() {
     try {
       setLoading(true);
 
-      // 🔥 SANITIZAÇÃO TOTAL (IMPOSSÍVEL DAR BUG)
+      // 🔥 GARANTE DADOS LIMPOS
       const safeModules: Module[] = modules.map((m) => ({
         title: m.title || "",
         lessons: m.lessons.map((l) => ({
@@ -140,7 +157,7 @@ export default function CreateCourse() {
         creatorId: user.id
       };
 
-      console.log("🚀 ENVIANDO:", JSON.stringify(course, null, 2));
+      console.log("🚀 FINAL:", JSON.stringify(course, null, 2));
 
       const response = await fetch(
         "https://avivai-backend-production.up.railway.app/courses",
