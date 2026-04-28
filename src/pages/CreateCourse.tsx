@@ -157,7 +157,9 @@ export default function CreateCourse() {
         creatorId: user.id
       };
 
-      console.log("🚀 FINAL:", JSON.stringify(course, null, 2));
+console.log("🚀 COURSE OBJ:", course);
+console.log("🚀 TYPE LESSON:", typeof course.modules[0].lessons[0]);
+console.log("🚀 LESSON VALUE:", course.modules[0].lessons[0]);
 
       const response = await fetch(
         "https://avivai-backend-production.up.railway.app/courses",
