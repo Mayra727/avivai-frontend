@@ -139,23 +139,38 @@ export default function CreateCourse() {
     try {
       setLoading(true);
 
-      // 🔥 GARANTE DADOS LIMPOS
-      const safeModules: Module[] = modules.map((m) => ({
-        title: m.title || "",
-        lessons: m.lessons.map((l) => ({
-          title: l.title || "",
-          type: l.type || "video",
-          content: l.content || "",
-          cover: l.cover || ""
-        }))
-      }));
+      const fixedModules = modules.map((m) => ({
+  title: m.title || "",
+  lessons: m.lessons.map((l: any) => {
+
+    // 💣 SE VIER STRING → CONVERTE
+    if (typeof l === "string") {
+      try {
+        const parsed = JSON.parse(l);
+
+        if (Array.isArray(parsed)) return parsed[0];
+
+        return parsed;
+      } catch {
+        return null;
+      }
+    }
+
+    return {
+      title: l.title || "",
+      type: l.type || "video",
+      content: l.content || "",
+      cover: l.cover || ""
+    };
+  }).filter(Boolean)
+}));
 
       const course = {
-        title: courseName,
-        price: Number(price) || 0,
-        modules: safeModules,
-        creatorId: user.id
-      };
+  title: courseName,
+  price: Number(price),
+  modules: fixedModules,
+  creatorId: user.id
+};
 
 console.log("🚀 COURSE OBJ:", course);
 console.log("🚀 TYPE LESSON:", typeof course.modules[0].lessons[0]);
