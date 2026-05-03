@@ -108,7 +108,9 @@ export default function CreateCourse() {
                 l === lessonIndex
                   ? {
                       ...lesson,
-                      [field]: value.trim()
+                      [field]: typeof value === "string"
+  ? value.trim()
+  : value
                     }
                   : lesson
               )
