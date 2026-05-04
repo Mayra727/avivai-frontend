@@ -60,6 +60,7 @@ export default function App() {
             <Route path="/mentoria" element={<MentoriaPage />} />
             <Route path="/produtor" element={<ProducerDashboard />} />
 <Route path="/curso/:id" element={<CoursePlayer />} />
+<Route path="/course-player/:id" element={<CoursePlayer />} />
 <Route path="/criar-curso" element={<CreateCourse />} />
 <Route path="/pdf-viewer" element={<PdfViewer />} />
 <Route path="/biblioteca" element={<Biblioteca />} />

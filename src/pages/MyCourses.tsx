@@ -89,7 +89,7 @@ export default function MyCourses() {
           }}>
 
             <button
-              onClick={() => navigate(`/course-player/${course._id}`)}
+              onClick={() =>navigate(`/curso/${course._id}`)}
               style={{
                 padding: "8px 16px",
                 background: "#8B4533",
