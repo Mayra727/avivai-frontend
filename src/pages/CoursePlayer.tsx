@@ -157,6 +157,15 @@ export default function CoursePlayer() {
 
             <h1>{currentLesson.title}</h1>
 
+            <p
+  style={{
+    fontSize: "12px",
+    wordBreak: "break-all"
+  }}
+>
+  {currentLesson.content}
+</p>
+
             {/* VIDEO */}
 
             {currentLesson.type === "video" && (
