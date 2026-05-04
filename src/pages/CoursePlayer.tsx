@@ -141,7 +141,11 @@ export default function CoursePlayer() {
         {currentLesson.type === "text" && (
           <div className="text-viewer">
             {currentLesson.content}
-            <button onClick={() => toggleComplete(currentLesson.id)}>
+            <button onClick={() => toggleComplete(
+  allLessons.findIndex(
+    (l: any) => l === currentLesson
+  )
+)}>
               Marcar como concluído
             </button>
           </div>
@@ -163,11 +167,11 @@ export default function CoursePlayer() {
 
             <h4>{module.title}</h4>
 
-            {module.lessons.map((lesson: any) => (
+            {module.lessons.map((lesson: any, lessonIndex: number) => (
               <div
-                key={lesson.id}
+                key={lessonIndex}
                 className={`lesson ${
-                  lesson.id === currentLesson.id ? "active" : ""
+                  lesson === currentLesson ? "active" : ""
                 }`}
               >
 
@@ -176,7 +180,7 @@ export default function CoursePlayer() {
                 </span>
 
                 <span>
-                  {completed.includes(lesson.id) ? "✅" : "⬜"}
+                  {completed.includes(lessonIndex) ? "✅" : "⬜"}
                 </span>
 
               </div>
