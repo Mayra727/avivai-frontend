@@ -11,7 +11,7 @@ export default function CoursePlayer() {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
-  const [allowed, setAllowed] = useState(true);
+  const [allowed, setAllowed] = useState(false);
 
   const [course, setCourse] = useState<any>(null);
 
@@ -177,13 +177,8 @@ export default function CoursePlayer() {
     return <p>Carregando...</p>;
   }
 
-  if (!allowed) {
-
-  return (
-    <div style={{ padding: "40px" }}>
-      <h2>Sem acesso</h2>
-    </div>
-  );
+if (!allowed) {
+  return <p>Verificando acesso...</p>;
 }
 
   if (!course) {
@@ -244,9 +239,9 @@ export default function CoursePlayer() {
           >
 
             <source
-              src={currentLesson.content}
-              type="video/mp4"
-            />
+  src={currentLesson.content?.trim()}
+  type="video/mp4"
+/>
 
           </video>
 
