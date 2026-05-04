@@ -12,59 +12,93 @@ export default function CoursePlayer() {
 
   const [loading, setLoading] = useState(true);
   const [allowed, setAllowed] = useState(false);
-  const [course, setCourse] = useState<any>(null);
-  const [currentLesson, setCurrentLesson] = useState<any>(null);
-  const [completed, setCompleted] = useState<number[]>([]);
 
-  // 🔐 CHECK DE ACESSO
+  const [course, setCourse] = useState<any>(null);
+
+  const [currentLesson, setCurrentLesson] =
+    useState<any>(null);
+
+  const [completed, setCompleted] =
+    useState<number[]>([]);
+
+  /* =========================
+     PROTEÇÃO
+  ========================= */
+
   useEffect(() => {
 
-    if (!user) return;
+    if (!id) return;
 
-    const userId = user.id;
+    if (!user) {
+      navigate("/login");
+      return;
+    }
 
     async function checkAccess() {
+
       try {
-        const res = await fetch(
-          `${API_URL}/check-access/${userId}/${id}`
+
+        const response = await fetch(
+          `${API_URL}/check-access/${user?.id}/${id}`
         );
 
-        const data = await res.json();
+        const data = await response.json();
+
+        console.log("🔥 ACCESS:", data);
 
         if (data.allowed) {
+
           setAllowed(true);
+
         } else {
-          alert("Você não tem acesso a esse curso");
+
+          alert("Você não possui acesso");
+
           navigate("/meus-cursos");
         }
 
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+
+        console.error(error);
+
       } finally {
+
         setLoading(false);
       }
     }
 
     checkAccess();
 
-  }, [user, id]);
+  }, [id, user]);
 
-  // 📚 BUSCAR CURSO REAL
+  /* =========================
+     CARREGAR CURSO
+  ========================= */
+
   useEffect(() => {
 
     if (!id) return;
 
     async function loadCourse() {
-      try {
-        const res = await fetch(`${API_URL}/courses/${id}`);
-        const data = await res.json();
 
-        console.log("CURSO:", data);
+      try {
+
+        const response = await fetch(
+          `${API_URL}/courses/${id}`
+        );
+
+        const data = await response.json();
+
+        console.log("🔥 COURSE:", data);
 
         setCourse(data);
 
-      } catch (err) {
-        console.error("Erro ao carregar curso:", err);
+      } catch (error) {
+
+        console.error(
+          "Erro ao carregar curso:",
+          error
+        );
       }
     }
 
@@ -72,88 +106,184 @@ export default function CoursePlayer() {
 
   }, [id]);
 
-  // 🎯 DEFINIR PRIMEIRA AULA
+  /* =========================
+     PRIMEIRA AULA
+  ========================= */
+
   useEffect(() => {
-    if (course) {
-      const firstLesson = course.modules?.[0]?.lessons?.[0];
+
+    if (!course) return;
+
+    const firstLesson =
+      course?.modules?.[0]?.lessons?.[0];
+
+    if (firstLesson) {
       setCurrentLesson(firstLesson);
     }
+
   }, [course]);
 
-  // ✅ MARCAR COMO CONCLUÍDO
-  function toggleComplete(lessonId: number) {
-    if (completed.includes(lessonId)) {
-      setCompleted(completed.filter(l => l !== lessonId));
+  /* =========================
+     AULAS
+  ========================= */
+
+  const allLessons =
+    course?.modules?.flatMap(
+      (m: any) => m.lessons
+    ) || [];
+
+  /* =========================
+     PROGRESSO
+  ========================= */
+
+  const progress =
+    allLessons.length > 0
+      ? Math.round(
+          (completed.length / allLessons.length) * 100
+        )
+      : 0;
+
+  /* =========================
+     CONCLUIR
+  ========================= */
+
+  function toggleComplete(index: number) {
+
+    if (completed.includes(index)) {
+
+      setCompleted(
+        completed.filter((i) => i !== index)
+      );
+
     } else {
-      setCompleted([...completed, lessonId]);
+
+      setCompleted([...completed, index]);
     }
   }
 
-  // 🚨 PROTEÇÃO
-  if (loading) return <p>Carregando...</p>;
-  if (!allowed) return null;
-  if (!course) return <p>Carregando curso...</p>;
-  if (!currentLesson) return <p>Selecione uma aula</p>;
+  /* =========================
+     ESTADOS
+  ========================= */
 
-  const allLessons = course.modules.flatMap((m: any) => m.lessons);
+  if (loading) {
+    return <p>Carregando...</p>;
+  }
 
-  const progress = Math.round(
-    (completed.length / allLessons.length) * 100
-  );
+  if (!allowed) {
+    return null;
+  }
+
+  if (!course) {
+    return <p>Curso não encontrado</p>;
+  }
+
+  if (!currentLesson) {
+    return <p>Nenhuma aula encontrada</p>;
+  }
+
+  /* =========================
+     INDEX AULA ATUAL
+  ========================= */
+
+  const currentLessonIndex =
+    allLessons.findIndex(
+      (l: any) => l === currentLesson
+    );
 
   return (
+
     <div className="player">
 
-      {/* 🎥 CONTEÚDO */}
+      {/* =========================
+          CONTEÚDO
+      ========================= */}
+
       <div className="content">
 
         <h2>{currentLesson.title}</h2>
 
+        {/* VIDEO */}
+
         {currentLesson.type === "video" && (
+
           <video
             controls
             className="video-player"
-            onEnded={() => toggleComplete(currentLesson.id)}
+            onEnded={() =>
+              toggleComplete(currentLessonIndex)
+            }
           >
-            <source src={currentLesson.content} />
+
+            <source
+              src={currentLesson.content}
+              type="video/mp4"
+            />
+
           </video>
+
         )}
 
+        {/* PDF */}
+
         {currentLesson.type === "pdf" && (
+
           <div>
+
             <iframe
               src={currentLesson.content}
               className="pdf-viewer"
+              title="PDF"
             />
-            <button onClick={() => toggleComplete(currentLesson.id)}>
+
+            <button
+              onClick={() =>
+                toggleComplete(currentLessonIndex)
+              }
+            >
               Marcar como concluído
             </button>
+
           </div>
+
         )}
 
+        {/* IMAGEM */}
+
         {currentLesson.type === "image" && (
+
           <img
             src={currentLesson.content}
             className="image-viewer"
           />
+
         )}
 
+        {/* TEXTO */}
+
         {currentLesson.type === "text" && (
+
           <div className="text-viewer">
-            {currentLesson.content}
-            <button onClick={() => toggleComplete(
-  allLessons.findIndex(
-    (l: any) => l === currentLesson
-  )
-)}>
+
+            <p>{currentLesson.content}</p>
+
+            <button
+              onClick={() =>
+                toggleComplete(currentLessonIndex)
+              }
+            >
               Marcar como concluído
             </button>
+
           </div>
+
         )}
 
       </div>
 
-      {/* 📚 SIDEBAR */}
+      {/* =========================
+          SIDEBAR
+      ========================= */}
+
       <div className="sidebar">
 
         <h3>Conteúdo</h3>
@@ -162,32 +292,57 @@ export default function CoursePlayer() {
           Progresso: {progress}%
         </div>
 
-        {course.modules.map((module: any, mIndex: number) => (
-          <div key={mIndex}>
+        {course?.modules?.map(
+          (module: any, moduleIndex: number) => (
 
-            <h4>{module.title}</h4>
+            <div
+              key={moduleIndex}
+              className="module"
+            >
 
-            {module.lessons.map((lesson: any, lessonIndex: number) => (
-              <div
-                key={lessonIndex}
-                className={`lesson ${
-                  lesson === currentLesson ? "active" : ""
-                }`}
-              >
+              <h4>{module.title}</h4>
 
-                <span onClick={() => setCurrentLesson(lesson)}>
-                  {lesson.title}
-                </span>
+              {module.lessons?.map(
+                (
+                  lesson: any,
+                  lessonIndex: number
+                ) => (
 
-                <span>
-                  {completed.includes(lessonIndex) ? "✅" : "⬜"}
-                </span>
+                  <div
+                    key={lessonIndex}
+                    className={`lesson ${
+                      lesson === currentLesson
+                        ? "active"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      setCurrentLesson(lesson)
+                    }
+                  >
 
-              </div>
-            ))}
+                    <span>
+                      {lesson.title}
+                    </span>
 
-          </div>
-        ))}
+                    <span>
+                      {completed.includes(
+                        allLessons.findIndex(
+                          (l: any) => l === lesson
+                        )
+                      )
+                        ? "✅"
+                        : "⬜"}
+                    </span>
+
+                  </div>
+
+                )
+              )}
+
+            </div>
+
+          )
+        )}
 
       </div>
 
