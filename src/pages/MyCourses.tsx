@@ -20,11 +20,12 @@ export default function MyCourses() {
 
     const userId = user.id;
 
+    console.log("🔥 USER:", user);
+    
     async function loadCourses() {
       try {
         const response = await fetch(
-          `${API_URL}/my-courses/${userId}`
-        );
+         `${API_URL}/producer-courses/${userId}`);
 
         const data = await response.json();
 
@@ -60,7 +61,7 @@ export default function MyCourses() {
       {loading && <p>Carregando...</p>}
 
       {!loading && courses.length === 0 && (
-        <p>Você ainda não comprou cursos.</p>
+        <p>Você ainda não criou nenhum curso.</p>
       )}
 
       {courses.map((course) => (
