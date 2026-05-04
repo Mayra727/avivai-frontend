@@ -192,13 +192,25 @@ export default function CoursePlayer() {
 
   return (
 
-    <div className="player">
+    <div
+  style={{
+    display: "flex",
+    minHeight: "100vh",
+    background: "#f5f1ed",
+    color: "#000"
+  }}
+>
 
       {/* =========================
           CONTEÚDO
       ========================= */}
 
-      <div className="content">
+      <div
+  style={{
+    flex: 1,
+    padding: "40px"
+  }}
+>
 
         <h2>{currentLesson.title}</h2>
 
@@ -208,7 +220,11 @@ export default function CoursePlayer() {
 
           <video
             controls
-            className="video-player"
+            style={{
+  width: "100%",
+  borderRadius: "12px",
+  marginTop: "20px"
+}}
             onEnded={() =>
               toggleComplete(currentLessonIndex)
             }
@@ -284,7 +300,14 @@ export default function CoursePlayer() {
           SIDEBAR
       ========================= */}
 
-      <div className="sidebar">
+      <div
+  style={{
+    width: "320px",
+    background: "#fff",
+    padding: "20px",
+    borderLeft: "1px solid #ddd"
+  }}
+>
 
         <h3>Conteúdo</h3>
 
