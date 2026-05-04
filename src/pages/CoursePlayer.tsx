@@ -11,7 +11,7 @@ export default function CoursePlayer() {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
-  const [allowed, setAllowed] = useState(false);
+  const [allowed, setAllowed] = useState(true);
 
   const [course, setCourse] = useState<any>(null);
 
@@ -112,16 +112,24 @@ export default function CoursePlayer() {
 
   useEffect(() => {
 
-    if (!course) return;
+  console.log("🔥 COURSE MODULES:", course?.modules);
+
+  if (
+    course?.modules &&
+    course.modules.length > 0 &&
+    course.modules[0].lessons &&
+    course.modules[0].lessons.length > 0
+  ) {
 
     const firstLesson =
-      course?.modules?.[0]?.lessons?.[0];
+      course.modules[0].lessons[0];
 
-    if (firstLesson) {
-      setCurrentLesson(firstLesson);
-    }
+    console.log("🔥 FIRST LESSON:", firstLesson);
 
-  }, [course]);
+    setCurrentLesson(firstLesson);
+  }
+
+}, [course]);
 
   /* =========================
      AULAS
@@ -170,8 +178,13 @@ export default function CoursePlayer() {
   }
 
   if (!allowed) {
-    return null;
-  }
+
+  return (
+    <div style={{ padding: "40px" }}>
+      <h2>Sem acesso</h2>
+    </div>
+  );
+}
 
   if (!course) {
     return <p>Curso não encontrado</p>;
