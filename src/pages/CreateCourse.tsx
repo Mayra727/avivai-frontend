@@ -220,7 +220,7 @@ export default function CreateCourse() {
 
     alert("Curso criado com sucesso!");
 
-    navigate("/dashboard");
+    navigate("/meus-cursos");
 
   } catch (error) {
 
