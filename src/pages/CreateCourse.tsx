@@ -275,7 +275,8 @@ export default function CreateCourse() {
 
     console.error(error);
 
-    alert("Erro ao salvar curso");
+   console.log(error);
+alert("Erro ao salvar curso");
 
   } finally {
 
