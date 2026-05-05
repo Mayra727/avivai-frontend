@@ -1,37 +1,30 @@
+import { API_URL } from "./api";
+
 export async function uploadFile(file: File) {
 
   const formData = new FormData();
 
-  formData.append("file", file);
-
-  formData.append(
-    "upload_preset",
-    "avivai_video"
-  );
+  formData.append("video", file);
 
   try {
 
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/djawb7xgu/auto/upload",
+    const response = await fetch(
+      `${API_URL}/upload-video`,
       {
         method: "POST",
         body: formData,
       }
     );
 
-    const data = await res.json();
+    const data = await response.json();
 
-    console.log("UPLOAD RESULT:", data);
+    console.log("🔥 VIDEO URL:", data);
 
-    if (!data.secure_url) {
-      throw new Error("Upload falhou");
-    }
-
-    return data.secure_url;
+    return data.url;
 
   } catch (error) {
 
-    console.error("Erro upload:", error);
+    console.log("❌ ERRO UPLOAD:", error);
 
     return null;
   }
