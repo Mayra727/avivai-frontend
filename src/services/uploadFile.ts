@@ -12,7 +12,7 @@ export async function uploadFile(file: File) {
   try {
 
     const res = await fetch(
-      "https://api.cloudinary.com/v1_1/djawb7xgu/video/upload",
+      "https://api.cloudinary.com/v1_1/djawb7xgu/auto/upload",
       {
         method: "POST",
         body: formData,
