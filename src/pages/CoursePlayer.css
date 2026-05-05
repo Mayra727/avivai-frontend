@@ -1,23 +1,24 @@
 .netflix-player{
   display:flex;
   min-height:100vh;
-  background:#141414;
-  color:white;
+  background:#F5F1ED;
+  color:#3E2C23;
 }
 
 /* SIDEBAR */
 
 .netflix-sidebar{
   width:320px;
-  background:#181818;
+  background:#FFFFFF;
   padding:30px;
+  border-right:1px solid #E5DDD5;
   overflow:auto;
-  border-right:1px solid #333;
 }
 
 .course-title{
-  font-size:32px;
+  font-size:42px;
   margin-bottom:30px;
+  color:#6B3E26;
 }
 
 .module-block{
@@ -26,24 +27,26 @@
 
 .module-block h3{
   margin-bottom:15px;
-  color:#b3b3b3;
+  color:#8B5E3C;
 }
 
 .lesson-item{
   padding:14px;
-  border-radius:8px;
-  margin-bottom:10px;
-  background:#232323;
+  border-radius:12px;
+  margin-bottom:12px;
+  background:#EFE7E1;
   cursor:pointer;
   transition:0.2s;
+  font-weight:600;
 }
 
 .lesson-item:hover{
-  background:#333;
+  background:#E0D2C7;
 }
 
 .lesson-item.active{
-  background:#E50914;
+  background:#8B5E3C;
+  color:white;
 }
 
 /* PLAYER */
@@ -51,35 +54,78 @@
 .netflix-content{
   flex:1;
   padding:40px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
 .netflix-content h1{
-  font-size:42px;
-  margin-bottom:30px;
+  width:100%;
+  max-width:900px;
+
+  font-size:52px;
+  margin-bottom:20px;
+
+  color:#6B3E26;
 }
+
+/* VIDEO */
 
 .netflix-video{
   width:100%;
-  max-width:1100px;
-  border-radius:16px;
+  max-width:900px;
+
+  max-height:70vh;
+
+  border-radius:24px;
   background:black;
+
+  object-fit:contain;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.15);
 }
+
+/* TEXT */
 
 .text-content{
-  font-size:18px;
+  width:100%;
+  max-width:900px;
+
+  background:white;
+  padding:30px;
+  border-radius:20px;
+
   line-height:1.8;
+
+  box-shadow:
+    0 5px 20px rgba(0,0,0,0.08);
 }
 
+/* IMAGE */
+
 .image-content{
-  max-width:100%;
-  border-radius:16px;
+  width:100%;
+  max-width:900px;
+
+  border-radius:24px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.12);
 }
+
+/* PDF */
 
 .pdf-content{
   width:100%;
+  max-width:1000px;
   height:80vh;
+
   border:none;
-  border-radius:16px;
+  border-radius:24px;
+
+  background:white;
 }
 
 /* MOBILE */
@@ -93,7 +139,7 @@
   .netflix-sidebar{
     width:100%;
     border-right:none;
-    border-bottom:1px solid #333;
+    border-bottom:1px solid #ddd;
   }
 
   .netflix-content{
@@ -101,6 +147,10 @@
   }
 
   .netflix-content h1{
-    font-size:28px;
+    font-size:34px;
+  }
+
+  .course-title{
+    font-size:32px;
   }
 }
