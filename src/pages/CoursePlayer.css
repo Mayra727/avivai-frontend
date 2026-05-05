@@ -1,61 +1,106 @@
-.player {
-  display: flex;
-  height: calc(100vh - 80px);
-}
-
-/* CONTEÚDO */
-.content {
-  flex: 2;
-  padding: 20px;
-  background: #000;
-  color: white;
-}
-
-.video-player {
-  width: 100%;
-  height: 70vh;
-}
-
-.pdf-viewer {
-  width: 100%;
-  height: 80vh;
-  border: none;
-}
-
-.image-viewer {
-  width: 100%;
-  max-height: 80vh;
-  object-fit: contain;
-}
-
-.text-viewer {
-  font-size: 18px;
-  line-height: 1.6;
+.netflix-player{
+  display:flex;
+  min-height:100vh;
+  background:#141414;
+  color:white;
 }
 
 /* SIDEBAR */
-.sidebar {
-  flex: 1;
-  background: #F8F5F1;
-  padding: 20px;
-  overflow-y: auto;
+
+.netflix-sidebar{
+  width:320px;
+  background:#181818;
+  padding:30px;
+  overflow:auto;
+  border-right:1px solid #333;
 }
 
-.lesson {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  cursor: pointer;
+.course-title{
+  font-size:32px;
+  margin-bottom:30px;
 }
 
-.lesson.active {
-  background: #7A4A3A;
-  color: white;
-  padding: 8px;
-  border-radius: 6px;
+.module-block{
+  margin-bottom:30px;
 }
 
-.progress {
-  margin-bottom: 20px;
-  font-weight: bold;
+.module-block h3{
+  margin-bottom:15px;
+  color:#b3b3b3;
+}
+
+.lesson-item{
+  padding:14px;
+  border-radius:8px;
+  margin-bottom:10px;
+  background:#232323;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.lesson-item:hover{
+  background:#333;
+}
+
+.lesson-item.active{
+  background:#E50914;
+}
+
+/* PLAYER */
+
+.netflix-content{
+  flex:1;
+  padding:40px;
+}
+
+.netflix-content h1{
+  font-size:42px;
+  margin-bottom:30px;
+}
+
+.netflix-video{
+  width:100%;
+  max-width:1100px;
+  border-radius:16px;
+  background:black;
+}
+
+.text-content{
+  font-size:18px;
+  line-height:1.8;
+}
+
+.image-content{
+  max-width:100%;
+  border-radius:16px;
+}
+
+.pdf-content{
+  width:100%;
+  height:80vh;
+  border:none;
+  border-radius:16px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .netflix-player{
+    flex-direction:column;
+  }
+
+  .netflix-sidebar{
+    width:100%;
+    border-right:none;
+    border-bottom:1px solid #333;
+  }
+
+  .netflix-content{
+    padding:20px;
+  }
+
+  .netflix-content h1{
+    font-size:28px;
+  }
 }

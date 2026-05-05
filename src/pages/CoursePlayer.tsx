@@ -32,11 +32,11 @@ export default function CoursePlayer() {
 
         setCourse(data);
 
-        // 🔥 primeira aula automática
+        // 🔥 PRIMEIRA AULA AUTOMÁTICA
         if (
           data?.modules &&
           data.modules.length > 0 &&
-          data.modules[0].lessons &&
+          data.modules[0]?.lessons &&
           data.modules[0].lessons.length > 0
         ) {
 
@@ -47,7 +47,7 @@ export default function CoursePlayer() {
 
       } catch (error) {
 
-        console.log(error);
+        console.log("❌ ERRO:", error);
       }
     }
 
@@ -62,7 +62,14 @@ export default function CoursePlayer() {
   if (!course) {
 
     return (
-      <div style={{ padding: "40px" }}>
+      <div
+        style={{
+          padding: "40px",
+          color: "white",
+          background: "#141414",
+          minHeight: "100vh"
+        }}
+      >
         Carregando curso...
       </div>
     );
@@ -70,33 +77,22 @@ export default function CoursePlayer() {
 
   return (
 
-    <div
-      style={{
-        display: "flex",
-        minHeight: "100vh",
-        background: "#f5f1ed"
-      }}
-    >
+    <div className="netflix-player">
 
       {/* SIDEBAR */}
 
-      <div
-        style={{
-          width: "320px",
-          background: "#fff",
-          padding: "20px",
-          borderRight: "1px solid #ddd"
-        }}
-      >
+      <div className="netflix-sidebar">
 
-        <h2>{course.title}</h2>
+        <h2 className="course-title">
+          {course.title}
+        </h2>
 
         {course.modules?.map(
           (module: any, moduleIndex: number) => (
 
             <div
               key={moduleIndex}
-              style={{ marginTop: "20px" }}
+              className="module-block"
             >
 
               <h3>{module.title}</h3>
@@ -112,23 +108,14 @@ export default function CoursePlayer() {
                     onClick={() =>
                       setCurrentLesson(lesson)
                     }
-                    style={{
-                      padding: "12px",
-                      marginTop: "10px",
-                      cursor: "pointer",
-                      borderRadius: "8px",
-                      background:
-                        currentLesson === lesson
-                          ? "#8B5E3C"
-                          : "#eee",
-                      color:
-                        currentLesson === lesson
-                          ? "#fff"
-                          : "#000"
-                    }}
+                    className={`lesson-item ${
+                      currentLesson === lesson
+                        ? "active"
+                        : ""
+                    }`}
                   >
 
-                    {lesson.title}
+                    ▶ {lesson.title}
 
                   </div>
 
@@ -144,12 +131,7 @@ export default function CoursePlayer() {
 
       {/* PLAYER */}
 
-      <div
-        style={{
-          flex: 1,
-          padding: "40px"
-        }}
-      >
+      <div className="netflix-content">
 
         {currentLesson ? (
 
@@ -157,30 +139,18 @@ export default function CoursePlayer() {
 
             <h1>{currentLesson.title}</h1>
 
-            <p
-  style={{
-    fontSize: "12px",
-    wordBreak: "break-all"
-  }}
->
-  {currentLesson.content}
-</p>
-
             {/* VIDEO */}
 
             {currentLesson.type === "video" && (
 
               <video
                 controls
-                style={{
-                  width: "100%",
-                  marginTop: "20px",
-                  borderRadius: "12px"
-                }}
+                autoPlay
+                className="netflix-video"
               >
 
                 <source
-                  src={currentLesson.content?.trim()}
+                  src={currentLesson.content}
                   type="video/mp4"
                 />
 
@@ -194,11 +164,7 @@ export default function CoursePlayer() {
 
               <iframe
                 src={currentLesson.content}
-                style={{
-                  width: "100%",
-                  height: "80vh",
-                  border: "none"
-                }}
+                className="pdf-content"
               />
 
             )}
@@ -209,10 +175,7 @@ export default function CoursePlayer() {
 
               <img
                 src={currentLesson.content}
-                style={{
-                  width: "100%",
-                  borderRadius: "12px"
-                }}
+                className="image-content"
               />
 
             )}
@@ -221,13 +184,7 @@ export default function CoursePlayer() {
 
             {currentLesson.type === "text" && (
 
-              <div
-                style={{
-                  background: "#fff",
-                  padding: "20px",
-                  borderRadius: "12px"
-                }}
-              >
+              <div className="text-content">
 
                 {currentLesson.content}
 
@@ -239,7 +196,9 @@ export default function CoursePlayer() {
 
         ) : (
 
-          <p>Nenhuma aula encontrada</p>
+          <p style={{ color: "white" }}>
+            Nenhuma aula encontrada
+          </p>
 
         )}
 
