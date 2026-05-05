@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./CreateCourse.css";
+
 import { uploadFile } from "../services/cloudinary";
 import { uploadPdf } from "../services/uploadPdf";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { API_URL } from "../services/api";
+
+import {
+  useNavigate,
+  useParams
+} from "react-router-dom";
 
 /* =========================
    TYPES
@@ -29,11 +35,44 @@ export default function CreateCourse() {
 
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { id } = useParams();
 
   const [courseName, setCourseName] = useState("");
   const [price, setPrice] = useState("");
   const [modules, setModules] = useState<Module[]>([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+
+  if (!id) return;
+
+  async function loadCourse() {
+
+    try {
+
+      const response = await fetch(
+        `${API_URL}/courses/${id}`
+      );
+
+      const data = await response.json();
+
+      setCourseName(data.title || "");
+
+      setPrice(
+        data.price?.toString() || ""
+      );
+
+      setModules(data.modules || []);
+
+    } catch (error) {
+
+      console.log(error);
+    }
+  }
+
+  loadCourse();
+
+}, [id]);
 
   /* =========================
      MODULES
@@ -197,15 +236,21 @@ export default function CreateCourse() {
     );
 
     const response = await fetch(
-      "https://avivai-backend-production.up.railway.app/courses",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(course)
-      }
-    );
+
+  id
+    ? `https://avivai-backend-production.up.railway.app/courses/${id}`
+    : `https://avivai-backend-production.up.railway.app/courses`,
+
+  {
+    method: id ? "PUT" : "POST",
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify(course)
+  }
+);
 
     const data = await response.json();
 
@@ -218,7 +263,11 @@ export default function CreateCourse() {
 
     console.log("✅ SUCESSO:", data);
 
-    alert("Curso criado com sucesso!");
+    alert(
+  id
+    ? "Curso atualizado com sucesso!"
+    : "Curso criado com sucesso!"
+);
 
     navigate("/meus-cursos");
 
@@ -241,7 +290,9 @@ export default function CreateCourse() {
   return (
     <div className="create-course">
 
-      <h1>Criar Curso</h1>
+      <h1>
+  {id ? "Editar Curso" : "Criar Curso"}
+</h1>
 
       <input
         placeholder="Nome do curso"

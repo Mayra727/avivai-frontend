@@ -65,6 +65,11 @@ export default function App() {
 <Route path="/pdf-viewer" element={<PdfViewer />} />
 <Route path="/biblioteca" element={<Biblioteca />} />
 <Route path="/criar-livro" element={<CreateBook />} />
+<Route
+  path="/editar-curso/:id"
+  element={<CreateCourse />}
+/>
+
 
           {/* ✅ AGORA ESTÁ NO LUGAR CERTO */}
           <Route path="/livro2" element={<Livro2Page />} />
