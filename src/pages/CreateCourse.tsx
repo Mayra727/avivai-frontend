@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import "./CreateCourse.css";
 
-import { uploadFile } from "../services/cloudinary";
 import { uploadPdf } from "../services/uploadPdf";
+import { uploadFile } from "../services/uploadFile";
+
 import { useAuth } from "../context/AuthContext";
 import { API_URL } from "../services/api";
 
