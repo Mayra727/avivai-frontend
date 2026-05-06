@@ -144,10 +144,11 @@ export default function CoursePlayer() {
             {currentLesson.type === "video" && (
 
               <video
-                controls
-                autoPlay
-                className="netflix-video"
-              >
+  key={currentLesson.content}
+  controls
+  autoPlay
+  className="netflix-video"
+>
 
                 <source
                   src={currentLesson.content}
