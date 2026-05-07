@@ -63,7 +63,18 @@ export default function CreateCourse() {
         data.price?.toString() || ""
       );
 
-      setModules(data.modules || []);
+      setModules(
+  data.modules.map((m: any) => ({
+    title: m.title || "",
+
+    lessons: m.lessons.map((l: any) => ({
+      title: l.title || "",
+      type: l.type || "video",
+      content: l.content || "",
+      cover: l.cover || ""
+    }))
+  }))
+);
 
     } catch (error) {
 
@@ -168,7 +179,7 @@ export default function CreateCourse() {
 
   console.log("STATE:", modules);
 
-  if (!courseName || !price || modules.length === 0) {
+  if (!courseName || modules.length === 0) {
     alert("Preencha todos os campos");
     return;
   }
@@ -286,123 +297,213 @@ alert("Erro ao salvar curso");
 }
 
   /* =========================
-     UI
-  ========================= */
+   UI
+========================= */
 
-  return (
-    <div className="create-course">
+return (
+  <div className="create-course">
 
-      <h1>
-  {id ? "Editar Curso" : "Criar Curso"}
-</h1>
+    <h1>
+      {id ? "Editar Curso" : "Criar Curso"}
+    </h1>
 
-      <input
-        placeholder="Nome do curso"
-        value={courseName}
-        onChange={(e) => setCourseName(e.target.value)}
-      />
+    <input
+      placeholder="Nome do curso"
+      value={courseName}
+      onChange={(e) => setCourseName(e.target.value)}
+    />
 
-      <input
-        placeholder="Preço (ex: 97.00)"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
-      />
+    <input
+      placeholder="Preço (ex: 97.00)"
+      value={price}
+      onChange={(e) => setPrice(e.target.value)}
+    />
 
-      {modules.map((module, mIndex) => (
-        <div key={mIndex} className="module">
+    {modules.map((module, mIndex) => (
+      <div key={mIndex} className="module">
 
-          <h2>Módulo {mIndex + 1}</h2>
+        <h2>Módulo {mIndex + 1}</h2>
 
-          <input
-            placeholder="Nome do módulo"
-            value={module.title}
-            onChange={(e) => updateModuleTitle(mIndex, e.target.value)}
-          />
+        <input
+          placeholder="Nome do módulo"
+          value={module.title}
+          onChange={(e) =>
+            updateModuleTitle(
+              mIndex,
+              e.target.value
+            )
+          }
+        />
 
-          <button onClick={() => removeModule(mIndex)}>
-            ❌ Excluir módulo
-          </button>
+        <button
+          onClick={() => removeModule(mIndex)}
+        >
+          ❌ Excluir módulo
+        </button>
 
-          {module.lessons.map((lesson, lIndex) => (
-            <div key={lIndex} className="lesson">
+        {module.lessons.map((lesson, lIndex) => (
+          <div key={lIndex} className="lesson">
 
-              <input
-                placeholder="Nome da aula"
-                value={lesson.title}
+            {/* NOME DA AULA */}
+
+            <input
+              placeholder="Nome da aula"
+              value={lesson.title}
+              onChange={(e) =>
+                updateLesson(
+                  mIndex,
+                  lIndex,
+                  "title",
+                  e.target.value
+                )
+              }
+            />
+
+            {/* TIPO */}
+
+            <select
+              value={lesson.type}
+              onChange={(e) =>
+                updateLesson(
+                  mIndex,
+                  lIndex,
+                  "type",
+                  e.target.value as Lesson["type"]
+                )
+              }
+            >
+              <option value="video">
+                🎥 Vídeo
+              </option>
+
+              <option value="pdf">
+                📄 PDF
+              </option>
+
+              <option value="image">
+                🖼️ Imagem
+              </option>
+
+              <option value="text">
+                📝 Texto
+              </option>
+            </select>
+
+            {/* TEXTO */}
+
+            {lesson.type === "text" && (
+              <textarea
+                placeholder="Conteúdo"
+                value={lesson.content}
                 onChange={(e) =>
-                  updateLesson(mIndex, lIndex, "title", e.target.value)
+                  updateLesson(
+                    mIndex,
+                    lIndex,
+                    "content",
+                    e.target.value
+                  )
                 }
               />
+            )}
 
-              <select
-                value={lesson.type}
-                onChange={(e) =>
-                  updateLesson(mIndex, lIndex, "type", e.target.value)
-                }
-              >
-                <option value="video">🎥 Vídeo</option>
-                <option value="pdf">📄 PDF</option>
-                <option value="image">🖼️ Imagem</option>
-                <option value="text">📝 Texto</option>
-              </select>
+            {/* UPLOAD */}
 
-              {lesson.type === "text" && (
-                <textarea
-                  placeholder="Conteúdo"
-                  value={lesson.content}
-                  onChange={(e) =>
-                    updateLesson(mIndex, lIndex, "content", e.target.value)
-                  }
-                />
-              )}
-
-              {lesson.type !== "text" && (
+            {lesson.type !== "text" && (
+              <>
                 <input
                   type="file"
                   onChange={async (e) => {
-                    const file = e.target.files?.[0];
+
+                    const file =
+                      e.target.files?.[0];
+
                     if (!file) return;
 
                     let url = null;
 
-                    if (lesson.type === "pdf") {
+                    if (
+                      lesson.type === "pdf"
+                    ) {
+
                       url = await uploadPdf(file);
+
                     } else {
+
                       url = await uploadFile(file);
                     }
 
                     if (!url) {
+
                       alert("Erro no upload");
+
                       return;
                     }
 
-                    updateLesson(mIndex, lIndex, "content", url);
+                    updateLesson(
+                      mIndex,
+                      lIndex,
+                      "content",
+                      url
+                    );
                   }}
                 />
-              )}
 
-              <button onClick={() => removeLesson(mIndex, lIndex)}>
-                ❌ Excluir aula
-              </button>
+                {/* ARQUIVO EXISTENTE */}
 
-            </div>
-          ))}
+                {lesson.content && (
+                  <div
+                    style={{
+                      marginTop: "10px",
+                      fontSize: "12px",
+                      color: "#666",
+                      wordBreak: "break-all"
+                    }}
+                  >
+                    ✅ Arquivo enviado
+                  </div>
+                )}
 
-          <button onClick={() => addLesson(mIndex)}>
-            + Adicionar aula
-          </button>
+              </>
+            )}
 
-        </div>
-      ))}
+            <button
+              onClick={() =>
+                removeLesson(
+                  mIndex,
+                  lIndex
+                )
+              }
+            >
+              ❌ Excluir aula
+            </button>
 
-      <button onClick={addModule}>
-        + Adicionar módulo
-      </button>
+          </div>
+        ))}
 
-      <button onClick={handleSave} disabled={loading}>
-        {loading ? "Salvando..." : "💾 Salvar curso"}
-      </button>
+        <button
+          onClick={() =>
+            addLesson(mIndex)
+          }
+        >
+          + Adicionar aula
+        </button>
 
-    </div>
-  );
+      </div>
+    ))}
+
+    <button onClick={addModule}>
+      + Adicionar módulo
+    </button>
+
+    <button
+      onClick={handleSave}
+      disabled={loading}
+    >
+      {loading
+        ? "Salvando..."
+        : "💾 Salvar curso"}
+    </button>
+
+  </div>
+);
 }
