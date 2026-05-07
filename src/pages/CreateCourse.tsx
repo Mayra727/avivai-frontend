@@ -191,43 +191,20 @@ export default function CreateCourse() {
 
     setLoading(true);
 
-    const fixedModules = modules.map((m) => ({
-      title: m.title || "",
+const fixedModules = modules.map((m) => ({
+  title: m.title || "",
 
-      lessons: m.lessons.map((l: any) => {
-
-        // 💣 se vier string
-        if (typeof l === "string") {
-
-          try {
-
-            const parsed = JSON.parse(l);
-
-            if (Array.isArray(parsed)) {
-              return parsed[0];
-            }
-
-            return parsed;
-
-          } catch {
-
-            return null;
-          }
-        }
-
-        return {
-          title: l.title || "",
-          type: l.type || "video",
-          content: l.content || "",
-          cover: l.cover || ""
-        };
-
-      }).filter(Boolean)
-    }));
+  lessons: m.lessons.map((l: any) => ({
+    title: l.title || "",
+    type: l.type || "video",
+    content: l.content || "",
+    cover: l.cover || ""
+  }))
+}));
 
     const course = {
       title: courseName,
-      price: Number(price),
+      price: price ? Number(price) : 0,
       modules: fixedModules,
       creatorId: user.id
     };
