@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import "./CreateCourse.css";
-
-import { uploadPdf } from "../services/uploadPdf";
 import { uploadFile } from "../services/uploadFile";
 
 import { useAuth } from "../context/AuthContext";
@@ -421,16 +419,7 @@ return (
 
                     let url = null;
 
-                    if (
-                      lesson.type === "pdf"
-                    ) {
-
-                      url = await uploadPdf(file);
-
-                    } else {
-
-                      url = await uploadFile(file);
-                    }
+url = await uploadFile(file);
 
                     if (!url) {
 
