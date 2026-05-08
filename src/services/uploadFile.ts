@@ -5,9 +5,9 @@ export async function uploadFile(file: File) {
   formData.append("file", file);
 
   formData.append(
-    "upload_preset",
-    "avivai_video"
-  );
+  "upload_preset",
+  "avivai_upload"
+);
 
   try {
 
