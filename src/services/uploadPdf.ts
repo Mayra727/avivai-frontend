@@ -26,7 +26,7 @@ export async function uploadPdf(
 
     const { data } =
       supabase.storage
-        .from("books")
+        .from("PDF")
         .getPublicUrl(fileName);
 
     return data.publicUrl;
