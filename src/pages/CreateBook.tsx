@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { uploadFile } from "../services/uploadFile";
 import { useNavigate } from "react-router-dom";
+import { uploadPdf }
+from "../services/uploadPdf";
+
 
 export default function CreateBook() {
 
@@ -26,7 +29,8 @@ export default function CreateBook() {
 
       // 📄 upload PDF
 
-      const pdfUrl = await uploadFile(pdf);
+      const pdfUrl =
+  await uploadPdf(pdf);
 
       if (!pdfUrl) {
 
