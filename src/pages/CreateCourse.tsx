@@ -4,6 +4,9 @@ import { uploadFile } from "../services/uploadFile";
 
 import { useAuth } from "../context/AuthContext";
 import { API_URL } from "../services/api";
+import { uploadPdf }
+from "../services/uploadPdf";
+
 
 import {
   useNavigate,
@@ -396,7 +399,14 @@ return (
 
                     let url = null;
 
-url = await uploadFile(file);
+if (lesson.type === "pdf") {
+
+  url = await uploadPdf(file);
+
+} else {
+
+  url = await uploadFile(file);
+}
 
                     if (!url) {
 
