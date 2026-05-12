@@ -1,4 +1,5 @@
-import { supabase } from "./supabase";
+import { supabase }
+from "./supabase";
 
 export async function uploadPdf(
   file: File
@@ -6,34 +7,49 @@ export async function uploadPdf(
 
   try {
 
+    console.log("🔥 FILE:", file);
+
     const fileName =
       `${Date.now()}-${file.name}`;
 
-    const { error } =
+    const { data, error } =
       await supabase.storage
-        .from("books")
+        .from("PDF")
         .upload(
           fileName,
-          file
+          file,
+          {
+            upsert: true
+          }
         );
 
-    if (error) {
+    console.log("🔥 DATA:", data);
 
-      console.log(error);
+    console.log("🔥 ERROR:", error);
+
+    if (error) {
 
       return null;
     }
 
-    const { data } =
+    const publicUrl =
       supabase.storage
         .from("PDF")
         .getPublicUrl(fileName);
 
-    return data.publicUrl;
+    console.log(
+      "🔥 URL:",
+      publicUrl
+    );
+
+    return publicUrl.data.publicUrl;
 
   } catch (error) {
 
-    console.log(error);
+    console.log(
+      "🔥 CATCH:",
+      error
+    );
 
     return null;
   }
