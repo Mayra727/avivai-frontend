@@ -20,6 +20,30 @@ const courseId = id;
   const [progress, setProgress] =
   useState<string[]>([]);
 
+  function isModuleUnlocked(
+  moduleIndex: number
+) {
+
+  // 🔓 primeiro módulo sempre liberado
+
+  if (moduleIndex === 0) {
+    return true;
+  }
+
+  const previousModule =
+    course.modules[moduleIndex - 1];
+
+  // 🔥 verifica se TODAS aulas foram concluídas
+
+  return previousModule.lessons.every(
+    (lesson: any) =>
+
+      progress.includes(
+        lesson.title
+      )
+  );
+}
+
 async function completeLesson(
   lessonId: string
 ) {
@@ -179,11 +203,25 @@ useEffect(() => {
 
               <h3>{module.title}</h3>
 
-              {module.lessons?.map(
+{
+  !isModuleUnlocked(moduleIndex) && (
+
+    <div className="locked-module">
+      🔒 Módulo bloqueado
+    </div>
+
+  )
+}
+
+              {
+  isModuleUnlocked(moduleIndex) &&
+
+  module.lessons?.map(
                 (
                   lesson: any,
                   lessonIndex: number
                 ) => (
+                  
 
                 <div
   key={lessonIndex}

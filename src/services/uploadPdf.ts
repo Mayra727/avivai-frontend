@@ -1,56 +1,23 @@
-import { supabase }
-from "./supabase";
+import { supabase } from "./supabase";
 
-export async function uploadPdf(
-  file: File
-) {
+export async function uploadPdf(file: File) {
 
-  try {
+  const fileName = `${Date.now()}-${file.name}`;
 
-    console.log("🔥 FILE:", file);
+  const { error } = await supabase.storage
+    .from("PDF")
+    .upload(fileName, file);
 
-    const fileName =
-      `${Date.now()}-${file.name}`;
-
-    const { data, error } =
-      await supabase.storage
-        .from("PDF")
-        .upload(
-          fileName,
-          file,
-          {
-            upsert: true
-          }
-        );
-
-    console.log("🔥 DATA:", data);
-
-    console.log("🔥 ERROR:", error);
-
-    if (error) {
-
-      return null;
-    }
-
-    const publicUrl =
-      supabase.storage
-        .from("PDF")
-        .getPublicUrl(fileName);
-
-    console.log(
-      "🔥 URL:",
-      publicUrl
-    );
-
-    return publicUrl.data.publicUrl;
-
-  } catch (error) {
-
-    console.log(
-      "🔥 CATCH:",
-      error
-    );
-
+  if (error) {
+    console.error("ERRO REAL PDF:", error);
+    alert("Erro no upload do PDF");
     return null;
   }
+
+  // 🔥 URL pública
+  const { data } = supabase.storage
+    .from("PDF")
+    .getPublicUrl(fileName);
+
+  return data.publicUrl;
 }
