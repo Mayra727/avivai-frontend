@@ -7,8 +7,59 @@ export default function CoursePlayer() {
 
   const { id } = useParams();
 
+  const user =
+  JSON.parse(
+    localStorage.getItem("user") || "{}"
+  );
+
+const courseId = id;
+
   const [course, setCourse] = useState<any>(null);
   const [currentLesson, setCurrentLesson] = useState<any>(null);
+
+  const [progress, setProgress] =
+  useState<string[]>([]);
+
+async function completeLesson(
+  lessonId: string
+) {
+
+  try {
+
+    await fetch(
+      `${API_URL}/progress`,
+      {
+
+        method: "POST",
+
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
+
+        body: JSON.stringify({
+
+          userId: user.id,
+
+          courseId,
+
+          lessonId,
+
+          completed: true
+        })
+      }
+    );
+
+    setProgress((prev) => [
+      ...prev,
+      lessonId
+    ]);
+
+  } catch (error) {
+
+    console.log(error);
+  }
+}
 
   // =========================
   // LOAD COURSE
@@ -54,6 +105,37 @@ export default function CoursePlayer() {
     loadCourse();
 
   }, [id]);
+
+useEffect(() => {
+
+  async function loadProgress() {
+
+    if (!user || !courseId) return;
+
+    try {
+
+      const response = await fetch(
+        `https://avivai-backend-production.up.railway.app/progress/${user.id}/${courseId}`
+      );
+
+      const data = await response.json();
+
+      const completedLessons =
+        data.map(
+          (item: any) => item.lessonId
+        );
+
+      setProgress(completedLessons);
+
+    } catch (error) {
+
+      console.log(error);
+    }
+  }
+
+  loadProgress();
+
+}, [user, courseId]);
 
   // =========================
   // LOADING
@@ -103,21 +185,33 @@ export default function CoursePlayer() {
                   lessonIndex: number
                 ) => (
 
-                  <div
-                    key={lessonIndex}
-                    onClick={() =>
-                      setCurrentLesson(lesson)
-                    }
-                    className={`lesson-item ${
-                      currentLesson === lesson
-                        ? "active"
-                        : ""
-                    }`}
-                  >
+                <div
+  key={lessonIndex}
 
-                    ▶ {lesson.title}
+  onClick={() =>
+    setCurrentLesson(lesson)
+  }
 
-                  </div>
+  className={`lesson-item ${
+    currentLesson === lesson
+      ? "active"
+      : ""
+  }`}
+>
+
+  ▶ {lesson.title}
+
+  {
+    progress.includes(
+  lesson.title
+) && (
+      <span>
+        {" "}✅
+      </span>
+    )
+  }
+
+</div>
 
                 )
               )}
@@ -139,6 +233,25 @@ export default function CoursePlayer() {
 
             <h1>{currentLesson.title}</h1>
 
+<button
+  onClick={() =>
+    completeLesson(
+  currentLesson.title
+)
+  }
+
+    style={{
+    marginTop: "20px",
+    padding: "12px 20px",
+    borderRadius: "10px",
+    border: "none",
+    background: "#7A4A3A",
+    color: "white",
+    cursor: "pointer"
+  }}
+>
+  ✅ Concluir aula
+</button>
             {/* VIDEO */}
 
             {currentLesson.type === "video" && (
@@ -192,6 +305,7 @@ export default function CoursePlayer() {
               </div>
 
             )}
+
 
           </>
 
