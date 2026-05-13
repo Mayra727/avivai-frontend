@@ -233,25 +233,6 @@ useEffect(() => {
 
             <h1>{currentLesson.title}</h1>
 
-<button
-  onClick={() =>
-    completeLesson(
-  currentLesson.title
-)
-  }
-
-    style={{
-    marginTop: "20px",
-    padding: "12px 20px",
-    borderRadius: "10px",
-    border: "none",
-    background: "#7A4A3A",
-    color: "white",
-    cursor: "pointer"
-  }}
->
-  ✅ Concluir aula
-</button>
             {/* VIDEO */}
 
             {currentLesson.type === "video" && (
@@ -305,6 +286,26 @@ useEffect(() => {
               </div>
 
             )}
+
+<button
+  onClick={() =>
+    completeLesson(
+  currentLesson.title
+)
+  }
+
+    style={{
+    marginTop: "20px",
+    padding: "12px 20px",
+    borderRadius: "10px",
+    border: "none",
+    background: "#7A4A3A",
+    color: "white",
+    cursor: "pointer"
+  }}
+>
+  ✅ Concluir aula
+</button>
 
 
           </>
