@@ -20,6 +20,19 @@ const courseId = id;
   const [progress, setProgress] =
   useState<string[]>([]);
 
+const totalLessons =
+  course?.modules?.flatMap(
+    (m: any) => m.lessons
+  ).length || 0;
+
+const progressPercent =
+  totalLessons > 0
+    ? Math.round(
+        (progress.length /
+          totalLessons) * 100
+      )
+    : 0;
+
   function isModuleUnlocked(
   moduleIndex: number
 ) {
@@ -270,6 +283,46 @@ useEffect(() => {
           <>
 
             <h1>{currentLesson.title}</h1>
+
+            <div
+  style={{
+    marginBottom: "20px"
+  }}
+>
+
+  <p
+    style={{
+      color: "white",
+      marginBottom: "8px"
+    }}
+  >
+    Progresso:
+    {progressPercent}%
+  </p>
+
+  <div
+    style={{
+      width: "100%",
+      height: "10px",
+      background: "#333",
+      borderRadius: "10px"
+    }}
+  >
+
+    <div
+      style={{
+        width: `${progressPercent}%`,
+        height: "100%",
+        background: "#7A4A3A",
+        borderRadius: "10px",
+        transition:
+          "0.3s"
+      }}
+    />
+
+  </div>
+
+</div>
 
             {/* VIDEO */}
 
