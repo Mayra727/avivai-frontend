@@ -328,6 +328,7 @@ useEffect(() => {
 
 </div>
 
+
             {/* VIDEO */}
 
             {currentLesson.type === "video" && (
