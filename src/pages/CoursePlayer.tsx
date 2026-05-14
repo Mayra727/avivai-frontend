@@ -286,21 +286,28 @@ useEffect(() => {
 
 <div
   style={{
+    marginTop: "10px",
     marginBottom: "30px",
+    width: "420px",
     padding: "15px",
     background: "#f5f1ee",
-    borderRadius: "14px"
+    borderRadius: "14px",
+
+    display: "flex",
+    flexDirection: "column",
+
+    alignItems: "flex-start"
   }}
 >
 
-  <p
-    style={{
-      color: "#7A4A3A",
-      fontSize: "18px",
-      fontWeight: "700",
-      marginBottom: "12px"
-    }}
-  >
+<p
+  style={{
+    color: "#7A4A3A",
+    fontSize: "18px",
+    fontWeight: "700",
+    margin: "0 0 12px 0"
+  }}
+>
     Progresso: {progressPercent}%
   </p>
 
