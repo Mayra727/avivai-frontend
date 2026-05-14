@@ -70,7 +70,6 @@ async function completeLesson(
     await fetch(
       `${API_URL}/progress`,
       {
-
         method: "POST",
 
         headers: {
@@ -89,6 +88,13 @@ async function completeLesson(
           completed: true
         })
       }
+    );
+
+    // 🔥 salva última aula vista
+
+    localStorage.setItem(
+      `lastLesson-${courseId}`,
+      currentLesson.title
     );
 
     setProgress((prev) => [
@@ -132,10 +138,36 @@ async function completeLesson(
           data.modules[0].lessons.length > 0
         ) {
 
-          setCurrentLesson(
-            data.modules[0].lessons[0]
-          );
-        }
+          const lastLesson =
+  localStorage.getItem(
+    `lastLesson-${id}`
+  );
+
+const allLessons =
+  data.modules.flatMap(
+    (m:any)=>m.lessons
+  );
+
+const savedLesson =
+  allLessons.find(
+    (l:any)=>
+      l.title === lastLesson
+  );
+
+if(savedLesson){
+
+  setCurrentLesson(
+    savedLesson
+  );
+
+}else{
+
+  setCurrentLesson(
+    data.modules[0].lessons[0]
+  );
+
+}
+}
 
       } catch (error) {
 
