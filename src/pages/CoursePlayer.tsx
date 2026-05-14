@@ -246,93 +246,131 @@ useEffect(() => {
  ☰ Módulos
 </button>
 
-      {/* SIDEBAR */}
+{/* SIDEBAR */}
 
 <div
-className={`netflix-sidebar ${
-showSidebar ? "open" : ""
-}`}
-> 
-
-        <h2 className="course-title">
-          {course.title}
-        </h2>
-
-        {course.modules?.map(
-          (module: any, moduleIndex: number) => (
-
-            <div
-              key={moduleIndex}
-              className="module-block"
-            >
-
-              <h3>{module.title}</h3>
-
-{
-  !isModuleUnlocked(moduleIndex) && (
-
-    <div className="locked-module">
-      🔒 Módulo bloqueado
-    </div>
-
-  )
-}
-
-              {
-  isModuleUnlocked(moduleIndex) &&
-
-  module.lessons?.map(
-                (
-                  lesson: any,
-                  lessonIndex: number
-                ) => (
-                  
-
-                <div
-  key={lessonIndex}
-
-  onClick={() => {
-
-setCurrentLesson(
-lesson
-);
-
-setShowSidebar(
-false
-);
-
-}}
-
-  className={`lesson-item ${
-    currentLesson === lesson
-      ? "active"
-      : ""
+  className={`netflix-sidebar ${
+    showSidebar ? "open" : ""
   }`}
 >
 
-  ▶ {lesson.title}
+  <h2 className="course-title">
+    {course.title}
+  </h2>
 
-  {
-    progress.includes(
-  lesson.title
-) && (
-      <span>
-        {" "}✅
-      </span>
-    )
-  }
+  {course.modules?.map(
+    (
+      module: any,
+      moduleIndex: number
+    ) => (
 
-</div>
+      <div
+        key={moduleIndex}
+        className="module-block"
+      >
 
-                )
-              )}
+        <h3>
+          {module.title}
+        </h3>
+
+        {
+          !isModuleUnlocked(
+            moduleIndex
+          ) && (
+
+            <div className="locked-module">
+
+              🔒 Módulo bloqueado
 
             </div>
 
           )
-        )}
+        }
+
+        {
+          isModuleUnlocked(
+            moduleIndex
+          ) &&
+
+          module.lessons?.map(
+            (
+              lesson: any,
+              lessonIndex: number
+            ) => (
+
+              <div
+                key={lessonIndex}
+
+                onClick={() => {
+
+                  setCurrentLesson(
+                    lesson
+                  );
+
+                  setShowSidebar(
+                    false
+                  );
+
+                }}
+
+                className={`lesson-item ${
+                  currentLesson ===
+                  lesson
+                    ? "active"
+                    : ""
+                }`}
+              >
+
+                <div className="lesson-card">
+
+                  {lesson.cover && (
+
+                    <img
+                      src={lesson.cover}
+                      className="lesson-thumb"
+                    />
+
+                  )}
+
+                  <div>
+
+                    <p
+                      style={{
+                        margin: 0
+                      }}
+                    >
+                      {lesson.title}
+                    </p>
+
+                    {
+                      progress.includes(
+                        lesson.title
+                      ) && (
+
+                        <span>
+                          ✅
+                        </span>
+
+                      )
+                    }
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            )
+          )
+
+        }
 
       </div>
+
+    )
+  )}
+
+</div>
 
       {/* PLAYER */}
 

@@ -230,3 +230,26 @@ height:auto;
 }
 
 }
+.lesson-card{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+width:100%;
+}
+
+.lesson-thumb{
+
+width:70px;
+
+height:45px;
+
+border-radius:8px;
+
+object-fit:cover;
+
+flex-shrink:0;
+}

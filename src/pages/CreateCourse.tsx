@@ -424,6 +424,62 @@ if (lesson.type === "pdf") {
                   }}
                 />
 
+<label>
+🖼️ Capa da aula
+</label>
+
+<input
+  type="file"
+
+  accept="image/*"
+
+  onChange={async (e) => {
+
+    const file =
+      e.target.files?.[0];
+
+    if (!file) return;
+
+    const coverUrl =
+      await uploadFile(file);
+
+    if (!coverUrl) {
+
+      alert(
+        "Erro ao enviar capa"
+      );
+
+      return;
+    }
+
+    updateLesson(
+      mIndex,
+      lIndex,
+      "cover",
+      coverUrl
+    );
+
+  }}
+/>
+
+{
+ lesson.cover && (
+
+<div
+style={{
+fontSize:"12px",
+marginTop:"5px",
+color:"#7A4A3A"
+}}
+>
+
+✅ Capa enviada
+
+</div>
+
+)
+}
+
                 {/* ARQUIVO EXISTENTE */}
 
                 {lesson.content && (
