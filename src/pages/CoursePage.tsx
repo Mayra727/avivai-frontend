@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { courses } from "../data/courses";
 import { createPayment } from "../services/payment";
 import "./CoursePage.css";
+import { API_URL } from "../services/api";
 
 export default function CoursePage() {
 
@@ -71,12 +72,97 @@ export default function CoursePage() {
 
           </div>
 
-          <button
-            className="buy-button"
-            onClick={handleBuy}
-          >
-            🛒 Comprar Curso
-          </button>
+<button
+
+onClick={async()=>{
+
+const user=
+JSON.parse(
+localStorage.getItem(
+"user"
+)||"{}"
+);
+
+if(!user?.id){
+
+alert(
+"Faça login primeiro"
+);
+
+return;
+
+}
+
+try{
+
+await fetch(
+
+`${API_URL}/grant-access`,
+
+{
+
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/json"
+},
+
+body:JSON.stringify({
+
+userId:user.id,
+
+
+
+})
+
+}
+
+);
+
+alert(
+"Acesso liberado"
+);
+
+window.location.reload();
+
+}catch(error){
+
+console.log(error);
+
+alert(
+"Erro ao liberar acesso"
+);
+
+}
+
+}}
+
+style={{
+
+padding:"12px",
+
+background:"#7A4A3A",
+
+color:"#fff",
+
+border:"none",
+
+borderRadius:"10px",
+
+width:"100%",
+
+fontWeight:"600",
+
+marginTop:"15px"
+
+}}
+
+>
+
+🛒 Comprar curso
+
+</button>
 
         </div>
 
