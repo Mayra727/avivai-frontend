@@ -15,7 +15,11 @@ export default function CoursePlayer() {
 const courseId = id;
 
   const [course, setCourse] = useState<any>(null);
+
   const [currentLesson, setCurrentLesson] = useState<any>(null);
+  
+const [showSidebar, setShowSidebar] =
+  useState(false);
 
   const [progress, setProgress] =
   useState<string[]>([]);
@@ -198,9 +202,25 @@ useEffect(() => {
 
     <div className="netflix-player">
 
+<button
+  className="mobile-menu-btn"
+
+  onClick={() =>
+    setShowSidebar(
+      !showSidebar
+    )
+  }
+>
+ ☰ Módulos
+</button>
+
       {/* SIDEBAR */}
 
-      <div className="netflix-sidebar">
+<div
+className={`netflix-sidebar ${
+showSidebar ? "open" : ""
+}`}
+> 
 
         <h2 className="course-title">
           {course.title}
@@ -239,9 +259,17 @@ useEffect(() => {
                 <div
   key={lessonIndex}
 
-  onClick={() =>
-    setCurrentLesson(lesson)
-  }
+  onClick={() => {
+
+setCurrentLesson(
+lesson
+);
+
+setShowSidebar(
+false
+);
+
+}}
 
   className={`lesson-item ${
     currentLesson === lesson
