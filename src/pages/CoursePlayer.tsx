@@ -284,28 +284,33 @@ useEffect(() => {
 
             <h1>{currentLesson.title}</h1>
 
-            <div
+<div
   style={{
-    marginBottom: "20px"
+    marginBottom: "30px",
+    padding: "15px",
+    background: "#f5f1ee",
+    borderRadius: "14px"
   }}
 >
 
   <p
     style={{
-      color: "white",
-      marginBottom: "8px"
+      color: "#7A4A3A",
+      fontSize: "18px",
+      fontWeight: "700",
+      marginBottom: "12px"
     }}
   >
-    Progresso:
-    {progressPercent}%
+    Progresso: {progressPercent}%
   </p>
 
   <div
     style={{
       width: "100%",
-      height: "10px",
-      background: "#333",
-      borderRadius: "10px"
+      height: "18px",
+      background: "#ddd",
+      borderRadius: "30px",
+      overflow: "hidden"
     }}
   >
 
@@ -314,9 +319,8 @@ useEffect(() => {
         width: `${progressPercent}%`,
         height: "100%",
         background: "#7A4A3A",
-        borderRadius: "10px",
-        transition:
-          "0.3s"
+        borderRadius: "30px",
+        transition: "all .4s ease"
       }}
     />
 
