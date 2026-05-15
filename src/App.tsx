@@ -21,6 +21,8 @@ import Biblioteca from "./pages/Biblioteca";
 import CreateBook from "./pages/CreateBook";
 import ForgotPassword
 from "./pages/ForgotPassword";
+import ResetPassword
+from "./pages/ResetPassword";
 
 
 export default function App() {
@@ -49,6 +51,10 @@ export default function App() {
 <Route
   path="/forgot-password"
   element={<ForgotPassword />}
+/>
+<Route
+  path="/reset-password/:token"
+  element={<ResetPassword />}
 />
 
           <Route path="/dashboard" element={<Dashboard />} />
