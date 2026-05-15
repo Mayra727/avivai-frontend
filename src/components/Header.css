@@ -1,5 +1,7 @@
 /* HEADER BASE */
 .header {
+  position:relative;
+z-index:999999;
   width: 100%;
   background: #7A4A3A;
   padding: 16px 0;
