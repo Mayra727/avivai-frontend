@@ -56,8 +56,8 @@ export default function ForgotPassword() {
       }
 
       alert(
-"Verifique o email (token no Railway logs)"
-      );
+"Enviamos um link de recuperação para seu email."
+);
 
       navigate("/login");
 
@@ -65,16 +65,13 @@ export default function ForgotPassword() {
 
       console.log(error);
 
+      
+        setLoading(false);
+
       alert(
         "Erro servidor"
       );
-
-    }finally{
-
-      setLoading(false);
-
     }
-
   }
 
   return(
