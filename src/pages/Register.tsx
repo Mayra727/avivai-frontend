@@ -18,14 +18,66 @@ export default function Register() {
     });
   }
 
-  function handleSubmit(e: any) {
-    e.preventDefault();
+ async function handleSubmit(
+  e: any
+) {
 
-    console.log("Cadastro:", form);
+  e.preventDefault();
 
-    // 🔥 aqui depois conecta com backend
-    navigate("/dashboard");
+  try {
+
+    const response =
+      await fetch(
+
+"https://avivai-backend-production.up.railway.app/register",
+
+      {
+
+        method: "POST",
+
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
+
+        body: JSON.stringify(
+          form
+        )
+
+      }
+
+    );
+
+    const data =
+      await response.json();
+
+    if (!response.ok) {
+
+      alert(
+        data.error ||
+        "Erro ao cadastrar"
+      );
+
+      return;
+    }
+
+    alert(
+      "Conta criada com sucesso!"
+    );
+
+    navigate("/login");
+
+  } catch (error) {
+
+    console.log(error);
+
+    alert(
+      "Erro no servidor"
+    );
+
   }
+
+}
 
   return (
     <div className="register-page">
