@@ -1,84 +1,199 @@
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import { createPayment } from "../services/payment";
+import {
+  useEffect,
+  useState
+} from "react";
+
+import {
+  useNavigate
+} from "react-router-dom";
+
+import {
+  useAuth
+} from "../context/AuthContext";
+
+import {
+  API_URL
+} from "../services/api";
 
 export default function Courses() {
 
   const navigate = useNavigate();
-  const { user } = useAuth();
 
-  const comprarCurso = async () => {
+  const { user } =
+    useAuth();
 
-    if (!user) {
-      alert("Você precisa estar logado para comprar.");
-      navigate("/login");
-      return;
+  const [courses, setCourses] =
+    useState<any[]>([]);
+
+  useEffect(() => {
+
+    async function loadCourses() {
+
+      try {
+
+        const response =
+          await fetch(
+            `${API_URL}/courses`
+          );
+
+        const data =
+          await response.json();
+
+        setCourses(data);
+
+      } catch (error) {
+
+        console.log(error);
+
+      }
+
     }
 
-    try {
+    loadCourses();
 
-      const payment = await createPayment(
-        "69a07acbf38bdbb559131ea6",
-        "O Caminho da Intimidade",
-        200
-      );
-
-      window.location.href =
-        `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${payment.id}`;
-
-    } catch (error) {
-
-      console.error(error);
-      alert("Erro ao iniciar pagamento");
-
-    }
-
-  };
+  }, []);
 
   return (
-    <div style={{ padding: "60px" }}>
-      <h1>Cursos Disponíveis</h1>
+
+    <div
+      style={{
+        padding:"60px"
+      }}
+    >
+
+      <h1>
+        Cursos Disponíveis
+      </h1>
 
       {user ? (
-        <p style={{ color: "green" }}>
-          Você está logado como <strong>{user.name}</strong> ✅
+
+        <p
+          style={{
+            color:"green"
+          }}
+        >
+
+          Você está logado como{" "}
+
+          <strong>
+            {user.name}
+          </strong>
+
+          {" "}✅
+
         </p>
+
       ) : (
-        <p style={{ color: "red" }}>Você não está logado</p>
+
+        <p
+          style={{
+            color:"red"
+          }}
+        >
+
+          Você não está logado
+
+        </p>
+
       )}
 
       <div
         style={{
-          marginTop: "20px",
-          padding: "20px",
-          background: "#fff",
-          borderRadius: "10px",
+          display:"grid",
+
+          gridTemplateColumns:
+            "repeat(auto-fit,minmax(300px,1fr))",
+
+          gap:"20px",
+
+          marginTop:"40px"
         }}
       >
-        <h3>O Caminho da Intimidade</h3>
 
-        <p>
-          Uma jornada espiritual profunda para desenvolver relacionamento real com Deus.
-        </p>
+        {courses.map((course:any)=>(
 
-        <p><strong>R$ 200</strong></p>
+          <div
 
-        <button
-          onClick={comprarCurso}
-          style={{
-            padding: "10px 20px",
-            background: "#8B4533",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            marginTop: "10px",
-          }}
-        >
-          Comprar
-        </button>
+            key={course._id}
+
+            style={{
+              background:"#fff",
+
+              borderRadius:"20px",
+
+              overflow:"hidden",
+
+              boxShadow:
+                "0 5px 20px rgba(0,0,0,0.08)"
+            }}
+
+          >
+
+            <div
+              style={{
+                height:"180px",
+                background:"#d9cfc7"
+              }}
+            />
+
+            <div
+              style={{
+                padding:"20px"
+              }}
+            >
+
+              <h2>
+                {course.title}
+              </h2>
+
+              <p>
+                Curso completo Avivai
+              </p>
+
+              <h3>
+                R$ {course.price}
+              </h3>
+
+              <button
+
+                onClick={()=>
+                  navigate(
+                    `/curso/${course._id}`
+                  )
+                }
+
+                style={{
+                  width:"100%",
+
+                  padding:"12px",
+
+                  border:"none",
+
+                  borderRadius:"10px",
+
+                  background:"#7A4A3A",
+
+                  color:"#fff",
+
+                  cursor:"pointer"
+                }}
+
+              >
+
+                Ver curso
+
+              </button>
+
+            </div>
+
+          </div>
+
+        ))}
 
       </div>
+
     </div>
+
   );
+
 }
