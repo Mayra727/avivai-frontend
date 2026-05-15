@@ -29,7 +29,29 @@ export default function Header() {
         <nav className="nav">
 
           <Link to="/">Início</Link>
-          <Link to="/ebook">Ebook</Link>
+          <div className="dropdown">
+
+  <span className="dropdown-title">
+    Cursos
+  </span>
+
+  <div className="dropdown-menu">
+
+    <Link to="/cursos">
+      O Caminho da Intimidade
+    </Link>
+
+    <Link to="/ebook">
+      Ebook
+    </Link>
+
+    <Link to="/livro2">
+      Livro Vivencial 2
+    </Link>
+
+  </div>
+
+</div>
           <Link to="/mentoria">Mentoria</Link>
 
           {!user && (
