@@ -19,6 +19,9 @@ import CreateCourse from "./pages/CreateCourse";
 import PdfViewer from "./pages/PdfViewer";
 import Biblioteca from "./pages/Biblioteca";
 import CreateBook from "./pages/CreateBook";
+import ForgotPassword
+from "./pages/ForgotPassword";
+
 
 export default function App() {
   useAuth();
@@ -43,6 +46,10 @@ export default function App() {
 
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Register />} />
+<Route
+  path="/forgot-password"
+  element={<ForgotPassword />}
+/>
 
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/meus-cursos" element={<MyCourses />} />
