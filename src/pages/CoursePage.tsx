@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { courses } from "../data/courses";
-import { createPayment } from "../services/payment";
 import "./CoursePage.css";
 import { API_URL } from "../services/api";
 
@@ -12,33 +11,6 @@ export default function CoursePage() {
 
   if (!course) {
     return <h2 style={{ padding: "40px" }}>Curso não encontrado</h2>;
-  }
-
-  async function handleBuy() {
-
-    try {
-
-      console.log("Iniciando pagamento:", course);
-
-     const payment = await createPayment(
-  String(course!.id),
-  course!.title,
-  course!.price
-);
-
-      console.log("Pagamento criado:", payment);
-
-      window.location.href =
-        `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${payment.id}`;
-
-    } catch (error) {
-
-      console.error("Erro pagamento:", error);
-
-      alert("Erro ao conectar com pagamento");
-
-    }
-
   }
 
   return (
