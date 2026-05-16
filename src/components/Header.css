@@ -107,7 +107,9 @@ z-index:999999;
 
 .dropdown{
   position:relative;
-   padding-bottom:20px;
+   display:flex;
+align-items:center;
+height:100%;
 }
 
 .dropdown-title{
@@ -124,6 +126,8 @@ height:100%;
   position:absolute;
 
   top:100%;
+
+padding-top:10px;
 
   left:-40px;
 
