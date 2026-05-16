@@ -119,6 +119,11 @@ async function completeLesson(
 const [hasAccess, setHasAccess] =
   useState(false);
 
+const [
+  accessChecked,
+  setAccessChecked
+] = useState(false);
+
   useEffect(() => {
 
     if (!id) return;
@@ -143,6 +148,8 @@ const [hasAccess, setHasAccess] =
   setHasAccess(
     accessData.hasAccess
   );
+
+setAccessChecked(true);
 
 }
 
@@ -239,6 +246,29 @@ useEffect(() => {
   // =========================
   // LOADING
   // =========================
+
+if(!accessChecked){
+
+  return(
+
+    <div
+      style={{
+        minHeight:"100vh",
+        background:"#141414",
+        color:"white",
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center"
+      }}
+    >
+
+      Verificando acesso...
+
+    </div>
+
+  );
+
+}
 
   if (!course) {
 
