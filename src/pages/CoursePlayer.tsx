@@ -1,11 +1,15 @@
 import "./CoursePlayer.css";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import {
+  useParams,
+  useNavigate
+} from "react-router-dom";
 import { API_URL } from "../services/api";
 
 export default function CoursePlayer() {
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const user =
   JSON.parse(
@@ -112,6 +116,9 @@ async function completeLesson(
   // LOAD COURSE
   // =========================
 
+const [hasAccess, setHasAccess] =
+  useState(false);
+
   useEffect(() => {
 
     if (!id) return;
@@ -119,6 +126,25 @@ async function completeLesson(
     async function loadCourse() {
 
       try {
+
+
+        if(user){
+
+  const accessResponse =
+    await fetch(
+
+`${API_URL}/check-access/${user.id}/${id}`
+
+    );
+
+  const accessData =
+    await accessResponse.json();
+
+  setHasAccess(
+    accessData.hasAccess
+  );
+
+}
 
         const response = await fetch(
           `${API_URL}/courses/${id}`
@@ -215,6 +241,70 @@ useEffect(() => {
   // =========================
 
   if (!course) {
+
+if(!hasAccess){
+
+  return(
+
+    <div
+      style={{
+        minHeight:"100vh",
+        background:"#141414",
+        color:"white",
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        flexDirection:"column",
+        padding:"40px",
+        textAlign:"center"
+      }}
+    >
+
+      <h1>
+        🔒 Conteúdo bloqueado
+      </h1>
+
+      <p
+        style={{
+          marginTop:"15px",
+          maxWidth:"500px",
+          lineHeight:"1.6"
+        }}
+      >
+
+        Você precisa adquirir este
+        conteúdo para liberar acesso.
+
+      </p>
+
+      <button
+
+        onClick={()=>
+          navigate("/cursos")
+        }
+
+        style={{
+          marginTop:"25px",
+          padding:"14px 28px",
+          border:"none",
+          borderRadius:"10px",
+          background:"#7A4A3A",
+          color:"#fff",
+          cursor:"pointer",
+          fontSize:"16px"
+        }}
+
+      >
+
+        Ver planos disponíveis
+
+      </button>
+
+    </div>
+
+  );
+
+}
 
     return (
       <div

@@ -124,28 +124,9 @@ export default function Livro2Page() {
             style={{ maxWidth: "250px", marginBottom: "20px" }}
           />
 
-          <h2>📘 Volume 2</h2>
-
-          <p style={{ marginTop: "10px" }}>
-            Continue a jornada e aprofunde sua intimidade com Deus.
-          </p>
-
           <h3 style={{ textDecoration: "line-through" }}>R$97</h3>
           <h2 style={{ fontSize: "32px" }}>R$49</h2>
 
-          <button
-            onClick={() => alert("checkout livro 2")}
-            style={{
-              marginTop: "20px",
-              padding: "16px 40px",
-              background: "#B4533A",
-              color: "white",
-              borderRadius: "10px",
-              border: "none"
-            }}
-          >
-            Quero continuar minha jornada
-          </button>
 
         </div>
       </section>
