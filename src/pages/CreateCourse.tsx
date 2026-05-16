@@ -41,6 +41,10 @@ export default function CreateCourse() {
 
   const [courseName, setCourseName] = useState("");
   const [price, setPrice] = useState("");
+
+  const [type, setType] =
+  useState("curso");
+
   const [modules, setModules] = useState<Module[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -296,6 +300,31 @@ return (
       value={price}
       onChange={(e) => setPrice(e.target.value)}
     />
+
+<select
+  value={type}
+  onChange={(e)=>
+    setType(e.target.value)
+  }
+>
+
+  <option value="curso">
+    Curso
+  </option>
+
+  <option value="ebook">
+    Ebook
+  </option>
+
+  <option value="livro">
+    Livro
+  </option>
+
+  <option value="mentoria">
+    Mentoria
+  </option>
+
+</select>
 
     {modules.map((module, mIndex) => (
       <div key={mIndex} className="module">
