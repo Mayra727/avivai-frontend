@@ -114,23 +114,6 @@ export default function Livro2Page() {
         </div>
       </section>
 
-      {/* PRODUTO */}
-      <section style={{ padding: "80px 20px", background: "#7A4A3A", color: "#fff", textAlign: "center" }}>
-        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-
-          <img
-            src="/livro2.png"
-            alt="Livro 2"
-            style={{ maxWidth: "250px", marginBottom: "20px" }}
-          />
-
-          <h3 style={{ textDecoration: "line-through" }}>R$97</h3>
-          <h2 style={{ fontSize: "32px" }}>R$49</h2>
-
-
-        </div>
-      </section>
-
       {/* CTA FINAL */}
       <section style={{ padding: "80px 20px", textAlign: "center" }}>
         <h2>A profundidade não está no começo</h2>
