@@ -96,9 +96,9 @@ z-index:999999;
 /* IMAGEM DA LOGO */
 .logo-img{
 
-  width:70px;
+  width:95px;
 
-  height:70px;
+  height:95px;
 
   object-fit:contain;
 
@@ -107,11 +107,11 @@ z-index:999999;
 /* TEXTO AVIVAI */
 .logo-text{
 
-  font-size:42px;
+  font-size:28px;
 
   font-weight:700;
 
-  letter-spacing:4px;
+  letter-spacing:3px;
 
   color:white;
 
