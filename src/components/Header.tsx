@@ -63,7 +63,13 @@ export default function Header() {
 
           {user && (
             <>
-              <Link to="/dashboard">Dashboard</Link>
+              {user.role === "produtor" && (
+
+  <Link to="/dashboard">
+    Dashboard
+  </Link>
+
+)}
 
               <span className="user">
                 {user.name}

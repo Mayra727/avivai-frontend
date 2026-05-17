@@ -1,7 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { Navigate } from "react-router-dom";
 
 export default function Dashboard() {
+
+const { user } = useAuth();
+
+if(user?.role !== "produtor"){
+
+  return <Navigate to="/" />;
+
+}
 
   const [cursos, setCursos] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
