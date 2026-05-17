@@ -65,6 +65,14 @@ export default function ProducerDashboard() {
           <p>Veja quem comprou</p>
         </div>
 
+<div
+  className="producer-card"
+  onClick={() => navigate("/liberar-acesso")}
+>
+  <h3>🔓 Liberar Acesso</h3>
+  <p>Liberar cursos manualmente</p>
+</div>
+
         <div className="producer-card">
           <h3>💰 Vendas</h3>
           <p>Em breve</p>

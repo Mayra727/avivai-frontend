@@ -316,28 +316,31 @@ if(!hasAccess){
 
       </p>
 
-      <button
+<button
 
-        onClick={()=>
-          navigate("/cursos")
-        }
+  onClick={()=>{
 
-        style={{
-          marginTop:"25px",
-          padding:"14px 28px",
-          border:"none",
-          borderRadius:"10px",
-          background:"#7A4A3A",
-          color:"#fff",
-          cursor:"pointer",
-          fontSize:"16px"
-        }}
+    window.location.href =
+"https://checkout.infinitepay.io/vanessa-nonato-s38/YSZGnPk66z";
 
-      >
+  }}
 
-        Ver planos disponíveis
+  style={{
+    marginTop:"25px",
+    padding:"14px 28px",
+    border:"none",
+    borderRadius:"10px",
+    background:"#7A4A3A",
+    color:"#fff",
+    cursor:"pointer",
+    fontSize:"16px"
+  }}
 
-      </button>
+>
+
+  Comprar acesso
+
+</button>
 
     </div>
 

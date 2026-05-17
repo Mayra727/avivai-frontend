@@ -1,72 +1,91 @@
-import { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { API_URL } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 export default function PaymentSuccess() {
 
   const navigate = useNavigate();
-  const [params] = useSearchParams();
-
-  useEffect(() => {
-
-    console.log("PaymentSuccess carregou");
-
-    async function verifyPayment() {
-
-   console.log("params completos:", Object.fromEntries(params.entries()));   
-
-      const paymentId =
-  params.get("payment_id") ||
-  params.get("collection_id") ||
-  params.get("id");
-
-      console.log("paymentId recebido:", paymentId);
-
-      if (!paymentId) {
-        console.log("Payment ID não encontrado");
-        navigate("/dashboard");
-        return;
-      }
-
-      try {
-
-        console.log("Chamando backend:", `${API_URL}/verify-payment/${paymentId}`);
-
-        const response = await fetch(`${API_URL}/verify-payment/${paymentId}`);
-
-if (!response.ok) {
-  console.log("Erro no backend:", response.status);
-  navigate("/dashboard");
-  return;
-}
-
-const data = await response.json();
-console.log("Resposta do backend:", data);
-
-        console.log("Resposta do backend:", data);
-
-        setTimeout(() => {
-          navigate("/dashboard");
-        }, 2000);
-
-      } catch (error) {
-
-        console.log("Erro ao verificar pagamento:", error);
-        navigate("/dashboard");
-
-      }
-
-    }
-
-    verifyPayment();
-
-  }, []);
 
   return (
-    <div style={{ padding: "60px" }}>
-      <h1>Pagamento aprovado 🎉</h1>
-      <p>Liberando seu curso...</p>
+
+    <div
+      style={{
+        minHeight:"100vh",
+        background:"#F8F5F1",
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        padding:"30px"
+      }}
+    >
+
+      <div
+        style={{
+          background:"#fff",
+          padding:"50px",
+          borderRadius:"24px",
+          maxWidth:"600px",
+          width:"100%",
+          textAlign:"center",
+          boxShadow:
+            "0 10px 40px rgba(0,0,0,0.08)"
+        }}
+      >
+
+        <h1
+          style={{
+            color:"#7A4A3A",
+            fontSize:"42px",
+            marginBottom:"20px"
+          }}
+        >
+
+          🎉 Pagamento recebido
+
+        </h1>
+
+        <p
+          style={{
+            fontSize:"18px",
+            lineHeight:"1.7",
+            color:"#444"
+          }}
+        >
+
+          Seu pagamento foi processado com sucesso.
+
+          <br /><br />
+
+          O acesso ao curso será liberado
+          pela nossa equipe em instantes.
+
+        </p>
+
+        <button
+
+          onClick={()=>
+            navigate("/dashboard")
+          }
+
+          style={{
+            marginTop:"35px",
+            padding:"16px 32px",
+            border:"none",
+            borderRadius:"12px",
+            background:"#7A4A3A",
+            color:"#fff",
+            fontSize:"16px",
+            cursor:"pointer"
+          }}
+
+        >
+
+          Ir para dashboard
+
+        </button>
+
+      </div>
+
     </div>
+
   );
 
 }
