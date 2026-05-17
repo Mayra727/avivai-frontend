@@ -281,8 +281,6 @@ if(!accessChecked){
 
 }
 
-  if (!course) {
-
 if(!hasAccess){
 
   return(
@@ -347,23 +345,30 @@ if(!hasAccess){
 
 }
 
-    return (
-      <div
-        style={{
-          padding: "40px",
-          color: "white",
-          background: "#141414",
-          minHeight: "100vh"
-        }}
-      >
-        Carregando curso...
-      </div>
-    );
-  }
+if (!course) {
 
   return (
 
-    <div className="netflix-player">
+    <div
+      style={{
+        padding: "40px",
+        color: "white",
+        background: "#141414",
+        minHeight: "100vh"
+      }}
+    >
+
+      Carregando curso...
+
+    </div>
+
+  );
+
+}
+
+return (
+
+  <div className="netflix-player">
 
 <button
   className="mobile-menu-btn"
