@@ -116,6 +116,7 @@ async function completeLesson(
   // LOAD COURSE
   // =========================
 
+  
 const [hasAccess, setHasAccess] =
   useState(false);
 
@@ -133,7 +134,17 @@ const [
       try {
 
 
+        if(!user){
+
+  navigate("/login");
+
+  return;
+
+}
+
         if(user){
+
+
 
   const accessResponse =
     await fetch(

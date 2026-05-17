@@ -180,7 +180,7 @@ export default function Courses() {
 
               >
 
-                Ver curso
+                comprar curso
 
               </button>
 
