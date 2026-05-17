@@ -23,6 +23,8 @@ import ForgotPassword
 from "./pages/ForgotPassword";
 import ResetPassword
 from "./pages/ResetPassword";
+import GrantAccess from "./pages/GrantAccess";
+
 
 
 export default function App() {
@@ -83,6 +85,10 @@ export default function App() {
   element={<CreateCourse />}
 />
 
+<Route
+  path="/liberar-acesso"
+  element={<GrantAccess />}
+/>
 
           {/* ✅ AGORA ESTÁ NO LUGAR CERTO */}
           <Route path="/livro2" element={<Livro2Page />} />
