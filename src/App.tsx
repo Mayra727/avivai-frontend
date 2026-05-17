@@ -24,6 +24,7 @@ from "./pages/ForgotPassword";
 import ResetPassword
 from "./pages/ResetPassword";
 import GrantAccess from "./pages/GrantAccess";
+import StudentDashboard from "./pages/StudentDashboard";
 
 
 
@@ -88,6 +89,11 @@ export default function App() {
 <Route
   path="/liberar-acesso"
   element={<GrantAccess />}
+/>
+
+<Route
+  path="/aluno"
+  element={<StudentDashboard />}
 />
 
           {/* ✅ AGORA ESTÁ NO LUGAR CERTO */}

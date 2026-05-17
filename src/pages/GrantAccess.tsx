@@ -1,7 +1,20 @@
 import { useState } from "react";
 import { API_URL } from "../services/api";
+import { useAuth } from "../context/AuthContext";
+import { Navigate } from "react-router-dom";
 
 export default function GrantAccess() {
+
+const { user } = useAuth();
+
+if(
+  user?.role !== "produtor" &&
+  user?.role !== "superadmin"
+){
+
+  return <Navigate to="/" />;
+
+}
 
   const [userId, setUserId] =
     useState("");

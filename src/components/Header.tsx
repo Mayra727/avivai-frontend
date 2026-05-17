@@ -61,28 +61,40 @@ export default function Header() {
             </>
           )}
 
-          {user && (
-            <>
-              {user.role === "produtor" && (
+         {user && (
 
-  <Link to="/dashboard">
-    Dashboard
-  </Link>
+  <>
+
+    {user.role === "produtor" && (
+
+      <Link to="/dashboard">
+        Dashboard
+      </Link>
+
+    )}
+
+    {user.role === "aluno" && (
+
+      <Link to="/aluno">
+        Meus Cursos
+      </Link>
+
+    )}
+
+    <span className="user">
+      {user.name}
+    </span>
+
+    <button
+      onClick={handleLogout}
+      className="logout-btn"
+    >
+      Logout
+    </button>
+
+  </>
 
 )}
-
-              <span className="user">
-                {user.name}
-              </span>
-
-              <button
-                onClick={handleLogout}
-                className="logout-btn"
-              >
-                Logout
-              </button>
-            </>
-          )}
 
         </nav>
 
@@ -90,4 +102,3 @@ export default function Header() {
     </header>
   );
 }
-
