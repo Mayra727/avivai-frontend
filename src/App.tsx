@@ -25,6 +25,8 @@ import ResetPassword
 from "./pages/ResetPassword";
 import GrantAccess from "./pages/GrantAccess";
 import StudentDashboard from "./pages/StudentDashboard";
+import Footer from "./components/Footer";
+
 
 
 
@@ -101,6 +103,8 @@ export default function App() {
         </Routes>
 
       </div>
+
+      <Footer />
 
     </div>
   );
