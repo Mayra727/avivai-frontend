@@ -46,7 +46,7 @@
 
 .footer-logo{
 
-  width:90px;
+  width:140px;
 
   object-fit:contain;
 
@@ -54,7 +54,7 @@
 
 .footer-brand h2{
 
-  font-size:34px;
+  font-size:28px;
 
   margin-top:12px;
 
@@ -121,7 +121,7 @@
   padding-top:24px;
 
   border-top:
-  1px solid rgba(255,255,255,0.15);
+  1px solid rgba(255,255,255,0.08);
 
   display:flex;
 

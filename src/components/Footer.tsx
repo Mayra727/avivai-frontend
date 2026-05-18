@@ -54,7 +54,7 @@ export default function Footer(){
         </p>
 
         <span>
-          MTechAI — Tecnologia em movimento ✨
+          Desenvolvido por MTechAI • Tecnologia em movimento ✨
         </span>
 
       </div>
