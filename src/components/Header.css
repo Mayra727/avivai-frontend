@@ -212,9 +212,107 @@
 
   .header{
 
-    padding:20px;
+    padding:18px 20px;
 
   }
+
+  .header-container{
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:18px;
+
+  }
+
+  .logo-container{
+
+    gap:12px;
+
+  }
+
+  .logo-img{
+
+    width:80px;
+
+  }
+
+  .logo-text{
+
+    font-size:34px;
+
+    letter-spacing:3px;
+
+  }
+
+  .nav{
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:16px;
+
+  }
+
+  .nav a,
+  .dropdown-title,
+  .user{
+
+    font-size:15px;
+
+  }
+
+  .logout-btn{
+
+    padding:8px 16px;
+
+    font-size:14px;
+
+  }
+
+  .dropdown-menu{
+
+    left:50%;
+
+    transform:
+    translateX(-50%);
+
+    min-width:220px;
+
+  }
+
+  /* NOTEBOOK */
+
+@media (max-width:1200px){
+
+  .logo-img{
+
+    width:120px;
+
+  }
+
+  .logo-text{
+
+    font-size:40px;
+
+  }
+
+  .nav{
+
+    gap:22px;
+
+  }
+
+  .nav a,
+  .dropdown-title{
+
+    font-size:17px;
+
+  }
+
+}
 
   .header-container{
 
