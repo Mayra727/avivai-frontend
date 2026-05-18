@@ -57,17 +57,19 @@
 
 .logo-text{
 
-  font-size:58px;
+  font-size:48px;
 
-  font-weight:700;
+  font-weight:600;
 
   color:white;
 
-  letter-spacing:6px;
+  letter-spacing:4px;
 
   font-family:serif;
 
   white-space:nowrap;
+
+  opacity:0.95;
 
 }
 
