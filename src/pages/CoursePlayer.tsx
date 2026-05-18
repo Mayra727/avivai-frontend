@@ -1,5 +1,9 @@
 import "./CoursePlayer.css";
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+  useRef
+} from "react";
 import {
   useParams,
   useNavigate
@@ -24,6 +28,12 @@ const courseId = id;
   
 const [showSidebar, setShowSidebar] =
   useState(false);
+
+  const videoRef =
+  useRef<HTMLVideoElement>(null);
+
+  const pdfRef =
+  useRef<HTMLIFrameElement>(null);
 
   const [progress, setProgress] =
   useState<string[]>([]);
@@ -253,6 +263,174 @@ useEffect(() => {
   loadProgress();
 
 }, [user, courseId]);
+
+useEffect(()=>{
+
+  async function loadVideoProgress(){
+
+    if(
+      !user ||
+      !course ||
+      !currentLesson
+    ) return;
+
+    try{
+
+      const response =
+        await fetch(
+
+`${API_URL}/watch-progress/${user.id}/${course._id}/${currentLesson.title}`
+
+        );
+
+      const data =
+        await response.json();
+
+      if(videoRef.current){
+
+        videoRef.current.currentTime =
+          data.videoTime || 0;
+
+      }
+
+    }catch(error){
+
+      console.log(error);
+
+    }
+
+  }
+
+  loadVideoProgress();
+
+},[
+  currentLesson,
+  user,
+  course
+]);
+
+useEffect(()=>{
+
+  async function savePdfProgress(){
+
+    if(
+      !user ||
+      !course ||
+      !currentLesson ||
+      currentLesson.type !== "pdf"
+    ) return;
+
+    const interval =
+      setInterval(async()=>{
+
+        try{
+
+          const scrollPosition =
+            pdfRef.current?.contentWindow
+            ?.scrollY || 0;
+
+          await fetch(
+
+`${API_URL}/watch-progress`,
+
+            {
+
+              method:"POST",
+
+              headers:{
+                "Content-Type":
+                "application/json"
+              },
+
+              body:JSON.stringify({
+
+                userId:user.id,
+
+                courseId:course._id,
+
+                lessonId:
+                currentLesson.title,
+
+                videoTime:
+                scrollPosition
+
+              })
+
+            }
+
+          );
+
+        }catch(error){
+
+          console.log(error);
+
+        }
+
+      },3000);
+
+    return ()=>clearInterval(interval);
+
+  }
+
+  savePdfProgress();
+
+},[
+  currentLesson,
+  user,
+  course
+]);
+
+useEffect(()=>{
+
+  async function loadPdfProgress(){
+
+    if(
+      !user ||
+      !course ||
+      !currentLesson ||
+      currentLesson.type !== "pdf"
+    ) return;
+
+    try{
+
+      const response =
+        await fetch(
+
+`${API_URL}/watch-progress/${user.id}/${course._id}/${currentLesson.title}`
+
+        );
+
+      const data =
+        await response.json();
+
+      setTimeout(()=>{
+
+        pdfRef.current?.contentWindow
+        ?.scrollTo({
+
+          top:data.videoTime || 0,
+
+          behavior:"smooth"
+
+        });
+
+      },1500);
+
+    }catch(error){
+
+      console.log(error);
+
+    }
+
+  }
+
+  loadPdfProgress();
+
+},[
+  currentLesson,
+  user,
+  course
+]);
 
   // =========================
   // LOADING
@@ -578,10 +756,61 @@ return (
             {currentLesson.type === "video" && (
 
               <video
+  ref={videoRef}
   key={currentLesson.content}
   controls
   autoPlay
   className="netflix-video"
+
+  onTimeUpdate={async()=>{
+
+  if(
+    !videoRef.current ||
+    !user ||
+    !currentLesson ||
+    !course
+  ) return;
+
+  try{
+
+    await fetch(
+
+`${API_URL}/watch-progress`,
+
+      {
+
+        method:"POST",
+
+        headers:{
+          "Content-Type":
+          "application/json"
+        },
+
+        body:JSON.stringify({
+
+          userId:user.id,
+
+          courseId:course._id,
+
+          lessonId:
+          currentLesson.title,
+
+          videoTime:
+          videoRef.current.currentTime
+
+        })
+
+      }
+
+    );
+
+  }catch(error){
+
+    console.log(error);
+
+  }
+
+}}
 >
 
                 <source
@@ -598,9 +827,10 @@ return (
             {currentLesson.type === "pdf" && (
 
               <iframe
-                src={currentLesson.content}
-                className="pdf-content"
-              />
+  ref={pdfRef}
+  src={currentLesson.content}
+  className="pdf-content"
+/>
 
             )}
 
