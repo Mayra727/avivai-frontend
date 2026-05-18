@@ -265,3 +265,38 @@
   }
 
 }
+
+/* SUBMENU */
+
+.submenu{
+
+  position:relative;
+
+  display:flex;
+
+  flex-direction:column;
+
+}
+
+.submenu-content{
+
+  display:none;
+
+  flex-direction:column;
+
+  margin-left:15px;
+
+  margin-top:8px;
+
+  border-left:
+  2px solid #eee;
+
+  padding-left:10px;
+
+}
+
+.submenu:hover .submenu-content{
+
+  display:flex;
+
+}

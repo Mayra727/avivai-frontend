@@ -28,8 +28,7 @@ export default function Header() {
         {/* MENU */}
         <nav className="nav">
 
-          <Link to="/">Início</Link>
-          <div className="dropdown">
+<div className="dropdown">
 
   <span className="dropdown-title">
     Cursos
@@ -37,21 +36,30 @@ export default function Header() {
 
   <div className="dropdown-menu">
 
-    <Link to="/cursos">
-      O Caminho da Intimidade
-    </Link>
+    <div className="submenu">
 
-    <Link to="/ebook">
-      Ebook
-    </Link>
+      <Link to="/cursos">
+        O Caminho da Intimidade
+      </Link>
 
-    <Link to="/livro2">
-      Livro Vivencial 2
-    </Link>
+      <div className="submenu-content">
+
+        <Link to="/ebook">
+          Ebook
+        </Link>
+
+        <Link to="/livro2">
+          Livro Vivencial 2
+        </Link>
+
+      </div>
+
+    </div>
 
   </div>
 
 </div>
+
           <Link to="/mentoria">Mentoria</Link>
 
           {!user && (
