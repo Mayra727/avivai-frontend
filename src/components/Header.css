@@ -141,7 +141,11 @@
 
   position:relative;
 
-  padding-bottom:20px;
+  display:flex;
+
+  align-items:center;
+
+  height:100%;
 
 }
 
@@ -173,7 +177,7 @@
 
   position:absolute;
 
-  top:100%;
+  top:calc(100% - 5px);
 
   left:0;
 
