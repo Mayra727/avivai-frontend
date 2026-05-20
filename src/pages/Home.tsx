@@ -10,30 +10,45 @@ export default function Home() {
       {/* HERO PREMIUM */}
       <section className="hero">
 
-        <div className="hero-text">
+  <div className="hero-content">
 
-          <h1>
-            Você ama Deus… mas sente que sua vida espiritual não flui como deveria?
-          </h1>
+    <span className="hero-badge">
+      Plataforma AVIVAI
+    </span>
 
-          <p className="hero-sub">
-            Não é falta de fé. É falta de direção.
-            A AVIVAI foi criada para transformar aquilo que você acredita
-            em uma experiência real com Deus.
-          </p>
+    <h1>
+      Você ama Deus… mas sente que sua vida espiritual não flui como deveria?
+    </h1>
 
-          <button
-            onClick={() => navigate("/ebook")}
-            className="primary-btn"
-          >
-            Quero destravar minha vida espiritual
-          </button>
+    <p className="hero-sub">
+      Não é falta de fé. É falta de direção.
+      A AVIVAI foi criada para transformar aquilo que você acredita
+      em uma experiência real com Deus.
+    </p>
 
-          <span className="hero-mini">
-            Comece gratuitamente pelo primeiro passo
-          </span>
+    <div className="hero-buttons">
 
-        </div>
+      <a
+        href="/ebook"
+        className="hero-primary"
+      >
+        Quero destravar minha vida espiritual
+      </a>
+
+      <a
+        href="/solucoes"
+        className="hero-secondary"
+      >
+        Conheça nossas soluções
+      </a>
+
+    </div>
+
+    <span className="hero-mini">
+      Comece gratuitamente pelo primeiro passo
+    </span>
+
+  </div>
 
         <div className="hero-image-wrapper">
           <img
