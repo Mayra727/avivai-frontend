@@ -12,10 +12,6 @@ export default function Home() {
 
   <div className="hero-content">
 
-    <span className="hero-badge">
-      Plataforma AVIVAI
-    </span>
-
     <h1>
       Você ama Deus… mas sente que sua vida espiritual não flui como deveria?
     </h1>
