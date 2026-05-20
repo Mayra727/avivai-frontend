@@ -57,17 +57,20 @@ export default function SobreVanessa() {
 
           <div className="video-wrapper">
 
-            <video
-              controls
-              className="video-player"
-            >
+<video
+  controls
+  autoPlay
+  muted
+  playsInline
+  className="video-player"
+>
 
   <source
-  src="/apresentacao-pessoal.mp4"
-  type="video/mp4"
-/>
+    src="/apresentacao-pessoal.mp4"
+    type="video/mp4"
+  />
 
-            </video>
+</video>
 
           </div>
 
