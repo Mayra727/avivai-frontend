@@ -181,7 +181,7 @@
 
   background:white;
 
-  min-width:340px;
+  min-width:380px;
 
   border-radius:24px;
 
@@ -266,6 +266,16 @@
 .dropdown:hover .dropdown-menu{
 
   display:flex;
+
+}
+
+/* SUBMENU */
+
+.submenu-content{
+
+  display:flex;
+
+  flex-direction:column;
 
 }
 
