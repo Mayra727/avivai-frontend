@@ -28,7 +28,7 @@ import StudentDashboard from "./pages/StudentDashboard";
 import Footer from "./components/Footer";
 import Solucoes from "./pages/Solucoes";
 import SobreVanessa from "./pages/SobreVanessa";
-
+import AlunoPage from "./pages/AlunoPage";
 
 
 export default function App() {
@@ -106,6 +106,10 @@ export default function App() {
 <Route
   path="/sobre-vanessa"
   element={<SobreVanessa />}
+/>
+          <Route
+  path="/aluno"
+  element={<AlunoPage />}
 />
           {/* ✅ AGORA ESTÁ NO LUGAR CERTO */}
           <Route path="/livro2" element={<Livro2Page />} />
