@@ -376,3 +376,41 @@
   }
 
 }
+
+.about-buttons{
+
+  margin-top:40px;
+
+  display:flex;
+
+  justify-content:center;
+
+}
+
+.about-button{
+
+  background:#6E4638;
+
+  color:white;
+
+  padding:18px 34px;
+
+  border-radius:18px;
+
+  text-decoration:none;
+
+  font-weight:700;
+
+  font-size:18px;
+
+  transition:0.3s;
+
+}
+
+.about-button:hover{
+
+  transform:translateY(-3px);
+
+  opacity:0.95;
+
+}

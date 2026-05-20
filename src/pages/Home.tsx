@@ -127,6 +127,17 @@ export default function Home() {
   </div>
 </section>
 
+<div className="about-buttons">
+
+  <a
+    href="/sobre-vanessa"
+    className="about-button"
+  >
+    Conheça a história completa
+  </a>
+
+</div>
+
       {/* BENEFÍCIOS PREMIUM */}
       <section className="section">
   <div className="section-inner">
