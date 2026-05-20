@@ -26,6 +26,7 @@ from "./pages/ResetPassword";
 import GrantAccess from "./pages/GrantAccess";
 import StudentDashboard from "./pages/StudentDashboard";
 import Footer from "./components/Footer";
+import Solucoes from "./pages/Solucoes";
 
 
 
@@ -75,6 +76,10 @@ export default function App() {
 
           <Route path="/produtora" element={<ProducerProfile />} />
           <Route path="/download" element={<DownloadPage />} />
+          <Route
+  path="/solucoes"
+  element={<Solucoes />}
+/>
             <Route path="/mentoria" element={<MentoriaPage />} />
             <Route path="/produtor" element={<ProducerDashboard />} />
 <Route path="/curso/:id" element={<CoursePlayer />} />
