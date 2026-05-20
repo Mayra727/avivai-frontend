@@ -32,6 +32,9 @@ export default function Header() {
     Início
   </Link>
 
+<Link to="/sobre-vanessa">
+  Sobre Vanessa
+</Link>
 
   <div className="dropdown">
 

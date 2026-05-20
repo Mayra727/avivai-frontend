@@ -27,7 +27,7 @@ import GrantAccess from "./pages/GrantAccess";
 import StudentDashboard from "./pages/StudentDashboard";
 import Footer from "./components/Footer";
 import Solucoes from "./pages/Solucoes";
-
+import SobreVanessa from "./pages/SobreVanessa";
 
 
 
@@ -103,6 +103,10 @@ export default function App() {
   element={<StudentDashboard />}
 />
 
+<Route
+  path="/sobre-vanessa"
+  element={<SobreVanessa />}
+/>
           {/* ✅ AGORA ESTÁ NO LUGAR CERTO */}
           <Route path="/livro2" element={<Livro2Page />} />
         </Routes>

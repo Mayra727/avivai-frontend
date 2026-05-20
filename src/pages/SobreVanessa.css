@@ -1,0 +1,264 @@
+.sobre-page{
+
+  background:#F8F5F1;
+
+  min-height:100vh;
+
+}
+
+/* HERO */
+
+.sobre-hero{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:70px;
+
+  padding:100px 60px;
+
+  max-width:1400px;
+
+  margin:0 auto;
+
+}
+
+.sobre-content{
+
+  flex:1;
+
+}
+
+.sobre-badge{
+
+  display:inline-block;
+
+  background:#E8D7CD;
+
+  color:#6E4638;
+
+  padding:12px 24px;
+
+  border-radius:999px;
+
+  margin-bottom:28px;
+
+  font-weight:600;
+
+}
+
+.sobre-content h1{
+
+  font-size:64px;
+
+  line-height:1.1;
+
+  color:#6E4638;
+
+  margin-bottom:30px;
+
+}
+
+.sobre-content p{
+
+  font-size:22px;
+
+  line-height:1.8;
+
+  color:#7A5A4F;
+
+}
+
+.sobre-image-wrapper{
+
+  flex:1;
+
+  display:flex;
+
+  justify-content:center;
+
+}
+
+.sobre-image{
+
+  width:100%;
+
+  max-width:500px;
+
+  border-radius:32px;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.15);
+
+}
+
+/* VIDEO */
+
+.video-section{
+
+  padding:80px 20px;
+
+}
+
+.video-content{
+
+  max-width:1000px;
+
+  margin:0 auto;
+
+  text-align:center;
+
+}
+
+.video-content h2{
+
+  font-size:48px;
+
+  color:#6E4638;
+
+  margin-bottom:20px;
+
+}
+
+.video-content p{
+
+  font-size:20px;
+
+  color:#7A5A4F;
+
+  margin-bottom:40px;
+
+}
+
+.video-wrapper{
+
+  border-radius:28px;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.12);
+
+}
+
+.video-player{
+
+  width:100%;
+
+}
+
+/* MISSÃO */
+
+.missao-section{
+
+  padding:100px 20px;
+
+}
+
+.missao-content{
+
+  max-width:1000px;
+
+  margin:0 auto;
+
+  text-align:center;
+
+}
+
+.missao-content h2{
+
+  font-size:52px;
+
+  color:#6E4638;
+
+  margin-bottom:30px;
+
+}
+
+.missao-content p{
+
+  font-size:22px;
+
+  line-height:1.9;
+
+  color:#7A5A4F;
+
+}
+
+/* CTA */
+
+.sobre-cta{
+
+  padding:100px 20px;
+
+  text-align:center;
+
+}
+
+.sobre-cta h2{
+
+  font-size:52px;
+
+  color:#6E4638;
+
+  margin-bottom:40px;
+
+}
+
+.sobre-btn{
+
+  background:#6E4638;
+
+  color:white;
+
+  padding:20px 36px;
+
+  border-radius:18px;
+
+  text-decoration:none;
+
+  font-weight:700;
+
+  font-size:18px;
+
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .sobre-hero{
+
+    flex-direction:column;
+
+    padding:60px 20px;
+
+    text-align:center;
+
+  }
+
+  .sobre-content h1{
+
+    font-size:42px;
+
+  }
+
+  .video-content h2,
+  .missao-content h2,
+  .sobre-cta h2{
+
+    font-size:36px;
+
+  }
+
+  .sobre-content p,
+  .missao-content p{
+
+    font-size:18px;
+
+  }
+
+}
