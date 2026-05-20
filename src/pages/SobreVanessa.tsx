@@ -62,10 +62,10 @@ export default function SobreVanessa() {
               className="video-player"
             >
 
-              <source
-                src="/video-vanessa.mp4"
-                type="video/mp4"
-              />
+  <source
+  src="/apresentacao-pessoal.mp4"
+  type="video/mp4"
+/>
 
             </video>
 
