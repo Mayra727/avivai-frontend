@@ -43,6 +43,14 @@ export default function Footer(){
             Mentoria
           </a>
 
+<a href="/solucoes">
+    Soluções
+  </a>
+
+  <a href="/contato">
+    Fale Conosco
+  </a>
+
         </div>
 
       </div>

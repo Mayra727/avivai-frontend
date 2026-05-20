@@ -32,9 +32,6 @@ export default function Header() {
     Início
   </Link>
 
-  <Link to="/solucoes">
-    Soluções
-  </Link>
 
   <div className="dropdown">
 
@@ -75,9 +72,6 @@ export default function Header() {
     Mentorias
   </Link>
 
-  <Link to="/contato">
-    Fale Conosco
-  </Link>
 
   {!user && (
 
