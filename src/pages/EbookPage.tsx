@@ -1,17 +1,12 @@
-import { createPayment } from "../services/payment";
+import { useNavigate } from "react-router-dom";
 
 export default function EbookPage() {
 
-  async function comprarEbook() {
-    const payment = await createPayment(
-      "69a07acbf38bdbb559131ea6",
-      "Primeiros Conceitos: O Caminho da Intimidade",
-      49
-    );
+  const navigate = useNavigate();
 
-    window.location.href =
-      `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${payment.id}`;
-  }
+const user = JSON.parse(
+  localStorage.getItem("user") || "null"
+);
 
   return (
     <div style={{ fontFamily: "sans-serif" }}>
@@ -138,22 +133,42 @@ export default function EbookPage() {
             Um guia para transformar conhecimento em experiência real com Deus.
           </p>
 
-          <h3 style={{ textDecoration: "line-through" }}>R$97</h3>
-          <h2 style={{ fontSize: "32px" }}>R$49</h2>
+          <h3 style={{ textDecoration: "line-through" }}>
+  R$97
+</h3>
+
+<h2 style={{
+  fontSize: "32px",
+  color: "#FFE7D9"
+}}>
+  Gratuito por tempo limitado
+</h2>
 
           <button
-            onClick={comprarEbook}
-            style={{
-              marginTop: "20px",
-              padding: "16px 40px",
-              background: "#B4533A",
-              color: "white",
-              borderRadius: "10px",
-              border: "none"
-            }}
-          >
-            Quero acessar gratuitamente
-          </button>
+  onClick={() => {
+
+    if(user){
+
+      window.open("/ebook.pdf");
+
+    }else{
+
+      navigate("/cadastro");
+
+    }
+
+  }}
+  style={{
+    marginTop: "20px",
+    padding: "16px 40px",
+    background: "#B4533A",
+    color: "white",
+    borderRadius: "10px",
+    border: "none"
+  }}
+>
+  Quero acessar gratuitamente
+</button>
 
         </div>
       </section>
@@ -180,18 +195,30 @@ export default function EbookPage() {
         <h2>Você não precisa ser perfeito para começar</h2>
 
         <button
-          onClick={comprarEbook}
-          style={{
-            marginTop: "20px",
-            padding: "18px 50px",
-            background: "#B4533A",
-            color: "white",
-            borderRadius: "12px",
-            border: "none"
-          }}
-        >
-          Quero começar minha jornada
-        </button>
+  onClick={() => {
+
+    if(user){
+
+      window.open("/ebook.pdf");
+
+    }else{
+
+      navigate("/cadastro");
+
+    }
+
+  }}
+  style={{
+    marginTop: "20px",
+    padding: "18px 50px",
+    background: "#B4533A",
+    color: "white",
+    borderRadius: "12px",
+    border: "none"
+  }}
+>
+  Quero começar minha jornada
+</button>
       </section>
 
     </div>
