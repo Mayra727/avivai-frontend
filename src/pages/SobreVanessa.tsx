@@ -55,25 +55,17 @@ export default function SobreVanessa() {
             e descubra a missão por trás da AVIVAI.
           </p>
 
-          <div className="video-wrapper">
+<div className="video-wrapper">
 
-<video
-  controls
-  autoPlay
-  muted
-  playsInline
-  className="video-player"
->
-
-  <source
+  <video
     src="/apresentacao-pessoal.mp4"
-    type="video/mp4"
+    controls
+    playsInline
+    preload="auto"
+    className="video-player"
   />
 
-</video>
-
-          </div>
-
+</div>
         </div>
 
       </section>
