@@ -1,90 +1,114 @@
-import { useNavigate } from "react-router-dom";
 import "./Producer.css";
 
 export default function ProducerDashboard() {
 
-  const navigate = useNavigate();
+  const user = JSON.parse(
+    localStorage.getItem("user") || "null"
+  );
 
   return (
 
-    <div className="producer">
+    <div className="dashboard-page">
 
-      <h1>Painel do Produtor</h1>
+      <section className="dashboard-hero">
 
-      <p className="subtitle">
-        Gerencie seus conteúdos e alunos
-      </p>
+        <h1>
+          Painel da Produtora
+        </h1>
 
-      <div className="producer-grid">
+        <p>
+          Bem-vinda,
+          {user?.name || "Vanessa"} ✨
+        </p>
 
-        <div
-          className="producer-card"
-          onClick={() => navigate("/criar-curso")}
-        >
-          <h3>📚 Criar Curso</h3>
-          <p>Adicione módulos e aulas</p>
+      </section>
+
+      <section className="dashboard-grid">
+
+        {/* ALUNOS */}
+
+        <div className="dashboard-card">
+
+          <h2>
+            👥 Alunos
+          </h2>
+
+          <p>
+            Visualize e acompanhe
+            os alunos cadastrados
+            na plataforma.
+          </p>
+
+          <button>
+            Ver alunos
+          </button>
+
         </div>
 
-        <div
-          className="producer-card"
-          onClick={() => navigate("/meus-cursos")}
-        >
-          <h3>🎥 Meus Cursos</h3>
-          <p>Gerencie cursos criados</p>
+        {/* CURSOS */}
+
+        <div className="dashboard-card">
+
+          <h2>
+            📘 Cursos
+          </h2>
+
+          <p>
+            Gerencie ebooks,
+            cursos e materiais
+            da AVIVAI.
+          </p>
+
+          <button>
+            Gerenciar cursos
+          </button>
+
         </div>
 
-        <div
-          className="producer-card"
-          onClick={() => navigate("/criar-ebook")}
-        >
-          <h3>📘 Criar Ebook</h3>
-          <p>Venda seu material digital</p>
+        {/* UPLOAD */}
+
+        <div className="dashboard-card">
+
+          <h2>
+            ☁ Uploads
+          </h2>
+
+          <p>
+            Envie PDFs,
+            vídeos e conteúdos
+            da plataforma.
+          </p>
+
+          <button>
+            Enviar materiais
+          </button>
+
         </div>
 
-        <div
-          className="producer-card"
-          onClick={() => navigate("/biblioteca")}
-        >
-          <h3>📚 Biblioteca</h3>
-          <p>Veja ebooks cadastrados</p>
+        {/* MÉTRICAS */}
+
+        <div className="dashboard-card">
+
+          <h2>
+            📊 Plataforma
+          </h2>
+
+          <p>
+            Acompanhe crescimento,
+            acessos e evolução
+            dos alunos.
+          </p>
+
+          <button>
+            Ver métricas
+          </button>
+
         </div>
 
-        <div
-          className="producer-card"
-          onClick={() => navigate("/criar-mentoria")}
-        >
-          <h3>🎓 Mentoria</h3>
-          <p>Gerencie alunos e encontros</p>
-        </div>
-
-        <div
-          className="producer-card"
-          onClick={() => navigate("/alunos")}
-        >
-          <h3>👥 Alunos</h3>
-          <p>Veja quem comprou</p>
-        </div>
-
-<div
-  className="producer-card"
-  onClick={() => navigate("/liberar-acesso")}
->
-  <h3>🔓 Liberar Acesso</h3>
-  <p>Liberar cursos manualmente</p>
-</div>
-
-        <div className="producer-card">
-          <h3>💰 Vendas</h3>
-          <p>Em breve</p>
-        </div>
-
-        <div className="producer-card">
-          <h3>📈 Estatísticas</h3>
-          <p>Em breve</p>
-        </div>
-
-      </div>
+      </section>
 
     </div>
+
   );
+
 }
