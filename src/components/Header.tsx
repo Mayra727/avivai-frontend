@@ -26,31 +26,44 @@ export default function Header() {
         </div>
 
         {/* MENU */}
-        <nav className="nav">
+<nav className="nav">
 
-<div className="dropdown">
+  <Link to="/">
+    Início
+  </Link>
 
-  <span className="dropdown-title">
-    Cursos
-  </span>
+  <Link to="/solucoes">
+    Soluções
+  </Link>
 
-  <div className="dropdown-menu">
+  <div className="dropdown">
 
-    <div className="submenu">
+    <span className="dropdown-title">
+      Jornada da Intimidade
+    </span>
 
-      <Link to="/cursos">
-        O Caminho da Intimidade
-      </Link>
+    <div className="dropdown-menu">
 
-      <div className="submenu-content">
+      <div className="submenu">
 
-        <Link to="/ebook">
-          Ebook
+        <Link
+          to="/cursos"
+          className="main-course"
+        >
+          O Caminho da Intimidade
         </Link>
 
-        <Link to="/livro2">
-          Livro Vivencial 2
-        </Link>
+        <div className="submenu-content">
+
+          <Link to="/ebook">
+            Ebook
+          </Link>
+
+          <Link to="/livro2">
+            Livro Vivencial 2
+          </Link>
+
+        </div>
 
       </div>
 
@@ -58,53 +71,69 @@ export default function Header() {
 
   </div>
 
-</div>
+  <Link to="/mentoria">
+    Mentorias
+  </Link>
 
-          <Link to="/mentoria">Mentoria</Link>
+  <Link to="/contato">
+    Fale Conosco
+  </Link>
 
-          {!user && (
-            <>
-              <Link to="/login">Entrar</Link>
-              <Link to="/cadastro">Cadastro</Link>
-            </>
-          )}
+  {!user && (
 
-         {user && (
+    <>
 
-  <>
-
-    {user.role === "produtor" && (
-
-      <Link to="/dashboard">
-        Dashboard
+      <Link to="/login">
+        Entrar
       </Link>
 
-    )}
-
-    {user.role === "aluno" && (
-
-      <Link to="/aluno">
-        Meus Cursos
+      <Link
+        to="/cadastro"
+        className="cta-btn"
+      >
+        Faça seu cadastro
       </Link>
 
-    )}
+    </>
 
-    <span className="user">
-      {user.name}
-    </span>
+  )}
 
-    <button
-      onClick={handleLogout}
-      className="logout-btn"
-    >
-      Logout
-    </button>
+  {user && (
 
-  </>
+    <>
 
-)}
+      {user.role === "produtor" && (
 
-        </nav>
+        <Link to="/dashboard">
+          Dashboard
+        </Link>
+
+      )}
+
+      {user.role === "aluno" && (
+
+        <Link to="/aluno">
+          Área do Aluno
+        </Link>
+
+      )}
+
+      <span className="user">
+        {user.name}
+      </span>
+
+      <button
+        onClick={handleLogout}
+        className="logout-btn"
+      >
+        Logout
+      </button>
+
+    </>
+
+  )}
+
+</nav>
 
       </div>
     </header>
