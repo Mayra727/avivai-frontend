@@ -198,18 +198,28 @@
 
 .main-course{
 
-  padding:22px 30px !important;
+  padding:18px 30px !important;
 
   font-size:19px !important;
 
-  font-weight:600 !important;
-
-  line-height:1.5;
+  font-weight:500 !important;
 
   color:#6E4638 !important;
 
+  text-decoration:none;
+
+  transition:0.25s;
+
   border-bottom:
   1px solid rgba(0,0,0,0.08);
+
+}
+
+.main-course:hover{
+
+  background:#f8f1ed;
+
+  padding-left:38px !important;
 
 }
 
