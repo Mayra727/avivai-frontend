@@ -1,10 +1,56 @@
 import "./Producer.css";
+import { useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
 
 export default function ProducerDashboard() {
 
   const user = JSON.parse(
     localStorage.getItem("user") || "null"
   );
+
+const [courses, setCourses] =
+useState([]);
+
+const [file, setFile] =
+useState<File | null>(null);
+
+const [lessonTitle, setLessonTitle] =
+useState("");
+
+useEffect(() => {
+
+  async function loadCourses(){
+
+    try{
+
+      const res =
+      await axios.get(
+
+        `https://api.avivaioficial.com.br/producer-courses/${user._id}`
+
+      );
+
+      setCourses(
+        res.data
+      );
+
+    }catch(error){
+
+      console.log(error);
+
+    }
+
+  }
+
+  if(user?._id){
+
+    loadCourses();
+
+  }
+
+}, []);
+
 
   return (
 
@@ -69,21 +115,156 @@ export default function ProducerDashboard() {
 
         <div className="dashboard-card">
 
-          <h2>
-            ☁ Uploads
-          </h2>
+  <h2>
+    ☁ Uploads
+  </h2>
 
-          <p>
-            Envie PDFs,
-            vídeos e conteúdos
-            da plataforma.
-          </p>
+  <p>
+    Envie PDFs,
+    vídeos e conteúdos
+    da plataforma.
+  </p>
 
-          <button>
-            Enviar materiais
-          </button>
+<input
 
-        </div>
+  type="text"
+
+  placeholder="Título da aula"
+
+  value={lessonTitle}
+
+  onChange={(e)=>
+    setLessonTitle(
+      e.target.value
+    )
+  }
+
+/>
+
+  <input
+    type="file"
+    onChange={(e) => {
+
+    if(e.target.files){
+
+  setFile(
+    e.target.files[0]
+  );
+
+}  
+
+    }}
+  />
+  
+
+  <button
+
+    onClick={async () => {
+
+      if(!file){
+
+        return alert(
+          "Selecione um arquivo"
+        );
+
+      }
+
+      const formData =
+      new FormData();
+
+      formData.append(
+        "video",
+        file
+      );
+
+      try{
+
+        const res =
+        await axios.post(
+
+          "https://api.avivaioficial.com.br/upload-video",
+
+          formData,
+
+          {
+
+            headers:{
+              "Content-Type":
+              "multipart/form-data"
+            }
+
+          }
+
+        );
+
+        const uploadedUrl =
+res.data.url;
+
+await axios.post(
+
+  "https://api.avivaioficial.com.br/courses",
+
+  {
+
+    title:"Curso AVIVAI",
+
+    creatorId:user._id,
+
+    modules:[
+
+      {
+
+        title:"Módulo 1",
+
+        lessons:[
+
+          {
+
+            title:lessonTitle,
+
+            type:"video",
+
+            content:uploadedUrl
+
+          }
+
+        ]
+
+      }
+
+    ]
+
+  }
+
+);
+
+console.log(
+  uploadedUrl
+);
+
+alert(
+  "Upload realizado com sucesso!"
+);
+
+      }catch(error){
+
+        console.log(error);
+
+        alert(
+          "Erro upload"
+        );
+
+      }
+
+    }}
+
+  >
+
+    Enviar material
+
+  </button>
+
+</div>
 
         {/* MÉTRICAS */}
 
@@ -106,6 +287,46 @@ export default function ProducerDashboard() {
         </div>
 
       </section>
+
+<section
+  style={{
+    marginTop:"80px"
+  }}
+>
+
+  <h2
+    style={{
+      marginBottom:"30px"
+    }}
+  >
+    Cursos criados
+  </h2>
+
+  <div className="dashboard-grid">
+
+    {courses.map((course:any)=>(
+
+      <div
+        key={course._id}
+        className="dashboard-card"
+      >
+
+        <h2>
+          {course.title}
+        </h2>
+
+        <p>
+          {course.modules?.length}
+          módulo(s)
+        </p>
+
+      </div>
+
+    ))}
+
+  </div>
+
+</section>
 
     </div>
 
