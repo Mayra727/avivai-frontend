@@ -20,6 +20,8 @@ export default function CoursePlayer() {
     localStorage.getItem("user") || "{}"
   );
 
+  console.log(user);
+
 const courseId = id;
 
   const [course, setCourse] = useState<any>(null);
