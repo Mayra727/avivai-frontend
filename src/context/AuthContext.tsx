@@ -50,6 +50,11 @@ function login(user: User, token: string) {
   localStorage.setItem("userId", user.id); // 🔥 ESSENCIAL
 
   setUser(user);
+
+  localStorage.setItem(
+  "user",
+  JSON.stringify(user)
+);
 }
 
   function logout() {
