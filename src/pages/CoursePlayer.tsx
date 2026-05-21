@@ -20,7 +20,15 @@ export default function CoursePlayer() {
     localStorage.getItem("user") || "{}"
   );
 
-  console.log(user);
+  console.log(
+  "USER:",
+  user
+);
+
+console.log(
+  "ROLE:",
+  user?.role
+);
 
 const courseId = id;
 
