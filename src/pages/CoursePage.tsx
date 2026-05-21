@@ -1,13 +1,44 @@
 import { useParams } from "react-router-dom";
-import { courses } from "../data/courses";
 import "./CoursePage.css";
 import { API_URL } from "../services/api";
+import { useEffect, useState } from "react";
 
 export default function CoursePage() {
 
   const { id } = useParams();
 
-  const course = courses.find((c) => String(c.id) === id);
+  const [course, setCourse] =
+useState<any>(null);
+
+useEffect(() => {
+
+  async function loadCourse(){
+
+    try{
+
+      const res =
+      await fetch(
+
+        `${API_URL}/courses/${id}`
+
+      );
+
+      const data =
+      await res.json();
+
+      setCourse(data);
+
+    }catch(error){
+
+      console.log(error);
+
+    }
+
+  }
+
+  loadCourse();
+
+}, [id]);
 
   if (!course) {
     return <h2 style={{ padding: "40px" }}>Curso não encontrado</h2>;
