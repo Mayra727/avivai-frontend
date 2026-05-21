@@ -459,7 +459,10 @@ if(!accessChecked){
 
 }
 
-if(!hasAccess){
+if(
+  !hasAccess &&
+  user?.role !== "produtor"
+){
 
   return(
 
