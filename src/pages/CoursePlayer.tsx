@@ -825,6 +825,9 @@ return (
 
 }}
 >
+console.log(
+  currentLesson
+);
 
                 <source
                   src={currentLesson.content}
