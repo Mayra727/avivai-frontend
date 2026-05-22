@@ -4,18 +4,17 @@
 
   width:100%;
 
-  background:
-  linear-gradient(
-    90deg,
-    #7A4A3A,
-    #8B5A47,
-    #7A4A3A
-  );
+  display:flex;
 
-  padding:28px 60px;
+  align-items:center;
 
-  border-bottom:
-  1px solid rgba(255,255,255,0.08);
+  justify-content:space-between;
+
+  padding:18px 60px;
+
+  background:#8B5A46;
+
+  gap:40px;
 
 }
 
@@ -47,9 +46,9 @@
 
 }
 
-.logo-img{
+.header-logo img{
 
-  width:170px;
+  height:130px;
 
   object-fit:contain;
 
@@ -81,7 +80,11 @@
 
   align-items:center;
 
-  gap:28px;
+  gap:42px;
+
+  flex:1;
+
+  margin-left:50px;
 
 }
 
@@ -91,11 +94,13 @@
 
   text-decoration:none;
 
-  font-size:18px;
+  font-size:21px;
 
   font-weight:500;
 
   transition:0.2s;
+
+  white-space:nowrap;
 
 }
 
