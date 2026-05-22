@@ -33,7 +33,7 @@ useEffect(() => {
       const res =
       await axios.get(
 
-        `https://api.avivaioficial.com.br/producer-courses/${user._id}`
+        `https://api.avivaioficial.com.br/producer-courses/${user.id}`
 
       );
 
@@ -49,7 +49,7 @@ useEffect(() => {
 
   }
 
-  if(user?._id){
+ if(user?.id){
 
     loadCourses();
 
@@ -214,7 +214,7 @@ await axios.post(
 
     title:"Curso AVIVAI",
 
-    creatorId:user._id,
+    creatorId:user.id,
 
     modules:[
 
@@ -377,7 +377,7 @@ alert(
 
               title:courseTitle,
 
-              creatorId:user._id,
+              creatorId:user.id,
 
               modules:[]
 
