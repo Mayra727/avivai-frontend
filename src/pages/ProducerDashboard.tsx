@@ -2,8 +2,12 @@ import "./Producer.css";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function ProducerDashboard() {
+
+const navigate =
+useNavigate();
 
   const user = JSON.parse(
     localStorage.getItem("user") || "null"
@@ -23,6 +27,12 @@ useState("");
 
 const [creatingCourse, setCreatingCourse] =
 useState(false);
+
+const [moduleTitle, setModuleTitle] =
+useState("");
+
+const [selectedCourse, setSelectedCourse] =
+useState("");
 
 useEffect(() => {
 
@@ -91,9 +101,13 @@ useEffect(() => {
             na plataforma.
           </p>
 
-          <button>
-            Ver alunos
-          </button>
+          <button
+  onClick={()=>
+    navigate("/alunos")
+  }
+>
+  Ver alunos
+</button>
 
         </div>
 
@@ -111,9 +125,13 @@ useEffect(() => {
             da AVIVAI.
           </p>
 
-          <button>
-            Gerenciar cursos
-          </button>
+          <button
+  onClick={()=>
+    navigate("/cursos")
+  }
+>
+  Gerenciar cursos
+</button>
 
         </div>
 
@@ -130,6 +148,53 @@ useEffect(() => {
     vídeos e conteúdos
     da plataforma.
   </p>
+
+<select
+
+  value={selectedCourse}
+
+  onChange={(e)=>
+    setSelectedCourse(
+      e.target.value
+    )
+  }
+
+>
+
+  <option value="">
+    Selecione o curso
+  </option>
+
+  {courses.map((course:any)=>(
+
+    <option
+      key={course._id}
+      value={course._id}
+    >
+
+      {course.title}
+
+    </option>
+
+  ))}
+
+</select>
+
+<input
+
+  type="text"
+
+  placeholder="Nome do módulo"
+
+  value={moduleTitle}
+
+  onChange={(e)=>
+    setModuleTitle(
+      e.target.value
+    )
+  }
+
+/>
 
 <input
 
@@ -206,39 +271,23 @@ useEffect(() => {
         const uploadedUrl =
 res.data.url;
 
-await axios.post(
+await axios.put(
 
-  "https://api.avivaioficial.com.br/courses",
+`https://api.avivaioficial.com.br/courses/${selectedCourse}`,
 
   {
 
-    title:"Curso AVIVAI",
+    moduleTitle,
 
-    creatorId:user.id,
+    lesson:{
 
-    modules:[
+      title:lessonTitle,
 
-      {
+      type:"video",
 
-        title:"Módulo 1",
+      content:uploadedUrl
 
-        lessons:[
-
-          {
-
-            title:lessonTitle,
-
-            type:"video",
-
-            content:uploadedUrl
-
-          }
-
-        ]
-
-      }
-
-    ]
+    }
 
   }
 
@@ -286,9 +335,13 @@ alert(
             dos alunos.
           </p>
 
-          <button>
-            Ver métricas
-          </button>
+          <button
+  onClick={()=>
+    navigate("/metricas")
+  }
+>
+  Ver métricas
+</button>
 
         </div>
 
