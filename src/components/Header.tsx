@@ -39,7 +39,7 @@ export default function Header() {
   <div className="dropdown">
 
     <span className="dropdown-title">
-      Jornada da Intimidade
+      Cursos
     </span>
 
     <div className="dropdown-menu">
