@@ -2,7 +2,7 @@
 .header {
   width: 100%;
   background: #7A4A3A;
-  padding: 16px 0;
+  padding: 20px 0;
 }
 
 /* CONTAINER */
@@ -37,7 +37,7 @@
 .nav a {
   color: white;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 17px;
   transition: 0.2s;
 }
 
@@ -88,8 +88,8 @@
 
 /* IMAGEM DA LOGO */
 .logo-img {
-  width: 86px;
-  height: 86px;
+  width: 72px;
+height: 72px;
   object-fit: contain;
   filter: drop-shadow(0 0 10px rgba(255, 200, 0, 0.7));
 }
@@ -98,6 +98,6 @@
 .logo-text {
   color: white;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 34px;
   letter-spacing: 3px;
 }
