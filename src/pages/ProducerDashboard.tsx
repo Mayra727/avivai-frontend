@@ -18,6 +18,12 @@ useState<File | null>(null);
 const [lessonTitle, setLessonTitle] =
 useState("");
 
+const [courseTitle, setCourseTitle] =
+useState("");
+
+const [creatingCourse, setCreatingCourse] =
+useState(false);
+
 useEffect(() => {
 
   async function loadCourses(){
@@ -287,6 +293,125 @@ alert(
         </div>
 
       </section>
+
+<div
+  style={{
+    marginTop:"50px",
+    marginBottom:"40px"
+  }}
+>
+
+  <button
+
+    onClick={()=>
+      setCreatingCourse(
+        !creatingCourse
+      )
+    }
+
+    style={{
+
+      padding:"14px 24px",
+
+      border:"none",
+
+      borderRadius:"12px",
+
+      background:"#7A4A3A",
+
+      color:"#fff",
+
+      cursor:"pointer"
+
+    }}
+
+  >
+
+    + Novo Curso
+
+  </button>
+
+</div>
+
+{creatingCourse && (
+
+  <div
+    className="dashboard-card"
+  >
+
+    <h2>
+      Criar novo curso
+    </h2>
+
+    <input
+
+      type="text"
+
+      placeholder="Nome do curso"
+
+      value={courseTitle}
+
+      onChange={(e)=>
+        setCourseTitle(
+          e.target.value
+        )
+      }
+
+    />
+
+    <button
+
+      style={{
+        marginTop:"20px"
+      }}
+
+      onClick={async()=>{
+
+        try{
+
+          await axios.post(
+
+"https://api.avivaioficial.com.br/courses",
+
+            {
+
+              title:courseTitle,
+
+              creatorId:user._id,
+
+              modules:[]
+
+            }
+
+          );
+
+          alert(
+            "Curso criado!"
+          );
+
+          window.location.reload();
+
+        }catch(error){
+
+          console.log(error);
+
+          alert(
+            "Erro ao criar"
+          );
+
+        }
+
+      }}
+
+    >
+
+      Criar curso
+
+    </button>
+
+  </div>
+
+)}
 
 <section
   style={{
