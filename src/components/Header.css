@@ -101,3 +101,83 @@ height: 72px;
   font-size: 34px;
   letter-spacing: 3px;
 }
+
+.submenu{
+
+  position:relative;
+
+}
+
+.submenu-content{
+
+  position:absolute;
+
+  top:100%;
+
+  left:0;
+
+  background:white;
+
+  min-width:320px;
+
+  border-radius:24px;
+
+  padding:20px;
+
+  display:none;
+
+  flex-direction:column;
+
+  box-shadow:
+  0 20px 50px rgba(0,0,0,0.15);
+
+}
+
+.submenu:hover .submenu-content{
+
+  display:flex;
+
+}
+
+.submenu-item{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:12px;
+
+  color:#6E4638;
+
+  font-size:20px;
+
+  padding:10px 0;
+
+}
+
+.submenu-nested{
+
+  margin-left:20px;
+
+  border-left:
+  2px solid #eee;
+
+  padding-left:16px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+
+}
+
+.submenu-nested a{
+
+  color:#6E4638;
+
+  text-decoration:none;
+
+  font-size:18px;
+
+}
