@@ -14,7 +14,7 @@
 
   background:#8B5A46;
 
-  height: 90px;;
+  height:110px;
 
 }
 
@@ -55,7 +55,7 @@ box-sizing:border-box;
 
 .logo img{
 
-  height:60px;
+  height:55px;
 
   width:auto;
 
@@ -67,7 +67,7 @@ box-sizing:border-box;
 
 .logo-text{
 
-  font-size:30px;
+  font-size:38px;
 
   font-weight:600;
 
@@ -93,6 +93,7 @@ box-sizing:border-box;
 
   gap:34px;
 
+  flex-wrap:wrap;
 
 }
 
