@@ -22,6 +22,8 @@
 
 .header-container{
 
+  width:100%;
+
   max-width:1600px;
 
   margin:0 auto;
@@ -42,15 +44,21 @@
 
   align-items:center;
 
-  gap:26px;
+  gap:18px;
+
+  flex-shrink:0;
 
 }
 
 .logo img{
 
-  height:95px;
+  height:82px;
+
+  width:auto;
 
   object-fit:contain;
+
+  display:block;
 
 }
 
