@@ -73,9 +73,22 @@ export default function Login() {
 
         );
 
-        navigate(
-          "/dashboard"
-        );
+        if(
+  data.user.role ===
+  "produtor"
+){
+
+  navigate(
+    "/producer-dashboard"
+  );
+
+}else{
+
+  navigate(
+    "/dashboard"
+  );
+
+}
 
       } else {
 
