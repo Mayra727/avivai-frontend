@@ -4,18 +4,17 @@
 
   width:100%;
 
-  background:
-  linear-gradient(
-    90deg,
-    #7A4A3A,
-    #8B5A47,
-    #7A4A3A
-  );
+  display:flex;
 
-  padding:28px 60px;
+  align-items:center;
 
-  border-bottom:
-  1px solid rgba(255,255,255,0.08);
+  justify-content:space-between;
+
+  padding:0 40px;
+
+  background:#8B5A46;
+
+  height:110px;
 
 }
 
@@ -49,11 +48,9 @@
 
 .logo img{
 
-  height:160px;
+  height:95px;
 
   object-fit:contain;
-
-  transform:scale(1.6);
 
 }
 
@@ -83,11 +80,9 @@
 
   align-items:center;
 
-  gap:42px;
+  gap:34px;
 
-  flex:1;
-
-  margin-left:50px;
+  margin-left:40px;
 
 }
 
@@ -97,11 +92,9 @@
 
   text-decoration:none;
 
-  font-size:21px;
+  font-size:18px;
 
   font-weight:500;
-
-  transition:0.2s;
 
   white-space:nowrap;
 
