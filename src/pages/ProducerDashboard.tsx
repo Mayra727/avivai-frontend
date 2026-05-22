@@ -127,7 +127,7 @@ useEffect(() => {
 
           <button
   onClick={()=>
-    navigate("/cursos")
+    navigate("/criar-curso")
   }
 >
   Gerenciar cursos
