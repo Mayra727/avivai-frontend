@@ -329,56 +329,86 @@ return (
     {modules.map((module, mIndex) => (
       <div key={mIndex} className="module">
 
-        <h2>Módulo {mIndex + 1}</h2>
+<div className="module-header">
 
-        <input
-          placeholder="Nome do módulo"
-          value={module.title}
-          onChange={(e) =>
-            updateModuleTitle(
-              mIndex,
-              e.target.value
-            )
-          }
-        />
+  <div className="module-title">
 
-        <button
-          onClick={() => removeModule(mIndex)}
-        >
-          ❌ Excluir módulo
-        </button>
+    <h2>
+      Módulo {mIndex + 1}
+    </h2>
 
-        {module.lessons.map((lesson, lIndex) => (
-          <div key={lIndex} className="lesson">
+    <input
+      placeholder="Nome do módulo"
+      value={module.title}
+      onChange={(e) =>
+        updateModuleTitle(
+          mIndex,
+          e.target.value
+        )
+      }
+    />
 
-            {/* NOME DA AULA */}
+  </div>
 
-            <input
-              placeholder="Nome da aula"
-              value={lesson.title}
-              onChange={(e) =>
-                updateLesson(
-                  mIndex,
-                  lIndex,
-                  "title",
-                  e.target.value
-                )
-              }
-            />
+<div className="module-actions">
 
-            {/* TIPO */}
+  <button
+    className="add-lesson"
+    onClick={() =>
+      addLesson(mIndex)
+    }
+  >
+    + Adicionar aula
+  </button>
 
-            <select
-              value={lesson.type}
-              onChange={(e) =>
-                updateLesson(
-                  mIndex,
-                  lIndex,
-                  "type",
-                  e.target.value as Lesson["type"]
-                )
-              }
-            >
+  <button
+    className="remove-module"
+    onClick={() =>
+      removeModule(mIndex)
+    }
+  >
+    ❌ Excluir módulo
+  </button>
+
+</div>
+
+</div>
+
+{module.lessons.map((lesson, lIndex) => (
+
+  <div
+    key={lIndex}
+    className="lesson"
+  >
+
+    {/* NOME DA AULA */}
+
+    <input
+      placeholder="Nome da aula"
+      value={lesson.title}
+      onChange={(e) =>
+        updateLesson(
+          mIndex,
+          lIndex,
+          "title",
+          e.target.value
+        )
+      }
+    />
+
+    {/* TIPO */}
+
+    <select
+      value={lesson.type}
+      onChange={(e) =>
+        updateLesson(
+          mIndex,
+          lIndex,
+          "type",
+          e.target.value as Lesson["type"]
+        )
+      }
+    >
               <option value="video">
                 🎥 Vídeo
               </option>

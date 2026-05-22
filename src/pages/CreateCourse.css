@@ -24,11 +24,64 @@ input {
   margin-top: 20px;
 }
 
-.lesson {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  margin-top: 10px;
+.lesson{
+
+  display:flex;
+
+  gap:14px;
+
+  align-items:center;
+
+  background:#FFF;
+
+  border:1px solid #EEE3DB;
+
+  padding:16px;
+
+  border-radius:18px;
+
+  margin-bottom:18px;
+
+  flex-wrap:wrap;
+
+}
+
+.lesson input[type="text"]{
+
+  flex:2;
+
+  min-width:220px;
+
+}
+
+.lesson select{
+
+  width:160px;
+
+}
+
+.lesson input[type="file"]{
+
+  flex:1;
+
+  min-width:220px;
+
+}
+
+.lesson button{
+
+  background:#C86B7B;
+
+  white-space:nowrap;
+
+}
+
+.module > button{
+
+  margin-right:12px;
+
+  margin-top:10px;
+
 }
 
 button {
@@ -46,4 +99,185 @@ button {
   width: 100%;
   padding: 15px;
   font-weight: bold;
+}
+
+.create-course{
+
+  max-width:1100px;
+
+  margin:0 auto;
+
+  padding:60px 20px;
+
+}
+
+.create-course h1{
+
+  font-size:52px;
+
+  color:#6E4638;
+
+  margin-bottom:40px;
+
+}
+
+.create-course input,
+.create-course select,
+.create-course textarea{
+
+  width:100%;
+
+  padding:16px;
+
+  border-radius:12px;
+
+  border:1px solid #E5D8CF;
+
+  margin-bottom:20px;
+
+  background:#FFFDFB;
+
+  font-size:16px;
+
+}
+
+.module{
+
+  background:white;
+
+  border-radius:24px;
+
+  padding:30px;
+
+  margin-top:40px;
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.05);
+
+}
+
+.module h2{
+
+  color:#6E4638;
+
+  margin-bottom:20px;
+
+}
+
+.lesson{
+
+  display:grid;
+
+  grid-template-columns:
+  1.5fr
+  1fr
+  1fr
+  auto;
+
+  gap:15px;
+
+  align-items:center;
+
+  background:#FAF7F4;
+
+  padding:20px;
+
+  border-radius:18px;
+
+  margin-bottom:20px;
+
+}
+
+.lesson button{
+
+  height:55px;
+
+}
+
+.create-course button{
+
+  padding:14px 22px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:#A76B5B;
+
+  color:white;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+}
+
+.create-course button:hover{
+
+  opacity:0.9;
+
+}
+
+textarea{
+
+  min-height:160px;
+
+  resize:none;
+
+}
+
+@media(max-width:900px){
+
+  .lesson{
+
+    grid-template-columns:1fr;
+
+  }
+
+}
+
+.module-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:25px;
+
+  gap:20px;
+
+  flex-wrap:wrap;
+
+}
+
+.module-title{
+
+  flex:1;
+
+}
+
+.module-actions{
+
+  display:flex;
+
+  gap:12px;
+
+  flex-wrap:wrap;
+
+}
+
+.remove-module{
+
+  background:#D46A7A !important;
+
+}
+
+.add-lesson{
+
+  background:#8A5A4A !important;
+
 }
