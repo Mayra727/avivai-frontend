@@ -187,13 +187,131 @@
    DROPDOWN
 ========================= */
 
-.submenu {
+/* SUBMENU */
 
-  position: relative;
+.submenu{
 
-  display: flex;
+  position:relative;
 
-  align-items: center;
+  display:flex;
+
+  align-items:center;
+
+}
+
+/* TEXTO CURSOS */
+
+.submenu > span{
+
+  color:white;
+
+  font-size:17px;
+
+  cursor:pointer;
+
+  white-space:nowrap;
+
+}
+
+/* CAIXA BRANCA */
+
+.submenu-content{
+
+  position:absolute;
+
+  top:120%;
+
+  left:0;
+
+  background:white;
+
+  min-width:380px;
+
+  border-radius:28px;
+
+  padding:24px;
+
+  display:none;
+
+  flex-direction:column;
+
+  gap:18px;
+
+  box-shadow:
+  0 20px 50px rgba(0,0,0,0.15);
+
+  z-index:99999;
+
+}
+
+/* ABRIR */
+
+.submenu:hover .submenu-content{
+
+  display:flex;
+
+}
+
+/* CAMINHO DA INTIMIDADE */
+
+.submenu-item{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:14px;
+
+  color:#6E4638;
+
+  font-size:22px;
+
+  font-weight:600;
+
+  width:100%;
+
+}
+
+/* NÍVEIS */
+
+.submenu-nested{
+
+  margin-left:18px;
+
+  padding-left:18px;
+
+  border-left:2px solid #eee;
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:14px;
+
+}
+
+/* EBOOK E LINKS */
+
+.submenu-nested span,
+.submenu-nested a{
+
+  color:#6E4638;
+
+  text-decoration:none;
+
+  font-size:18px;
+
+  font-weight:500;
+
+  transition:0.2s;
+
+}
+
+/* HOVER */
+
+.submenu-nested a:hover{
+
+  opacity:0.7;
 
 }
 
