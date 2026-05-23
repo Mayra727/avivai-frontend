@@ -184,14 +184,12 @@
 }
 
 /* =========================
-   DROPDOWN
+   DROPDOWN CURSOS
 ========================= */
 
-/* SUBMENU */
+.dropdown{
 
-.submenu{
-
-  position:relative;
+  position: relative;
 
   display:flex;
 
@@ -201,7 +199,7 @@
 
 /* TEXTO CURSOS */
 
-.submenu > span{
+.dropdown-title{
 
   color:white;
 
@@ -209,13 +207,21 @@
 
   cursor:pointer;
 
+  transition:0.2s;
+
   white-space:nowrap;
 
 }
 
-/* CAIXA BRANCA */
+.dropdown-title:hover{
 
-.submenu-content{
+  opacity:0.8;
+
+}
+
+/* MENU */
+
+.dropdown-menu{
 
   position:absolute;
 
@@ -225,58 +231,54 @@
 
   background:white;
 
-  min-width:380px;
+  min-width:340px;
 
-  border-radius:28px;
+  border-radius:24px;
 
-  padding:24px;
+  padding:22px;
 
   display:none;
 
   flex-direction:column;
 
-  gap:18px;
+  gap:14px;
 
   box-shadow:
-  0 20px 50px rgba(0,0,0,0.15);
+    0 20px 50px rgba(0,0,0,0.15);
 
   z-index:99999;
 
 }
 
-/* ABRIR */
+/* ABRIR MENU */
 
-.submenu:hover .submenu-content{
+.dropdown:hover .dropdown-menu{
 
   display:flex;
 
 }
 
-/* CAMINHO DA INTIMIDADE */
+/* LINK PRINCIPAL */
 
-.submenu-item{
+.main-course{
 
-  display:flex;
+  color:#6E4638 !important;
 
-  flex-direction:column;
+  text-decoration:none;
 
-  gap:14px;
+  font-size:22px !important;
 
-  color:#6E4638;
-
-  font-size:22px;
-
-  font-weight:600;
-
-  width:100%;
+  font-weight:700;
 
 }
 
-/* NÍVEIS */
+/* SUBMENU */
 
-.submenu-nested{
+.submenu-content{
 
-  margin-left:18px;
+  margin-top:18px;
+
+  margin-left:14px;
 
   padding-left:18px;
 
@@ -290,223 +292,22 @@
 
 }
 
-/* EBOOK E LINKS */
+/* LINKS INTERNOS */
 
-.submenu-nested span,
-.submenu-nested a{
+.submenu-content a{
 
-  color:#6E4638;
+  color:#6E4638 !important;
 
   text-decoration:none;
 
-  font-size:18px;
-
-  font-weight:500;
+  font-size:17px !important;
 
   transition:0.2s;
 
 }
 
-/* HOVER */
-
-.submenu-nested a:hover{
+.submenu-content a:hover{
 
   opacity:0.7;
-
-}
-
-/* TÍTULO */
-
-.submenu > span {
-
-  color: white;
-
-  font-size: 17px;
-
-  cursor: pointer;
-
-  transition: 0.2s;
-
-  white-space: nowrap;
-
-}
-
-.submenu > span:hover {
-
-  opacity: 0.8;
-
-}
-
-/* MENU */
-
-.submenu-content {
-
-  position: absolute;
-
-  top: 120%;
-
-  left: 0;
-
-  background: white;
-
-  min-width: 380px;
-
-  border-radius: 28px;
-
-  padding: 24px;
-
-  display: none;
-
-  flex-direction: column;
-
-  gap: 14px;
-
-  box-shadow:
-    0 20px 50px rgba(0,0,0,0.15);
-
-  z-index: 99999;
-
-}
-
-/* ABRIR */
-
-.submenu:hover .submenu-content {
-
-  display: flex;
-
-}
-
-/* ITEM */
-
-.submenu-item{
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:12px;
-
-  color:#6E4638;
-
-  font-size:20px;
-
-  font-weight:600;
-
-  width:100%;
-
-}
-
-/* NESTED */
-
-.submenu-nested {
-
-  margin-left: 18px;
-
-  padding-left: 18px;
-
-  border-left: 2px solid #eee;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 14px;
-
-  width: 100%;
-}
-
-/* LINKS */
-
-.submenu-nested a {
-
-  color: #6E4638;
-
-  text-decoration: none;
-
-  font-size: 18px;
-
-  transition: 0.2s;
-
-}
-
-.submenu-nested a:hover {
-
-  opacity: 0.7;
-
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
-
-  .header {
-
-    padding: 18px 0;
-
-  }
-
-  .header-container {
-
-    flex-direction: column;
-
-    gap: 16px;
-
-    text-align: center;
-
-  }
-
-  .logo-container {
-
-    justify-content: center;
-
-  }
-
-  .logo-img {
-
-    width: 78px;
-
-    height: 78px;
-
-  }
-
-  .logo-text {
-
-    font-size: 28px;
-
-  }
-
-  .nav {
-
-    justify-content: center;
-
-    gap: 14px;
-
-  }
-
-  .nav a {
-
-    font-size: 15px;
-
-  }
-
-  .user-area {
-
-    flex-direction: column;
-
-    gap: 10px;
-
-  }
-
-  .submenu-content {
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    min-width: 280px;
-
-  }
 
 }
