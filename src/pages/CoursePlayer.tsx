@@ -763,6 +763,9 @@ return (
       {/* PLAYER */}
 
       <div className="netflix-content">
+      <div className="watermark">
+  {user.name} • Uso exclusivo
+</div>
 
         {currentLesson ? (
 
@@ -827,31 +830,37 @@ return (
 {currentLesson.type === "video" && (
 
   <video
-    ref={videoRef}
-    controls
-    className="netflix-video"
-  >
-
-    <source
-      src={currentLesson.content}
-      type="video/mp4"
-    />
-
-  </video>
+  ref={videoRef}
+  controls
+  controlsList="nodownload"
+  disablePictureInPicture
+  onContextMenu={(e) => e.preventDefault()}
+  className="netflix-video"
+>
+  <source
+    src={currentLesson.content}
+    type="video/mp4"
+  />
+</video>
 
 )}
 
             {/* PDF */}
 
-            {currentLesson.type === "pdf" && (
+            {/* PDF */}
 
-              <iframe
-  ref={pdfRef}
-  src={currentLesson.content}
-  className="pdf-content"
-/>
+{currentLesson.type === "pdf" && (
 
-            )}
+  <iframe
+    ref={pdfRef}
+    src={currentLesson.content}
+    className="pdf-content"
+    onContextMenu={(e) =>
+      e.preventDefault()
+    }
+  />
+
+)}
 
             {/* IMAGE */}
 

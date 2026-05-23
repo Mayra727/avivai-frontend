@@ -253,3 +253,31 @@ object-fit:cover;
 
 flex-shrink:0;
 }
+
+.watermark{
+
+  position: fixed;
+
+  top: 50%;
+
+  left: 50%;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(-20deg);
+
+  font-size: 42px;
+
+  font-weight: bold;
+
+  color: rgba(255,255,255,0.08);
+
+  z-index: 9999;
+
+  pointer-events: none;
+
+  user-select: none;
+
+  white-space: nowrap;
+
+}
