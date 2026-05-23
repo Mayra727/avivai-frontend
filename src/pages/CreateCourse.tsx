@@ -551,6 +551,27 @@ color:"#7A4A3A"
                     }}
                   >
                     ✅ Arquivo enviado
+
+                    {lesson.content && (
+
+  <a
+    href={lesson.content}
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      display:"block",
+      marginTop:"8px",
+      color:"#7A4A3A",
+      fontSize:"13px",
+      fontWeight:"600"
+    }}
+  >
+
+    🔗 Ver arquivo atual
+
+  </a>
+
+)}
                   </div>
                 )}
 
