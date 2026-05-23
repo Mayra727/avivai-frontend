@@ -274,17 +274,20 @@ useEffect(() => {
 
 }, [user, courseId]);
 
-useEffect(()=>{
+useEffect(() => {
 
-  async function loadVideoProgress(){
+  let loaded = false;
 
-    if(
+  async function loadVideoProgress() {
+
+    if (
       !user ||
       !course ||
-      !currentLesson
+      !currentLesson ||
+      currentLesson.type !== "video"
     ) return;
 
-    try{
+    try {
 
       const response =
         await fetch(
@@ -296,14 +299,19 @@ useEffect(()=>{
       const data =
         await response.json();
 
-      if(videoRef.current){
+      if (
+        videoRef.current &&
+        !loaded
+      ) {
 
         videoRef.current.currentTime =
           data.videoTime || 0;
 
+        loaded = true;
+
       }
 
-    }catch(error){
+    } catch (error) {
 
       console.log(error);
 
@@ -313,11 +321,7 @@ useEffect(()=>{
 
   loadVideoProgress();
 
-},[
-  currentLesson,
-  user,
-  course
-]);
+}, [currentLesson]);
 
 useEffect(()=>{
 
