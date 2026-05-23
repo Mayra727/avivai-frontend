@@ -144,14 +144,14 @@ const user = JSON.parse(
   Gratuito por tempo limitado
 </h2>
 
-          <button
+<button
   onClick={() => {
 
     if(user){
 
-      window.open("/ebook.pdf");
+      window.open("/ebook.pdf", "_blank");
 
-    }else{
+    } else {
 
       navigate("/cadastro");
 
@@ -164,7 +164,10 @@ const user = JSON.parse(
     background: "#B4533A",
     color: "white",
     borderRadius: "10px",
-    border: "none"
+    border: "none",
+    cursor: "pointer",
+    fontWeight: "bold",
+    fontSize: "16px"
   }}
 >
   Quero acessar gratuitamente
