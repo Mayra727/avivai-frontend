@@ -60,26 +60,37 @@ export default function Header() {
 
             <div className="dropdown-menu">
 
-              <Link
-                to="/cursos"
-                className="main-course"
-              >
-                O Caminho da Intimidade
-              </Link>
+  <div className="course-tree">
 
-              <div className="submenu-content">
+    <Link
+      to="/cursos"
+      className="main-course"
+    >
+      O Caminho da Intimidade
+    </Link>
 
-                <Link to="/ebook">
-                  Ebook
-                </Link>
+    <div className="submenu-content">
 
-                <Link to="/livro2">
-                  Livro Vivencial 2
-                </Link>
+      <Link
+        to="/ebook"
+        className="ebook-link"
+      >
+        Ebook
+      </Link>
 
-              </div>
+      <div className="submenu-nested">
 
-            </div>
+        <Link to="/livro2">
+          Livro Vivencial 2
+        </Link>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
           </div>
 
