@@ -442,6 +442,60 @@ useEffect(()=>{
   course
 ]);
 
+useEffect(() => {
+
+  if(
+    !videoRef.current ||
+    !currentLesson ||
+    currentLesson.type !== "video"
+  ) return;
+
+  const interval = setInterval(async () => {
+
+    try {
+
+      await fetch(
+        `${API_URL}/watch-progress`,
+        {
+
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify({
+
+            userId: user.id,
+
+            courseId: course._id,
+
+            lessonId: currentLesson.title,
+
+            videoTime:
+              videoRef.current?.currentTime || 0
+
+          })
+
+        }
+      );
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+
+  }, 5000);
+
+  return () => clearInterval(interval);
+
+}, [
+  currentLesson,
+  course,
+  user
+]);
+
   // =========================
   // LOADING
   // =========================
@@ -764,65 +818,24 @@ return (
 </div>
 
 
-            {/* VIDEO */}
+{/* VIDEO */}
 
-            {currentLesson.type === "video" && (
+{currentLesson.type === "video" && (
 
-              <video
-  ref={videoRef}
-  controls
-  className="netflix-video"
+  <video
+    ref={videoRef}
+    controls
+    className="netflix-video"
+  >
 
-onTimeUpdate={async () => {
+    <source
+      src={currentLesson.content}
+      type="video/mp4"
+    />
 
-  if(!videoRef.current) return;
+  </video>
 
-  try{
-
-    await fetch(
-      `${API_URL}/watch-progress`,
-      {
-
-        method:"POST",
-
-        headers:{
-          "Content-Type":"application/json"
-        },
-
-        body:JSON.stringify({
-
-          userId:user.id,
-
-          courseId:course._id,
-
-          lessonId:currentLesson.title,
-
-          videoTime:
-            videoRef.current.currentTime
-
-        })
-
-      }
-    );
-
-  }catch(error){
-
-    console.log(error);
-
-  }
-
-}}
-
->
-
-                <source
-                  src={currentLesson.content}
-                  type="video/mp4"
-                />
-
-              </video>
-
-            )}
+)}
 
             {/* PDF */}
 
