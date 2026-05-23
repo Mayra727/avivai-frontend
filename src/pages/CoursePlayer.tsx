@@ -770,10 +770,49 @@ return (
 
               <video
   ref={videoRef}
-  key={currentLesson.content}
   controls
-  autoPlay
   className="netflix-video"
+
+onTimeUpdate={async () => {
+
+  if(!videoRef.current) return;
+
+  try{
+
+    await fetch(
+      `${API_URL}/watch-progress`,
+      {
+
+        method:"POST",
+
+        headers:{
+          "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+
+          userId:user.id,
+
+          courseId:course._id,
+
+          lessonId:currentLesson.title,
+
+          videoTime:
+            videoRef.current.currentTime
+
+        })
+
+      }
+    );
+
+  }catch(error){
+
+    console.log(error);
+
+  }
+
+}}
+
 >
 
                 <source
