@@ -8,7 +8,7 @@
 
   background: #7A4A3A;
 
-  padding: 20px 0;
+  padding: 10px 0;
 
   position: relative;
 
@@ -66,9 +66,9 @@
 
 .logo-img {
 
-  width: 96px;
+  width: 100px;
 
-  height: 96px;
+  height: 100px;
 
   object-fit: contain;
 
