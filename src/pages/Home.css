@@ -140,7 +140,9 @@
 
   width:100%;
 
-  max-width:520px;
+  max-width:470px;
+
+  max-height:650px;
 
   border-radius:32px;
 
@@ -166,15 +168,17 @@
 
 .hero{
 
-  min-height:88vh;
+  min-height:78vh;
 
   display:flex;
 
   align-items:center;
 
-  justify-content:center;
+  justify-content:space-between;
 
-  padding:80px 30px;
+  gap:50px;
+
+  padding:40px 60px;
 
   background:
   linear-gradient(
@@ -184,7 +188,6 @@
   );
 
 }
-
 .hero-content{
 
   flex:1;
@@ -215,13 +218,13 @@
 
 .hero h1{
 
-  font-size:76px;
+  font-size:68px;
 
-  line-height:1.1;
+  line-height:1;
 
   color:#6E4638;
 
-  margin-bottom:30px;
+  margin-bottom:20px;
 
 }
 
@@ -352,16 +355,20 @@
   }
 
   .hero h1{
+  font-size:42px;
+}
 
-    font-size:46px;
+ .hero p{
 
-  }
+  font-size:20px;
 
-  .hero p{
+  line-height:1.5;
 
-    font-size:19px;
+  color:#7A5A4F;
 
-  }
+  margin-bottom:28px;
+
+}
 
   .hero-buttons{
 
