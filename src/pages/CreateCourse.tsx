@@ -54,67 +54,6 @@ const [supportPdf, setSupportPdf] = useState("");
 
 const [finalVideo, setFinalVideo] = useState("");
 
-{/* CONTEÚDOS EXTRAS */}
-
-<div
-  style={{
-    background:"#fff",
-    padding:"30px",
-    borderRadius:"24px",
-    marginBottom:"30px"
-  }}
->
-
-  <h2
-    style={{
-      color:"#7A4A3A",
-      marginBottom:"25px"
-    }}
-  >
-    Conteúdos extras
-  </h2>
-
-  {/* VIDEO INICIAL */}
-
-  <input
-    type="text"
-    placeholder="Link do vídeo inicial (opcional)"
-    value={introVideo}
-    onChange={(e)=>
-      setIntroVideo(e.target.value)
-    }
-  />
-
-  {/* PDF */}
-
-  <input
-    type="text"
-    placeholder="Link do PDF (opcional)"
-    value={supportPdf}
-    onChange={(e)=>
-      setSupportPdf(e.target.value)
-    }
-    style={{
-      marginTop:"15px"
-    }}
-  />
-
-  {/* VIDEO FINAL */}
-
-  <input
-    type="text"
-    placeholder="Link do vídeo final (opcional)"
-    value={finalVideo}
-    onChange={(e)=>
-      setFinalVideo(e.target.value)
-    }
-    style={{
-      marginTop:"15px"
-    }}
-  />
-
-</div>
-
   useEffect(() => {
 
   if (!id) return;
@@ -403,6 +342,62 @@ return (
   </option>
 
 </select>
+
+{/* CONTEÚDOS EXTRAS */}
+
+<div
+  style={{
+    background:"#fff",
+    padding:"30px",
+    borderRadius:"24px",
+    marginBottom:"30px"
+  }}
+>
+
+  <h2
+    style={{
+      color:"#7A4A3A",
+      marginBottom:"25px"
+    }}
+  >
+    Conteúdos extras
+  </h2>
+
+  <input
+    type="text"
+    placeholder="Link do vídeo inicial (opcional)"
+    value={introVideo}
+    onChange={(e)=>
+      setIntroVideo(e.target.value)
+    }
+  />
+
+  <input
+    type="text"
+    placeholder="Link do PDF (opcional)"
+    value={supportPdf}
+    onChange={(e)=>
+      setSupportPdf(e.target.value)
+    }
+    style={{
+      marginTop:"15px"
+    }}
+  />
+
+  <input
+    type="text"
+    placeholder="Link do vídeo final (opcional)"
+    value={finalVideo}
+    onChange={(e)=>
+      setFinalVideo(e.target.value)
+    }
+    style={{
+      marginTop:"15px"
+    }}
+  />
+
+</div>
+
 
     {modules.map((module, mIndex) => (
       <div key={mIndex} className="module">
