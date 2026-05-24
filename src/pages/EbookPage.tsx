@@ -28,7 +28,7 @@ export default function EbookPage() {
 
         <h1
           style={{
-            fontSize:"32px",
+            fontSize:"40px",
             lineHeight:"1.2",
             color:"#6E4638",
             fontWeight:"700"
@@ -42,7 +42,7 @@ export default function EbookPage() {
         <p
           style={{
             marginTop:"10px",
-            fontSize:"16px",
+            fontSize:"20px",
             color:"#7A5A4F"
           }}
         >
@@ -82,7 +82,7 @@ export default function EbookPage() {
 
             <h2
               style={{
-                fontSize:"46px",
+                fontSize:"32px",
                 lineHeight:"1.08",
                 color:"#6E4638",
                 marginBottom:"24px",
