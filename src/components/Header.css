@@ -66,16 +66,13 @@
 
 .logo-img {
 
-  width: 200px;
+  width: 250px;
 
   height: 100px;
 
   object-fit: contain;
 
-  filter:
-  drop-shadow(
-    0 0 10px rgba(255, 200, 0, 0.7)
-  );
+
 
 }
 
