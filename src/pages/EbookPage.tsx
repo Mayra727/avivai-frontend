@@ -74,7 +74,7 @@ const user = JSON.parse(
     padding: "10px 20px",
     background: "#B4533A",
     color: "white",
-    borderRadius: "10px",
+    borderRadius: "0.8px",
     border: "none",
     cursor: "pointer",
     fontWeight: "bold",
