@@ -27,6 +27,63 @@ const user = JSON.parse(
             Para quem ama Jesus, mas sente que sua vida com Deus ficou apressada demais e íntima de menos.
           </p>
 
+
+          {/* PRODUTO */}
+      <section style={{ padding: "80px 20px", background: "#7A4A3A", color: "#fff" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", textAlign: "center" }}>
+
+          <img
+            src="/ebook.png"
+            alt="Ebook"
+            style={{ maxWidth: "250px", marginBottom: "20px" }}
+          />
+
+          <h2>📘 Primeiros Conceitos</h2>
+
+          <p style={{ marginTop: "10px" }}>
+            Um guia para transformar conhecimento em experiência real com Deus.
+          </p>
+
+          <h3 style={{ textDecoration: "line-through" }}>
+  R$97
+</h3>
+
+<h2 style={{
+  fontSize: "32px",
+  color: "#FFE7D9"
+}}>
+  Gratuito por tempo limitado
+</h2>
+
+<button
+  onClick={() => {
+
+    if(user){
+
+      window.open("/ebook.pdf", "_blank");
+
+    } else {
+
+      navigate("/cadastro");
+
+    }
+
+  }}
+  style={{
+    marginTop: "20px",
+    padding: "16px 40px",
+    background: "#B4533A",
+    color: "white",
+    borderRadius: "10px",
+    border: "none",
+    cursor: "pointer",
+    fontWeight: "bold",
+    fontSize: "16px"
+  }}
+>
+  Quero acessar gratuitamente
+</button>
+
         </div>
       </section>
 
@@ -117,61 +174,7 @@ const user = JSON.parse(
         </div>
       </section>
 
-      {/* PRODUTO */}
-      <section style={{ padding: "80px 20px", background: "#7A4A3A", color: "#fff" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto", textAlign: "center" }}>
 
-          <img
-            src="/ebook.png"
-            alt="Ebook"
-            style={{ maxWidth: "250px", marginBottom: "20px" }}
-          />
-
-          <h2>📘 Primeiros Conceitos</h2>
-
-          <p style={{ marginTop: "10px" }}>
-            Um guia para transformar conhecimento em experiência real com Deus.
-          </p>
-
-          <h3 style={{ textDecoration: "line-through" }}>
-  R$97
-</h3>
-
-<h2 style={{
-  fontSize: "32px",
-  color: "#FFE7D9"
-}}>
-  Gratuito por tempo limitado
-</h2>
-
-<button
-  onClick={() => {
-
-    if(user){
-
-      window.open("/ebook.pdf", "_blank");
-
-    } else {
-
-      navigate("/cadastro");
-
-    }
-
-  }}
-  style={{
-    marginTop: "20px",
-    padding: "16px 40px",
-    background: "#B4533A",
-    color: "white",
-    borderRadius: "10px",
-    border: "none",
-    cursor: "pointer",
-    fontWeight: "bold",
-    fontSize: "16px"
-  }}
->
-  Quero acessar gratuitamente
-</button>
 
         </div>
       </section>
