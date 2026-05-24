@@ -197,33 +197,7 @@ const user = JSON.parse(
       <section style={{ padding: "80px 20px", textAlign: "center" }}>
         <h2>Você não precisa ser perfeito para começar</h2>
 
-        <button
-  onClick={() => {
-
-    if(user){
-
-      window.open("/ebook.pdf");
-
-    }else{
-
-      navigate("/cadastro");
-
-    }
-
-  }}
-  style={{
-    marginTop: "20px",
-    padding: "18px 50px",
-    background: "#B4533A",
-    color: "white",
-    borderRadius: "12px",
-    border: "none"
-  }}
->
-  Quero começar minha jornada
-</button>
       </section>
-
     </div>
   );
 }
