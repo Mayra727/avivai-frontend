@@ -62,7 +62,7 @@ export default function Courses() {
     >
 
       <h1>
-        Cursos Disponíveis
+        Livro Vivencial 2 
       </h1>
 
       {user ? (
