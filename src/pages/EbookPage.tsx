@@ -21,16 +21,17 @@ export default function EbookPage() {
 
       <section
         style={{
-          padding:"80px 20px 40px",
+          padding:"60px 20px 20px",
           textAlign:"center"
         }}
       >
 
         <h1
           style={{
-            fontSize:"42px",
-            lineHeight:"1.3",
-            color:"#6E4638"
+            fontSize:"32px",
+            lineHeight:"1.2",
+            color:"#6E4638",
+            fontWeight:"700"
           }}
         >
           Primeiros Conceitos:
@@ -40,8 +41,8 @@ export default function EbookPage() {
 
         <p
           style={{
-            marginTop:"15px",
-            fontSize:"20px",
+            marginTop:"10px",
+            fontSize:"16px",
             color:"#7A5A4F"
           }}
         >
@@ -61,12 +62,12 @@ export default function EbookPage() {
 
         <div
           style={{
-            maxWidth:"1400px",
+            maxWidth:"1350px",
             margin:"0 auto",
             display:"flex",
             justifyContent:"space-between",
             alignItems:"stretch",
-            gap:"60px"
+            gap:"40px"
           }}
         >
 
@@ -75,16 +76,17 @@ export default function EbookPage() {
           <div
             style={{
               flex:1,
-              padding:"40px 50px 80px"
+              padding:"30px 40px 50px"
             }}
           >
 
             <h2
               style={{
-                fontSize:"64px",
-                lineHeight:"1",
+                fontSize:"46px",
+                lineHeight:"1.08",
                 color:"#6E4638",
-                marginBottom:"30px"
+                marginBottom:"24px",
+                fontWeight:"700"
               }}
             >
               A dor silenciosa
@@ -92,9 +94,10 @@ export default function EbookPage() {
 
             <p
               style={{
-                fontSize:"24px",
-                lineHeight:"1.7",
-                color:"#6E4638"
+                fontSize:"18px",
+                lineHeight:"1.6",
+                color:"#6E4638",
+                marginBottom:"12px"
               }}
             >
               Você ora. Você lê.
@@ -103,9 +106,10 @@ export default function EbookPage() {
 
             <p
               style={{
-                fontSize:"24px",
-                lineHeight:"1.7",
-                color:"#6E4638"
+                fontSize:"18px",
+                lineHeight:"1.6",
+                color:"#6E4638",
+                marginBottom:"12px"
               }}
             >
               E ainda assim, lá por dentro,
@@ -115,8 +119,8 @@ export default function EbookPage() {
 
             <p
               style={{
-                marginTop:"20px",
-                fontSize:"22px",
+                marginTop:"18px",
+                fontSize:"17px",
                 lineHeight:"1.7",
                 color:"#6E4638"
               }}
@@ -127,7 +131,7 @@ export default function EbookPage() {
 
             <p
               style={{
-                fontSize:"22px",
+                fontSize:"17px",
                 lineHeight:"1.7",
                 color:"#6E4638"
               }}
@@ -139,7 +143,7 @@ export default function EbookPage() {
 
             <p
               style={{
-                fontSize:"22px",
+                fontSize:"17px",
                 lineHeight:"1.7",
                 color:"#6E4638"
               }}
@@ -148,14 +152,15 @@ export default function EbookPage() {
               esses dois mundos.
             </p>
 
-            <div style={{ height:"60px" }} />
+            <div style={{ height:"45px" }} />
 
             <h2
               style={{
-                fontSize:"56px",
+                fontSize:"42px",
                 lineHeight:"1.1",
                 color:"#6E4638",
-                marginBottom:"25px"
+                marginBottom:"20px",
+                fontWeight:"700"
               }}
             >
               O que é este
@@ -164,7 +169,7 @@ export default function EbookPage() {
 
             <p
               style={{
-                fontSize:"22px",
+                fontSize:"17px",
                 lineHeight:"1.7",
                 color:"#6E4638"
               }}
@@ -175,7 +180,7 @@ export default function EbookPage() {
 
             <p
               style={{
-                fontSize:"22px",
+                fontSize:"17px",
                 lineHeight:"1.7",
                 color:"#6E4638"
               }}
@@ -188,7 +193,7 @@ export default function EbookPage() {
 
             <p
               style={{
-                fontSize:"22px",
+                fontSize:"17px",
                 lineHeight:"1.7",
                 color:"#6E4638"
               }}
@@ -197,153 +202,111 @@ export default function EbookPage() {
               É sobre viver.
             </p>
 
-            <button
-
-              onClick={() => {
-
-                if(user){
-
-                  window.open("/ebook.pdf", "_blank");
-
-                } else {
-
-                  navigate("/cadastro");
-
-                }
-
-              }}
-
-              style={{
-
-                marginTop:"40px",
-
-                padding:"20px 36px",
-
-                background:"#B4533A",
-
-                color:"white",
-
-                border:"none",
-
-                borderRadius:"18px",
-
-                cursor:"pointer",
-
-                fontWeight:"700",
-
-                fontSize:"20px"
-
-              }}
-
-            >
-
-              Quero acessar gratuitamente
-
-            </button>
-
           </div>
 
- {/* LATERAL MARROM */}
+          {/* LATERAL MARROM */}
 
-<div
-  style={{
-    width:"38%",
-    background:"#7A4A3A",
-    display:"flex",
-    justifyContent:"center",
-    alignItems:"center",
-    borderTopLeftRadius:"30px",
-    borderBottomLeftRadius:"30px",
-    minHeight:"100vh",
-    padding:"40px"
-  }}
->
+          <div
+            style={{
+              width:"30%",
+              background:"#7A4A3A",
+              display:"flex",
+              justifyContent:"center",
+              alignItems:"center",
+              borderTopLeftRadius:"28px",
+              borderBottomLeftRadius:"28px",
+              minHeight:"100vh",
+              padding:"25px"
+            }}
+          >
 
-  <div
-    style={{
-      textAlign:"center",
-      maxWidth:"320px"
-    }}
-  >
+            <div
+              style={{
+                textAlign:"center",
+                maxWidth:"220px"
+              }}
+            >
 
-    <img
-      src="/ebook.png"
-      alt="Livro"
-      style={{
-        width:"220px",
-        objectFit:"contain",
-        marginBottom:"25px"
-      }}
-    />
+              <img
+                src="/ebook.png"
+                alt="Livro"
+                style={{
+                  width:"160px",
+                  objectFit:"contain",
+                  marginBottom:"18px"
+                }}
+              />
 
-    <h2
-      style={{
-        color:"white",
-        fontSize:"24px",
-        marginBottom:"10px",
-        lineHeight:"1.2"
-      }}
-    >
-      Primeiros Conceitos
-    </h2>
+              <h2
+                style={{
+                  color:"white",
+                  fontSize:"18px",
+                  marginBottom:"8px",
+                  lineHeight:"1.3",
+                  fontWeight:"600"
+                }}
+              >
+                Primeiros Conceitos
+              </h2>
 
-    <p
-      style={{
-        color:"#FFE7D9",
-        fontSize:"16px",
-        marginBottom:"25px"
-      }}
-    >
-      Gratuito por tempo limitado
-    </p>
+              <p
+                style={{
+                  color:"#FFE7D9",
+                  fontSize:"13px",
+                  marginBottom:"20px",
+                  lineHeight:"1.5"
+                }}
+              >
+                Gratuito por tempo limitado
+              </p>
 
-    <button
+              <button
 
-      onClick={() => {
+                onClick={() => {
 
-        if(user){
+                  if(user){
 
-          window.open("/ebook.pdf", "_blank");
+                    window.open("/ebook.pdf", "_blank");
 
-        } else {
+                  } else {
 
-          navigate("/cadastro");
+                    navigate("/cadastro");
 
-        }
+                  }
 
-      }}
+                }}
 
-      style={{
+                style={{
 
-        padding:"16px 24px",
+                  padding:"12px 18px",
 
-        background:"#C15A3D",
+                  background:"#B85A3C",
 
-        color:"white",
+                  color:"white",
 
-        border:"none",
+                  border:"none",
 
-        borderRadius:"14px",
+                  borderRadius:"10px",
 
-        cursor:"pointer",
+                  cursor:"pointer",
 
-        fontWeight:"700",
+                  fontWeight:"600",
 
-        fontSize:"16px",
+                  fontSize:"13px",
 
-        width:"100%"
+                  width:"100%"
 
-      }}
+                }}
 
-    >
+              >
 
-      Quero acessar gratuitamente
+                Quero acessar gratuitamente
 
-    </button>
+              </button>
 
-  </div>
+            </div>
 
-</div>
+          </div>
 
         </div>
 
@@ -353,13 +316,13 @@ export default function EbookPage() {
 
       <section
         style={{
-          padding:"100px 20px"
+          padding:"90px 20px"
         }}
       >
 
         <div
           style={{
-            maxWidth:"900px",
+            maxWidth:"800px",
             margin:"0 auto"
           }}
         >
@@ -368,8 +331,8 @@ export default function EbookPage() {
             style={{
               textAlign:"center",
               color:"#6E4638",
-              fontSize:"48px",
-              marginBottom:"40px"
+              fontSize:"36px",
+              marginBottom:"35px"
             }}
           >
             O que você vai vivenciar
@@ -378,9 +341,10 @@ export default function EbookPage() {
           <div
             style={{
               display:"grid",
-              gap:"20px",
-              fontSize:"22px",
-              color:"#6E4638"
+              gap:"16px",
+              fontSize:"17px",
+              color:"#6E4638",
+              lineHeight:"1.7"
             }}
           >
 
@@ -404,14 +368,14 @@ export default function EbookPage() {
 
       <section
         style={{
-          padding:"100px 20px",
+          padding:"90px 20px",
           background:"#EFE5DE"
         }}
       >
 
         <div
           style={{
-            maxWidth:"900px",
+            maxWidth:"800px",
             margin:"0 auto"
           }}
         >
@@ -420,8 +384,8 @@ export default function EbookPage() {
             style={{
               textAlign:"center",
               color:"#6E4638",
-              fontSize:"48px",
-              marginBottom:"40px"
+              fontSize:"36px",
+              marginBottom:"35px"
             }}
           >
             Como o material foi construído
@@ -430,7 +394,7 @@ export default function EbookPage() {
           <ul
             style={{
               lineHeight:"2",
-              fontSize:"22px",
+              fontSize:"17px",
               color:"#6E4638"
             }}
           >
