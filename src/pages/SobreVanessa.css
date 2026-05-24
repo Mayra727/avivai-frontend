@@ -12,20 +12,19 @@
 
   display:flex;
 
-  align-items:center;
+  align-items:flex-start;
 
   justify-content:space-between;
 
-  gap:70px;
+  gap:40px;
 
-  padding:100px 60px;
+  padding:0 50px 20px;
 
   max-width:1400px;
 
   margin:0 auto;
 
 }
-
 .sobre-content{
 
   flex:1;
@@ -52,21 +51,23 @@
 
 .sobre-content h1{
 
-  font-size:64px;
+  font-size:58px;
 
-  line-height:1.1;
+  line-height:0.95;
 
   color:#6E4638;
 
-  margin-bottom:30px;
+  margin-top:0;
+
+  margin-bottom:18px;
 
 }
 
 .sobre-content p{
 
-  font-size:22px;
+  font-size:18px;
 
-  line-height:1.8;
+  line-height:1.5;
 
   color:#7A5A4F;
 
@@ -86,9 +87,11 @@
 
   width:100%;
 
-  max-width:500px;
+  max-width:420px;
 
-  border-radius:32px;
+  border-radius:28px;
+
+object-fit: cover;
 
   box-shadow:
     0 20px 50px rgba(0,0,0,0.15);
