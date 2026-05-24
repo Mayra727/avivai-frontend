@@ -1,196 +1,392 @@
-import {
-  useEffect,
-  useState
-} from "react";
+import { useNavigate } from "react-router-dom";
 
-import {
-  useNavigate
-} from "react-router-dom";
-
-import {
-  useAuth
-} from "../context/AuthContext";
-
-import {
-  API_URL
-} from "../services/api";
-
-export default function Courses() {
+export default function Livro2Page() {
 
   const navigate = useNavigate();
-
-  const { user } =
-    useAuth();
-
-  const [courses, setCourses] =
-    useState<any[]>([]);
-
-  useEffect(() => {
-
-    async function loadCourses() {
-
-      try {
-
-        const response =
-          await fetch(
-            `${API_URL}/courses`
-          );
-
-        const data =
-          await response.json();
-
-        setCourses(data);
-
-      } catch (error) {
-
-        console.log(error);
-
-      }
-
-    }
-
-    loadCourses();
-
-  }, []);
 
   return (
 
     <div
       style={{
-        padding:"60px"
+        fontFamily:"sans-serif",
+        background:"#F8F5F1",
+        color:"#6E4638"
       }}
     >
 
-      <h1>
-        Cursos Disponíveis
-      </h1>
+      {/* HERO */}
 
-      {user ? (
-
-        <p
-          style={{
-            color:"green"
-          }}
-        >
-
-          Você está logado como{" "}
-
-          <strong>
-            {user.name}
-          </strong>
-
-          {" "}✅
-
-        </p>
-
-      ) : (
-
-        <p
-          style={{
-            color:"red"
-          }}
-        >
-
-          Você não está logado
-
-        </p>
-
-      )}
-
-      <div
+      <section
         style={{
-          display:"grid",
-
-          gridTemplateColumns:
-            "repeat(auto-fit,minmax(300px,1fr))",
-
-          gap:"20px",
-
-          marginTop:"40px"
+          padding:"80px 20px 40px",
+          textAlign:"center"
         }}
       >
 
-        {courses.map((course:any)=>(
+        <div
+          style={{
+            maxWidth:"1000px",
+            margin:"0 auto"
+          }}
+        >
+
+          <h1
+            style={{
+              fontSize:"42px",
+              lineHeight:"1.3",
+              fontWeight:"600"
+            }}
+          >
+            Caminho da Intimidade – Volume 2
+          </h1>
+
+          <p
+            style={{
+              margin:"18px auto 0",
+              fontSize:"20px",
+              lineHeight:"1.6",
+              color:"#7A655B",
+              maxWidth:"800px"
+            }}
+          >
+            Para quem já começou…
+            mas percebeu que ainda há mais profundidade.
+          </p>
+
+        </div>
+
+      </section>
+
+      {/* HERO CONTENT */}
+
+      <section
+        style={{
+          padding:"40px 20px 100px"
+        }}
+      >
+
+        <div
+          style={{
+            maxWidth:"1300px",
+            margin:"0 auto",
+            display:"flex",
+            gap:"80px",
+            alignItems:"flex-start",
+            flexWrap:"wrap"
+          }}
+        >
+
+          {/* VIDEO */}
 
           <div
-
-            key={course._id}
-
             style={{
-              background:"#fff",
-
-              borderRadius:"20px",
-
-              overflow:"hidden",
-
-              boxShadow:
-                "0 5px 20px rgba(0,0,0,0.08)"
+              flex:"1",
+              minWidth:"320px",
+              position:"sticky",
+              top:"120px"
             }}
-
           >
 
-            <div
-              style={{
-                height:"180px",
-                background:"#d9cfc7"
-              }}
-            />
+            <video
 
-            <div
+              controls
+
+              poster="/images/livro2-capa.jpg"
+
               style={{
-                padding:"20px"
-              }}
+
+  width:"100%",
+
+  maxWidth:"460px",
+
+  borderRadius:"28px",
+
+  background:"#000",
+
+  boxShadow:
+  "0 20px 50px rgba(0,0,0,0.18)"
+
+}}
             >
 
-              <h2>
-                {course.title}
+              <source
+                src="/apresentacao-da-jornada-livro-2.mp4"
+                type="video/mp4"
+              />
+
+            </video>
+
+          </div>
+
+          {/* TEXT */}
+
+          <div
+            style={{
+              flex:"1.3",
+              minWidth:"320px",
+              display:"flex",
+              flexDirection:"column",
+              gap:"80px"
+            }}
+          >
+
+            {/* CONTINUAÇÃO */}
+
+            <div>
+
+              <h2
+                style={{
+                  fontSize:"34px",
+                  fontWeight:"600",
+                  lineHeight:"1.3",
+                  marginBottom:"24px"
+                }}
+              >
+                A continuação da jornada
               </h2>
 
-              <p>
-                Curso completo Avivai
-              </p>
-
-              <h3>
-                R$ {course.price}
-              </h3>
-
-              <button
-
-                onClick={()=>
-                  navigate(
-                    `/curso/${course._id}`
-                  )
-                }
-
+              <div
                 style={{
-                  width:"100%",
-
-                  padding:"12px",
-
-                  border:"none",
-
-                  borderRadius:"10px",
-
-                  background:"#7A4A3A",
-
-                  color:"#fff",
-
-                  cursor:"pointer"
+                  display:"flex",
+                  flexDirection:"column",
+                  gap:"18px",
+                  fontSize:"20px",
+                  lineHeight:"1.8",
+                  color:"#6E4638"
                 }}
-
               >
 
-                comprar curso
+                <p>
+                  Você já deu os primeiros passos.
+                </p>
 
-              </button>
+                <p>
+                  Já começou a perceber mudanças.
+                </p>
+
+                <p>
+                  Mas também percebeu que existe
+                  um nível mais profundo.
+                </p>
+
+                <p>
+                  Um lugar onde a fé deixa de ser esforço…
+                  e se torna natureza.
+                </p>
+
+              </div>
+
+            </div>
+
+            {/* O QUE É */}
+
+            <div>
+
+              <h2
+                style={{
+                  fontSize:"34px",
+                  fontWeight:"600",
+                  lineHeight:"1.3",
+                  marginBottom:"24px"
+                }}
+              >
+                O que é o Volume 2
+              </h2>
+
+              <div
+                style={{
+                  display:"flex",
+                  flexDirection:"column",
+                  gap:"18px",
+                  fontSize:"20px",
+                  lineHeight:"1.8",
+                  color:"#6E4638"
+                }}
+              >
+
+                <p>
+                  O Volume 2 é a continuidade do caminho.
+                </p>
+
+                <p>
+                  Aqui, você não está mais começando.
+                </p>
+
+                <p>
+                  Você está aprofundando.
+                </p>
+
+                <p>
+                  É onde a prática se torna constância,
+                  e a constância se transforma em estilo de vida.
+                </p>
+
+              </div>
+
+            </div>
+
+            {/* APROFUNDAMENTO */}
+
+            <div>
+
+              <h2
+                style={{
+                  fontSize:"34px",
+                  fontWeight:"600",
+                  lineHeight:"1.3",
+                  marginBottom:"24px"
+                }}
+              >
+                O que você vai aprofundar
+              </h2>
+
+              <div
+                style={{
+                  display:"grid",
+                  gap:"18px",
+                  fontSize:"20px",
+                  lineHeight:"1.8"
+                }}
+              >
+
+                <div>
+                  ✔ Consistência espiritual no dia a dia
+                </div>
+
+                <div>
+                  ✔ Maturidade emocional aplicada à fé
+                </div>
+
+                <div>
+                  ✔ Discernimento espiritual
+                </div>
+
+                <div>
+                  ✔ Vida guiada e não apenas reativa
+                </div>
+
+                <div>
+                  ✔ Intimidade contínua com Deus
+                </div>
+
+              </div>
+
+            </div>
+
+            {/* DIFERENCIAL */}
+
+            <div>
+
+              <h2
+                style={{
+                  fontSize:"34px",
+                  fontWeight:"600",
+                  lineHeight:"1.3",
+                  marginBottom:"24px"
+                }}
+              >
+                Por que continuar a jornada
+              </h2>
+
+              <div
+                style={{
+                  display:"flex",
+                  flexDirection:"column",
+                  gap:"18px",
+                  fontSize:"20px",
+                  lineHeight:"1.8"
+                }}
+              >
+
+                <p>
+                  Porque começar é importante.
+                </p>
+
+                <p>
+                  Mas permanecer é o que transforma.
+                </p>
+
+                <p>
+                  O Volume 2 foi criado para evitar
+                  que você volte ao automático,
+                  ajudando você a consolidar uma vida
+                  espiritual firme e constante.
+                </p>
+
+              </div>
 
             </div>
 
           </div>
 
-        ))}
+        </div>
 
-      </div>
+      </section>
+
+      {/* CTA FINAL */}
+
+      <section
+        style={{
+          padding:"100px 20px",
+          textAlign:"center",
+          background:"#EFE7E1"
+        }}
+      >
+
+        <h2
+          style={{
+            fontSize:"42px",
+            fontWeight:"600",
+            color:"#6E4638"
+          }}
+        >
+          A profundidade não está no começo
+        </h2>
+
+        <p
+          style={{
+            marginTop:"16px",
+            fontSize:"22px",
+            color:"#7A655B"
+          }}
+        >
+          Está na continuidade.
+        </p>
+
+        <button
+
+          onClick={() =>
+            navigate("/mentoria")
+          }
+
+          style={{
+
+            marginTop:"35px",
+
+            padding:"20px 50px",
+
+            background:"#8B4533",
+
+            color:"white",
+
+            borderRadius:"16px",
+
+            border:"none",
+
+            fontSize:"20px",
+
+            cursor:"pointer",
+
+            boxShadow:
+            "0 15px 40px rgba(0,0,0,0.18)"
+
+          }}
+
+        >
+          Quero ir mais fundo
+        </button>
+
+      </section>
 
     </div>
 
