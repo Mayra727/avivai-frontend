@@ -4,203 +4,408 @@ export default function EbookPage() {
 
   const navigate = useNavigate();
 
-const user = JSON.parse(
-  localStorage.getItem("user") || "null"
-);
+  const user = JSON.parse(
+    localStorage.getItem("user") || "null"
+  );
 
   return (
-    <div style={{ fontFamily: "sans-serif" }}>
 
-      {/* HERO */}
-      <section style={{ padding: "80px 20px", background: "#F8F5F1" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto", textAlign: "center" }}>
+    <div
+      style={{
+        fontFamily:"sans-serif",
+        background:"#F8F5F1"
+      }}
+    >
 
-          <h1 style={{ fontSize: "36px", lineHeight: "1.3" }}>
-            Primeiros Conceitos: O Caminho da Intimidade
-          </h1>
+      {/* HERO TOPO */}
 
-          <p style={{ marginTop: "10px", fontSize: "18px" }}>
-            Princípios para uma jornada de descobertas rumo à vida plena
-          </p>
+      <section
+        style={{
+          padding:"80px 20px 40px",
+          textAlign:"center"
+        }}
+      >
 
-          <p style={{ marginTop: "15px", color: "#555" }}>
-            Para quem ama Jesus, mas sente que sua vida com Deus ficou apressada demais e íntima de menos.
-          </p>
+        <h1
+          style={{
+            fontSize:"42px",
+            lineHeight:"1.3",
+            color:"#6E4638"
+          }}
+        >
+          Primeiros Conceitos:
+          <br />
+          O Caminho da Intimidade
+        </h1>
 
+        <p
+          style={{
+            marginTop:"15px",
+            fontSize:"20px",
+            color:"#7A5A4F"
+          }}
+        >
+          Princípios para uma jornada de descobertas
+          rumo à vida plena
+        </p>
 
-          {/* PRODUTO */}
-      <section style={{ padding: "80px 20px", background: "#7A4A3A", color: "#fff" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto", textAlign: "center" }}>
-
-          <img
-            src="/ebook.png"
-            alt="Ebook"
-            style={{ maxWidth: "250px", marginBottom: "20px" }}
-          />
-
-          <h2>📘 Primeiros Conceitos</h2>
-
-          <p style={{ marginTop: "10px" }}>
-            Um guia para transformar conhecimento em experiência real com Deus.
-          </p>
-
-          <h3 style={{ textDecoration: "line-through" }}>
-  R$97
-</h3>
-
-<h2 style={{
-  fontSize: "32px",
-  color: "#FFE7D9"
-}}>
-  Gratuito por tempo limitado
-</h2>
-
-<button
-  onClick={() => {
-
-    if(user){
-
-      window.open("/ebook.pdf", "_blank");
-
-    } else {
-
-      navigate("/cadastro");
-
-    }
-
-  }}
-  style={{
-    marginTop: "20px",
-    padding: "10px 20px",
-    background: "#B4533A",
-    color: "white",
-    borderRadius: "0.8px",
-    border: "none",
-    cursor: "pointer",
-    fontWeight: "bold",
-    fontSize: "16px"
-  }}
->
-  Quero acessar gratuitamente
-</button>
-
-        </div>
       </section>
 
-      {/* DOR COMPLETA */}
-      <section style={{ padding: "60px 20px" }}>
-        <div style={{ maxWidth: "700px", margin: "0 auto" }}>
+      {/* HERO LIVRO */}
 
-          <h2 style={{ textAlign: "center" }}>A dor silenciosa</h2>
+      <section
+        style={{
+          background:"#F8F5F1"
+        }}
+      >
 
-          <p style={{ marginTop: "20px" }}>
-            Você ora. Você lê. Você tenta fazer o certo.
-          </p>
+        <div
+          style={{
+            maxWidth:"1400px",
+            margin:"0 auto",
+            display:"flex",
+            justifyContent:"space-between",
+            alignItems:"stretch",
+            gap:"60px"
+          }}
+        >
 
-          <p>
-            E ainda assim, lá por dentro, carrega um cansaço silencioso que você não consegue bem explicar.
-          </p>
+          {/* TEXTO */}
 
-          <p>
-            Não é falta de fé. Não é falta de esforço.
-          </p>
+          <div
+            style={{
+              flex:1,
+              padding:"40px 50px 80px"
+            }}
+          >
 
-          <p>
-            É que ninguém te ensinou a viver com Deus, só a saber sobre Ele.
-          </p>
+            <h2
+              style={{
+                fontSize:"64px",
+                lineHeight:"1",
+                color:"#6E4638",
+                marginBottom:"30px"
+              }}
+            >
+              A dor silenciosa
+            </h2>
 
-          <p>
-            Existe um abismo entre esses dois mundos.
-          </p>
+            <p
+              style={{
+                fontSize:"24px",
+                lineHeight:"1.7",
+                color:"#6E4638"
+              }}
+            >
+              Você ora. Você lê.
+              Você tenta fazer o certo.
+            </p>
+
+            <p
+              style={{
+                fontSize:"24px",
+                lineHeight:"1.7",
+                color:"#6E4638"
+              }}
+            >
+              E ainda assim, lá por dentro,
+              carrega um cansaço silencioso
+              que você não consegue explicar.
+            </p>
+
+            <p
+              style={{
+                marginTop:"20px",
+                fontSize:"22px",
+                lineHeight:"1.7",
+                color:"#6E4638"
+              }}
+            >
+              Não é falta de fé.
+              Não é falta de esforço.
+            </p>
+
+            <p
+              style={{
+                fontSize:"22px",
+                lineHeight:"1.7",
+                color:"#6E4638"
+              }}
+            >
+              É que ninguém te ensinou
+              a viver com Deus,
+              só a saber sobre Ele.
+            </p>
+
+            <p
+              style={{
+                fontSize:"22px",
+                lineHeight:"1.7",
+                color:"#6E4638"
+              }}
+            >
+              Existe um abismo entre
+              esses dois mundos.
+            </p>
+
+            <div style={{ height:"60px" }} />
+
+            <h2
+              style={{
+                fontSize:"56px",
+                lineHeight:"1.1",
+                color:"#6E4638",
+                marginBottom:"25px"
+              }}
+            >
+              O que é este
+              livro vivencial
+            </h2>
+
+            <p
+              style={{
+                fontSize:"22px",
+                lineHeight:"1.7",
+                color:"#6E4638"
+              }}
+            >
+              Este não é um devocional
+              para você folhear e guardar.
+            </p>
+
+            <p
+              style={{
+                fontSize:"22px",
+                lineHeight:"1.7",
+                color:"#6E4638"
+              }}
+            >
+              É um livro vivencial,
+              criado para tirar a sua espiritualidade
+              do campo das ideias
+              e plantá-la no solo da sua vida real.
+            </p>
+
+            <p
+              style={{
+                fontSize:"22px",
+                lineHeight:"1.7",
+                color:"#6E4638"
+              }}
+            >
+              Não é sobre saber.
+              É sobre viver.
+            </p>
+
+            <button
+
+              onClick={() => {
+
+                if(user){
+
+                  window.open("/ebook.pdf", "_blank");
+
+                } else {
+
+                  navigate("/cadastro");
+
+                }
+
+              }}
+
+              style={{
+
+                marginTop:"40px",
+
+                padding:"20px 36px",
+
+                background:"#B4533A",
+
+                color:"white",
+
+                border:"none",
+
+                borderRadius:"18px",
+
+                cursor:"pointer",
+
+                fontWeight:"700",
+
+                fontSize:"20px"
+
+              }}
+
+            >
+
+              Quero acessar gratuitamente
+
+            </button>
+
+          </div>
+
+          {/* LATERAL MARROM */}
+
+          <div
+            style={{
+              width:"42%",
+              background:"#7A4A3A",
+              display:"flex",
+              justifyContent:"center",
+              alignItems:"center",
+              borderTopLeftRadius:"30px",
+              borderBottomLeftRadius:"30px",
+              minHeight:"100vh",
+              padding:"40px"
+            }}
+          >
+
+            <div
+              style={{
+                textAlign:"center"
+              }}
+            >
+
+              <img
+                src="/ebook.png"
+                alt="Livro"
+                style={{
+                  width:"320px",
+                  objectFit:"contain"
+                }}
+              />
+
+              <h2
+                style={{
+                  color:"white",
+                  marginTop:"30px",
+                  fontSize:"38px"
+                }}
+              >
+                Primeiros Conceitos
+              </h2>
+
+              <p
+                style={{
+                  color:"#FFE7D9",
+                  marginTop:"10px",
+                  fontSize:"20px"
+                }}
+              >
+                Gratuito por tempo limitado
+              </p>
+
+            </div>
+
+          </div>
 
         </div>
-      </section>
 
-      {/* O QUE É O LIVRO */}
-      <section style={{ padding: "60px 20px", background: "#F8F5F1" }}>
-        <div style={{ maxWidth: "700px", margin: "0 auto" }}>
-
-          <h2 style={{ textAlign: "center" }}>O que é este livro vivencial</h2>
-
-          <p style={{ marginTop: "20px" }}>
-            Este não é um devocional para você folhear e guardar.
-          </p>
-
-          <p>
-            É um livro vivencial, criado para tirar a sua espiritualidade do campo das ideias
-            e plantá-la no solo da sua vida real.
-          </p>
-
-          <p>
-            Não é sobre saber. É sobre viver.
-          </p>
-
-        </div>
       </section>
 
       {/* O QUE VOCÊ VAI VIVENCIAR */}
-      <section style={{ padding: "60px 20px" }}>
-        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
 
-          <h2 style={{ textAlign: "center" }}>O que você vai vivenciar</h2>
+      <section
+        style={{
+          padding:"100px 20px"
+        }}
+      >
 
-          <div style={{ marginTop: "30px", display: "grid", gap: "15px" }}>
+        <div
+          style={{
+            maxWidth:"900px",
+            margin:"0 auto"
+          }}
+        >
+
+          <h2
+            style={{
+              textAlign:"center",
+              color:"#6E4638",
+              fontSize:"48px",
+              marginBottom:"40px"
+            }}
+          >
+            O que você vai vivenciar
+          </h2>
+
+          <div
+            style={{
+              display:"grid",
+              gap:"20px",
+              fontSize:"22px",
+              color:"#6E4638"
+            }}
+          >
 
             <div>✔ Tempo interno x tempo externo</div>
+
             <div>✔ A confusão que nos rouba</div>
+
             <div>✔ Legado x herança</div>
+
             <div>✔ Espelho: Deus e pessoas</div>
+
             <div>✔ Relacionamento com o Espírito Santo</div>
 
           </div>
 
         </div>
+
       </section>
 
       {/* COMO FOI CONSTRUÍDO */}
-      <section style={{ padding: "60px 20px", background: "#F8F5F1" }}>
-        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
 
-          <h2 style={{ textAlign: "center" }}>Como o material foi construído</h2>
+      <section
+        style={{
+          padding:"100px 20px",
+          background:"#EFE5DE"
+        }}
+      >
 
-          <ul style={{ marginTop: "20px", lineHeight: "1.8" }}>
+        <div
+          style={{
+            maxWidth:"900px",
+            margin:"0 auto"
+          }}
+        >
+
+          <h2
+            style={{
+              textAlign:"center",
+              color:"#6E4638",
+              fontSize:"48px",
+              marginBottom:"40px"
+            }}
+          >
+            Como o material foi construído
+          </h2>
+
+          <ul
+            style={{
+              lineHeight:"2",
+              fontSize:"22px",
+              color:"#6E4638"
+            }}
+          >
+
             <li>Textos narrativos profundos</li>
+
             <li>Frases de pausa e reflexão</li>
+
             <li>Exercícios práticos aplicáveis</li>
+
             <li>Orações guiadas</li>
+
             <li>Plano de 7 dias para iniciar</li>
+
           </ul>
 
         </div>
-      </section>
-
-
-
-        </div>
-      </section>
-
-      {/* PARA QUEM É */}
-      <section style={{ padding: "60px 20px", textAlign: "center" }}>
-        <h2>Para quem é este material</h2>
-
-        <p style={{ marginTop: "15px" }}>
-          Para quem ama Jesus, mas sente que a espiritualidade ficou funcional demais.
-        </p>
-
-        <p>
-          Para quem está cansado de viver uma fé de manutenção.
-        </p>
-
-        <p>
-          Para quem quer viver uma fé de intimidade real.
-        </p>
-      </section>
-
-      {/* CTA FINAL */}
-      <section style={{ padding: "80px 20px", textAlign: "center" }}>
-        <h2>Você não precisa ser perfeito para começar</h2>
 
       </section>
+
     </div>
+
   );
+
 }
