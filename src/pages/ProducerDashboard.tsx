@@ -504,6 +504,30 @@ alert(
 
   </div>
 
+{/* LIBERAÇÃO */}
+
+<div className="dashboard-card">
+
+  <h2>
+    🔓 Liberação
+  </h2>
+
+  <p>
+    Libere manualmente
+    acessos para alunos
+    da plataforma.
+  </p>
+
+  <button
+    onClick={() =>
+      navigate("/release-access")
+    }
+  >
+    Liberar acessos
+  </button>
+
+</div>
+
 </section>
 
     </div>

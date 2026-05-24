@@ -29,6 +29,7 @@ import Footer from "./components/Footer";
 import Solucoes from "./pages/Solucoes";
 import SobreVanessa from "./pages/SobreVanessa";
 import AlunoPage from "./pages/AlunoPage";
+import ReleaseAccess from "./pages/ReleaseAccess";
 
 
 export default function App() {
@@ -82,6 +83,10 @@ export default function App() {
 />
             <Route path="/mentoria" element={<MentoriaPage />} />
             <Route path="/produtor" element={<ProducerDashboard />} />
+<Route
+  path="/release-access"
+  element={<ReleaseAccess />}
+/>
 <Route path="/curso/:id" element={<CoursePlayer />} />
 <Route path="/course-player/:id" element={<CoursePlayer />} />
 <Route path="/criar-curso" element={<CreateCourse />} />
@@ -111,6 +116,7 @@ export default function App() {
   path="/aluno"
   element={<AlunoPage />}
 />
+
           {/* ✅ AGORA ESTÁ NO LUGAR CERTO */}
           <Route path="/livro2" element={<Livro2Page />} />
         </Routes>
