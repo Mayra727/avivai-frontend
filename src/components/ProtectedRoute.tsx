@@ -20,11 +20,11 @@ export default function ProtectedRoute({
   }
 
   if (adminOnly && user.role !== "superadmin") {
-    return <Navigate to="/dashboard" />;
+    return <Navigate to="/producer-dashboard" />;
   }
 
   if (producerOnly && user.role !== "produtor") {
-    return <Navigate to="/dashboard" />;
+    return <Navigate to="/producer-dashboard" />;
   }
 
   return <>{children}</>;

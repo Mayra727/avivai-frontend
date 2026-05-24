@@ -123,7 +123,7 @@ export default function Header() {
 
               {user.role === "produtor" && (
 
-                <Link to="/dashboard">
+                <Link to="/producer-dashboard">
                   Dashboard
                 </Link>
 

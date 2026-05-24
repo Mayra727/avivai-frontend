@@ -19,7 +19,7 @@ export default function MainLayout() {
         <nav style={{ display: "flex", gap: "20px" }}>
           <Link to="/">Home</Link>
           <Link to="/cursos">Cursos</Link> {/* 🔥 AQUI ESTÁ O IMPORTANTE */}
-          <Link to="/dashboard">Meus Cursos</Link>
+          <Link to="/producer-dashboard">Meus Cursos</Link>
           <Link to="/produtor">Produtor</Link>
           <Link to="/admin">Admin</Link>
         </nav>

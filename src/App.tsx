@@ -64,7 +64,7 @@ export default function App() {
   element={<ResetPassword />}
 />
 
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="" element={<Dashboard />} />
           <Route path="/meus-cursos" element={<MyCourses />} />
 
           <Route path="/cursos" element={<Courses />} />
