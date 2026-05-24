@@ -223,19 +223,20 @@ export default function EbookPage() {
             <div
               style={{
                 textAlign:"center",
-                maxWidth:"220px"
+                maxWidth:"100%"
               }}
             >
 
               <img
-                src="/ebook.png"
-                alt="Livro"
-                style={{
-                  width:"160px",
-                  objectFit:"contain",
-                  marginBottom:"18px"
-                }}
-              />
+  src="/ebook.png"
+  alt="Livro"
+  style={{
+    width:"260px",
+    objectFit:"contain",
+    marginBottom:"10px",
+    marginTop:"-20px"
+  }}
+/>
 
               <h2
                 style={{
