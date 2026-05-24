@@ -97,18 +97,14 @@ export default function Livro2Page() {
 
   width:"100%",
 
-  maxWidth:"340px",
+  maxWidth:"460px",
 
-  height:"auto",
-
-  borderRadius:"24px",
+  borderRadius:"28px",
 
   background:"#000",
 
   boxShadow:
-  "0 20px 50px rgba(0,0,0,0.18)",
-
-  objectFit:"contain"
+  "0 20px 50px rgba(0,0,0,0.18)"
 
 }}
             >
