@@ -33,7 +33,7 @@ export default function SobreVanessa() {
         <div className="sobre-image-wrapper">
 
           <img
-            src="/vanessa.sobre.jpg"
+            src="/vanessa.sobre.jpeg"
             alt="Vanessa Nonato"
             className="sobre-image"
           />
