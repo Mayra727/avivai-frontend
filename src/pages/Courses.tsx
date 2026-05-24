@@ -37,7 +37,7 @@ export default function Livro2Page() {
               fontWeight:"600"
             }}
           >
-            Caminho da Intimidade – Volume 2
+            Apresentação da Coleção do Caminho da Intimidade
           </h1>
 
           <p
