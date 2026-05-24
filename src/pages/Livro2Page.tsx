@@ -95,27 +95,26 @@ export default function Livro2Page() {
 
               style={{
 
-                width:"100%",
+  width:"100%",
 
-                maxWidth:"520px",
+  maxWidth:"340px",
 
-                height:"720px",
+  height:"auto",
 
-                borderRadius:"28px",
+  borderRadius:"24px",
 
-                objectFit:"cover",
+  background:"#000",
 
-                background:"#000",
+  boxShadow:
+  "0 20px 50px rgba(0,0,0,0.18)",
 
-                boxShadow:
-                "0 25px 60px rgba(0,0,0,0.22)"
+  objectFit:"contain"
 
-              }}
-
+}}
             >
 
               <source
-                src="apresentacao-da-jornada-livro-2.mp4"
+                src="/apresentacao-da-jornada-livro-2.mp4"
                 type="video/mp4"
               />
 
