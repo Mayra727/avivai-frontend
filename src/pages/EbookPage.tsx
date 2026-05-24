@@ -243,60 +243,107 @@ export default function EbookPage() {
 
           </div>
 
-          {/* LATERAL MARROM */}
+ {/* LATERAL MARROM */}
 
-          <div
-            style={{
-              width:"42%",
-              background:"#7A4A3A",
-              display:"flex",
-              justifyContent:"center",
-              alignItems:"center",
-              borderTopLeftRadius:"30px",
-              borderBottomLeftRadius:"30px",
-              minHeight:"100vh",
-              padding:"40px"
-            }}
-          >
+<div
+  style={{
+    width:"38%",
+    background:"#7A4A3A",
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center",
+    borderTopLeftRadius:"30px",
+    borderBottomLeftRadius:"30px",
+    minHeight:"100vh",
+    padding:"40px"
+  }}
+>
 
-            <div
-              style={{
-                textAlign:"center"
-              }}
-            >
+  <div
+    style={{
+      textAlign:"center",
+      maxWidth:"320px"
+    }}
+  >
 
-              <img
-                src="/ebook.png"
-                alt="Livro"
-                style={{
-                  width:"320px",
-                  objectFit:"contain"
-                }}
-              />
+    <img
+      src="/ebook.png"
+      alt="Livro"
+      style={{
+        width:"220px",
+        objectFit:"contain",
+        marginBottom:"25px"
+      }}
+    />
 
-              <h2
-                style={{
-                  color:"white",
-                  marginTop:"30px",
-                  fontSize:"38px"
-                }}
-              >
-                Primeiros Conceitos
-              </h2>
+    <h2
+      style={{
+        color:"white",
+        fontSize:"24px",
+        marginBottom:"10px",
+        lineHeight:"1.2"
+      }}
+    >
+      Primeiros Conceitos
+    </h2>
 
-              <p
-                style={{
-                  color:"#FFE7D9",
-                  marginTop:"10px",
-                  fontSize:"20px"
-                }}
-              >
-                Gratuito por tempo limitado
-              </p>
+    <p
+      style={{
+        color:"#FFE7D9",
+        fontSize:"16px",
+        marginBottom:"25px"
+      }}
+    >
+      Gratuito por tempo limitado
+    </p>
 
-            </div>
+    <button
 
-          </div>
+      onClick={() => {
+
+        if(user){
+
+          window.open("/ebook.pdf", "_blank");
+
+        } else {
+
+          navigate("/cadastro");
+
+        }
+
+      }}
+
+      style={{
+
+        padding:"16px 24px",
+
+        background:"#C15A3D",
+
+        color:"white",
+
+        border:"none",
+
+        borderRadius:"14px",
+
+        cursor:"pointer",
+
+        fontWeight:"700",
+
+        fontSize:"16px",
+
+        width:"100%"
+
+      }}
+
+    >
+
+      Quero acessar gratuitamente
+
+    </button>
+
+  </div>
+
+</div>
 
         </div>
 
