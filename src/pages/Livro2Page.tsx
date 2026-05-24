@@ -18,7 +18,7 @@ export default function Livro2Page() {
 
       <section
         style={{
-          padding:"90px 20px 60px",
+          padding:"80px 20px 40px",
           textAlign:"center"
         }}
       >
@@ -32,9 +32,9 @@ export default function Livro2Page() {
 
           <h1
             style={{
-              fontSize:"54px",
-              lineHeight:"1.2",
-              fontWeight:"700"
+              fontSize:"42px",
+              lineHeight:"1.3",
+              fontWeight:"600"
             }}
           >
             Caminho da Intimidade – Volume 2
@@ -42,9 +42,11 @@ export default function Livro2Page() {
 
           <p
             style={{
-              marginTop:"18px",
-              fontSize:"24px",
-              color:"#7A655B"
+              margin:"18px auto 0",
+              fontSize:"20px",
+              lineHeight:"1.6",
+              color:"#7A655B",
+              maxWidth:"800px"
             }}
           >
             Para quem já começou…
@@ -68,7 +70,7 @@ export default function Livro2Page() {
             maxWidth:"1300px",
             margin:"0 auto",
             display:"flex",
-            gap:"70px",
+            gap:"80px",
             alignItems:"flex-start",
             flexWrap:"wrap"
           }}
@@ -86,15 +88,30 @@ export default function Livro2Page() {
           >
 
             <video
+
               controls
+
+              poster="/images/livro2-capa.jpg"
+
               style={{
+
                 width:"100%",
-                maxWidth:"420px",
+
+                maxWidth:"520px",
+
+                height:"720px",
+
                 borderRadius:"28px",
+
+                objectFit:"cover",
+
+                background:"#000",
+
                 boxShadow:
-                "0 20px 60px rgba(0,0,0,0.18)",
-                objectFit:"cover"
+                "0 25px 60px rgba(0,0,0,0.22)"
+
               }}
+
             >
 
               <source
@@ -114,7 +131,7 @@ export default function Livro2Page() {
               minWidth:"320px",
               display:"flex",
               flexDirection:"column",
-              gap:"90px"
+              gap:"80px"
             }}
           >
 
@@ -124,7 +141,9 @@ export default function Livro2Page() {
 
               <h2
                 style={{
-                  fontSize:"48px",
+                  fontSize:"34px",
+                  fontWeight:"600",
+                  lineHeight:"1.3",
                   marginBottom:"24px"
                 }}
               >
@@ -136,7 +155,7 @@ export default function Livro2Page() {
                   display:"flex",
                   flexDirection:"column",
                   gap:"18px",
-                  fontSize:"25px",
+                  fontSize:"20px",
                   lineHeight:"1.8",
                   color:"#6E4638"
                 }}
@@ -170,7 +189,9 @@ export default function Livro2Page() {
 
               <h2
                 style={{
-                  fontSize:"48px",
+                  fontSize:"34px",
+                  fontWeight:"600",
+                  lineHeight:"1.3",
                   marginBottom:"24px"
                 }}
               >
@@ -182,7 +203,7 @@ export default function Livro2Page() {
                   display:"flex",
                   flexDirection:"column",
                   gap:"18px",
-                  fontSize:"25px",
+                  fontSize:"20px",
                   lineHeight:"1.8",
                   color:"#6E4638"
                 }}
@@ -215,7 +236,9 @@ export default function Livro2Page() {
 
               <h2
                 style={{
-                  fontSize:"48px",
+                  fontSize:"34px",
+                  fontWeight:"600",
+                  lineHeight:"1.3",
                   marginBottom:"24px"
                 }}
               >
@@ -226,8 +249,8 @@ export default function Livro2Page() {
                 style={{
                   display:"grid",
                   gap:"18px",
-                  fontSize:"24px",
-                  lineHeight:"1.7"
+                  fontSize:"20px",
+                  lineHeight:"1.8"
                 }}
               >
 
@@ -261,7 +284,9 @@ export default function Livro2Page() {
 
               <h2
                 style={{
-                  fontSize:"48px",
+                  fontSize:"34px",
+                  fontWeight:"600",
+                  lineHeight:"1.3",
                   marginBottom:"24px"
                 }}
               >
@@ -273,7 +298,7 @@ export default function Livro2Page() {
                   display:"flex",
                   flexDirection:"column",
                   gap:"18px",
-                  fontSize:"25px",
+                  fontSize:"20px",
                   lineHeight:"1.8"
                 }}
               >
@@ -307,7 +332,7 @@ export default function Livro2Page() {
 
       <section
         style={{
-          padding:"120px 20px",
+          padding:"100px 20px",
           textAlign:"center",
           background:"#EFE7E1"
         }}
@@ -315,7 +340,8 @@ export default function Livro2Page() {
 
         <h2
           style={{
-            fontSize:"54px",
+            fontSize:"42px",
+            fontWeight:"600",
             color:"#6E4638"
           }}
         >
@@ -324,8 +350,8 @@ export default function Livro2Page() {
 
         <p
           style={{
-            marginTop:"18px",
-            fontSize:"28px",
+            marginTop:"16px",
+            fontSize:"22px",
             color:"#7A655B"
           }}
         >
@@ -342,17 +368,17 @@ export default function Livro2Page() {
 
             marginTop:"35px",
 
-            padding:"22px 60px",
+            padding:"20px 50px",
 
             background:"#8B4533",
 
             color:"white",
 
-            borderRadius:"18px",
+            borderRadius:"16px",
 
             border:"none",
 
-            fontSize:"22px",
+            fontSize:"20px",
 
             cursor:"pointer",
 
