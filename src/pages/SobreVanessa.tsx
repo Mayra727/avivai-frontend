@@ -10,10 +10,6 @@ export default function SobreVanessa() {
 
         <div className="sobre-content">
 
-          <span className="sobre-badge">
-            Conheça Vanessa Nonato
-          </span>
-
           <h1>
             Uma jornada de intimidade,
             cura emocional e transformação
