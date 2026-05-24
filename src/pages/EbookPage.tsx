@@ -71,7 +71,7 @@ const user = JSON.parse(
   }}
   style={{
     marginTop: "20px",
-    padding: "16px 40px",
+    padding: "10px 20px",
     background: "#B4533A",
     color: "white",
     borderRadius: "10px",
