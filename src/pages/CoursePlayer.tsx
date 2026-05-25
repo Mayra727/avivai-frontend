@@ -600,7 +600,7 @@ if(
   onClick={()=>{
 
     window.location.href =
-"https://checkout.infinitepay.io/vanessa-nonato-s38/YSZGnPk66z";
+"https://checkout.infinitepay.io/vanessa-nonato-s38/l9WdMTtFS7";
 
   }}
 
