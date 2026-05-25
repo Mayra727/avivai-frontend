@@ -42,6 +42,9 @@ export default function CreateCourse() {
   const [courseName, setCourseName] = useState("");
   const [price, setPrice] = useState("");
 
+  const [promoPrice, setPromoPrice] =
+useState("");
+
   const [type, setType] =
   useState("curso");
 
@@ -221,6 +224,8 @@ const fixedModules = modules.map((m) => ({
 
   price: price ? Number(price) : 0,
 
+  promoPrice: promoPrice ? Number(promoPrice) : 0,
+
   modules: fixedModules,
 
   creatorId: user.id,
@@ -317,6 +322,14 @@ return (
       value={price}
       onChange={(e) => setPrice(e.target.value)}
     />
+
+<input
+  placeholder="Preço promocional (ex: 47.00)"
+  value={promoPrice}
+  onChange={(e)=>
+    setPromoPrice(e.target.value)
+  }
+/>
 
 <select
   value={type}
