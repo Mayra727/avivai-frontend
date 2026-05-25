@@ -970,6 +970,37 @@ return (
 
 )}
 
+{/* INITIAL LESSON VIDEO */}
+
+{currentLesson.video && (
+
+  <video
+    controls
+    controlsList="nodownload"
+    disablePictureInPicture
+    className="netflix-video"
+  >
+
+    <source
+      src={currentLesson.video}
+      type="video/mp4"
+    />
+
+  </video>
+
+)}
+
+{/* INITIAL LESSON PDF */}
+
+{currentLesson.pdf && (
+
+  <iframe
+    src={currentLesson.pdf}
+    className="pdf-content"
+  />
+
+)}
+
 {/* VIDEO */}
 
 {currentLesson.type === "video" && (
