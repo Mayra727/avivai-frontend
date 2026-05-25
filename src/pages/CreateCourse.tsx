@@ -52,11 +52,44 @@ useState("");
   const [modules, setModules] = useState<Module[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const [introVideo, setIntroVideo] = useState("");
+  const [initialLessons, setInitialLessons] =
+  useState([
 
-const [supportPdf, setSupportPdf] = useState("");
+    {
+      title: "Bem vindo - aula bônus",
+      video: "",
+      pdf: ""
+    },
 
-const [finalVideo, setFinalVideo] = useState("");
+    {
+      title: "Aula 1",
+      video: "",
+      pdf: ""
+    },
+
+    {
+      title:
+        "Apresentação do protocolo 90s mente renovada",
+
+      video: "",
+      pdf: ""
+    },
+
+    {
+      title:
+        "Aula 2 - Apresentação do método e estrutura",
+
+      video: "",
+      pdf: ""
+    },
+
+    {
+      title: "Aula 3",
+      video: "",
+      pdf: ""
+    }
+
+  ]);
 
   useEffect(() => {
 
@@ -235,15 +268,11 @@ const fixedModules = modules.map((m) => ({
 
   promoPrice: promoPrice ? Number(promoPrice) : 0,
 
+initialLessons,
+
   modules: fixedModules,
 
   creatorId: user.id,
-
-  introVideo,
-
-  supportPdf,
-
-  finalVideo
 
 };
 
@@ -365,129 +394,95 @@ return (
 
 </select>
 
-{/* VIDEO INICIAL */}
+<div className="module">
 
-<label
-  style={{
-    display:"block",
-    marginBottom:"10px",
-    color:"#7A4A3A",
-    fontWeight:"600"
-  }}
->
-  🎥 Vídeo inicial (opcional)
-</label>
+  <h2>
+    Conteúdos iniciais
+  </h2>
 
-<input
-  type="file"
-  accept="video/*"
+  {initialLessons.map(
+    (lesson, index) => (
 
-  onChange={async (e) => {
+      <div
+        key={index}
+        className="lesson"
+      >
 
-    const file =
-      e.target.files?.[0];
+        <input
+          value={lesson.title}
+          disabled
+        />
 
-    if (!file) return;
+        {/* VIDEO */}
 
-    const url =
-      await uploadFile(file);
+        <input
+          type="file"
+          accept="video/*"
 
-    if (!url) {
+          onChange={async (e) => {
 
-      alert("Erro ao enviar vídeo");
+            const file =
+              e.target.files?.[0];
 
-      return;
+            if (!file) return;
 
-    }
+            const url =
+              await uploadFile(file);
 
-    setIntroVideo(url);
+            if (!url) return;
 
-  }}
-/>
+            setInitialLessons(prev =>
+              prev.map((l, i) =>
+                i === index
+                  ? {
+                      ...l,
+                      video: url
+                    }
+                  : l
+              )
+            );
 
-<div style={{ height:"20px" }} />
+          }}
+        />
 
-{/* PDF */}
+        {/* PDF */}
 
-<label
-  style={{
-    display:"block",
-    marginBottom:"10px",
-    color:"#7A4A3A",
-    fontWeight:"600"
-  }}
->
-  📄 PDF (opcional)
-</label>
+        <input
+          type="file"
+          accept=".pdf"
 
-<input
-  type="file"
-  accept=".pdf"
+          onChange={async (e) => {
 
-  onChange={async (e) => {
+            const file =
+              e.target.files?.[0];
 
-    const file =
-      e.target.files?.[0];
+            if (!file) return;
 
-    if (!file) return;
+            const url =
+              await uploadPdf(file);
 
-    const url =
-      await uploadPdf(file);
+            if (!url) return;
 
-    if (!url) {
+            setInitialLessons(prev =>
+              prev.map((l, i) =>
+                i === index
+                  ? {
+                      ...l,
+                      pdf: url
+                    }
+                  : l
+              )
+            );
 
-      alert("Erro ao enviar PDF");
+          }}
+        />
 
-      return;
+      </div>
 
-    }
+    )
+  )}
 
-    setSupportPdf(url);
-
-  }}
-/>
-
-<div style={{ height:"20px" }} />
-
-{/* VIDEO FINAL */}
-
-<label
-  style={{
-    display:"block",
-    marginBottom:"10px",
-    color:"#7A4A3A",
-    fontWeight:"600"
-  }}
->
-  🎥 Vídeo final (opcional)
-</label>
-
-<input
-  type="file"
-  accept="video/*"
-
-  onChange={async (e) => {
-
-    const file =
-      e.target.files?.[0];
-
-    if (!file) return;
-
-    const url =
-      await uploadFile(file);
-
-    if (!url) {
-
-      alert("Erro ao enviar vídeo");
-
-      return;
-
-    }
-
-    setFinalVideo(url);
-
-  }}
-/>
+</div>
 
     {modules.map((module, mIndex) => (
       <div key={mIndex} className="module">
