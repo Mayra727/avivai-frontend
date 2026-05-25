@@ -26,6 +26,7 @@ type Lesson = {
 
 type Module = {
   title: string;
+  pdf?: string;
   lessons: Lesson[];
 };
 
@@ -105,7 +106,11 @@ const [finalVideo, setFinalVideo] = useState("");
   ========================= */
 
   function addModule() {
-    setModules(prev => [...prev, { title: "", lessons: [] }]);
+    setModules(prev => [...prev, {
+  title: "",
+  pdf: "",
+  lessons: []
+}]);
   }
 
   function removeModule(index: number) {
@@ -208,7 +213,10 @@ const [finalVideo, setFinalVideo] = useState("");
     setLoading(true);
 
 const fixedModules = modules.map((m) => ({
+
   title: m.title || "",
+
+  pdf: m.pdf || "",
 
   lessons: m.lessons.map((l: any) => ({
     title: l.title || "",
@@ -216,6 +224,7 @@ const fixedModules = modules.map((m) => ({
     content: l.content || "",
     cover: l.cover || ""
   }))
+
 }));
 
   const course = {
@@ -503,6 +512,71 @@ return (
     />
 
   </div>
+
+<div style={{ marginTop: "15px" }}>
+
+  <label
+    style={{
+      display: "block",
+      marginBottom: "8px",
+      color: "#7A4A3A",
+      fontWeight: "600"
+    }}
+  >
+    📄 PDF do módulo
+  </label>
+
+  <input
+    type="file"
+    accept=".pdf"
+
+    onChange={async (e) => {
+
+      const file =
+        e.target.files?.[0];
+
+      if (!file) return;
+
+      const url =
+        await uploadPdf(file);
+
+      if (!url) {
+
+        alert("Erro upload PDF");
+
+        return;
+
+      }
+
+      setModules(prev =>
+        prev.map((mod, i) =>
+          i === mIndex
+            ? {
+                ...mod,
+                pdf: url
+              }
+            : mod
+        )
+      );
+
+    }}
+  />
+
+  {module.pdf && (
+
+    <div
+      style={{
+        marginTop: "8px",
+        color: "#7A4A3A",
+        fontSize: "13px"
+      }}
+    >
+      ✅ PDF enviado
+    </div>
+
+  )}
+
+</div>
 
 <div className="module-actions">
 
