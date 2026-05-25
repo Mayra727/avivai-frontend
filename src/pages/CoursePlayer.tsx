@@ -1043,15 +1043,20 @@ return (
 
 {/* PDF COMPLEMENTAR */}
 
-{currentModule?.extraPdf && (
+{currentLesson?.extraPdf && (
 
   <iframe
-    src={currentModule.extraPdf}
+    src={currentLesson.extraPdf}
+
     width="100%"
     height="500px"
+
     className="pdf-viewer"
+
     style={{
-      marginTop: "30px"
+      marginTop: "30px",
+      borderRadius: "16px",
+      background: "#fff"
     }}
   />
 
