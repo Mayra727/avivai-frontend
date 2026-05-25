@@ -980,6 +980,11 @@ return (
 ) && (
 
   <video
+  key={
+    currentLesson.video ||
+    currentLesson.content
+  }
+
   ref={videoRef}
   controls
   controlsList="nodownload"
@@ -1007,7 +1012,12 @@ return (
 ) && (
 
   <iframe
-    ref={pdfRef}
+  key={
+    currentLesson.pdf ||
+    currentLesson.content
+  }
+
+  ref={pdfRef}
     src={
   currentLesson.pdf ||
   currentLesson.content
