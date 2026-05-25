@@ -57,36 +57,36 @@ useState("");
 
     {
       title: "Bem vindo - aula bônus",
-      video: "",
-      pdf: ""
+      type: "video",
+      content: ""
     },
 
     {
       title: "Aula 1",
-      video: "",
-      pdf: ""
+      type: "video",
+      content: ""
     },
 
     {
       title:
         "Apresentação do protocolo 90s mente renovada",
 
-      video: "",
-      pdf: ""
+      type: "video",
+      content: ""
     },
 
     {
       title:
         "Aula 2 - Apresentação do método e estrutura",
 
-      video: "",
-      pdf: ""
+      type: "video",
+      content: ""
     },
 
     {
       title: "Aula 3",
-      video: "",
-      pdf: ""
+      type: "video",
+      content: ""
     }
 
   ]);
@@ -434,13 +434,39 @@ return (
 
         {/* VIDEO */}
 
-        <input
-          type="file"
-          accept="video/*"
+<input
+  type="file"
+  accept="video/*"
 
-          onChange={async (e) => {
+  onChange={async (e) => {
 
-{lesson.video && (
+    const file =
+      e.target.files?.[0];
+
+    if (!file) return;
+
+    const url =
+      await uploadFile(file);
+
+    if (!url) return;
+
+    setInitialLessons(prev =>
+      prev.map((l, i) =>
+        i === index
+          ? {
+              ...l,
+              type: "video",
+              content: url
+            }
+          : l
+      )
+    );
+
+  }}
+/>
+
+{lesson.content &&
+ lesson.type === "video" && (
 
   <div
     style={{
@@ -453,7 +479,7 @@ return (
     ✅ Vídeo enviado
 
     <a
-      href={lesson.video}
+      href={lesson.content}
       target="_blank"
       rel="noopener noreferrer"
       style={{
@@ -472,39 +498,41 @@ return (
 
 )}
 
-            const file =
-              e.target.files?.[0];
+{/* PDF */}
 
-            if (!file) return;
+<input
+  type="file"
+  accept=".pdf"
 
-            const url =
-              await uploadFile(file);
+  onChange={async (e) => {
 
-            if (!url) return;
+    const file =
+      e.target.files?.[0];
 
-            setInitialLessons(prev =>
-              prev.map((l, i) =>
-                i === index
-                  ? {
-                      ...l,
-                      video: url
-                    }
-                  : l
-              )
-            );
+    if (!file) return;
 
-          }}
-        />
+    const url =
+      await uploadPdf(file);
 
-        {/* PDF */}
+    if (!url) return;
 
-        <input
-          type="file"
-          accept=".pdf"
+    setInitialLessons(prev =>
+      prev.map((l, i) =>
+        i === index
+          ? {
+              ...l,
+              type: "pdf",
+              content: url
+            }
+          : l
+      )
+    );
 
-          onChange={async (e) => {
+  }}
+/>
 
-{lesson.pdf && (
+{lesson.content &&
+ lesson.type === "pdf" && (
 
   <div
     style={{
@@ -517,7 +545,7 @@ return (
     ✅ PDF enviado
 
     <a
-      href={lesson.pdf}
+      href={lesson.content}
       target="_blank"
       rel="noopener noreferrer"
       style={{
@@ -535,30 +563,6 @@ return (
   </div>
 
 )}
-
-            const file =
-              e.target.files?.[0];
-
-            if (!file) return;
-
-            const url =
-              await uploadPdf(file);
-
-            if (!url) return;
-
-            setInitialLessons(prev =>
-              prev.map((l, i) =>
-                i === index
-                  ? {
-                      ...l,
-                      pdf: url
-                    }
-                  : l
-              )
-            );
-
-          }}
-        />
 
       </div>
 
