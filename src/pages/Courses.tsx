@@ -93,21 +93,25 @@ export default function Livro2Page() {
 
              preload="metadata"
 
+             playsInline
+
               poster="/images/livro2-capa.jpg"
 
               style={{
 
   width:"100%",
 
-  maxWidth:"500px",
+  maxWidth:"760px",
 
-  height:"auto",
+  height:"430px",
+
+  objectFit:"cover",
 
   borderRadius:"32px",
 
-  background:"transparent",
+  background:"#000",
 
-  objectFit:"cover",
+  display:"block",
 
   boxShadow:
   "0 20px 50px rgba(0,0,0,0.18)"
