@@ -408,3 +408,146 @@
   opacity:0.95;
 
 }
+@media (max-width: 768px) {
+
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .home {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .section {
+    padding: 50px 15px;
+  }
+
+  .section-inner {
+    padding: 0 15px;
+  }
+
+  .hero {
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    gap: 30px;
+
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero h1 {
+
+    font-size: 42px;
+
+    line-height: 1.1;
+
+  }
+
+  .hero p {
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+  }
+
+  .hero-buttons {
+
+    width: 100%;
+
+    flex-direction: column;
+
+    align-items: center;
+
+  }
+
+  .hero-primary,
+  .hero-secondary {
+
+    width: 100%;
+
+    max-width: 320px;
+
+    text-align: center;
+
+  }
+
+  .hero-image {
+
+    width: 100%;
+
+    max-width: 320px;
+
+    height: auto;
+
+  }
+
+  .grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .card {
+
+    width: 100%;
+
+  }
+
+  .premium-box {
+
+    width: 100%;
+
+    padding: 20px;
+
+  }
+
+  .cta {
+
+    padding: 60px 15px;
+
+  }
+
+  .premium-cta {
+
+    padding: 30px 20px;
+
+  }
+
+  .cta-buttons {
+
+    flex-direction: column;
+
+    width: 100%;
+
+  }
+
+  .button-primary,
+  .button-secondary {
+
+    width: 100%;
+
+  }
+
+  .about-button {
+
+    width: 100%;
+
+    text-align: center;
+
+  }
+
+}
