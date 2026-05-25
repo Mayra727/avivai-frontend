@@ -343,61 +343,129 @@ return (
 
 </select>
 
-{/* CONTEÚDOS EXTRAS */}
+{/* VIDEO INICIAL */}
 
-<div
+<label
   style={{
-    background:"#fff",
-    padding:"30px",
-    borderRadius:"24px",
-    marginBottom:"30px"
+    display:"block",
+    marginBottom:"10px",
+    color:"#7A4A3A",
+    fontWeight:"600"
   }}
 >
+  🎥 Vídeo inicial (opcional)
+</label>
 
-  <h2
-    style={{
-      color:"#7A4A3A",
-      marginBottom:"25px"
-    }}
-  >
-    Conteúdos extras
-  </h2>
+<input
+  type="file"
+  accept="video/*"
 
-  <input
-    type="text"
-    placeholder="Link do vídeo inicial (opcional)"
-    value={introVideo}
-    onChange={(e)=>
-      setIntroVideo(e.target.value)
+  onChange={async (e) => {
+
+    const file =
+      e.target.files?.[0];
+
+    if (!file) return;
+
+    const url =
+      await uploadFile(file);
+
+    if (!url) {
+
+      alert("Erro ao enviar vídeo");
+
+      return;
+
     }
-  />
 
-  <input
-    type="text"
-    placeholder="Link do PDF (opcional)"
-    value={supportPdf}
-    onChange={(e)=>
-      setSupportPdf(e.target.value)
+    setIntroVideo(url);
+
+  }}
+/>
+
+<div style={{ height:"20px" }} />
+
+{/* PDF */}
+
+<label
+  style={{
+    display:"block",
+    marginBottom:"10px",
+    color:"#7A4A3A",
+    fontWeight:"600"
+  }}
+>
+  📄 PDF (opcional)
+</label>
+
+<input
+  type="file"
+  accept=".pdf"
+
+  onChange={async (e) => {
+
+    const file =
+      e.target.files?.[0];
+
+    if (!file) return;
+
+    const url =
+      await uploadPdf(file);
+
+    if (!url) {
+
+      alert("Erro ao enviar PDF");
+
+      return;
+
     }
-    style={{
-      marginTop:"15px"
-    }}
-  />
 
-  <input
-    type="text"
-    placeholder="Link do vídeo final (opcional)"
-    value={finalVideo}
-    onChange={(e)=>
-      setFinalVideo(e.target.value)
+    setSupportPdf(url);
+
+  }}
+/>
+
+<div style={{ height:"20px" }} />
+
+{/* VIDEO FINAL */}
+
+<label
+  style={{
+    display:"block",
+    marginBottom:"10px",
+    color:"#7A4A3A",
+    fontWeight:"600"
+  }}
+>
+  🎥 Vídeo final (opcional)
+</label>
+
+<input
+  type="file"
+  accept="video/*"
+
+  onChange={async (e) => {
+
+    const file =
+      e.target.files?.[0];
+
+    if (!file) return;
+
+    const url =
+      await uploadFile(file);
+
+    if (!url) {
+
+      alert("Erro ao enviar vídeo");
+
+      return;
+
     }
-    style={{
-      marginTop:"15px"
-    }}
-  />
 
-</div>
+    setFinalVideo(url);
 
+  }}
+/>
 
     {modules.map((module, mIndex) => (
       <div key={mIndex} className="module">
