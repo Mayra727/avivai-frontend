@@ -69,7 +69,7 @@ useState("");
 
     {
       title:
-        "Apresentação do protocolo 90s mente renovada",
+        "Apresentação do protocolo 90s mente renovada - PDF",
 
       type: "video",
       content: ""
