@@ -972,7 +972,12 @@ return (
 
 {/* VIDEO */}
 
-{currentLesson.type === "video" && (
+{(
+  currentLesson.type === "video" ||
+  currentLesson.video ||
+  currentLesson.content?.includes(".mp4") ||
+  currentLesson.content?.includes("video")
+) && (
 
   <video
   ref={videoRef}
@@ -995,7 +1000,11 @@ return (
 
             {/* PDF */}
 
-{currentLesson.type === "pdf" && (
+{(
+  currentLesson.type === "pdf" ||
+  currentLesson.pdf ||
+  currentLesson.content?.includes(".pdf")
+) && (
 
   <iframe
     ref={pdfRef}
