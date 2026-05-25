@@ -4,7 +4,7 @@ export async function uploadFile(
 
   const formData = new FormData();
 
-  formData.append("file", file);
+  formData.append("pdf", file);
 
   formData.append(
     "upload_preset",

@@ -2,7 +2,7 @@ export async function uploadFile(file: File) {
 
   const formData = new FormData();
 
-  formData.append("file", file);
+  formData.append("pdf", file);
   formData.append("upload_preset", "avivai_upload");
 
   try {
