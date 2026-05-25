@@ -667,6 +667,69 @@ return (
     {course.title}
   </h2>
 
+{/* CONTEÚDOS INICIAIS */}
+
+{course.initialLessons?.length > 0 && (
+
+  <div className="module-block">
+
+    <h3>
+      Conteúdos iniciais
+    </h3>
+
+    {course.initialLessons.map(
+      (
+        lesson: any,
+        index: number
+      ) => (
+
+        <div
+          key={index}
+
+          onClick={() => {
+
+            setCurrentLesson(
+              lesson
+            );
+
+            setShowSidebar(
+              false
+            );
+
+          }}
+
+          className={`lesson-item ${
+            currentLesson === lesson
+              ? "active"
+              : ""
+          }`}
+        >
+
+          <div className="lesson-card">
+
+            <div>
+
+              <p
+                style={{
+                  margin: 0
+                }}
+              >
+                {lesson.title}
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      )
+    )}
+
+  </div>
+
+)}
+
   {course.modules?.map(
     (
       module: any,
