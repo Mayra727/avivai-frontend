@@ -26,7 +26,13 @@ type Lesson = {
 
 type Module = {
   title: string;
+
   pdf?: string;
+
+  video?: string;
+
+  extraPdf?: string;
+
   lessons: Lesson[];
 };
 
@@ -126,6 +132,8 @@ setModules(
     title: m.title || "",
 
     pdf: m.pdf || "",
+video: m.video || "",
+extraPdf: m.extraPdf || "",
 
     lessons: m.lessons.map((l: any) => ({
 
@@ -157,13 +165,23 @@ setModules(
      MODULES
   ========================= */
 
-  function addModule() {
-    setModules(prev => [...prev, {
-  title: "",
-  pdf: "",
-  lessons: []
-}]);
-  }
+ function addModule() {
+
+  setModules(prev => [
+
+    ...prev,
+
+    {
+      title: "",
+      pdf: "",
+      video: "",
+      extraPdf: "",
+      lessons: []
+    }
+
+  ]);
+
+}
 
   function removeModule(index: number) {
     setModules(prev => prev.filter((_, i) => i !== index));
@@ -269,6 +287,8 @@ const fixedModules = modules.map((m) => ({
   title: m.title || "",
 
   pdf: m.pdf || "",
+  video: m.video || "",
+extraPdf: m.extraPdf || "",
 
   lessons: m.lessons.map((l: any) => ({
     title: l.title || "",
@@ -503,6 +523,8 @@ console.log(
 
 )}
 
+
+
 {/* PDF */}
 
 <input
@@ -676,6 +698,132 @@ console.log(
   🔗 Ver PDF atual
 
 </a>
+
+    </div>
+
+  )}
+
+</div>
+
+{/* VIDEO DO MODULO */}
+
+<div style={{ marginTop: "20px" }}>
+
+  <label
+    style={{
+      display: "block",
+      marginBottom: "8px",
+      color: "#7A4A3A",
+      fontWeight: "600"
+    }}
+  >
+    🎥 Vídeo do módulo
+  </label>
+
+  <input
+    type="file"
+    accept="video/*"
+
+    onChange={async (e) => {
+
+      const file =
+        e.target.files?.[0];
+
+      if (!file) return;
+
+      const url =
+        await uploadFile(file);
+
+      if (!url) return;
+
+      setModules(prev =>
+        prev.map((mod, i) =>
+          i === mIndex
+            ? {
+                ...mod,
+                video: url
+              }
+            : mod
+        )
+      );
+
+    }}
+  />
+
+  {module.video && (
+
+    <div
+      style={{
+        marginTop: "8px",
+        color: "#7A4A3A",
+        fontSize: "13px"
+      }}
+    >
+
+      ✅ Vídeo enviado
+
+    </div>
+
+  )}
+
+</div>
+
+{/* PDF COMPLEMENTAR */}
+
+<div style={{ marginTop: "20px" }}>
+
+  <label
+    style={{
+      display: "block",
+      marginBottom: "8px",
+      color: "#7A4A3A",
+      fontWeight: "600"
+    }}
+  >
+    📄 PDF complementar
+  </label>
+
+  <input
+    type="file"
+    accept=".pdf"
+
+    onChange={async (e) => {
+
+      const file =
+        e.target.files?.[0];
+
+      if (!file) return;
+
+      const url =
+        await uploadPdf(file);
+
+      if (!url) return;
+
+      setModules(prev =>
+        prev.map((mod, i) =>
+          i === mIndex
+            ? {
+                ...mod,
+                extraPdf: url
+              }
+            : mod
+        )
+      );
+
+    }}
+  />
+
+  {module.extraPdf && (
+
+    <div
+      style={{
+        marginTop: "8px",
+        color: "#7A4A3A",
+        fontSize: "13px"
+      }}
+    >
+
+      ✅ PDF complementar enviado
 
     </div>
 

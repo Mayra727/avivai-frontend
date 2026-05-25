@@ -48,6 +48,15 @@ const [showSidebar, setShowSidebar] =
   const [progress, setProgress] =
   useState<string[]>([]);
 
+const currentModule =
+  course?.modules?.find(
+    (m: any) =>
+      m.lessons?.some(
+        (l: any) =>
+          l.title === currentLesson?.title
+      )
+  );
+
 const totalLessons =
   course?.modules?.flatMap(
     (m: any) => m.lessons
@@ -1006,11 +1015,62 @@ return (
       }
       type="video/mp4"
     />
+</video>
+
+)}
+    
+{/* VIDEO DO MODULO */}
+
+{currentModule?.video && (
+
+  <video
+    controls
+    className="netflix-video"
+    style={{
+      marginTop: "30px"
+    }}
+  >
+
+    <source
+      src={currentModule.video}
+      type="video/mp4"
+    />
 
   </video>
 
 )}
 
+{/* PDF DO MODULO */}
+
+{currentModule?.pdf && (
+
+  <iframe
+    src={currentModule.pdf}
+    width="100%"
+    height="900px"
+    className="pdf-viewer"
+    style={{
+      marginTop: "30px"
+    }}
+  />
+
+)}
+
+{/* PDF COMPLEMENTAR */}
+
+{currentModule?.extraPdf && (
+
+  <iframe
+    src={currentModule.extraPdf}
+    width="100%"
+    height="900px"
+    className="pdf-viewer"
+    style={{
+      marginTop: "30px"
+    }}
+  />
+
+)}
 
             {/* PDF */}
 
