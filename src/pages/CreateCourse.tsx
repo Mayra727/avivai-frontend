@@ -111,17 +111,36 @@ useState("");
         data.price?.toString() || ""
       );
 
-      setModules(
+      setPromoPrice(
+  data.promoPrice?.toString() || ""
+);
+
+setInitialLessons(
+  data.initialLessons || []
+);
+
+setModules(
+
   data.modules.map((m: any) => ({
+
     title: m.title || "",
 
+    pdf: m.pdf || "",
+
     lessons: m.lessons.map((l: any) => ({
+
       title: l.title || "",
+
       type: l.type || "video",
+
       content: l.content || "",
+
       cover: l.cover || ""
+
     }))
+
   }))
+
 );
 
     } catch (error) {
@@ -421,6 +440,38 @@ return (
 
           onChange={async (e) => {
 
+{lesson.video && (
+
+  <div
+    style={{
+      marginTop: "8px",
+      fontSize: "13px",
+      color: "#7A4A3A"
+    }}
+  >
+
+    ✅ Vídeo enviado
+
+    <a
+      href={lesson.video}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        display:"block",
+        marginTop:"5px",
+        color:"#7A4A3A",
+        fontWeight:"600"
+      }}
+    >
+
+      🔗 Ver vídeo atual
+
+    </a>
+
+  </div>
+
+)}
+
             const file =
               e.target.files?.[0];
 
@@ -452,6 +503,38 @@ return (
           accept=".pdf"
 
           onChange={async (e) => {
+
+{lesson.pdf && (
+
+  <div
+    style={{
+      marginTop: "8px",
+      fontSize: "13px",
+      color: "#7A4A3A"
+    }}
+  >
+
+    ✅ PDF enviado
+
+    <a
+      href={lesson.pdf}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        display:"block",
+        marginTop:"5px",
+        color:"#7A4A3A",
+        fontWeight:"600"
+      }}
+    >
+
+      🔗 Ver PDF atual
+
+    </a>
+
+  </div>
+
+)}
 
             const file =
               e.target.files?.[0];
@@ -567,6 +650,24 @@ return (
       }}
     >
       ✅ PDF enviado
+
+<a
+  href={module.pdf}
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    display:"block",
+    marginTop:"6px",
+    color:"#7A4A3A",
+    fontSize:"13px",
+    fontWeight:"600"
+  }}
+>
+
+  🔗 Ver PDF atual
+
+</a>
+
     </div>
 
   )}
