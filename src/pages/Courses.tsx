@@ -110,7 +110,7 @@ export default function Livro2Page() {
             >
 
               <source
-                src="/colecao-caminho-intimidade.mp4"
+                src="/colecao-caminho-da-intimidade.mp4"
                 type="video/mp4"
               />
 
