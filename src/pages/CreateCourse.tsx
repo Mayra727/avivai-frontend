@@ -93,8 +93,15 @@ useState("");
       title: "Aula 3",
       type: "video",
       content: ""
-    }
+    },
 
+{
+  title: "Livro Vivencial Módulo 1",
+  type: "pdf",
+  content: "",
+  pdf: "",
+  extraPdf: ""
+}
   ]);
 
   useEffect(() => {
