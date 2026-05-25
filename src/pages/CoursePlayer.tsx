@@ -1020,7 +1020,8 @@ return (
 
 {/* PDF DO MODULO */}
 
-{currentModule?.pdf && (
+{currentLesson.type === "pdf" &&
+ currentModule?.pdf && (
 
 <iframe
   src={currentModule.pdf}
@@ -1036,7 +1037,8 @@ return (
     borderRadius: "16px",
     background: "#fff"
   }}
-/>  
+/>
+
 )}
 
 {/* PDF COMPLEMENTAR */}
@@ -1058,33 +1060,6 @@ return (
       position: "relative",
       zIndex: 1
     }}
-  />
-
-)}
-
-            
-{/* PDF */}
-
-{currentLesson.type === "pdf" && (
-
-  <iframe
-    key={
-      currentLesson.pdf ||
-      currentLesson.content
-    }
-
-    ref={pdfRef}
-
-    src={
-      currentLesson.pdf ||
-      currentLesson.content
-    }
-
-    className="pdf-content"
-
-    onContextMenu={(e) =>
-      e.preventDefault()
-    }
   />
 
 )}
