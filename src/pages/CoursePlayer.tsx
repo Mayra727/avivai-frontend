@@ -688,9 +688,9 @@ return (
 
           onClick={() => {
 
-            setCurrentLesson(
-              lesson
-            );
+            setCurrentLesson({
+  ...lesson
+});
 
             setShowSidebar(
               false
@@ -775,9 +775,9 @@ return (
 
                 onClick={() => {
 
-                  setCurrentLesson(
-                    lesson
-                  );
+                 setCurrentLesson({
+  ...lesson
+});
 
                   setShowSidebar(
                     false
@@ -973,33 +973,42 @@ return (
 {/* VIDEO */}
 
 {(
-  currentLesson.type === "video" ||
-  currentLesson.video ||
-  currentLesson.content?.includes(".mp4") ||
-  currentLesson.content?.includes("video")
+  currentLesson.type === "video" &&
+  (
+    currentLesson.content ||
+    currentLesson.video
+  )
 ) && (
 
   <video
-  key={
-    currentLesson.video ||
-    currentLesson.content
-  }
+    key={
+      currentLesson.content ||
+      currentLesson.video
+    }
 
-  ref={videoRef}
-  controls
-  controlsList="nodownload"
-  disablePictureInPicture
-  onContextMenu={(e) => e.preventDefault()}
-  className="netflix-video"
->
-  <source
-  src={
-    currentLesson.video ||
-    currentLesson.content
-  }
-  type="video/mp4"
-/>
-</video>
+    ref={videoRef}
+
+    controls
+    controlsList="nodownload"
+    disablePictureInPicture
+
+    onContextMenu={(e) =>
+      e.preventDefault()
+    }
+
+    className="netflix-video"
+  >
+
+    <source
+      src={
+        currentLesson.content ||
+        currentLesson.video
+      }
+      type="video/mp4"
+    />
+
+  </video>
+
 )}
 
 
