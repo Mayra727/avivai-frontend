@@ -207,10 +207,21 @@ setAccessChecked(true);
     `lastLesson-${id}`
   );
 
-const allLessons =
+const initialLessons =
+  data.initialLessons || [];
+
+const moduleLessons =
   data.modules.flatMap(
     (m:any)=>m.lessons
   );
+
+const allLessons = [
+
+  ...initialLessons,
+
+  ...moduleLessons
+
+];
 
 const savedLesson =
   allLessons.find(
@@ -226,9 +237,19 @@ if(savedLesson){
 
 }else{
 
+  if (initialLessons.length > 0) {
+
   setCurrentLesson(
-    data.modules[0].lessons[0]
+    initialLessons[0]
   );
+
+} else {
+
+  setCurrentLesson(
+    data.modules[0]?.lessons?.[0]
+  );
+
+}
 
 }
 }
