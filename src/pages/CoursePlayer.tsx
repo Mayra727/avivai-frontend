@@ -1018,27 +1018,7 @@ return (
 </video>
 
 )}
-    
-{/* VIDEO DO MODULO */}
 
-{currentModule?.video && (
-
-  <video
-    controls
-    className="netflix-video"
-    style={{
-      marginTop: "30px"
-    }}
-  >
-
-    <source
-      src={currentModule.video}
-      type="video/mp4"
-    />
-
-  </video>
-
-)}
 
 {/* PDF DO MODULO */}
 
