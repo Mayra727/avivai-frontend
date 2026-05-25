@@ -1,23 +1,52 @@
-import { supabase } from "./supabase";
+export async function uploadPdf(
+  file: File
+) {
 
-export async function uploadPdf(file: File) {
+  const formData = new FormData();
 
-  const fileName = `${Date.now()}-${file.name}`;
+  formData.append("file", file);
 
-  const { error } = await supabase.storage
-    .from("PDF")
-    .upload(fileName, file);
+  formData.append(
+    "upload_preset",
+    "avivai_upload"
+  );
 
-  if (error) {
-    console.error("ERRO REAL PDF:", error);
-    alert("Erro no upload do PDF");
+  try {
+
+    const response = await fetch(
+
+      "https://api.cloudinary.com/v1_1/djawb7xgu/raw/upload",
+
+      {
+        method: "POST",
+        body: formData
+      }
+
+    );
+
+    const data =
+      await response.json();
+
+    console.log("PDF:", data);
+
+    if (!data.secure_url) {
+
+      console.log(data);
+
+      throw new Error(
+        "Erro upload PDF"
+      );
+
+    }
+
+    return data.secure_url;
+
+  } catch (error) {
+
+    console.log(error);
+
     return null;
+
   }
 
-  // 🔥 URL pública
-  const { data } = supabase.storage
-    .from("PDF")
-    .getPublicUrl(fileName);
-
-  return data.publicUrl;
 }
