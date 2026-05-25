@@ -70,7 +70,12 @@ useEffect(() => {
           <div className="course-price-box">
 
             <span className="course-price">
-              R$ {course.price},00
+              R$ {
+  Number(
+    course.promoPrice ||
+    course.price
+  ).toFixed(2)
+}
             </span>
 
           </div>
