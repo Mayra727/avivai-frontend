@@ -1044,16 +1044,21 @@ return (
 
 {currentModule?.pdf && (
 
-  <iframe
-    src={currentModule.pdf}
-    width="100%"
-    height="900px"
-    className="pdf-viewer"
-    style={{
-      marginTop: "30px"
-    }}
-  />
+<iframe
+  src={currentModule.pdf}
 
+  width="100%"
+
+  height="500px"
+
+  className="pdf-viewer"
+
+  style={{
+    marginTop: "20px",
+    borderRadius: "16px",
+    background: "#fff"
+  }}
+/>  
 )}
 
 {/* PDF COMPLEMENTAR */}
@@ -1063,7 +1068,7 @@ return (
   <iframe
     src={currentModule.extraPdf}
     width="100%"
-    height="900px"
+    height="500px"
     className="pdf-viewer"
     style={{
       marginTop: "30px"
