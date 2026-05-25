@@ -554,18 +554,16 @@ console.log(
 
     if (!url) return;
 
-    setInitialLessons(prev =>
-      prev.map((l, i) =>
-        i === index
-          ? {
-              ...l,
-              type: "video",
-extraPdf: url
-            }
-          : l
-      )
-    );
-
+setInitialLessons(prev =>
+  prev.map((l, i) =>
+    i === index
+      ? {
+          ...l,
+          extraPdf: url
+        }
+      : l
+  )
+);
   }}
 />
 
