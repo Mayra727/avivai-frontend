@@ -20,8 +20,12 @@ import {
 type Lesson = {
   title: string;
   type: "video" | "pdf" | "image" | "text";
+
   content: string;
+
   cover: string;
+
+  extraPdf?: string;
 };
 
 type Module = {
@@ -555,8 +559,8 @@ console.log(
         i === index
           ? {
               ...l,
-              type: "pdf",
-              content: url
+              type: "video",
+extraPdf: url
             }
           : l
       )
