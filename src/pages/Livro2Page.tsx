@@ -150,11 +150,39 @@ export default function Courses() {
                 Curso completo Avivai
               </p>
 <h3>
-  R$ {
-    course.promoPrice > 0
-      ? course.promoPrice
-      : course.price
-  }
+
+  {course.promoPrice > 0 ? (
+
+    <>
+      <span
+        style={{
+          textDecoration: "line-through",
+          opacity: 0.6,
+          fontSize: "18px",
+          display: "block"
+        }}
+      >
+        R$ {Number(course.price).toFixed(2)}
+      </span>
+
+      <span
+        style={{
+          color: "#8B5A46",
+          fontWeight: "700"
+        }}
+      >
+        R$ {Number(course.promoPrice).toFixed(2)}
+      </span>
+    </>
+
+  ) : (
+
+    <span>
+      R$ {Number(course.price).toFixed(2)}
+    </span>
+
+  )}
+
 </h3>
               <button
 
