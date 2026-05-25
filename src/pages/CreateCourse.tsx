@@ -96,7 +96,7 @@ useState("");
     },
 
 {
-  title: "Livro Vivencial Módulo 1",
+  title: "Livro Vivencial - PDF",
   type: "pdf",
   content: "",
   pdf: "",
