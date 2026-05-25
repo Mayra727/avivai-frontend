@@ -30,6 +30,7 @@ import Solucoes from "./pages/Solucoes";
 import SobreVanessa from "./pages/SobreVanessa";
 import AlunoPage from "./pages/AlunoPage";
 import ReleaseAccess from "./pages/ReleaseAccess";
+import Contact from "./pages/Contact";
 
 
 export default function App() {
@@ -115,6 +116,10 @@ export default function App() {
           <Route
   path="/aluno"
   element={<AlunoPage />}
+/>
+          <Route
+  path="/contato"
+  element={<Contact />}
 />
 
           {/* ✅ AGORA ESTÁ NO LUGAR CERTO */}
