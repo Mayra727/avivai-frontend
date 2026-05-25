@@ -824,6 +824,67 @@ return (
 
 </div>
 
+{/* VÍDEO INICIAL */}
+
+{course.introVideo && (
+
+  <video
+    controls
+    controlsList="nodownload"
+    disablePictureInPicture
+    style={{
+      width: "100%",
+      borderRadius: "20px",
+      marginBottom: "30px"
+    }}
+  >
+
+    <source
+      src={course.videoInicial}
+      type="video/mp4"
+    />
+
+  </video>
+
+)}
+
+{/* PDF PRINCIPAL */}
+
+{course.supportPdf && (
+
+  <iframe
+    src={course.pdf}
+    className="pdf-content"
+    style={{
+      marginBottom: "30px"
+    }}
+  />
+
+)}
+
+{/* VÍDEO FINAL */}
+
+{course.finalVideo && (
+
+  <video
+    controls
+    controlsList="nodownload"
+    disablePictureInPicture
+    style={{
+      width: "100%",
+      borderRadius: "20px",
+      marginTop: "30px"
+    }}
+  >
+
+    <source
+      src={course.videoFinal}
+      type="video/mp4"
+    />
+
+  </video>
+
+)}
 
 {/* VIDEO */}
 
