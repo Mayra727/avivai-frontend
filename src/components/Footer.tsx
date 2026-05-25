@@ -47,9 +47,31 @@ export default function Footer(){
     Soluções
   </a>
 
-  <a href="/contato">
-    Fale Conosco
+  <div className="footer-contact">
+
+  <h3>Fale Conosco</h3>
+
+  <a
+    href="https://wa.me/5541995799956"
+    target="_blank"
+  >
+    WhatsApp
   </a>
+
+  <a
+    href="mailto:Vanessa.nmentoria@gmail.com"
+  >
+    Vanessa.nmentoria@gmail.com
+  </a>
+
+  <a
+    href="https://www.instagram.com/vanessa.nmentoria?igsh=NTNoYmZqOWR4MDJj"
+    target="_blank"
+  >
+    Instagram
+  </a>
+
+</div>
 
         </div>
 
