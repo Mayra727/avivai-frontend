@@ -448,6 +448,11 @@ return (
     const url =
       await uploadFile(file);
 
+console.log(
+  "UPLOAD URL:",
+  url
+);
+
     if (!url) return;
 
     setInitialLessons(prev =>
