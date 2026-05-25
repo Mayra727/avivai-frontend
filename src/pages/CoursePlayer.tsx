@@ -981,19 +981,11 @@ return (
 
 {/* VIDEO */}
 
-{(
-  currentLesson.type === "video" &&
-  (
-    currentLesson.content ||
-    currentLesson.video
-  )
-) && (
+{currentLesson.content &&
+ currentLesson.type === "video" && (
 
   <video
-    key={
-      currentLesson.content ||
-      currentLesson.video
-    }
+    key={currentLesson.content}
 
     ref={videoRef}
 
@@ -1006,16 +998,22 @@ return (
     }
 
     className="netflix-video"
+
+    style={{
+      width: "100%",
+      borderRadius: "20px",
+      marginBottom: "30px",
+      position: "relative",
+      zIndex: 2
+    }}
   >
 
     <source
-      src={
-        currentLesson.content ||
-        currentLesson.video
-      }
+      src={currentLesson.content}
       type="video/mp4"
     />
-</video>
+
+  </video>
 
 )}
 
@@ -1056,7 +1054,9 @@ return (
     style={{
       marginTop: "30px",
       borderRadius: "16px",
-      background: "#fff"
+      background: "#fff",
+      position: "relative",
+      zIndex: 1
     }}
   />
 
