@@ -314,11 +314,17 @@ const course = {
 
   title: courseName,
 
-  price: price ? Number(price) : 0,
+  price: price
+  ? Number(
+      price.replace(",", ".")
+    )
+  : 0,
 
   promoPrice: promoPrice
-    ? Number(promoPrice)
-    : 0,
+  ? Number(
+      promoPrice.replace(",", ".")
+    )
+  : 0,
 
   type,
 

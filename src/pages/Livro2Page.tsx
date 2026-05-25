@@ -149,11 +149,13 @@ export default function Courses() {
               <p>
                 Curso completo Avivai
               </p>
-
-              <h3>
-                R$ {course.price}
-              </h3>
-
+<h3>
+  R$ {
+    course.promoPrice > 0
+      ? course.promoPrice
+      : course.price
+  }
+</h3>
               <button
 
                 onClick={()=>
