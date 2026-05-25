@@ -1014,14 +1014,15 @@ return (
   className="netflix-video"
 >
   <source
-    src={currentLesson.content}
-    type="video/mp4"
-  />
+  src={
+    currentLesson.video ||
+    currentLesson.content
+  }
+  type="video/mp4"
+/>
 </video>
-
 )}
 
-            {/* PDF */}
 
             {/* PDF */}
 
@@ -1029,7 +1030,10 @@ return (
 
   <iframe
     ref={pdfRef}
-    src={currentLesson.content}
+    src={
+  currentLesson.pdf ||
+  currentLesson.content
+}
     className="pdf-content"
     onContextMenu={(e) =>
       e.preventDefault()
