@@ -310,15 +310,19 @@ extraPdf: m.extraPdf || "",
 
 }));
 
-  const course = {
+const course = {
 
   title: courseName,
 
   price: price ? Number(price) : 0,
 
-  promoPrice: promoPrice ? Number(promoPrice) : 0,
+  promoPrice: promoPrice
+    ? Number(promoPrice)
+    : 0,
 
-initialLessons,
+  type,
+
+  initialLessons,
 
   modules: fixedModules,
 
