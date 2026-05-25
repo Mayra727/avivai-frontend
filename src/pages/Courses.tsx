@@ -91,17 +91,23 @@ export default function Livro2Page() {
 
               controls
 
+             preload="metadata"
+
               poster="/images/livro2-capa.jpg"
 
               style={{
 
   width:"100%",
 
-  maxWidth:"460px",
+  maxWidth:"500px",
 
-  borderRadius:"28px",
+  height:"auto",
 
-  background:"#000",
+  borderRadius:"32px",
+
+  background:"transparent",
+
+  objectFit:"cover",
 
   boxShadow:
   "0 20px 50px rgba(0,0,0,0.18)"
