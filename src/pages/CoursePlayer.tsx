@@ -1062,26 +1062,26 @@ return (
 
 )}
 
-            {/* PDF */}
+            
+{/* PDF */}
 
-{(
-  currentLesson.type === "pdf" ||
-  currentLesson.pdf ||
-  currentLesson.content?.includes(".pdf")
-) && (
+{currentLesson.type === "pdf" && (
 
   <iframe
-  key={
-    currentLesson.pdf ||
-    currentLesson.content
-  }
+    key={
+      currentLesson.pdf ||
+      currentLesson.content
+    }
 
-  ref={pdfRef}
+    ref={pdfRef}
+
     src={
-  currentLesson.pdf ||
-  currentLesson.content
-}
+      currentLesson.pdf ||
+      currentLesson.content
+    }
+
     className="pdf-content"
+
     onContextMenu={(e) =>
       e.preventDefault()
     }
