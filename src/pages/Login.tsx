@@ -56,50 +56,50 @@ export default function Login() {
         data
       );
 
-      if (
-        response.ok &&
-        data.token
-      ) {
+if (
+  response.ok &&
+  data.token
+) {
 
-        login(
+  login(
 
-          {
-            id: data.user.id,
-            name: data.user.name,
-            role: data.user.role
-          },
+    {
+      id: data.user.id,
+      name: data.user.name,
+      role: data.user.role
+    },
 
-          data.token
+    data.token
 
-        );
-
-        if(
-  data.user.role ===
-  "produtor"
-){
-
-  navigate(
-    "/producer-dashboard"
   );
 
-}else{
+  if(
+    data.user.role ===
+    "produtor"
+  ){
 
-  navigate(
-    "/producer-dashboard"
+    navigate(
+      "/producer-dashboard"
+    );
+
+  }else{
+
+    navigate(
+      "/aluno"
+    );
+
+  }
+
+} else {
+
+  alert(
+    data.error ||
+    "Erro no login"
   );
 
 }
 
-      } else {
-
-        alert(
-          data.error ||
-          "Erro no login"
-        );
-
-      }
-
-    } catch (error) {
+} catch (error) {
 
       console.error(error);
 

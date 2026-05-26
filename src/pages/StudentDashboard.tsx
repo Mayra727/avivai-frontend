@@ -7,6 +7,11 @@ export default function StudentDashboard() {
 
   const { user } = useAuth();
 
+console.log(
+  "USER LOGADO:",
+  user
+);
+
   const [courses, setCourses] =
     useState<any[]>([]);
 
