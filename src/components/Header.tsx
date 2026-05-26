@@ -1,12 +1,19 @@
-import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "./Header.css";
+import { useState } from "react";
 
+import {
+  Link,
+  useNavigate
+} from "react-router-dom";
 export default function Header() {
 
   const { user, logout } = useAuth();
 
   const navigate = useNavigate();
+
+const [openMenu, setOpenMenu] =
+useState(false);
 
   function handleLogout() {
 
@@ -52,11 +59,22 @@ export default function Header() {
 
           {/* DROPDOWN CURSOS */}
 
-          <div className="dropdown">
+          <div
+  className={`dropdown ${
+    openMenu ? "active" : ""
+  }`}
+>
 
-            <span className="dropdown-title">
-              Cursos
-            </span>
+            <div
+  className="dropdown-title"
+  onClick={() =>
+    setOpenMenu(!openMenu)
+  }
+>
+
+  Cursos
+
+</div>
 
             <div className="dropdown-menu">
 

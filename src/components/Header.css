@@ -267,8 +267,7 @@
 
 /* ABRIR MENU */
 
-.dropdown:hover .dropdown-menu,
-.dropdown-menu:hover{
+.dropdown.active .dropdown-menu{
 
   display:flex;
 
