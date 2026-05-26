@@ -64,7 +64,7 @@ if (
   login(
 
     {
-      id: data.user.id,
+      id: data.user._id,
       name: data.user.name,
       role: data.user.role
     },
