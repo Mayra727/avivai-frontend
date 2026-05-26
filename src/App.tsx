@@ -32,7 +32,7 @@ import AlunoPage from "./pages/AlunoPage";
 import ReleaseAccess from "./pages/ReleaseAccess";
 import Contact from "./pages/Contact";
 import Alunos from "./pages/Alunos";
-
+import Metricas from "./pages/Metricas";
 
 export default function App() {
   useAuth();
@@ -74,6 +74,11 @@ export default function App() {
           <Route path="/payment-success" element={<PaymentSuccess />} />
 
           <Route path="/producer-dashboard" element={<ProducerDashboard />} />
+
+<Route
+  path="/metricas"
+  element={<Metricas />}
+/>
 
           <Route path="/ebook" element={<EbookPage />} />
 
