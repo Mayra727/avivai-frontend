@@ -31,6 +31,7 @@ import SobreVanessa from "./pages/SobreVanessa";
 import AlunoPage from "./pages/AlunoPage";
 import ReleaseAccess from "./pages/ReleaseAccess";
 import Contact from "./pages/Contact";
+import Alunos from "./pages/Alunos";
 
 
 export default function App() {
@@ -120,6 +121,11 @@ export default function App() {
           <Route
   path="/contato"
   element={<Contact />}
+/>
+
+<Route
+  path="/alunos"
+  element={<Alunos />}
 />
 
           {/* ✅ AGORA ESTÁ NO LUGAR CERTO */}
