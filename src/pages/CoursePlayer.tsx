@@ -189,6 +189,11 @@ const [
     accessData.hasAccess
   );
 
+console.log(
+  "ACCESS DATA:",
+  accessData
+);
+
 setAccessChecked(true);
 
 }
@@ -559,7 +564,8 @@ if(!accessChecked){
 
 if(
   !hasAccess &&
-  user?.role !== "produtor"
+  user?.role !== "produtor" &&
+  user?.role !== "superadmin"
 ){
 
   return(
