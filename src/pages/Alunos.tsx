@@ -21,7 +21,7 @@ export default function Alunos() {
         // 🔥 USERS
         const response =
           await axios.get(
-            "https://api.avivaioficial.com.br/users"
+            "https://api.avivaioficial.com.br/alunos-liberados"
           );
 
         // 🔥 ACCESS
