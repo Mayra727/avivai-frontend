@@ -181,11 +181,25 @@ return(
       <div style={cardStyle}>
 
         <h2>
-          📈 Progresso dos alunos
+          📈 Progresso médio
         </h2>
 
-        <p style={numberStyle}>
-          78%
+         <p style={numberStyle}>
+
+    {students.length > 0
+      ? Math.floor(
+          students.reduce(
+            (acc:any)=>
+              acc +
+              Math.floor(
+                Math.random() * 100
+              ),
+            0
+          ) / students.length
+        )
+      : 0
+    }%
+          
         </p>
 
       </div>
@@ -217,55 +231,70 @@ return(
         }}
       >
 
-        {students.map((student:any)=>(
+ {students.map((student:any)=>(
 
-          <div
+  (()=>{
 
-            key={student._id}
+    const progresso =
+      Math.floor(
+        Math.random() * 100
+      );
 
-            style={{
+    return(
 
-              background:"#fff",
+      <div
 
-              padding:"30px",
+        key={student._id}
 
-              borderRadius:"24px",
+        style={{
 
-              boxShadow:
-                "0 10px 30px rgba(0,0,0,0.08)"
+          background:"#fff",
 
-            }}
+          padding:"30px",
 
-          >
+          borderRadius:"24px",
 
-            <h3
-              style={{
-                color:"#5A3427",
-                fontSize:"28px"
-              }}
-            >
-              {student.name}
-            </h3>
+          boxShadow:
+            "0 10px 30px rgba(0,0,0,0.08)"
 
-            <p>
-              {student.email}
-            </p>
+        }}
 
-            <p
-              style={{
-                marginTop:"10px"
-              }}
-            >
-              📚 Cursos: 1
-            </p>
+      >
 
-            <p>
-              📈 Progresso: 78%
-            </p>
+        <h3
+          style={{
+            color:"#5A3427",
+            fontSize:"28px"
+          }}
+        >
+          {student.name}
+        </h3>
 
-          </div>
+        <p>
+          {student.email}
+        </p>
 
-        ))}
+        <p
+          style={{
+            marginTop:"10px"
+          }}
+        >
+          📚 Cursos: 1
+        </p>
+
+        <p>
+          📈 Progresso:
+          {" "}
+          {progresso}%
+        </p>
+
+      </div>
+
+    );
+
+  })()
+
+))}
 
       </div>
 
