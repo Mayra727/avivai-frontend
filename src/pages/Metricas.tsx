@@ -18,6 +18,9 @@ export default function Metricas(){
 const [students,setStudents] =
   useState<any[]>([]);
 
+const [progressMap,setProgressMap] =
+  useState<any>({});
+
   useEffect(()=>{
 
     async function loadMetrics(){
@@ -40,6 +43,38 @@ const [students,setStudents] =
 
 setStudents(
   usersRes.data
+);
+
+const progressData:any = {};
+
+for(const student of usersRes.data){
+
+  try{
+
+    const progressRes =
+      await axios.get(
+
+`https://api.avivaioficial.com.br/student-progress/${student._id}`
+
+      );
+
+    progressData[
+      student._id
+    ] =
+      progressRes.data.percentage;
+
+  }catch{
+
+    progressData[
+      student._id
+    ] = 0;
+
+  }
+
+}
+
+setProgressMap(
+  progressData
 );
 
 setCourses(
@@ -184,23 +219,33 @@ return(
           📈 Progresso médio
         </h2>
 
-         <p style={numberStyle}>
+<p style={numberStyle}>
 
-    {students.length > 0
-      ? Math.floor(
-          students.reduce(
-            (acc:any)=>
-              acc +
-              Math.floor(
-                Math.random() * 100
-              ),
-            0
-          ) / students.length
-        )
-      : 0
-    }%
-          
-        </p>
+  {students.length > 0
+    ? Math.floor(
+
+        students.reduce(
+
+          (acc:any,student:any)=>
+
+            acc +
+
+            (
+              progressMap[
+                student._id
+              ] || 0
+            ),
+
+          0
+
+        ) / students.length
+
+      )
+
+    : 0
+  }%
+
+</p>
 
       </div>
 
@@ -235,10 +280,10 @@ return(
 
   (()=>{
 
-    const progresso =
-      Math.floor(
-        Math.random() * 100
-      );
+   const progresso =
+  progressMap[
+    student._id
+  ] || 0;
 
     return(
 
