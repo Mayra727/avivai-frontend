@@ -26,7 +26,7 @@ const [students,setStudents] =
 
         const usersRes =
           await axios.get(
-"https://api.avivaioficial.com.br/users"
+"https://api.avivaioficial.com.br/alunos-liberados"
           );
 
         const coursesRes =
@@ -34,22 +34,12 @@ const [students,setStudents] =
 "https://api.avivaioficial.com.br/courses"
           );
 
-       const alunosLiberados =
-  usersRes.data.filter(
-
-    (user:any)=>
-
-      user.role === "aluno" &&
-      user.hasAccess === true
-
-  );
-
-setUsers(
-  alunosLiberados.length
+       setUsers(
+  usersRes.data.length
 );
 
 setStudents(
-  alunosLiberados
+  usersRes.data
 );
 
 setCourses(
