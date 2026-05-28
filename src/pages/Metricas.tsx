@@ -15,6 +15,9 @@ export default function Metricas(){
   const [mentorias,setMentorias] =
     useState(0);
 
+const [students,setStudents] =
+  useState<any[]>([]);
+
   useEffect(()=>{
 
     async function loadMetrics(){
@@ -38,6 +41,10 @@ export default function Metricas(){
         setCourses(
           coursesRes.data.length
         );
+
+setStudents(
+  usersRes.data
+);
 
         // 🔥 SOMA FATURAMENTO
 
@@ -83,115 +90,195 @@ export default function Metricas(){
 
   },[]);
 
-  return(
+return(
+
+  <div
+    style={{
+      padding:"60px",
+      maxWidth:"1400px",
+      margin:"0 auto"
+    }}
+  >
+
+    <h1
+      style={{
+        fontSize:"56px",
+        color:"#5A3427",
+        marginBottom:"50px"
+      }}
+    >
+      📊 Métricas da Plataforma
+    </h1>
+
+    {/* CARDS */}
 
     <div
       style={{
-        padding:"60px",
-        maxWidth:"1400px",
-        margin:"0 auto"
+        display:"grid",
+        gridTemplateColumns:
+          "repeat(auto-fit,minmax(280px,1fr))",
+        gap:"30px"
       }}
     >
 
-      <h1
-        style={{
-          fontSize:"56px",
-          color:"#5A3427",
-          marginBottom:"50px"
-        }}
-      >
-        📊 Métricas da Plataforma
-      </h1>
+      {/* ALUNOS */}
 
-      <div
-        style={{
-          display:"grid",
-          gridTemplateColumns:
-            "repeat(auto-fit,minmax(280px,1fr))",
-          gap:"30px"
-        }}
-      >
+      <div style={cardStyle}>
 
-        {/* ALUNOS */}
+        <h2>
+          👥 Total de alunos
+        </h2>
 
-        <div style={cardStyle}>
+        <p style={numberStyle}>
+          {users}
+        </p>
 
-          <h2>
-            👥 Total de alunos
-          </h2>
+      </div>
 
-          <p style={numberStyle}>
-            {users}
-          </p>
+      {/* CURSOS */}
 
-        </div>
+      <div style={cardStyle}>
 
-        {/* CURSOS */}
+        <h2>
+          📚 Cursos vendidos
+        </h2>
 
-        <div style={cardStyle}>
+        <p style={numberStyle}>
+          {courses}
+        </p>
 
-          <h2>
-            📚 Cursos vendidos
-          </h2>
+      </div>
 
-          <p style={numberStyle}>
-            {courses}
-          </p>
+      {/* FATURAMENTO */}
 
-        </div>
+      <div style={cardStyle}>
 
-        {/* FATURAMENTO */}
+        <h2>
+          💰 Faturamento
+        </h2>
 
-        <div style={cardStyle}>
+        <p style={numberStyle}>
+          R$ {revenue}
+        </p>
 
-          <h2>
-            💰 Faturamento
-          </h2>
+      </div>
 
-          <p style={numberStyle}>
-            R$ {revenue}
-          </p>
+      {/* MENTORIAS */}
 
-        </div>
+      <div style={cardStyle}>
 
-        {/* MENTORIAS */}
+        <h2>
+          🌟 Mentorias
+        </h2>
 
-        <div style={cardStyle}>
+        <p style={numberStyle}>
+          {mentorias}
+        </p>
 
-          <h2>
-            🌟 Mentorias
-          </h2>
+      </div>
 
-          <p style={numberStyle}>
-            {mentorias}
-          </p>
+      {/* PROGRESSO */}
 
-        </div>
+      <div style={cardStyle}>
 
-{/* PROGRESSO */}
+        <h2>
+          📈 Progresso dos alunos
+        </h2>
 
-<div style={cardStyle}>
-
-  <h2>
-    📈 Progresso dos alunos
-  </h2>
-
-  <p style={numberStyle}>
-    78%
-  </p>
-
-</div>
+        <p style={numberStyle}>
+          78%
+        </p>
 
       </div>
 
     </div>
 
-  );
+    {/* LISTA ALUNOS */}
+
+    <div
+      style={{
+        marginTop:"70px"
+      }}
+    >
+
+      <h2
+        style={{
+          marginBottom:"30px",
+          color:"#5A3427",
+          fontSize:"38px"
+        }}
+      >
+        📈 Progresso dos alunos
+      </h2>
+
+      <div
+        style={{
+          display:"grid",
+          gap:"20px"
+        }}
+      >
+
+        {students.map((student:any)=>(
+
+          <div
+
+            key={student._id}
+
+            style={{
+
+              background:"#fff",
+
+              padding:"30px",
+
+              borderRadius:"24px",
+
+              boxShadow:
+                "0 10px 30px rgba(0,0,0,0.08)"
+
+            }}
+
+          >
+
+            <h3
+              style={{
+                color:"#5A3427",
+                fontSize:"28px"
+              }}
+            >
+              {student.name}
+            </h3>
+
+            <p>
+              {student.email}
+            </p>
+
+            <p
+              style={{
+                marginTop:"10px"
+              }}
+            >
+              📚 Cursos: 1
+            </p>
+
+            <p>
+              📈 Progresso: 78%
+            </p>
+
+          </div>
+
+        ))}
+
+      </div>
+
+    </div>
+
+  </div>
+
+);
 
 }
 
 const cardStyle = {
-
   background:"#fff",
 
   padding:"40px",
