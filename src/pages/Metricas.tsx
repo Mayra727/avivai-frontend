@@ -34,18 +34,27 @@ const [students,setStudents] =
 "https://api.avivaioficial.com.br/courses"
           );
 
-        setUsers(
-          usersRes.data.length
-        );
+       const alunosLiberados =
+  usersRes.data.filter(
 
-        setCourses(
-          coursesRes.data.length
-        );
+    (user:any)=>
 
-setStudents(
-  usersRes.data
+      user.role === "aluno" &&
+      user.hasAccess === true
+
+  );
+
+setUsers(
+  alunosLiberados.length
 );
 
+setStudents(
+  alunosLiberados
+);
+
+setCourses(
+  coursesRes.data.length
+);
         // 🔥 SOMA FATURAMENTO
 
         const total =
