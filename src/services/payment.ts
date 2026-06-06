@@ -6,12 +6,14 @@ export async function createPayment(
   price: number
 ) {
 
-  const response = await fetch(`${API_URL}/create-payment`, {
+  const response = await fetch(
+  `${API_URL}/create-checkout`, {
+    
   method: "POST",
   headers: {
     "Content-Type": "application/json"
   },
-  
+
     body: JSON.stringify({
       courseId,
       title,
