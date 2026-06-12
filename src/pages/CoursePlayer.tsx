@@ -48,15 +48,6 @@ const [showSidebar, setShowSidebar] =
   const [progress, setProgress] =
   useState<string[]>([]);
 
-const currentModule =
-  course?.modules?.find(
-    (m: any) =>
-      m.lessons?.some(
-        (l: any) =>
-          l.title === currentLesson?.title
-      )
-  );
-
 const totalLessons =
   course?.modules?.flatMap(
     (m: any) => m.lessons
