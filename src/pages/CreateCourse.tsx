@@ -66,13 +66,7 @@ useState("");
   useState([
 
     {
-      title: "Bem vindo - aula bônus",
-      type: "video",
-      content: ""
-    },
-
-    {
-      title: "Aula 1",
+      title: "Bem Vindo",
       type: "video",
       content: ""
     },
@@ -87,25 +81,18 @@ useState("");
 
     {
       title:
-        "Aula 2 - Apresentação do método e estrutura",
+        "Apresentação do método e estrutura",
 
       type: "video",
       content: ""
     },
 
     {
-      title: "Aula 3",
+      title: "O Encontro Entre a Ciência e Fé",
       type: "video",
       content: ""
     },
 
-{
-  title: "Livro Vivencial - PDF",
-  type: "pdf",
-  content: "",
-  pdf: "",
-  extraPdf: ""
-}
   ]);
 
   useEffect(() => {
