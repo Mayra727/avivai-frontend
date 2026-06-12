@@ -63,37 +63,7 @@ useState("");
   const [loading, setLoading] = useState(false);
 
   const [initialLessons, setInitialLessons] =
-  useState([
-
-    {
-      title: "Bem Vindo",
-      type: "video",
-      content: ""
-    },
-
-    {
-      title:
-        "Apresentação do protocolo 90s mente renovada - PDF",
-
-      type: "video",
-      content: ""
-    },
-
-    {
-      title:
-        "Apresentação do método e estrutura",
-
-      type: "video",
-      content: ""
-    },
-
-    {
-      title: "O Encontro Entre a Ciência e Fé",
-      type: "video",
-      content: ""
-    },
-
-  ]);
+useState<Lesson[]>([]);
 
   useEffect(() => {
 
@@ -266,10 +236,14 @@ extraPdf: m.extraPdf || "",
 
   console.log("STATE:", modules);
 
-  if (!courseName || modules.length === 0) {
-    alert("Preencha todos os campos");
-    return;
-  }
+if (
+  !courseName ||
+  (modules.length === 0 &&
+   initialLessons.length === 0)
+) {
+  alert("Preencha todos os campos");
+  return;
+}
 
   if (!user) {
     alert("Usuário não logado");
@@ -326,15 +300,22 @@ const course = {
     // 🔥 DEBUG FINAL
     console.log("🚀 COURSE:", course);
 
-    console.log(
-      "🚀 TYPE:",
-      typeof course.modules[0].lessons[0]
-    );
+    if (
+  course.modules.length > 0 &&
+  course.modules[0].lessons.length > 0
+) {
 
-    console.log(
-      "🚀 LESSON:",
-      course.modules[0].lessons[0]
-    );
+  console.log(
+    "🚀 TYPE:",
+    typeof course.modules[0].lessons[0]
+  );
+
+  console.log(
+    "🚀 LESSON:",
+    course.modules[0].lessons[0]
+  );
+
+}
 
     const response = await fetch(
 
@@ -447,6 +428,31 @@ return (
     Conteúdos iniciais
   </h2>
 
+<button
+  type="button"
+  onClick={() =>
+
+    setInitialLessons(prev => [
+
+      ...prev,
+
+      {
+  title: "",
+  type: "video",
+  content: "",
+  cover: "",
+  extraPdf: ""
+}
+
+    ])
+
+  }
+>
+
+  + Adicionar conteúdo inicial
+
+</button>
+
   {initialLessons.map(
     (lesson, index) => (
 
@@ -455,10 +461,51 @@ return (
         className="lesson"
       >
 
-        <input
-          value={lesson.title}
-          disabled
-        />
+       <input
+  placeholder="Nome do conteúdo inicial"
+
+  value={lesson.title}
+
+  onChange={(e) =>
+
+    setInitialLessons(prev =>
+
+      prev.map((l,i) =>
+
+        i === index
+
+          ? {
+              ...l,
+              title: e.target.value
+            }
+
+          : l
+
+      )
+
+    )
+
+  }
+/>
+
+<button
+  type="button"
+  onClick={() =>
+    setInitialLessons(prev =>
+      prev.filter((_, i) => i !== index)
+    )
+  }
+  style={{
+    background:"#dc2626",
+    color:"#fff",
+    border:"none",
+    padding:"10px 15px",
+    borderRadius:"8px",
+    cursor:"pointer"
+  }}
+>
+  ❌ Excluir conteúdo
+</button>
 
         {/* VIDEO */}
 
@@ -596,7 +643,6 @@ setInitialLessons(prev =>
   </div>
 
 )}
-
       </div>
 
     )
