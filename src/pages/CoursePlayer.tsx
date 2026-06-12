@@ -1027,21 +1027,22 @@ return (
 {/* PDF DO MODULO */}
 
 {currentLesson.type === "pdf" &&
- currentModule?.pdf && (
+ currentLesson.content && (
 
 <iframe
-  src={currentModule.pdf}
+  ref={pdfRef}
+  src={currentLesson.content}
 
   width="100%"
-
-  height="500px"
+  height="900px"
 
   className="pdf-viewer"
 
   style={{
     marginTop: "20px",
     borderRadius: "16px",
-    background: "#fff"
+    background: "#fff",
+    border: "none"
   }}
 />
 
