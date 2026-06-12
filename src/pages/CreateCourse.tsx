@@ -507,6 +507,21 @@ return (
   ❌ Excluir conteúdo
 </button>
 
+<h2>
+  Conteúdos iniciais
+</h2>
+
+<div
+  style={{
+    background: "red",
+    color: "white",
+    padding: "20px",
+    marginBottom: "20px"
+  }}
+>
+  TESTE MAYRA 123
+</div>
+
         {/* VIDEO */}
 
 <input
