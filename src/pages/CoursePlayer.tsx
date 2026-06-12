@@ -65,8 +65,15 @@ const progressPercent =
   moduleIndex: number
 ) {
 
-  // 🔓 primeiro módulo sempre liberado
+  // Produtor e Superadmin veem tudo
+  if (
+    user?.role === "produtor" ||
+    user?.role === "superadmin"
+  ) {
+    return true;
+  }
 
+  // Primeiro módulo sempre liberado
   if (moduleIndex === 0) {
     return true;
   }
@@ -74,11 +81,8 @@ const progressPercent =
   const previousModule =
     course.modules[moduleIndex - 1];
 
-  // 🔥 verifica se TODAS aulas foram concluídas
-
   return previousModule.lessons.every(
     (lesson: any) =>
-
       progress.includes(
         lesson.title
       )
