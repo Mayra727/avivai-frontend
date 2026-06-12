@@ -496,7 +496,7 @@ return (
     )
   }
   style={{
-    background:"#dc2626",
+    background:"#7A4A3A",
     color:"#fff",
     border:"none",
     padding:"10px 15px",
@@ -506,21 +506,6 @@ return (
 >
   ❌ Excluir conteúdo
 </button>
-
-<h2>
-  Conteúdos iniciais
-</h2>
-
-<div
-  style={{
-    background: "red",
-    color: "white",
-    padding: "20px",
-    marginBottom: "20px"
-  }}
->
-  TESTE MAYRA 123
-</div>
 
         {/* VIDEO */}
 
