@@ -1,73 +1,103 @@
-# React + TypeScript + Vite
+# 🚀 AVIVAI Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Plataforma Full Stack para venda e gerenciamento de cursos online, desenvolvida com React, TypeScript e Vite.
 
-Currently, two official plugins are available:
+O projeto foi criado para oferecer uma experiência completa de ensino digital, permitindo que produtores publiquem conteúdos e alunos adquiram e acompanhem cursos em uma interface moderna e intuitiva.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🔐 Cadastro e autenticação de usuários
+- 👤 Área do aluno
+- 👨‍🏫 Área do produtor
+- 📚 Catálogo de cursos
+- 📖 Página de ebooks e mentorias
+- 💳 Integração com sistema de pagamentos
+- 🔍 Pesquisa de conteúdos
+- 📱 Layout responsivo
+- 🔗 Consumo de APIs REST
+- ⚡ Navegação otimizada com React Router
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tecnologias utilizadas
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+| Frontend | Ferramentas |
+|-----------|-------------|
+| React | Git |
+| TypeScript | GitHub |
+| Vite | Axios |
+| React Router | Context API |
+| HTML5 | CSS3 |
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📂 Estrutura do projeto
+
+```text
+src/
+├── assets
+├── components
+├── contexts
+├── hooks
+├── pages
+├── routes
+├── services
+├── styles
+└── utils
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🚀 Como executar
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Clone o projeto
+
+```bash
+git clone https://github.com/Mayra727/avivai-frontend.git
 ```
+
+### Instale as dependências
+
+```bash
+npm install
+```
+
+### Execute o projeto
+
+```bash
+npm run dev
+```
+
+---
+
+## 🔗 Backend
+
+Este projeto consome a API disponível em:
+
+👉 https://github.com/Mayra727/avivai-backend
+
+---
+
+## 📌 Principais aprendizados
+
+Durante o desenvolvimento deste projeto foram aplicados conceitos como:
+
+- Arquitetura de aplicações React
+- Componentização
+- Gerenciamento de estado
+- Consumo de APIs REST
+- Autenticação de usuários
+- Integração entre frontend e backend
+- Organização de código
+- Versionamento com Git e GitHub
+
+---
+
+## 👩‍💻 Desenvolvedora
+
+**Mayra Caroline**
+
+- LinkedIn: https://linkedin.com/in/mayra-caroline-39504230a
+- GitHub: https://github.com/Mayra727
