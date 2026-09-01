@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
+import { API_URL } from "../services/api";
 
 type Role = "superadmin" | "produtor" | "aluno";
 
@@ -27,7 +28,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     if (!token) return;
 
-    fetch("https://avivai-backend-production.up.railway.app/me", {
+    fetch(`${API_URL}/me`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

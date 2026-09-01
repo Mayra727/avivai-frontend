@@ -89,49 +89,40 @@ const progressPercent =
   );
 }
 
-async function completeLesson(
-  lessonId: string
-) {
+async function completeLesson(lessonId: string) {
+
+  // Não salva duas vezes a mesma aula
+  if (progress.includes(lessonId)) return;
 
   try {
 
-    await fetch(
-      `${API_URL}/progress`,
-      {
-        method: "POST",
+    await fetch(`${API_URL}/progress`, {
+      method: "POST",
 
-        headers: {
-          "Content-Type":
-            "application/json"
-        },
+      headers: {
+        "Content-Type": "application/json"
+      },
 
-        body: JSON.stringify({
+      body: JSON.stringify({
+        userId: user.id,
+        courseId,
+        lessonId,
+        completed: true
+      })
+    });
 
-          userId: user.id,
-
-          courseId,
-
-          lessonId,
-
-          completed: true
-        })
-      }
-    );
-
-    // 🔥 salva última aula vista
-
+    // Salva a última aula vista
     localStorage.setItem(
       `lastLesson-${courseId}`,
-      currentLesson.title
+      lessonId
     );
 
-    setProgress((prev) => [
-      ...prev,
-      lessonId
-    ]);
+    // Atualiza a lista de aulas concluídas
+    setProgress((prev) => [...prev, lessonId]);
+
+    console.log("✅ Aula concluída automaticamente:", lessonId);
 
   } catch (error) {
-
     console.log(error);
   }
 }
@@ -985,36 +976,42 @@ return (
 {currentLesson.content &&
  currentLesson.type === "video" && (
 
-  <video
-    key={currentLesson.content}
+ <video
+  key={currentLesson.content}
+  ref={videoRef}
+  controls
+  controlsList="nodownload"
+  disablePictureInPicture
+  onContextMenu={(e) => e.preventDefault()}
+  className="netflix-video"
 
-    ref={videoRef}
+onTimeUpdate={(e) => {
+  const video = e.currentTarget;
 
-    controls
-    controlsList="nodownload"
-    disablePictureInPicture
+  // Espera o vídeo carregar
+  if (!video.duration) return;
 
-    onContextMenu={(e) =>
-      e.preventDefault()
-    }
+  const porcentagem =
+    (video.currentTime / video.duration) * 100;
 
-    className="netflix-video"
+  if (
+    porcentagem >= 95 &&
+    !progress.includes(currentLesson.title)
+  ) {
+    completeLesson(currentLesson.title);
+  }
+}}
 
-    style={{
-      width: "100%",
-      borderRadius: "20px",
-      marginBottom: "30px",
-      position: "relative",
-      zIndex: 2
-    }}
-  >
-
-    <source
-      src={currentLesson.content}
-      type="video/mp4"
-    />
-
-  </video>
+  style={{
+    width: "100%",
+    borderRadius: "20px",
+    marginBottom: "30px",
+    position: "relative",
+    zIndex: 2,
+  }}
+>
+  <source src={currentLesson.content} type="video/mp4" />
+</video>
 
 )}
 
@@ -1032,6 +1029,27 @@ return (
   height="900px"
 
   className="pdf-viewer"
+
+   onLoad={() => {
+    const pdfWindow = pdfRef.current?.contentWindow;
+
+    if (!pdfWindow) return;
+
+    pdfWindow.addEventListener("scroll", () => {
+      const altura =
+        pdfWindow.document.documentElement.scrollHeight;
+
+      const scroll =
+        pdfWindow.scrollY + pdfWindow.innerHeight;
+
+      if (
+        scroll >= altura - 100 &&
+        !progress.includes(currentLesson.title)
+      ) {
+        completeLesson(currentLesson.title);
+      }
+    });
+  }}
 
   style={{
     marginTop: "20px",

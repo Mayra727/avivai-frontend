@@ -1,4 +1,7 @@
-export const API_URL = "https://avivai-backend-production.up.railway.app";
+export const API_URL =
+  import.meta.env.DEV
+    ? "http://localhost:8080"
+    : "https://avivai-backend-production.up.railway.app";
 
 export async function register(name: string, email: string, password: string) {
 
