@@ -521,6 +521,59 @@ useEffect(() => {
   user
 ]);
 
+// =========================
+// CONCLUSÃO AUTOMÁTICA DO PDF
+// =========================
+
+useEffect(() => {
+  if (!currentLesson) return;
+
+  // Só funciona para aulas PDF
+  if (currentLesson.type !== "pdf") return;
+
+  // Não marca de novo se já concluiu
+  if (progress.includes(currentLesson.title)) return;
+
+  console.log("📄 PDF aberto:", currentLesson.title);
+
+  // Dá 2 segundos apenas para o iframe carregar
+  const timer = setTimeout(() => {
+    completeLesson(currentLesson.title);
+    console.log("✅ PDF concluído automaticamente");
+  }, 2000);
+
+  return () => clearTimeout(timer);
+
+}, [currentLesson?.title]);
+
+
+// =========================
+// PDF DOS CONTEÚDOS INICIAIS
+// =========================
+
+useEffect(() => {
+  if (!currentLesson) return;
+
+  // Só para aulas dos conteúdos iniciais
+  const isInitialLesson = course?.initialLessons?.some(
+    (lesson: any) => lesson.title === currentLesson.title
+  );
+
+  if (!isInitialLesson) return;
+
+  if (currentLesson.type !== "pdf") return;
+
+  if (progress.includes(currentLesson.title)) return;
+
+  const timer = setTimeout(() => {
+    completeLesson(currentLesson.title);
+    console.log("✅ PDF inicial concluído:", currentLesson.title);
+  }, 2000);
+
+  return () => clearTimeout(timer);
+
+}, [currentLesson?.title, course]);
+
   // =========================
   // LOADING
   // =========================
@@ -700,29 +753,29 @@ return (
           }}
 
           className={`lesson-item ${
-            currentLesson === lesson
-              ? "active"
-              : ""
-          }`}
+  currentLesson?.title === lesson.title
+    ? "active"
+    : ""
+}`}
         >
 
           <div className="lesson-card">
+  <div>
+    <p style={{ margin: 0 }}>
+      {lesson.title}
+    </p>
 
-            <div>
-
-              <p
-                style={{
-                  margin: 0
-                }}
-              >
-                {lesson.title}
-              </p>
-
-            </div>
+    {progress.includes(lesson.title) && (
+      <span style={{ color: "#16a34a" }}>
+        ✅
+      </span>
+    )}
+  </div>
+</div>
 
           </div>
 
-        </div>
+      
 
       )
     )}
@@ -909,39 +962,62 @@ return (
 
 </div>
 
-{/* VÍDEO INICIAL */}
+{/* VÍDEO INICIAL - apenas quando a aula atual é um vídeo inicial */}
 
-{course.introVideo && (
+{course.introVideo &&
+ currentLesson?.type === "video" &&
+ currentLesson?.content === course.videoInicial && (
 
   <video
+    ref={videoRef}
     controls
     controlsList="nodownload"
     disablePictureInPicture
+
+    onTimeUpdate={(e) => {
+      const video = e.currentTarget;
+
+      if (!video.duration) return;
+
+      const porcentagem =
+        (video.currentTime / video.duration) * 100;
+
+      if (
+        porcentagem >= 95 &&
+        !progress.includes(currentLesson.title)
+      ) {
+        completeLesson(currentLesson.title);
+      }
+    }}
+
     style={{
       width: "100%",
       borderRadius: "20px",
       marginBottom: "30px"
     }}
   >
-
-    <source
-      src={course.videoInicial}
-      type="video/mp4"
-    />
-
+    <source src={course.videoInicial} type="video/mp4" />
   </video>
 
 )}
 
-{/* PDF PRINCIPAL */}
+{/* PDF PRINCIPAL - apenas quando a aula atual é o PDF inicial */}
 
-{course.supportPdf && (
+{course.supportPdf &&
+ currentLesson?.type === "pdf" &&
+ currentLesson?.content === course.pdf && (
 
   <iframe
+    ref={pdfRef}
     src={course.pdf}
     className="pdf-content"
+
     style={{
-      marginBottom: "30px"
+      marginBottom: "30px",
+      width: "100%",
+      height: "900px",
+      border: "none",
+      borderRadius: "16px"
     }}
   />
 
@@ -1030,27 +1106,6 @@ onTimeUpdate={(e) => {
 
   className="pdf-viewer"
 
-   onLoad={() => {
-    const pdfWindow = pdfRef.current?.contentWindow;
-
-    if (!pdfWindow) return;
-
-    pdfWindow.addEventListener("scroll", () => {
-      const altura =
-        pdfWindow.document.documentElement.scrollHeight;
-
-      const scroll =
-        pdfWindow.scrollY + pdfWindow.innerHeight;
-
-      if (
-        scroll >= altura - 100 &&
-        !progress.includes(currentLesson.title)
-      ) {
-        completeLesson(currentLesson.title);
-      }
-    });
-  }}
-
   style={{
     marginTop: "20px",
     borderRadius: "16px",
@@ -1107,26 +1162,23 @@ onTimeUpdate={(e) => {
 
             )}
 
-<button
-  onClick={() =>
-    completeLesson(
-  currentLesson.title
-)
-  }
-
-    style={{
-    marginTop: "20px",
-    padding: "12px 20px",
-    borderRadius: "10px",
-    border: "none",
-    background: "#7A4A3A",
-    color: "white",
-    cursor: "pointer"
-  }}
->
-  ✅ Concluir aula
-</button>
-
+{currentLesson.type !== "pdf" &&
+  !progress.includes(currentLesson.title) && (
+    <button
+      onClick={() => completeLesson(currentLesson.title)}
+      style={{
+        marginTop: "20px",
+        padding: "12px 20px",
+        borderRadius: "10px",
+        border: "none",
+        background: "#7A4A3A",
+        color: "white",
+        cursor: "pointer",
+      }}
+    >
+      ✅ Concluir aula
+    </button>
+)}
 
           </>
 
